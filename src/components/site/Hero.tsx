@@ -178,8 +178,7 @@ export function Hero() {
             style={{ transform: "translate3d(0,0,0)", willChange: "transform" }}
           >
             <div
-              className="origin-center rotate-[10deg] md:rotate-[22deg] lg:rotate-[30deg]"
-              style={{ filter: "drop-shadow(0 30px 40px color-mix(in oklab, var(--ink) 25%, transparent))" }}
+              className="phone-tilt origin-center rotate-[10deg] md:rotate-[22deg] lg:rotate-[30deg]"
             >
               <PhoneMockup />
             </div>
