@@ -141,7 +141,14 @@
   .text-display-tight {
     font-weight: 900;
     letter-spacing: -0.05em;
-    line-height: 0.82;
+    line-height: 0.92;
+  }
+  /* Inline highlight pill inside large headings — prevents bg from
+     overlapping adjacent lines when used with very tight leading. */
+  .text-display-tight :where(.bg-lime, .bg-violet, .bg-white) {
+    display: inline-block;
+    padding-block: 0.02em;
+    line-height: 0.95;
   }
   .pill {
     display: inline-flex;
