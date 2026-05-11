@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { useState } from "react";
+import { ArrowLeft, ArrowRight, Pause, Play } from "lucide-react";
 import imgSeo from "@/assets/addon-seo.jpg";
 import imgBlog from "@/assets/addon-blog.jpg";
 import imgBranding from "@/assets/addon-branding.jpg";
@@ -21,78 +21,11 @@ const ADDONS = [
 ];
 
 export function AddonsSlider() {
-  const ref = useRef<HTMLDivElement>(null);
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const [active, setActive] = useState(0);
-  const [announce, setAnnounce] = useState("");
-  const total = ADDONS.length;
+  const [paused, setPaused] = useState(false);
+  const [direction, setDirection] = useState<"left" | "right">("left");
 
-  const goTo = useCallback(
-    (idx: number, focus = true) => {
-      const clamped = Math.max(0, Math.min(total - 1, idx));
-      const el = cardRefs.current[clamped];
-      if (!el) return;
-      el.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
-      setActive(clamped);
-      setAnnounce(`Karta ${clamped + 1} z ${total}: ${ADDONS[clamped].title}. ${ADDONS[clamped].desc}`);
-      if (focus) {
-        // Focus after smooth scroll initiates; preventScroll avoids double-jump.
-        window.setTimeout(() => el.focus({ preventScroll: true }), 60);
-      }
-    },
-    [total],
-  );
-
-  const scrollByArrow = (dir: number) => goTo(active + dir, false);
-
-  // Track which card is most visible to keep `active` in sync with manual scrolling.
-  useEffect(() => {
-    const root = ref.current;
-    if (!root) return;
-    const io = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible) {
-          const idx = cardRefs.current.indexOf(visible.target as HTMLDivElement);
-          if (idx >= 0) setActive(idx);
-        }
-      },
-      { root, threshold: [0.5, 0.75, 1] },
-    );
-    cardRefs.current.forEach((el) => el && io.observe(el));
-    return () => io.disconnect();
-  }, []);
-
-  const onKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    switch (e.key) {
-      case "ArrowRight":
-        e.preventDefault();
-        goTo(active + 1);
-        break;
-      case "ArrowLeft":
-        e.preventDefault();
-        goTo(active - 1);
-        break;
-      case "Home":
-        e.preventDefault();
-        goTo(0);
-        break;
-      case "End":
-        e.preventDefault();
-        goTo(total - 1);
-        break;
-      case "PageDown":
-        e.preventDefault();
-        goTo(active + 3);
-        break;
-      case "PageUp":
-        e.preventDefault();
-        goTo(active - 3);
-        break;
-    }
-  };
+  // Duplicate the list so the translateX(-50%) loop is seamless.
+  const loop = [...ADDONS, ...ADDONS];
 
   return (
     <section
@@ -113,22 +46,27 @@ export function AddonsSlider() {
               CO MOŻESZ<br/>DODAĆ <span className="text-violet">PÓŹNIEJ?</span>
             </h2>
           </div>
-          <div className="flex gap-2" role="group" aria-label="Nawigacja karuzeli">
+          <div className="flex gap-2" role="group" aria-label="Sterowanie karuzelą">
             <button
-              onClick={() => scrollByArrow(-1)}
-              aria-label="Poprzednia karta"
-              aria-controls="addons-carousel"
-              disabled={active === 0}
-              className="w-12 h-12 rounded-full bg-white border border-ink/15 flex items-center justify-center hover:bg-ink hover:text-cream transition disabled:opacity-40 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-cream"
+              onClick={() => setDirection("right")}
+              aria-label="Przewijaj w lewo"
+              aria-pressed={direction === "right"}
+              className={`w-12 h-12 rounded-full border border-ink/15 flex items-center justify-center transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-cream ${direction === "right" ? "bg-ink text-cream" : "bg-white hover:bg-ink hover:text-cream"}`}
             >
               <ArrowLeft size={18} aria-hidden="true" />
             </button>
             <button
-              onClick={() => scrollByArrow(1)}
-              aria-label="Następna karta"
-              aria-controls="addons-carousel"
-              disabled={active === total - 1}
-              className="w-12 h-12 rounded-full bg-ink text-cream flex items-center justify-center hover:bg-violet hover:text-ink transition disabled:opacity-40 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-cream"
+              onClick={() => setPaused((p) => !p)}
+              aria-label={paused ? "Wznów przewijanie" : "Zatrzymaj przewijanie"}
+              className="w-12 h-12 rounded-full bg-white border border-ink/15 flex items-center justify-center hover:bg-ink hover:text-cream transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-cream"
+            >
+              {paused ? <Play size={16} aria-hidden="true" /> : <Pause size={16} aria-hidden="true" />}
+            </button>
+            <button
+              onClick={() => setDirection("left")}
+              aria-label="Przewijaj w prawo"
+              aria-pressed={direction === "left"}
+              className={`w-12 h-12 rounded-full flex items-center justify-center transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-cream ${direction === "left" ? "bg-ink text-cream" : "bg-white border border-ink/15 hover:bg-ink hover:text-cream"}`}
             >
               <ArrowRight size={18} aria-hidden="true" />
             </button>
@@ -136,90 +74,92 @@ export function AddonsSlider() {
         </div>
       </div>
 
+      {/* Marquee viewport */}
       <div
-        ref={ref}
-        id="addons-carousel"
-        role="group"
-        aria-label="Dodatkowe usługi – karuzela"
+        className="addons-marquee relative w-full overflow-hidden"
+        data-paused={paused ? "true" : "false"}
+        data-direction={direction}
+        onMouseEnter={() => undefined /* hover pause handled in CSS */}
         aria-roledescription="carousel"
-        onKeyDown={onKeyDown}
-        className="flex gap-5 overflow-x-auto no-scrollbar px-5 md:px-8 lg:pl-[max(2rem,calc((100vw-1400px)/2+2rem))] snap-x snap-mandatory focus:outline-none"
+        aria-label="Dodatkowe usługi – nieskończona karuzela"
       >
-        {ADDONS.map((a, i) => (
-          <div
-            key={a.num}
-            ref={(el) => { cardRefs.current[i] = el; }}
-            role="group"
-            aria-roledescription="slide"
-            aria-label={`${i + 1} z ${total}: ${a.title}`}
-            tabIndex={i === active ? 0 : -1}
-            aria-current={i === active ? "true" : undefined}
-            onPointerMove={(e) => {
-              if (e.pointerType !== "mouse" && e.pointerType !== "pen") return;
-              if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-              const el = e.currentTarget;
-              const r = el.getBoundingClientRect();
-              const px = ((e.clientX - r.left) / r.width - 0.5) * 2;
-              const py = ((e.clientY - r.top) / r.height - 0.5) * 2;
-              el.style.setProperty("--px", px.toFixed(3));
-              el.style.setProperty("--py", py.toFixed(3));
-              el.style.setProperty("--tilt", "1");
-            }}
-            onPointerLeave={(e) => {
-              const el = e.currentTarget;
-              el.style.setProperty("--px", "0");
-              el.style.setProperty("--py", "0");
-              el.style.setProperty("--tilt", "0");
-            }}
-            className={`${a.color} group flex-shrink-0 w-[280px] md:w-[340px] aspect-[3/4] rounded-3xl overflow-hidden flex flex-col justify-between snap-start hover:scale-[1.02] transition-transform cursor-pointer relative focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-violet focus-visible:ring-offset-2 focus-visible:ring-offset-cream [--px:0] [--py:0] [--tilt:0]`}
-          >
-            <div className="absolute inset-0 overflow-hidden" aria-hidden="true" style={{ perspective: "800px" }}>
-              <img
-                src={a.img}
-                alt=""
-                width={768}
-                height={1024}
-                loading={i < 2 ? "eager" : "lazy"}
-                decoding={i < 2 ? "sync" : "async"}
-                // @ts-expect-error - fetchpriority is a valid HTML attribute
-                fetchpriority={i === 0 ? "high" : i < 2 ? "auto" : "low"}
-                sizes="(max-width: 768px) 280px, 340px"
-                style={{
-                  transform:
-                    "translate3d(calc(var(--px) * -10px), calc(var(--py) * -10px), 0) scale(calc(1 + var(--tilt) * 0.04)) rotateX(calc(var(--py) * -2deg)) rotateY(calc(var(--px) * 2deg))",
-                  transition: "transform 500ms cubic-bezier(0.22, 1, 0.36, 1), opacity 700ms",
-                  willChange: "transform",
-                  transformOrigin: "center",
-                }}
-                className="w-full h-full object-cover opacity-55 group-hover:opacity-70"
-              />
-              <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-black/35 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/45 to-transparent" />
-            </div>
-            <div className="relative flex items-start justify-between p-7 text-white">
-              <span className="text-sm font-mono opacity-90 drop-shadow-md" aria-hidden="true">{a.num}</span>
-              <span className="w-8 h-8 rounded-full bg-white/15 backdrop-blur-sm border border-white/40 flex items-center justify-center" aria-hidden="true">
-                <ArrowRight size={14} />
-              </span>
-            </div>
-            <div className="relative p-7 text-white">
-              <span
-                className="inline-flex items-center gap-1.5 mb-3 px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider bg-white/15 backdrop-blur-sm border border-white/30 text-white opacity-0 -translate-y-1 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:translate-y-0"
-              >
-                <span className="w-1 h-1 rounded-full bg-white/80" aria-hidden="true" />
-                {a.caption}
-              </span>
-              <h3 className="text-4xl md:text-5xl font-black tracking-tighter mb-3 [text-shadow:0_2px_12px_rgba(0,0,0,0.55)]">{a.title}</h3>
-              <p className="text-sm leading-snug text-white/95 [text-shadow:0_1px_6px_rgba(0,0,0,0.6)]">{a.desc}</p>
-            </div>
-          </div>
-        ))}
-        <div className="flex-shrink-0 w-5" aria-hidden="true" />
-      </div>
+        {/* Edge fade masks */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-16 z-10 bg-gradient-to-r from-cream to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-16 z-10 bg-gradient-to-l from-cream to-transparent" />
 
-      {/* Live region for screen reader announcements */}
-      <div className="sr-only" aria-live="polite" aria-atomic="true">
-        {announce}
+        <div className="addons-track flex gap-5 w-max py-2">
+          {loop.map((a, i) => {
+            const isClone = i >= ADDONS.length;
+            return (
+              <div
+                key={`${a.num}-${i}`}
+                role="group"
+                aria-roledescription="slide"
+                aria-hidden={isClone ? "true" : undefined}
+                aria-label={!isClone ? `${(i % ADDONS.length) + 1} z ${ADDONS.length}: ${a.title}` : undefined}
+                tabIndex={isClone ? -1 : 0}
+                onPointerMove={(e) => {
+                  if (e.pointerType !== "mouse" && e.pointerType !== "pen") return;
+                  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+                  const el = e.currentTarget;
+                  const r = el.getBoundingClientRect();
+                  const px = ((e.clientX - r.left) / r.width - 0.5) * 2;
+                  const py = ((e.clientY - r.top) / r.height - 0.5) * 2;
+                  el.style.setProperty("--px", px.toFixed(3));
+                  el.style.setProperty("--py", py.toFixed(3));
+                  el.style.setProperty("--tilt", "1");
+                }}
+                onPointerLeave={(e) => {
+                  const el = e.currentTarget;
+                  el.style.setProperty("--px", "0");
+                  el.style.setProperty("--py", "0");
+                  el.style.setProperty("--tilt", "0");
+                }}
+                className={`${a.color} group flex-shrink-0 w-[280px] md:w-[340px] aspect-[3/4] rounded-3xl overflow-hidden flex flex-col justify-between cursor-pointer relative focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-violet focus-visible:ring-offset-2 focus-visible:ring-offset-cream [--px:0] [--py:0] [--tilt:0]`}
+              >
+                <div className="absolute inset-0 overflow-hidden" aria-hidden="true" style={{ perspective: "800px" }}>
+                  <img
+                    src={a.img}
+                    alt=""
+                    width={768}
+                    height={1024}
+                    loading={i < 3 ? "eager" : "lazy"}
+                    decoding={i < 3 ? "sync" : "async"}
+                    // @ts-expect-error - fetchpriority is a valid HTML attribute
+                    fetchpriority={i === 0 ? "high" : i < 3 ? "auto" : "low"}
+                    sizes="(max-width: 768px) 280px, 340px"
+                    style={{
+                      transform:
+                        "translate3d(calc(var(--px) * -10px), calc(var(--py) * -10px), 0) scale(calc(1 + var(--tilt) * 0.04)) rotateX(calc(var(--py) * -2deg)) rotateY(calc(var(--px) * 2deg))",
+                      transition: "transform 500ms cubic-bezier(0.22, 1, 0.36, 1), opacity 700ms",
+                      willChange: "transform",
+                      transformOrigin: "center",
+                    }}
+                    className="w-full h-full object-cover opacity-55 group-hover:opacity-70"
+                  />
+                  <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-black/35 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/45 to-transparent" />
+                </div>
+                <div className="relative flex items-start justify-between p-7 text-white">
+                  <span className="text-sm font-mono opacity-90 drop-shadow-md" aria-hidden="true">{a.num}</span>
+                  <span className="w-8 h-8 rounded-full bg-white/15 backdrop-blur-sm border border-white/40 flex items-center justify-center" aria-hidden="true">
+                    <ArrowRight size={14} />
+                  </span>
+                </div>
+                <div className="relative p-7 text-white">
+                  <span
+                    className="inline-flex items-center gap-1.5 mb-3 px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider bg-white/15 backdrop-blur-sm border border-white/30 text-white opacity-0 -translate-y-1 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:translate-y-0"
+                  >
+                    <span className="w-1 h-1 rounded-full bg-white/80" aria-hidden="true" />
+                    {a.caption}
+                  </span>
+                  <h3 className="text-4xl md:text-5xl font-black tracking-tighter mb-3 [text-shadow:0_2px_12px_rgba(0,0,0,0.55)]">{a.title}</h3>
+                  <p className="text-sm leading-snug text-white/95 [text-shadow:0_1px_6px_rgba(0,0,0,0.6)]">{a.desc}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
