@@ -241,28 +241,135 @@ function FloatingCard({
 function PhoneMockup() {
   return (
     <div className="phone-mockup relative w-[260px] md:w-[300px] aspect-[9/19] rounded-[42px] bg-ink p-3">
-      <div className="absolute top-3 left-1/2 -translate-x-1/2 w-24 h-6 bg-ink rounded-b-2xl z-10" />
+      {/* Notch */}
+      <div className="absolute top-3 left-1/2 -translate-x-1/2 w-24 h-6 bg-ink rounded-b-2xl z-20" />
+      {/* Side button hints */}
+      <div className="absolute left-[-2px] top-[120px] w-[2px] h-10 bg-ink/80 rounded-l" />
+      <div className="absolute right-[-2px] top-[150px] w-[2px] h-14 bg-ink/80 rounded-r" />
+
       <div className="w-full h-full rounded-[32px] bg-cream overflow-hidden relative">
-        <div className="px-4 pt-8 pb-4 flex items-center justify-between">
+        {/* Status bar */}
+        <div className="absolute top-0 inset-x-0 flex items-center justify-between px-5 pt-1.5 text-[7px] font-bold z-10">
+          <span>9:41</span>
+          <span className="flex items-center gap-[3px]">
+            <span className="w-[6px] h-[6px] rounded-full bg-ink/80" />
+            <span className="w-3 h-1.5 border border-ink/80 rounded-[2px]" />
+          </span>
+        </div>
+
+        {/* Sticky header */}
+        <div className="absolute top-5 inset-x-0 px-4 py-2 flex items-center justify-between bg-cream/90 backdrop-blur-sm z-10 border-b border-ink/5">
           <div className="text-[10px] font-black tracking-tighter">KSIGN.</div>
-          <div className="w-6 h-1.5 bg-ink rounded" />
-        </div>
-        <div className="px-4 mt-4">
-          <div className="text-[22px] leading-[0.9] font-black tracking-tighter">
-            STRONA<br/>ZA 999<br/>ZŁ.
-          </div>
-          <div className="mt-3 text-[8px] text-ink/60 leading-tight">
-            Premium web design dla małych firm i marek osobistych.
-          </div>
-          <div className="mt-3 inline-flex items-center gap-1 bg-ink text-cream text-[8px] px-2.5 py-1.5 rounded-full font-semibold">
-            Zamów →
+          <div className="flex flex-col gap-[2px]">
+            <span className="w-3 h-[1.5px] bg-ink" />
+            <span className="w-3 h-[1.5px] bg-ink" />
           </div>
         </div>
-        <div className="px-4 mt-4 grid grid-cols-2 gap-2">
-          <div className="aspect-square rounded-xl bg-lime flex items-end p-2 text-[8px] font-bold">3–7 dni</div>
-          <div className="aspect-square rounded-xl bg-violet flex items-end p-2 text-[8px] font-bold">Mobile</div>
+
+        {/* Scrolling content */}
+        <div className="absolute inset-x-0 top-[44px] bottom-0 overflow-hidden">
+          <div className="phone-scroll flex flex-col">
+            {/* Hero */}
+            <div className="px-4 pt-3 pb-4">
+              <div className="text-[7px] font-mono uppercase tracking-widest text-ink/50 mb-2">[ 01 / Hero ]</div>
+              <div className="text-[22px] leading-[0.9] font-black tracking-tighter">
+                STRONA<br/>ZA 999<br/>ZŁ.
+              </div>
+              <div className="mt-2.5 text-[8px] text-ink/60 leading-tight">
+                Premium web design dla małych firm i marek osobistych.
+              </div>
+              <div className="mt-3 inline-flex items-center gap-1 bg-ink text-cream text-[8px] px-2.5 py-1.5 rounded-full font-semibold">
+                Zamów →
+              </div>
+            </div>
+
+            {/* Tiles */}
+            <div className="px-4 pb-4 grid grid-cols-2 gap-2">
+              <div className="aspect-square rounded-xl bg-lime flex items-end p-2 text-[8px] font-bold">3–7 dni</div>
+              <div className="aspect-square rounded-xl bg-violet flex items-end p-2 text-[8px] font-bold">Mobile</div>
+            </div>
+
+            {/* Co dostajesz */}
+            <div className="px-4 py-4 bg-white">
+              <div className="text-[7px] font-mono uppercase tracking-widest text-ink/50 mb-2">[ 02 / Pakiet ]</div>
+              <div className="text-[14px] font-black tracking-tight leading-tight mb-2">CO DOSTAJESZ?</div>
+              <ul className="space-y-1 text-[8px]">
+                {["One-page premium", "Mobile ready", "SEO startowe", "Formularz kontaktowy", "Hosting na rok"].map((t) => (
+                  <li key={t} className="flex items-center gap-1.5">
+                    <span className="w-1 h-1 rounded-full bg-lime" />
+                    {t}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Process */}
+            <div className="px-4 py-4">
+              <div className="text-[7px] font-mono uppercase tracking-widest text-ink/50 mb-2">[ 03 / Proces ]</div>
+              <div className="space-y-1.5">
+                {[
+                  ["01", "Brief"],
+                  ["02", "Projekt"],
+                  ["03", "Wdrożenie"],
+                  ["04", "Launch"],
+                ].map(([n, t]) => (
+                  <div key={n} className="flex items-center justify-between border-b border-ink/10 pb-1 text-[9px]">
+                    <span className="font-mono text-ink/50">{n}</span>
+                    <span className="font-bold">{t}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Pricing card */}
+            <div className="px-4 py-4">
+              <div className="rounded-xl bg-ink text-cream p-3">
+                <div className="text-[7px] font-mono uppercase tracking-widest opacity-60 mb-1">[ 04 / Cena ]</div>
+                <div className="text-[24px] font-black tracking-tighter leading-none">
+                  999 <span className="text-lime">ZŁ</span>
+                </div>
+                <div className="text-[7px] opacity-70 mt-1">Jednorazowo, netto.</div>
+                <div className="mt-2 inline-flex items-center gap-1 bg-lime text-ink text-[8px] px-2 py-1 rounded-full font-bold">
+                  Zamawiam →
+                </div>
+              </div>
+            </div>
+
+            {/* FAQ teaser */}
+            <div className="px-4 py-4 bg-white">
+              <div className="text-[7px] font-mono uppercase tracking-widest text-ink/50 mb-2">[ 05 / FAQ ]</div>
+              {["Ile trwa realizacja?", "Co jeśli nie mam treści?", "Czy mogę rozbudować?"].map((q) => (
+                <div key={q} className="flex items-center justify-between border-b border-ink/10 py-1.5 text-[9px]">
+                  <span>{q}</span>
+                  <span className="font-mono text-ink/40">+</span>
+                </div>
+              ))}
+            </div>
+
+            {/* CTA */}
+            <div className="px-4 py-5 bg-lime">
+              <div className="text-[14px] font-black tracking-tight leading-tight">
+                ZACZNIJMY<br/>TWOJĄ STRONĘ.
+              </div>
+              <div className="mt-2 inline-flex items-center gap-1 bg-ink text-cream text-[8px] px-2.5 py-1.5 rounded-full font-semibold">
+                Napisz do nas →
+              </div>
+            </div>
+
+            {/* Footer */}
+            <div className="px-4 py-3 bg-ink text-cream text-[7px] flex items-center justify-between">
+              <span className="font-black">KSIGN.</span>
+              <span className="opacity-60">© 2026</span>
+            </div>
+          </div>
         </div>
-        <div className="absolute bottom-0 inset-x-0 h-12 bg-gradient-to-t from-cream to-transparent" />
+
+        {/* Fades */}
+        <div className="absolute top-[44px] inset-x-0 h-3 bg-gradient-to-b from-cream to-transparent pointer-events-none z-[5]" />
+        <div className="absolute bottom-0 inset-x-0 h-6 bg-gradient-to-t from-ink/15 to-transparent pointer-events-none" />
+
+        {/* Home indicator */}
+        <div className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-16 h-[3px] rounded-full bg-ink/70 z-10" />
       </div>
     </div>
   );
