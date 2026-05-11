@@ -154,9 +154,26 @@ export function AddonsSlider() {
             aria-label={`${i + 1} z ${total}: ${a.title}`}
             tabIndex={i === active ? 0 : -1}
             aria-current={i === active ? "true" : undefined}
-            className={`${a.color} group flex-shrink-0 w-[280px] md:w-[340px] aspect-[3/4] rounded-3xl overflow-hidden flex flex-col justify-between snap-start hover:scale-[1.02] transition-transform cursor-pointer relative focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-violet focus-visible:ring-offset-2 focus-visible:ring-offset-cream`}
+            onPointerMove={(e) => {
+              if (e.pointerType !== "mouse" && e.pointerType !== "pen") return;
+              if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+              const el = e.currentTarget;
+              const r = el.getBoundingClientRect();
+              const px = ((e.clientX - r.left) / r.width - 0.5) * 2;
+              const py = ((e.clientY - r.top) / r.height - 0.5) * 2;
+              el.style.setProperty("--px", px.toFixed(3));
+              el.style.setProperty("--py", py.toFixed(3));
+              el.style.setProperty("--tilt", "1");
+            }}
+            onPointerLeave={(e) => {
+              const el = e.currentTarget;
+              el.style.setProperty("--px", "0");
+              el.style.setProperty("--py", "0");
+              el.style.setProperty("--tilt", "0");
+            }}
+            className={`${a.color} group flex-shrink-0 w-[280px] md:w-[340px] aspect-[3/4] rounded-3xl overflow-hidden flex flex-col justify-between snap-start hover:scale-[1.02] transition-transform cursor-pointer relative focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-violet focus-visible:ring-offset-2 focus-visible:ring-offset-cream [--px:0] [--py:0] [--tilt:0]`}
           >
-            <div className="absolute inset-0" aria-hidden="true">
+            <div className="absolute inset-0 overflow-hidden" aria-hidden="true" style={{ perspective: "800px" }}>
               <img
                 src={a.img}
                 alt=""
@@ -167,7 +184,14 @@ export function AddonsSlider() {
                 // @ts-expect-error - fetchpriority is a valid HTML attribute
                 fetchpriority={i === 0 ? "high" : i < 2 ? "auto" : "low"}
                 sizes="(max-width: 768px) 280px, 340px"
-                className="w-full h-full object-cover opacity-55 group-hover:opacity-70 group-hover:scale-105 transition-all duration-700"
+                style={{
+                  transform:
+                    "translate3d(calc(var(--px) * -10px), calc(var(--py) * -10px), 0) scale(calc(1 + var(--tilt) * 0.04)) rotateX(calc(var(--py) * -2deg)) rotateY(calc(var(--px) * 2deg))",
+                  transition: "transform 500ms cubic-bezier(0.22, 1, 0.36, 1), opacity 700ms",
+                  willChange: "transform",
+                  transformOrigin: "center",
+                }}
+                className="w-full h-full object-cover opacity-55 group-hover:opacity-70"
               />
               <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-black/35 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/45 to-transparent" />
