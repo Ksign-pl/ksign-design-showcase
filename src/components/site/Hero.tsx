@@ -28,23 +28,38 @@ export function Hero() {
     const isMobile = window.matchMedia("(max-width: 767px)").matches;
     // Lighter motion on mobile
     const scrollFactor = isMobile ? 0.04 : 0.08;
-    const mouseFactor = isMobile ? 0 : 1;
+    const pointerFactor = isMobile ? 0.45 : 1; // touch is gentler than mouse
 
     let inView = true;
     let ticking = false;
-    let mx = 0, my = 0; // mouse offset (-1..1)
-    let lastScrollY = window.scrollY;
+    // target pointer offset (-0.5..0.5) and smoothed values for damping
+    let tx = 0, ty = 0;
+    let mx = 0, my = 0;
+    let animating = false;
 
     const apply = () => {
       ticking = false;
+      // Damp toward target — same easing for mouse and touch
+      mx += (tx - mx) * 0.12;
+      my += (ty - my) * 0.12;
+
       const rect = scene.getBoundingClientRect();
-      // Parallax driven by scene position relative to viewport center
       const offset = (rect.top + rect.height / 2 - window.innerHeight / 2) * -1;
       const py = offset * scrollFactor;
 
       mockup.style.transform = `translate3d(${mx * 8}px, ${py}px, 0)`;
       cards.style.setProperty("--px", `${mx * 12}px`);
       cards.style.setProperty("--py", `${py * 0.4 + my * 8}px`);
+
+      // Continue smoothing until close enough
+      const settled = Math.abs(tx - mx) < 0.001 && Math.abs(ty - my) < 0.001;
+      if (!settled && inView) {
+        ticking = true;
+        animating = true;
+        requestAnimationFrame(apply);
+      } else {
+        animating = false;
+      }
     };
 
     const requestTick = () => {
@@ -54,17 +69,22 @@ export function Hero() {
       }
     };
 
-    const onScroll = () => {
-      lastScrollY = window.scrollY;
-      requestTick();
+    const onScroll = () => requestTick();
+
+    const setTargetFromPoint = (clientX: number, clientY: number) => {
+      const r = scene.getBoundingClientRect();
+      tx = ((clientX - r.left) / r.width - 0.5) * pointerFactor;
+      ty = ((clientY - r.top) / r.height - 0.5) * pointerFactor;
+      if (!animating) requestTick();
     };
 
-    const onMouse = (e: MouseEvent) => {
-      const r = scene.getBoundingClientRect();
-      mx = ((e.clientX - r.left) / r.width - 0.5) * mouseFactor;
-      my = ((e.clientY - r.top) / r.height - 0.5) * mouseFactor;
-      requestTick();
+    const onMouse = (e: MouseEvent) => setTargetFromPoint(e.clientX, e.clientY);
+    const onTouch = (e: TouchEvent) => {
+      const t = e.touches[0];
+      if (t) setTargetFromPoint(t.clientX, t.clientY);
     };
+    // Slowly recenter when finger lifts
+    const onTouchEnd = () => { tx = 0; ty = 0; requestTick(); };
 
     const io = new IntersectionObserver(
       ([entry]) => { inView = entry.isIntersecting; if (inView) requestTick(); },
@@ -73,14 +93,22 @@ export function Hero() {
     io.observe(scene);
 
     window.addEventListener("scroll", onScroll, { passive: true });
-    if (!isMobile) scene.addEventListener("mousemove", onMouse);
+    if (isMobile) {
+      scene.addEventListener("touchmove", onTouch, { passive: true });
+      scene.addEventListener("touchend", onTouchEnd, { passive: true });
+      scene.addEventListener("touchcancel", onTouchEnd, { passive: true });
+    } else {
+      scene.addEventListener("mousemove", onMouse);
+    }
     apply();
-    void lastScrollY;
 
     return () => {
       io.disconnect();
       window.removeEventListener("scroll", onScroll);
       scene.removeEventListener("mousemove", onMouse);
+      scene.removeEventListener("touchmove", onTouch);
+      scene.removeEventListener("touchend", onTouchEnd);
+      scene.removeEventListener("touchcancel", onTouchEnd);
     };
   }, []);
 
