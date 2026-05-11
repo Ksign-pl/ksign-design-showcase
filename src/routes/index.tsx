@@ -46,6 +46,7 @@ function Index() {
       </main>
       <Footer />
       <StickyBar />
+      <BackToTop />
     </div>
   );
 }
