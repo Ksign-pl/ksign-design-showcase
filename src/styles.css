@@ -183,9 +183,27 @@
     50%, 58% { transform: translateY(calc(-100% + 320px)); }
     100%     { transform: translateY(0); }
   }
+  /* Addons infinite marquee */
+  .addons-marquee .addons-track {
+    animation: addonsMarquee 50s linear infinite;
+    will-change: transform;
+  }
+  .addons-marquee[data-direction="right"] .addons-track {
+    animation-direction: reverse;
+  }
+  .addons-marquee[data-paused="true"] .addons-track,
+  .addons-marquee:hover .addons-track,
+  .addons-marquee:focus-within .addons-track {
+    animation-play-state: paused;
+  }
+  @keyframes addonsMarquee {
+    from { transform: translate3d(0, 0, 0); }
+    to   { transform: translate3d(-50%, 0, 0); }
+  }
   @media (prefers-reduced-motion: reduce) {
     .pill-light, .phone-mockup { animation: none !important; }
     .phone-scroll { animation: none !important; }
+    .addons-marquee .addons-track { animation: none !important; }
   }
   .glow-lime {
     box-shadow: 0 0 0 1px color-mix(in oklab, var(--lime) 40%, transparent),
