@@ -86,11 +86,13 @@ export function Hero() {
 
   return (
     <section ref={sceneRef} className="relative min-h-screen pt-24 md:pt-28 pb-32 overflow-hidden grid-bg">
-      {/* radial wash */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[80vw] h-[80vw] rounded-full blur-3xl opacity-40"
-             style={{ background: "radial-gradient(circle, var(--lime) 0%, transparent 60%)" }} />
-      </div>
+      {/* radial wash — pure gradient (no blur filter) for cheap GPU compositing */}
+      <div
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[90vw] h-[90vw] rounded-full opacity-50 pointer-events-none"
+        style={{
+          background: "radial-gradient(closest-side, var(--lime) 0%, color-mix(in oklab, var(--lime) 0%, transparent) 70%)",
+        }}
+      />
 
       <div className="relative mx-auto max-w-[1400px] px-5 md:px-8">
         {/* Top label */}
