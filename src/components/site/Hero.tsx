@@ -177,7 +177,12 @@ export function Hero() {
             className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 animate-scale-in"
             style={{ transform: "translate3d(0,0,0)", willChange: "transform" }}
           >
-            <PhoneMockup />
+            <div
+              className="origin-center"
+              style={{ transform: "rotate(30deg)", filter: "drop-shadow(0 30px 40px color-mix(in oklab, var(--ink) 25%, transparent))" }}
+            >
+              <PhoneMockup />
+            </div>
           </div>
         </div>
 
