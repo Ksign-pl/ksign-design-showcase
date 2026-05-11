@@ -1,26 +1,91 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 
 const FLOATING = [
-  { label: "999 zł netto", style: "top-[8%] left-[4%] rotate-[-6deg]", color: "bg-white" },
-  { label: "Realizacja 3–7 dni", style: "top-[14%] right-[6%] rotate-[5deg]", color: "bg-lime" },
-  { label: "Mobile ready", style: "top-[42%] left-[2%] rotate-[3deg]", color: "bg-white" },
-  { label: "SEO startowe", style: "top-[55%] right-[3%] rotate-[-4deg]", color: "bg-violet text-ink" },
-  { label: "Formularz kontaktowy", style: "bottom-[22%] left-[6%] rotate-[4deg]", color: "bg-white" },
-  { label: "One-page", style: "bottom-[28%] right-[8%] rotate-[-3deg]", color: "bg-white" },
-  { label: "Premium look", style: "top-[28%] right-[18%] rotate-[6deg]", color: "bg-lime" },
-  { label: "Bez chaosu", style: "bottom-[10%] right-[24%] rotate-[-2deg]", color: "bg-white" },
+  { label: "999 zł netto",         pos: "top-[8%] left-[4%]",       tilt: -6, color: "bg-white",            depth: 0.6 },
+  { label: "Realizacja 3–7 dni",   pos: "top-[14%] right-[6%]",     tilt:  5, color: "bg-lime",             depth: 0.9 },
+  { label: "Mobile ready",         pos: "top-[42%] left-[2%]",      tilt:  3, color: "bg-white",            depth: 0.4 },
+  { label: "SEO startowe",         pos: "top-[55%] right-[3%]",     tilt: -4, color: "bg-violet text-ink",  depth: 0.7 },
+  { label: "Formularz kontaktowy", pos: "bottom-[22%] left-[6%]",   tilt:  4, color: "bg-white",            depth: 0.5 },
+  { label: "One-page",             pos: "bottom-[28%] right-[8%]",  tilt: -3, color: "bg-white",            depth: 0.8 },
+  { label: "Premium look",         pos: "top-[28%] right-[18%]",    tilt:  6, color: "bg-lime",             depth: 0.3 },
+  { label: "Bez chaosu",           pos: "bottom-[10%] right-[24%]", tilt: -2, color: "bg-white",            depth: 0.55 },
 ];
 
 export function Hero() {
-  const [y, setY] = useState(0);
+  const sceneRef = useRef<HTMLDivElement>(null);
+  const mockupRef = useRef<HTMLDivElement>(null);
+  const cardsRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
-    const onScroll = () => setY(window.scrollY);
+    const scene = sceneRef.current;
+    const mockup = mockupRef.current;
+    const cards = cardsRef.current;
+    if (!scene || !mockup || !cards) return;
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) return;
+
+    const isMobile = window.matchMedia("(max-width: 767px)").matches;
+    // Lighter motion on mobile
+    const scrollFactor = isMobile ? 0.04 : 0.08;
+    const mouseFactor = isMobile ? 0 : 1;
+
+    let inView = true;
+    let ticking = false;
+    let mx = 0, my = 0; // mouse offset (-1..1)
+    let lastScrollY = window.scrollY;
+
+    const apply = () => {
+      ticking = false;
+      const rect = scene.getBoundingClientRect();
+      // Parallax driven by scene position relative to viewport center
+      const offset = (rect.top + rect.height / 2 - window.innerHeight / 2) * -1;
+      const py = offset * scrollFactor;
+
+      mockup.style.transform = `translate3d(${mx * 8}px, ${py}px, 0)`;
+      cards.style.setProperty("--px", `${mx * 12}px`);
+      cards.style.setProperty("--py", `${py * 0.4 + my * 8}px`);
+    };
+
+    const requestTick = () => {
+      if (!ticking && inView) {
+        ticking = true;
+        requestAnimationFrame(apply);
+      }
+    };
+
+    const onScroll = () => {
+      lastScrollY = window.scrollY;
+      requestTick();
+    };
+
+    const onMouse = (e: MouseEvent) => {
+      const r = scene.getBoundingClientRect();
+      mx = ((e.clientX - r.left) / r.width - 0.5) * mouseFactor;
+      my = ((e.clientY - r.top) / r.height - 0.5) * mouseFactor;
+      requestTick();
+    };
+
+    const io = new IntersectionObserver(
+      ([entry]) => { inView = entry.isIntersecting; if (inView) requestTick(); },
+      { threshold: 0 }
+    );
+    io.observe(scene);
+
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    if (!isMobile) scene.addEventListener("mousemove", onMouse);
+    apply();
+    void lastScrollY;
+
+    return () => {
+      io.disconnect();
+      window.removeEventListener("scroll", onScroll);
+      scene.removeEventListener("mousemove", onMouse);
+    };
   }, []);
 
   return (
-    <section className="relative min-h-screen pt-24 md:pt-28 pb-32 overflow-hidden grid-bg">
+    <section ref={sceneRef} className="relative min-h-screen pt-24 md:pt-28 pb-32 overflow-hidden grid-bg">
       {/* radial wash */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[80vw] h-[80vw] rounded-full blur-3xl opacity-40"
@@ -48,24 +113,18 @@ export function Hero() {
 
         {/* Mockup + floating cards */}
         <div className="relative my-6 md:my-10 h-[420px] md:h-[480px] lg:h-[520px]">
-          {/* Floating cards */}
-          {FLOATING.map((f, i) => (
-            <div
-              key={f.label}
-              className={`absolute pill ${f.color} ${f.style} animate-float`}
-              style={{
-                animationDelay: `${i * 0.4}s`,
-                animationDuration: `${5 + (i % 4)}s`,
-              }}
-            >
-              {f.label}
-            </div>
-          ))}
+          {/* Floating cards layer (parallax via CSS vars) */}
+          <div ref={cardsRef} className="absolute inset-0" style={{ ["--px" as never]: "0px", ["--py" as never]: "0px" }}>
+            {FLOATING.map((f, i) => (
+              <FloatingCard key={f.label} index={i} {...f} />
+            ))}
+          </div>
 
           {/* Phone mockup */}
           <div
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 animate-scale-in"
-            style={{ transform: `translate(-50%, calc(-50% + ${y * 0.05}px))` }}
+            ref={mockupRef}
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 animate-scale-in will-change-transform"
+            style={{ transform: "translate3d(0,0,0)" }}
           >
             <PhoneMockup />
           </div>
@@ -108,12 +167,37 @@ export function Hero() {
   );
 }
 
+function FloatingCard({
+  label, pos, tilt, color, depth, index,
+}: { label: string; pos: string; tilt: number; color: string; depth: number; index: number }) {
+  // Each card gets unique drift via CSS keyframe + parallax via inline transform combining vars.
+  const duration = 6 + (index % 4) * 0.8;
+  const delay = (index * 0.35) % 2.5;
+  return (
+    <div
+      className={`absolute pill ${color} ${pos} will-change-transform`}
+      style={{
+        // Compose parallax (px,py) with subtle continuous float and tilt
+        transform: `translate3d(calc(var(--px) * ${depth}), calc(var(--py) * ${depth}), 0) rotate(${tilt}deg)`,
+        animation: `heroDrift ${duration}s ease-in-out ${delay}s infinite`,
+      }}
+    >
+      {label}
+      <style>{`
+        @keyframes heroDrift {
+          0%, 100% { translate: 0 0; }
+          50% { translate: 0 -10px; }
+        }
+      `}</style>
+    </div>
+  );
+}
+
 function PhoneMockup() {
   return (
     <div className="relative w-[260px] md:w-[300px] aspect-[9/19] rounded-[42px] bg-ink p-3 shadow-2xl">
       <div className="absolute top-3 left-1/2 -translate-x-1/2 w-24 h-6 bg-ink rounded-b-2xl z-10" />
       <div className="w-full h-full rounded-[32px] bg-cream overflow-hidden relative">
-        {/* fake site */}
         <div className="px-4 pt-8 pb-4 flex items-center justify-between">
           <div className="text-[10px] font-black tracking-tighter">KSIGN.</div>
           <div className="w-6 h-1.5 bg-ink rounded" />
