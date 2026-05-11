@@ -84,6 +84,32 @@ export function Pricing() {
               </a>
             </div>
           ))}
+
+          {/* Karta: pozostałe usługi */}
+          <a
+            href="#rozbudowa"
+            className="lg:col-span-3 group relative rounded-3xl p-7 md:p-9 bg-violet text-ink overflow-hidden flex flex-col justify-between hover:scale-[1.01] transition-transform"
+          >
+            <div className="absolute -right-8 -bottom-8 w-44 h-44 rounded-full bg-ink/10 group-hover:scale-125 transition-transform duration-700" aria-hidden="true" />
+            <div className="absolute right-6 top-6 w-10 h-10 rounded-full bg-ink text-cream flex items-center justify-center group-hover:rotate-45 transition-transform" aria-hidden="true">
+              →
+            </div>
+            <div className="relative">
+              <div className="text-xs font-mono uppercase tracking-widest text-ink/50 mb-4">
+                EXTRA
+              </div>
+              <div className="text-3xl md:text-4xl font-black tracking-tighter leading-[0.9] mb-3">
+                ZOBACZ<br/>POZOSTAŁE<br/>USŁUGI
+              </div>
+              <p className="text-sm text-ink/70 leading-snug">
+                SEO, blog, branding, automatyzacje, chatbot AI i więcej.
+              </p>
+            </div>
+            <div className="relative inline-flex items-center gap-2 mt-6 font-bold text-sm">
+              <span className="underline underline-offset-4 decoration-2">Zobacz dodatki</span>
+              <span className="group-hover:translate-x-1 transition-transform">→</span>
+            </div>
+          </a>
         </div>
       </div>
     </section>
