@@ -103,11 +103,14 @@ export function Hero() {
 
     window.addEventListener("scroll", onScroll, { passive: true });
     if (isMobile) {
-      scene.addEventListener("touchmove", onTouch, { passive: true });
-      scene.addEventListener("touchend", onTouchEnd, { passive: true });
-      scene.addEventListener("touchcancel", onTouchEnd, { passive: true });
+      // Listen on window so we still get updates (and recenter) when the
+      // finger drifts outside the hero while the gesture is ongoing.
+      window.addEventListener("touchmove", onTouch, { passive: true });
+      window.addEventListener("touchend", onTouchEnd, { passive: true });
+      window.addEventListener("touchcancel", onTouchEnd, { passive: true });
     } else {
       scene.addEventListener("mousemove", onMouse);
+      scene.addEventListener("mouseleave", onMouseLeave);
     }
     apply();
 
@@ -115,9 +118,10 @@ export function Hero() {
       io.disconnect();
       window.removeEventListener("scroll", onScroll);
       scene.removeEventListener("mousemove", onMouse);
-      scene.removeEventListener("touchmove", onTouch);
-      scene.removeEventListener("touchend", onTouchEnd);
-      scene.removeEventListener("touchcancel", onTouchEnd);
+      scene.removeEventListener("mouseleave", onMouseLeave);
+      window.removeEventListener("touchmove", onTouch);
+      window.removeEventListener("touchend", onTouchEnd);
+      window.removeEventListener("touchcancel", onTouchEnd);
     };
   }, []);
 
