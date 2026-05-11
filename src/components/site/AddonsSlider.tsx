@@ -49,7 +49,7 @@ export function AddonsSlider() {
       </div>
 
       <div ref={ref} className="flex gap-5 overflow-x-auto no-scrollbar px-5 md:px-8 lg:pl-[max(2rem,calc((100vw-1400px)/2+2rem))] snap-x snap-mandatory">
-        {ADDONS.map((a) => (
+        {ADDONS.map((a, i) => (
           <div
             key={a.num}
             className={`${a.color} group flex-shrink-0 w-[280px] md:w-[340px] aspect-[3/4] rounded-3xl overflow-hidden flex flex-col justify-between snap-start hover:scale-[1.02] transition-transform cursor-pointer relative`}
@@ -60,9 +60,14 @@ export function AddonsSlider() {
                 alt={a.alt}
                 width={768}
                 height={1024}
-                loading="lazy"
+                loading={i < 2 ? "eager" : "lazy"}
+                decoding={i < 2 ? "sync" : "async"}
+                // @ts-expect-error - fetchpriority is a valid HTML attribute
+                fetchpriority={i === 0 ? "high" : i < 2 ? "auto" : "low"}
+                sizes="(max-width: 768px) 280px, 340px"
                 className="w-full h-full object-cover opacity-55 group-hover:opacity-70 group-hover:scale-105 transition-all duration-700"
               />
+
               {/* Top scrim for meta row */}
               <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-black/35 to-transparent" />
               {/* Bottom scrim for heading + description */}
