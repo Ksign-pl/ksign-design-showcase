@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import imgSeo from "@/assets/addon-seo.jpg";
 import imgBlog from "@/assets/addon-blog.jpg";
@@ -22,42 +22,144 @@ const ADDONS = [
 
 export function AddonsSlider() {
   const ref = useRef<HTMLDivElement>(null);
-  const scroll = (dir: number) => {
-    ref.current?.scrollBy({ left: dir * 360, behavior: "smooth" });
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [active, setActive] = useState(0);
+  const [announce, setAnnounce] = useState("");
+  const total = ADDONS.length;
+
+  const goTo = useCallback(
+    (idx: number, focus = true) => {
+      const clamped = Math.max(0, Math.min(total - 1, idx));
+      const el = cardRefs.current[clamped];
+      if (!el) return;
+      el.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
+      setActive(clamped);
+      setAnnounce(`Karta ${clamped + 1} z ${total}: ${ADDONS[clamped].title}. ${ADDONS[clamped].desc}`);
+      if (focus) {
+        // Focus after smooth scroll initiates; preventScroll avoids double-jump.
+        window.setTimeout(() => el.focus({ preventScroll: true }), 60);
+      }
+    },
+    [total],
+  );
+
+  const scrollByArrow = (dir: number) => goTo(active + dir, false);
+
+  // Track which card is most visible to keep `active` in sync with manual scrolling.
+  useEffect(() => {
+    const root = ref.current;
+    if (!root) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) {
+          const idx = cardRefs.current.indexOf(visible.target as HTMLDivElement);
+          if (idx >= 0) setActive(idx);
+        }
+      },
+      { root, threshold: [0.5, 0.75, 1] },
+    );
+    cardRefs.current.forEach((el) => el && io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
+  const onKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    switch (e.key) {
+      case "ArrowRight":
+        e.preventDefault();
+        goTo(active + 1);
+        break;
+      case "ArrowLeft":
+        e.preventDefault();
+        goTo(active - 1);
+        break;
+      case "Home":
+        e.preventDefault();
+        goTo(0);
+        break;
+      case "End":
+        e.preventDefault();
+        goTo(total - 1);
+        break;
+      case "PageDown":
+        e.preventDefault();
+        goTo(active + 3);
+        break;
+      case "PageUp":
+        e.preventDefault();
+        goTo(active - 3);
+        break;
+    }
   };
+
   return (
-    <section className="py-24 md:py-32 bg-cream overflow-hidden">
+    <section
+      className="py-24 md:py-32 bg-cream overflow-hidden"
+      aria-labelledby="addons-heading"
+      aria-roledescription="carousel"
+    >
       <div className="mx-auto max-w-[1400px] px-5 md:px-8">
         <div className="flex items-end justify-between gap-6 mb-10 md:mb-14 flex-wrap">
           <div>
             <div className="text-xs md:text-sm font-mono uppercase tracking-widest text-ink/50 mb-4">
               [ 06 / Rozbudowa ]
             </div>
-            <h2 className="text-display-tight text-[10vw] md:text-[6vw] lg:text-[5.5rem] max-w-4xl">
+            <h2
+              id="addons-heading"
+              className="text-display-tight text-[10vw] md:text-[6vw] lg:text-[5.5rem] max-w-4xl"
+            >
               CO MOŻESZ<br/>DODAĆ <span className="text-violet">PÓŹNIEJ?</span>
             </h2>
           </div>
-          <div className="flex gap-2">
-            <button onClick={() => scroll(-1)} aria-label="Poprzednia karta" className="w-12 h-12 rounded-full bg-white border border-ink/15 flex items-center justify-center hover:bg-ink hover:text-cream transition">
-              <ArrowLeft size={18} />
+          <div className="flex gap-2" role="group" aria-label="Nawigacja karuzeli">
+            <button
+              onClick={() => scrollByArrow(-1)}
+              aria-label="Poprzednia karta"
+              aria-controls="addons-carousel"
+              disabled={active === 0}
+              className="w-12 h-12 rounded-full bg-white border border-ink/15 flex items-center justify-center hover:bg-ink hover:text-cream transition disabled:opacity-40 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-cream"
+            >
+              <ArrowLeft size={18} aria-hidden="true" />
             </button>
-            <button onClick={() => scroll(1)} aria-label="Następna karta" className="w-12 h-12 rounded-full bg-ink text-cream flex items-center justify-center hover:bg-violet hover:text-ink transition">
-              <ArrowRight size={18} />
+            <button
+              onClick={() => scrollByArrow(1)}
+              aria-label="Następna karta"
+              aria-controls="addons-carousel"
+              disabled={active === total - 1}
+              className="w-12 h-12 rounded-full bg-ink text-cream flex items-center justify-center hover:bg-violet hover:text-ink transition disabled:opacity-40 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-cream"
+            >
+              <ArrowRight size={18} aria-hidden="true" />
             </button>
           </div>
         </div>
       </div>
 
-      <div ref={ref} className="flex gap-5 overflow-x-auto no-scrollbar px-5 md:px-8 lg:pl-[max(2rem,calc((100vw-1400px)/2+2rem))] snap-x snap-mandatory">
+      <div
+        ref={ref}
+        id="addons-carousel"
+        role="group"
+        aria-label="Dodatkowe usługi – karuzela"
+        aria-roledescription="carousel"
+        onKeyDown={onKeyDown}
+        className="flex gap-5 overflow-x-auto no-scrollbar px-5 md:px-8 lg:pl-[max(2rem,calc((100vw-1400px)/2+2rem))] snap-x snap-mandatory focus:outline-none"
+      >
         {ADDONS.map((a, i) => (
           <div
             key={a.num}
-            className={`${a.color} group flex-shrink-0 w-[280px] md:w-[340px] aspect-[3/4] rounded-3xl overflow-hidden flex flex-col justify-between snap-start hover:scale-[1.02] transition-transform cursor-pointer relative`}
+            ref={(el) => { cardRefs.current[i] = el; }}
+            role="group"
+            aria-roledescription="slide"
+            aria-label={`${i + 1} z ${total}: ${a.title}`}
+            tabIndex={i === active ? 0 : -1}
+            aria-current={i === active ? "true" : undefined}
+            className={`${a.color} group flex-shrink-0 w-[280px] md:w-[340px] aspect-[3/4] rounded-3xl overflow-hidden flex flex-col justify-between snap-start hover:scale-[1.02] transition-transform cursor-pointer relative focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-violet focus-visible:ring-offset-2 focus-visible:ring-offset-cream`}
           >
-            <div className="absolute inset-0">
+            <div className="absolute inset-0" aria-hidden="true">
               <img
                 src={a.img}
-                alt={a.alt}
+                alt=""
                 width={768}
                 height={1024}
                 loading={i < 2 ? "eager" : "lazy"}
@@ -67,15 +169,12 @@ export function AddonsSlider() {
                 sizes="(max-width: 768px) 280px, 340px"
                 className="w-full h-full object-cover opacity-55 group-hover:opacity-70 group-hover:scale-105 transition-all duration-700"
               />
-
-              {/* Top scrim for meta row */}
               <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-black/35 to-transparent" />
-              {/* Bottom scrim for heading + description */}
               <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/45 to-transparent" />
             </div>
             <div className="relative flex items-start justify-between p-7 text-white">
-              <span className="text-sm font-mono opacity-90 drop-shadow-md">{a.num}</span>
-              <span className="w-8 h-8 rounded-full bg-white/15 backdrop-blur-sm border border-white/40 flex items-center justify-center">
+              <span className="text-sm font-mono opacity-90 drop-shadow-md" aria-hidden="true">{a.num}</span>
+              <span className="w-8 h-8 rounded-full bg-white/15 backdrop-blur-sm border border-white/40 flex items-center justify-center" aria-hidden="true">
                 <ArrowRight size={14} />
               </span>
             </div>
@@ -85,7 +184,12 @@ export function AddonsSlider() {
             </div>
           </div>
         ))}
-        <div className="flex-shrink-0 w-5" />
+        <div className="flex-shrink-0 w-5" aria-hidden="true" />
+      </div>
+
+      {/* Live region for screen reader announcements */}
+      <div className="sr-only" aria-live="polite" aria-atomic="true">
+        {announce}
       </div>
     </section>
   );
