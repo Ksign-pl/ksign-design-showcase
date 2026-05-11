@@ -39,9 +39,18 @@ export function Hero() {
 
     const apply = () => {
       ticking = false;
-      // Damp toward target — same easing for mouse and touch
-      mx += (tx - mx) * 0.12;
-      my += (ty - my) * 0.12;
+      // Two-speed easing: snappy on the way out (follow finger),
+      // slow & gentle on the way back to center (no abrupt snap).
+      const recentering = tx === 0 && ty === 0;
+      // Use eased lerp factor — smaller when recentering, frame-rate independent enough at 60fps.
+      const ease = recentering ? 0.05 : 0.14;
+      mx += (tx - mx) * ease;
+      my += (ty - my) * ease;
+      // Hard snap once virtually at rest to stop the rAF loop cleanly
+      if (recentering) {
+        if (Math.abs(mx) < 0.0008) mx = 0;
+        if (Math.abs(my) < 0.0008) my = 0;
+      }
 
       const rect = scene.getBoundingClientRect();
       const offset = (rect.top + rect.height / 2 - window.innerHeight / 2) * -1;
@@ -51,8 +60,7 @@ export function Hero() {
       cards.style.setProperty("--px", `${mx * 12}px`);
       cards.style.setProperty("--py", `${py * 0.4 + my * 8}px`);
 
-      // Continue smoothing until close enough
-      const settled = Math.abs(tx - mx) < 0.001 && Math.abs(ty - my) < 0.001;
+      const settled = mx === tx && my === ty;
       if (!settled && inView) {
         ticking = true;
         animating = true;
