@@ -73,12 +73,21 @@ export function Hero() {
 
     const setTargetFromPoint = (clientX: number, clientY: number) => {
       const r = scene.getBoundingClientRect();
-      tx = ((clientX - r.left) / r.width - 0.5) * pointerFactor;
-      ty = ((clientY - r.top) / r.height - 0.5) * pointerFactor;
+      // Only react when the pointer is actually over the hero; outside → recenter
+      const inside =
+        clientX >= r.left && clientX <= r.right &&
+        clientY >= r.top  && clientY <= r.bottom;
+      if (!inside) {
+        tx = 0; ty = 0;
+      } else {
+        tx = ((clientX - r.left) / r.width  - 0.5) * pointerFactor;
+        ty = ((clientY - r.top)  / r.height - 0.5) * pointerFactor;
+      }
       if (!animating) requestTick();
     };
 
     const onMouse = (e: MouseEvent) => setTargetFromPoint(e.clientX, e.clientY);
+    const onMouseLeave = () => { tx = 0; ty = 0; requestTick(); };
     const onTouch = (e: TouchEvent) => {
       const t = e.touches[0];
       if (t) setTargetFromPoint(t.clientX, t.clientY);
@@ -94,11 +103,14 @@ export function Hero() {
 
     window.addEventListener("scroll", onScroll, { passive: true });
     if (isMobile) {
-      scene.addEventListener("touchmove", onTouch, { passive: true });
-      scene.addEventListener("touchend", onTouchEnd, { passive: true });
-      scene.addEventListener("touchcancel", onTouchEnd, { passive: true });
+      // Listen on window so we still get updates (and recenter) when the
+      // finger drifts outside the hero while the gesture is ongoing.
+      window.addEventListener("touchmove", onTouch, { passive: true });
+      window.addEventListener("touchend", onTouchEnd, { passive: true });
+      window.addEventListener("touchcancel", onTouchEnd, { passive: true });
     } else {
       scene.addEventListener("mousemove", onMouse);
+      scene.addEventListener("mouseleave", onMouseLeave);
     }
     apply();
 
@@ -106,9 +118,10 @@ export function Hero() {
       io.disconnect();
       window.removeEventListener("scroll", onScroll);
       scene.removeEventListener("mousemove", onMouse);
-      scene.removeEventListener("touchmove", onTouch);
-      scene.removeEventListener("touchend", onTouchEnd);
-      scene.removeEventListener("touchcancel", onTouchEnd);
+      scene.removeEventListener("mouseleave", onMouseLeave);
+      window.removeEventListener("touchmove", onTouch);
+      window.removeEventListener("touchend", onTouchEnd);
+      window.removeEventListener("touchcancel", onTouchEnd);
     };
   }, []);
 
