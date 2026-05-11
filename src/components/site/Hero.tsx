@@ -172,32 +172,26 @@ export function Hero() {
 function FloatingCard({
   label, pos, tilt, color, depth, index,
 }: { label: string; pos: string; tilt: number; color: string; depth: number; index: number }) {
-  // Each card gets unique drift via CSS keyframe + parallax via inline transform combining vars.
   const duration = 6 + (index % 4) * 0.8;
   const delay = (index * 0.35) % 2.5;
   return (
     <div
-      className={`absolute pill ${color} ${pos} will-change-transform`}
+      className={`absolute pill pill-light ${color} ${pos}`}
       style={{
-        // Compose parallax (px,py) with subtle continuous float and tilt
         transform: `translate3d(calc(var(--px) * ${depth}), calc(var(--py) * ${depth}), 0) rotate(${tilt}deg)`,
         animation: `heroDrift ${duration}s ease-in-out ${delay}s infinite`,
+        willChange: "transform",
+        backfaceVisibility: "hidden",
       }}
     >
       {label}
-      <style>{`
-        @keyframes heroDrift {
-          0%, 100% { translate: 0 0; }
-          50% { translate: 0 -10px; }
-        }
-      `}</style>
     </div>
   );
 }
 
 function PhoneMockup() {
   return (
-    <div className="relative w-[260px] md:w-[300px] aspect-[9/19] rounded-[42px] bg-ink p-3 shadow-2xl">
+    <div className="phone-mockup relative w-[260px] md:w-[300px] aspect-[9/19] rounded-[42px] bg-ink p-3">
       <div className="absolute top-3 left-1/2 -translate-x-1/2 w-24 h-6 bg-ink rounded-b-2xl z-10" />
       <div className="w-full h-full rounded-[32px] bg-cream overflow-hidden relative">
         <div className="px-4 pt-8 pb-4 flex items-center justify-between">
