@@ -116,7 +116,7 @@ export function Hero() {
         {/* Mockup + floating cards */}
         <div className="relative my-6 md:my-10 h-[420px] md:h-[480px] lg:h-[520px]">
           {/* Floating cards layer (parallax via CSS vars) */}
-          <div ref={cardsRef} className="absolute inset-0" style={{ ["--px" as never]: "0px", ["--py" as never]: "0px" }}>
+          <div ref={cardsRef} className="absolute inset-0" style={{ ["--px" as never]: "0px", ["--py" as never]: "0px", contain: "layout paint" }}>
             {FLOATING.map((f, i) => (
               <FloatingCard key={f.label} index={i} {...f} />
             ))}
@@ -125,8 +125,8 @@ export function Hero() {
           {/* Phone mockup */}
           <div
             ref={mockupRef}
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 animate-scale-in will-change-transform"
-            style={{ transform: "translate3d(0,0,0)" }}
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 animate-scale-in"
+            style={{ transform: "translate3d(0,0,0)", willChange: "transform" }}
           >
             <PhoneMockup />
           </div>
