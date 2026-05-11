@@ -10,14 +10,14 @@ import imgAds from "@/assets/addon-ads.jpg";
 import imgLanding from "@/assets/addon-landing.jpg";
 
 const ADDONS = [
-  { num: "01", title: "SEO", desc: "Pozycjonowanie i optymalizacja techniczna.", color: "bg-lime", img: imgSeo, alt: "Analityka SEO na ekranie laptopa" },
-  { num: "02", title: "Blog", desc: "Sekcja artykułów z systemem CMS.", color: "bg-white", img: imgBlog, alt: "Notatnik z piórem i kawą" },
-  { num: "03", title: "Branding", desc: "Logo, kolory, identyfikacja wizualna.", color: "bg-violet", img: imgBranding, alt: "Wizytówki i próbki kolorów" },
-  { num: "04", title: "Sklep", desc: "WooCommerce, Shoper lub Shopify.", color: "bg-ink text-cream", img: imgShop, alt: "Pakiet wysyłkowy e-commerce" },
-  { num: "05", title: "Automatyzacje", desc: "Make, Zapier, n8n, integracje API.", color: "bg-white", img: imgAutomation, alt: "Schemat automatyzacji procesów" },
-  { num: "06", title: "Chatbot AI", desc: "Asystent AI dopasowany do firmy.", color: "bg-lime", img: imgChatbot, alt: "Telefon z konwersacją chatbota" },
-  { num: "07", title: "Reklamy", desc: "Kampanie Google i Meta Ads.", color: "bg-violet", img: imgAds, alt: "Billboard reklamowy w mieście" },
-  { num: "08", title: "Landing", desc: "Strony sprzedażowe pod kampanie.", color: "bg-white", img: imgLanding, alt: "Laptop z landing page na biurku" },
+  { num: "01", title: "SEO", desc: "Pozycjonowanie i optymalizacja techniczna.", color: "bg-lime", img: imgSeo, alt: "Analityka SEO na ekranie laptopa", caption: "Audyt + Core Web Vitals" },
+  { num: "02", title: "Blog", desc: "Sekcja artykułów z systemem CMS.", color: "bg-white", img: imgBlog, alt: "Notatnik z piórem i kawą", caption: "CMS + edytor treści" },
+  { num: "03", title: "Branding", desc: "Logo, kolory, identyfikacja wizualna.", color: "bg-violet", img: imgBranding, alt: "Wizytówki i próbki kolorów", caption: "Logo + brandbook" },
+  { num: "04", title: "Sklep", desc: "WooCommerce, Shoper lub Shopify.", color: "bg-ink text-cream", img: imgShop, alt: "Pakiet wysyłkowy e-commerce", caption: "Płatności + wysyłki" },
+  { num: "05", title: "Automatyzacje", desc: "Make, Zapier, n8n, integracje API.", color: "bg-white", img: imgAutomation, alt: "Schemat automatyzacji procesów", caption: "Integracje no-code" },
+  { num: "06", title: "Chatbot AI", desc: "Asystent AI dopasowany do firmy.", color: "bg-lime", img: imgChatbot, alt: "Telefon z konwersacją chatbota", caption: "Trenowany na Twoich danych" },
+  { num: "07", title: "Reklamy", desc: "Kampanie Google i Meta Ads.", color: "bg-violet", img: imgAds, alt: "Billboard reklamowy w mieście", caption: "Google + Meta Ads" },
+  { num: "08", title: "Landing", desc: "Strony sprzedażowe pod kampanie.", color: "bg-white", img: imgLanding, alt: "Laptop z landing page na biurku", caption: "A/B testy konwersji" },
 ];
 
 export function AddonsSlider() {
@@ -203,6 +203,12 @@ export function AddonsSlider() {
               </span>
             </div>
             <div className="relative p-7 text-white">
+              <span
+                className="inline-flex items-center gap-1.5 mb-3 px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider bg-white/15 backdrop-blur-sm border border-white/30 text-white opacity-0 -translate-y-1 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:translate-y-0"
+              >
+                <span className="w-1 h-1 rounded-full bg-white/80" aria-hidden="true" />
+                {a.caption}
+              </span>
               <h3 className="text-4xl md:text-5xl font-black tracking-tighter mb-3 [text-shadow:0_2px_12px_rgba(0,0,0,0.55)]">{a.title}</h3>
               <p className="text-sm leading-snug text-white/95 [text-shadow:0_1px_6px_rgba(0,0,0,0.6)]">{a.desc}</p>
             </div>
