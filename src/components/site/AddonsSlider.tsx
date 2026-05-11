@@ -29,7 +29,8 @@ export function AddonsSlider() {
 
   return (
     <section
-      className="py-24 md:py-32 bg-cream overflow-hidden"
+      id="rozbudowa"
+      className="py-24 md:py-32 bg-cream overflow-hidden scroll-mt-24"
       aria-labelledby="addons-heading"
       aria-roledescription="carousel"
     >
