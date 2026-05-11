@@ -200,10 +200,27 @@
     from { transform: translate3d(0, 0, 0); }
     to   { transform: translate3d(-50%, 0, 0); }
   }
+  /* Phone tilt — applied at normal motion only */
+  .phone-tilt {
+    filter: drop-shadow(0 30px 40px color-mix(in oklab, var(--ink) 25%, transparent));
+    transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1), filter 400ms ease;
+  }
   @media (prefers-reduced-motion: reduce) {
     .pill-light, .phone-mockup { animation: none !important; }
     .phone-scroll { animation: none !important; }
     .addons-marquee .addons-track { animation: none !important; }
+    /* Calm phone: no rotation, lighter shadow */
+    .phone-tilt {
+      transform: none !important;
+      rotate: 0deg !important;
+      filter: drop-shadow(0 8px 16px color-mix(in oklab, var(--ink) 12%, transparent)) !important;
+    }
+    /* Disable any parallax CSS-var driven offsets */
+    [style*="--px"], [style*="--py"] { --px: 0px !important; --py: 0px !important; }
+    .pill-light { transform: none !important; }
+    /* Cancel addon-card tilt vars */
+    .addons-marquee [style*="--tilt"] { --tilt: 0 !important; --px: 0 !important; --py: 0 !important; }
+    html { scroll-behavior: auto; }
   }
   .glow-lime {
     box-shadow: 0 0 0 1px color-mix(in oklab, var(--lime) 40%, transparent),
