@@ -61,19 +61,22 @@ export function AddonsSlider() {
                 width={768}
                 height={1024}
                 loading="lazy"
-                className="w-full h-full object-cover opacity-70 mix-blend-multiply group-hover:opacity-90 group-hover:scale-105 transition-all duration-700"
+                className="w-full h-full object-cover opacity-55 group-hover:opacity-70 group-hover:scale-105 transition-all duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-current/40 via-transparent to-transparent opacity-30" />
+              {/* Top scrim for meta row */}
+              <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-black/35 to-transparent" />
+              {/* Bottom scrim for heading + description */}
+              <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/45 to-transparent" />
             </div>
-            <div className="relative flex items-start justify-between p-7">
-              <span className="text-sm font-mono opacity-80">{a.num}</span>
-              <span className="w-8 h-8 rounded-full bg-current/10 backdrop-blur-sm border border-current/30 flex items-center justify-center">
+            <div className="relative flex items-start justify-between p-7 text-white">
+              <span className="text-sm font-mono opacity-90 drop-shadow-md">{a.num}</span>
+              <span className="w-8 h-8 rounded-full bg-white/15 backdrop-blur-sm border border-white/40 flex items-center justify-center">
                 <ArrowRight size={14} />
               </span>
             </div>
-            <div className="relative p-7">
-              <h3 className="text-4xl md:text-5xl font-black tracking-tighter mb-3 drop-shadow-sm">{a.title}</h3>
-              <p className="text-sm opacity-80 leading-snug">{a.desc}</p>
+            <div className="relative p-7 text-white">
+              <h3 className="text-4xl md:text-5xl font-black tracking-tighter mb-3 [text-shadow:0_2px_12px_rgba(0,0,0,0.55)]">{a.title}</h3>
+              <p className="text-sm leading-snug text-white/95 [text-shadow:0_1px_6px_rgba(0,0,0,0.6)]">{a.desc}</p>
             </div>
           </div>
         ))}
