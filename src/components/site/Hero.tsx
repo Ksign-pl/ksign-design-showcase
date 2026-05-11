@@ -86,11 +86,13 @@ export function Hero() {
 
   return (
     <section ref={sceneRef} className="relative min-h-screen pt-24 md:pt-28 pb-32 overflow-hidden grid-bg">
-      {/* radial wash */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[80vw] h-[80vw] rounded-full blur-3xl opacity-40"
-             style={{ background: "radial-gradient(circle, var(--lime) 0%, transparent 60%)" }} />
-      </div>
+      {/* radial wash — pure gradient (no blur filter) for cheap GPU compositing */}
+      <div
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[90vw] h-[90vw] rounded-full opacity-50 pointer-events-none"
+        style={{
+          background: "radial-gradient(closest-side, var(--lime) 0%, color-mix(in oklab, var(--lime) 0%, transparent) 70%)",
+        }}
+      />
 
       <div className="relative mx-auto max-w-[1400px] px-5 md:px-8">
         {/* Top label */}
@@ -114,7 +116,7 @@ export function Hero() {
         {/* Mockup + floating cards */}
         <div className="relative my-6 md:my-10 h-[420px] md:h-[480px] lg:h-[520px]">
           {/* Floating cards layer (parallax via CSS vars) */}
-          <div ref={cardsRef} className="absolute inset-0" style={{ ["--px" as never]: "0px", ["--py" as never]: "0px" }}>
+          <div ref={cardsRef} className="absolute inset-0" style={{ ["--px" as never]: "0px", ["--py" as never]: "0px", contain: "layout paint" }}>
             {FLOATING.map((f, i) => (
               <FloatingCard key={f.label} index={i} {...f} />
             ))}
@@ -123,8 +125,8 @@ export function Hero() {
           {/* Phone mockup */}
           <div
             ref={mockupRef}
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 animate-scale-in will-change-transform"
-            style={{ transform: "translate3d(0,0,0)" }}
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 animate-scale-in"
+            style={{ transform: "translate3d(0,0,0)", willChange: "transform" }}
           >
             <PhoneMockup />
           </div>
@@ -170,32 +172,26 @@ export function Hero() {
 function FloatingCard({
   label, pos, tilt, color, depth, index,
 }: { label: string; pos: string; tilt: number; color: string; depth: number; index: number }) {
-  // Each card gets unique drift via CSS keyframe + parallax via inline transform combining vars.
   const duration = 6 + (index % 4) * 0.8;
   const delay = (index * 0.35) % 2.5;
   return (
     <div
-      className={`absolute pill ${color} ${pos} will-change-transform`}
+      className={`absolute pill pill-light ${color} ${pos}`}
       style={{
-        // Compose parallax (px,py) with subtle continuous float and tilt
         transform: `translate3d(calc(var(--px) * ${depth}), calc(var(--py) * ${depth}), 0) rotate(${tilt}deg)`,
         animation: `heroDrift ${duration}s ease-in-out ${delay}s infinite`,
+        willChange: "transform",
+        backfaceVisibility: "hidden",
       }}
     >
       {label}
-      <style>{`
-        @keyframes heroDrift {
-          0%, 100% { translate: 0 0; }
-          50% { translate: 0 -10px; }
-        }
-      `}</style>
     </div>
   );
 }
 
 function PhoneMockup() {
   return (
-    <div className="relative w-[260px] md:w-[300px] aspect-[9/19] rounded-[42px] bg-ink p-3 shadow-2xl">
+    <div className="phone-mockup relative w-[260px] md:w-[300px] aspect-[9/19] rounded-[42px] bg-ink p-3">
       <div className="absolute top-3 left-1/2 -translate-x-1/2 w-24 h-6 bg-ink rounded-b-2xl z-10" />
       <div className="w-full h-full rounded-[32px] bg-cream overflow-hidden relative">
         <div className="px-4 pt-8 pb-4 flex items-center justify-between">
