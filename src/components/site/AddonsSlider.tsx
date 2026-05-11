@@ -203,6 +203,12 @@ export function AddonsSlider() {
               </span>
             </div>
             <div className="relative p-7 text-white">
+              <span
+                className="inline-flex items-center gap-1.5 mb-3 px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider bg-white/15 backdrop-blur-sm border border-white/30 text-white opacity-0 -translate-y-1 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:translate-y-0"
+              >
+                <span className="w-1 h-1 rounded-full bg-white/80" aria-hidden="true" />
+                {a.caption}
+              </span>
               <h3 className="text-4xl md:text-5xl font-black tracking-tighter mb-3 [text-shadow:0_2px_12px_rgba(0,0,0,0.55)]">{a.title}</h3>
               <p className="text-sm leading-snug text-white/95 [text-shadow:0_1px_6px_rgba(0,0,0,0.6)]">{a.desc}</p>
             </div>
