@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 
-const BASE_URL = "https://ksign-design-showcase.lovable.app";
+const BASE_URL = "https://ksign.pl";
 
 interface SitemapEntry {
   path: string;
@@ -13,6 +13,7 @@ export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async () => {
+        const lastmod = new Date().toISOString().split("T")[0];
         const entries: SitemapEntry[] = [
           { path: "/", changefreq: "weekly", priority: "1.0" },
           { path: "/polityka-prywatnosci", changefreq: "yearly", priority: "0.3" },
@@ -23,6 +24,7 @@ export const Route = createFileRoute("/sitemap.xml")({
           [
             `  <url>`,
             `    <loc>${BASE_URL}${e.path}</loc>`,
+            `    <lastmod>${lastmod}</lastmod>`,
             e.changefreq ? `    <changefreq>${e.changefreq}</changefreq>` : null,
             e.priority ? `    <priority>${e.priority}</priority>` : null,
             `  </url>`,
