@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { CONSENT_EVENT, getConsent, consentLog } from "@/lib/consent";
+import { CONSENT_EVENT, getConsent, consentLog, isConsentDebug } from "@/lib/consent";
 
 // Tracking IDs. Override per-environment via VITE_GA4_ID / VITE_META_PIXEL_ID.
 const GA4_ID = (import.meta.env.VITE_GA4_ID as string | undefined) || "G-GQT4Y20Z0B";
@@ -258,10 +258,118 @@ function applyConsent() {
 }
 
 
+// ───────── Debug-only instrumentation: log every gtag/fbq event sample ─────────
+
+type EventSample = {
+  ts: number;
+  api: "gtag" | "fbq";
+  command: string;
+  args: unknown[];
+  consent: { analytics: boolean; marketing: boolean; stored: boolean };
+  blockedBy: string[];
+};
+
+function summarizeBlockers(api: "gtag" | "fbq", command: string, args: unknown[]): string[] {
+  const w = window as unknown as Record<string, unknown>;
+  const blockers: string[] = [];
+  const c = getConsent();
+
+  if (api === "gtag" && command === "event") {
+    // Determine target id (send_to) if present.
+    const params = (args[1] as Record<string, unknown> | undefined) ?? {};
+    const sendTo = (params.send_to as string | undefined) ?? "";
+    const targets = sendTo ? sendTo.split(",").map((s) => s.trim()) : [GA4_ID, GOOGLE_ADS_ID];
+    for (const id of targets) {
+      if (!id) continue;
+      if (w[`ga-disable-${id}`] === true) blockers.push(`ga-disable-${id}=true`);
+    }
+    // Consent gating
+    if (targets.some((id) => id?.startsWith("G-")) && !c?.analytics) {
+      blockers.push("consent.analytics=denied (analytics_storage=denied)");
+    }
+    if (targets.some((id) => id?.startsWith("AW-")) && !c?.marketing) {
+      blockers.push("consent.marketing=denied (ad_storage=denied)");
+    }
+  }
+  if (api === "fbq" && (command === "track" || command === "trackCustom")) {
+    if (!c?.marketing) blockers.push("consent.marketing=denied (fbq consent revoked)");
+  }
+  return blockers;
+}
+
+function logEventSample(s: EventSample) {
+  const tag = s.blockedBy.length ? "🚫 BLOCKED" : "✓ SENT";
+  consentLog(
+    `[event-sample] ${tag} ${s.api}('${s.command}', …)`,
+    {
+      args: s.args,
+      consent: s.consent,
+      blockedBy: s.blockedBy,
+      time: new Date(s.ts).toISOString(),
+    },
+  );
+}
+
+function instrumentGtag() {
+  const original = window.gtag;
+  if (!original || (original as unknown as { __ksignWrapped?: boolean }).__ksignWrapped) return;
+  const wrapped = function gtag(...args: unknown[]) {
+    try {
+      const command = String(args[0] ?? "");
+      // Sample only events / config — skip noisy 'js'/'set'/'consent' default pushes.
+      if (command === "event" || command === "config" || command === "consent") {
+        const c = getConsent();
+        logEventSample({
+          ts: Date.now(),
+          api: "gtag",
+          command,
+          args: args.slice(1),
+          consent: { analytics: !!c?.analytics, marketing: !!c?.marketing, stored: !!c },
+          blockedBy: summarizeBlockers("gtag", command, args.slice(1)),
+        });
+      }
+    } catch { /* noop */ }
+    return (original as (...a: unknown[]) => unknown)(...args);
+  } as typeof window.gtag;
+  (wrapped as unknown as { __ksignWrapped: boolean }).__ksignWrapped = true;
+  window.gtag = wrapped;
+  consentLog("instrumentation: window.gtag wrapped for event sampling");
+}
+
+function instrumentFbq() {
+  const original = window.fbq;
+  if (typeof original !== "function") return;
+  if ((original as unknown as { __ksignWrapped?: boolean }).__ksignWrapped) return;
+  const wrapped = function fbq(...args: unknown[]) {
+    try {
+      const command = String(args[0] ?? "");
+      if (command === "track" || command === "trackCustom" || command === "consent") {
+        const c = getConsent();
+        logEventSample({
+          ts: Date.now(),
+          api: "fbq",
+          command,
+          args: args.slice(1),
+          consent: { analytics: !!c?.analytics, marketing: !!c?.marketing, stored: !!c },
+          blockedBy: summarizeBlockers("fbq", command, args.slice(1)),
+        });
+      }
+    } catch { /* noop */ }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return (original as any).apply(window, args);
+  } as typeof window.fbq;
+  // Preserve fbq internals (queue, callMethod, loaded, version)
+  Object.assign(wrapped, original);
+  (wrapped as unknown as { __ksignWrapped: boolean }).__ksignWrapped = true;
+  window.fbq = wrapped;
+  consentLog("instrumentation: window.fbq wrapped for event sampling");
+}
+
 export function ConsentScripts() {
   useEffect(() => {
     initConsentMode();
     consentLog("Consent Mode v2 initialized (default: denied for EEA/PL)");
+    if (isConsentDebug()) instrumentGtag();
     loadGTM();
     consentLog("GTM loaded:", GTM_ID);
     // Load Google Ads gtag.js unconditionally so Google can detect the tag.
@@ -269,9 +377,20 @@ export function ConsentScripts() {
     loadGoogleAds();
     consentLog("Google Ads base tag loaded (gated by Consent Mode):", GOOGLE_ADS_ID);
     applyConsent();
+    // Instrument fbq once it gets defined (after marketing consent + Pixel load).
+    if (isConsentDebug()) {
+      const tryFbq = window.setInterval(() => {
+        if (typeof window.fbq === "function") {
+          instrumentFbq();
+          window.clearInterval(tryFbq);
+        }
+      }, 500);
+      window.setTimeout(() => window.clearInterval(tryFbq), 30_000);
+    }
     const handler = (e: Event) => {
       consentLog("CONSENT_EVENT received", (e as CustomEvent).detail);
       applyConsent();
+      if (isConsentDebug()) instrumentFbq();
     };
     window.addEventListener(CONSENT_EVENT, handler);
     return () => window.removeEventListener(CONSENT_EVENT, handler);
