@@ -111,6 +111,17 @@ function loadMetaPixel() {
 const ANALYTICS_COOKIE_PATTERNS = [/^_ga(_.*)?$/, /^_gid$/, /^_gat(_.*)?$/];
 const MARKETING_COOKIE_PATTERNS = [/^_gcl_(au|aw|dc|gb|gf|ha)$/, /^_fbp$/, /^_fbc$/, /^fr$/];
 
+function listCookieNames(): string[] {
+  return document.cookie
+    .split(";")
+    .map((raw) => raw.split("=")[0]?.trim() ?? "")
+    .filter(Boolean);
+}
+
+function matchByPatterns(names: string[], patterns: RegExp[]): string[] {
+  return names.filter((n) => patterns.some((re) => re.test(n)));
+}
+
 function deleteCookie(name: string) {
   const host = window.location.hostname;
   // Build candidate domains: exact host + all parent domains with leading dot.
@@ -126,17 +137,53 @@ function deleteCookie(name: string) {
   }
 }
 
-function clearCookiesByPatterns(patterns: RegExp[]) {
-  const removed: string[] = [];
-  document.cookie.split(";").forEach((raw) => {
-    const name = raw.split("=")[0]?.trim();
-    if (!name) return;
-    if (patterns.some((re) => re.test(name))) {
-      deleteCookie(name);
-      removed.push(name);
-    }
-  });
-  return removed;
+type ClearReport = {
+  category: "analytics" | "marketing";
+  matched: string[];
+  before: string[];
+  after: string[];
+  removed: string[];
+  stillPresent: string[];
+};
+
+function clearCategory(
+  category: "analytics" | "marketing",
+  patterns: RegExp[],
+): ClearReport {
+  const beforeAll = listCookieNames();
+  const matched = matchByPatterns(beforeAll, patterns);
+  for (const name of matched) deleteCookie(name);
+  const afterAll = listCookieNames();
+  const afterMatched = matchByPatterns(afterAll, patterns);
+  const removed = matched.filter((n) => !afterMatched.includes(n));
+  const stillPresent = afterMatched;
+  return { category, matched, before: beforeAll, after: afterAll, removed, stillPresent };
+}
+
+function logClearReport(r: ClearReport) {
+  if (r.matched.length === 0) {
+    consentLog(
+      `[${r.category}] no matching cookies (scanned ${r.before.length}: ${r.before.join(", ") || "—"})`,
+    );
+    return;
+  }
+  consentLog(
+    `[${r.category}] cleared ${r.removed.length}/${r.matched.length} cookies`,
+    {
+      matched: r.matched,
+      removed: r.removed,
+      stillPresent: r.stillPresent,
+      host: window.location.hostname,
+      cookiesBefore: r.before.length,
+      cookiesAfter: r.after.length,
+    },
+  );
+  if (r.stillPresent.length) {
+    consentLog(
+      `[${r.category}] ⚠ still present (likely httpOnly or wrong domain/path):`,
+      r.stillPresent,
+    );
+  }
 }
 
 function applyConsent() {
@@ -145,14 +192,9 @@ function applyConsent() {
   const marketing = c?.marketing ? "granted" : "denied";
 
   // Clear cookies for any category that is now denied.
-  if (!c?.analytics) {
-    const removed = clearCookiesByPatterns(ANALYTICS_COOKIE_PATTERNS);
-    if (removed.length) consentLog("cleared analytics cookies:", removed);
-  }
-  if (!c?.marketing) {
-    const removed = clearCookiesByPatterns(MARKETING_COOKIE_PATTERNS);
-    if (removed.length) consentLog("cleared marketing cookies:", removed);
-  }
+  if (!c?.analytics) logClearReport(clearCategory("analytics", ANALYTICS_COOKIE_PATTERNS));
+  if (!c?.marketing) logClearReport(clearCategory("marketing", MARKETING_COOKIE_PATTERNS));
+
 
   const update = {
     analytics_storage: analytics,
