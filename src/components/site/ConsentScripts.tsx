@@ -5,6 +5,7 @@ import { CONSENT_EVENT, getConsent } from "@/lib/consent";
 const GA4_ID = (import.meta.env.VITE_GA4_ID as string | undefined) || "G-GQT4Y20Z0B";
 const META_PIXEL_ID = (import.meta.env.VITE_META_PIXEL_ID as string | undefined) || "";
 const GOOGLE_ADS_ID = (import.meta.env.VITE_GOOGLE_ADS_ID as string | undefined) || "AW-18158941733";
+const GTM_ID = (import.meta.env.VITE_GTM_ID as string | undefined) || "GTM-MHKNMPZ3";
 
 declare global {
   interface Window {
@@ -56,6 +57,30 @@ function loadGoogleAds() {
   window.gtag("config", GOOGLE_ADS_ID);
 }
 
+function loadGTM() {
+  if (!GTM_ID || document.getElementById("gtm-script")) return;
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+  const s = document.createElement("script");
+  s.id = "gtm-script";
+  s.async = true;
+  s.src = `https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`;
+  document.head.appendChild(s);
+
+  if (!document.getElementById("gtm-noscript")) {
+    const noscript = document.createElement("noscript");
+    noscript.id = "gtm-noscript";
+    const iframe = document.createElement("iframe");
+    iframe.src = `https://www.googletagmanager.com/ns.html?id=${GTM_ID}`;
+    iframe.height = "0";
+    iframe.width = "0";
+    iframe.style.display = "none";
+    iframe.style.visibility = "hidden";
+    noscript.appendChild(iframe);
+    document.body.insertBefore(noscript, document.body.firstChild);
+  }
+}
+
 function loadMetaPixel() {
   if (!META_PIXEL_ID || document.getElementById("meta-pixel-script")) return;
   // Standard Meta Pixel snippet
@@ -96,6 +121,7 @@ function applyConsent() {
     });
   }
 
+  if (c?.analytics || c?.marketing) loadGTM();
   if (c?.analytics) loadGA4();
   if (c?.marketing) {
     loadGoogleAds();
