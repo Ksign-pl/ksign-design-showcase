@@ -40,11 +40,18 @@ export function Footer() {
               <li><a href="tel:+48000000000" className="font-medium hover:text-violet transition">+48 000 000 000</a></li>
             </ul>
             <div className="flex gap-2">
-              {["IG", "FB", "BE", "IN"].map((s) => (
-                <a key={s} href="#" className="w-10 h-10 rounded-full bg-ink text-cream flex items-center justify-center text-xs font-bold hover:bg-violet hover:text-ink transition">
-                  {s}
-                </a>
-              ))}
+              <a
+                href="https://www.facebook.com/ksign2026"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="KSIGN na Facebooku"
+                title="KSIGN na Facebooku"
+                className="w-10 h-10 rounded-full bg-[#1877F2] text-white flex items-center justify-center hover:opacity-90 transition"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" className="w-5 h-5" fill="currentColor">
+                  <path d="M13.5 21v-7.5h2.5l.4-3h-2.9V8.6c0-.87.27-1.46 1.52-1.46H16.5V4.44C16.21 4.4 15.31 4.32 14.27 4.32c-2.18 0-3.67 1.33-3.67 3.77V10.5H8v3h2.6V21h2.9z"/>
+                </svg>
+              </a>
             </div>
           </div>
         </div>
