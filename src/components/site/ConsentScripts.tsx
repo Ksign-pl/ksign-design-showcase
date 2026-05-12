@@ -107,10 +107,52 @@ function loadMetaPixel() {
   window.fbq("track", "PageView");
 }
 
+// Cookies set by GA4 / Google Ads / Meta Pixel that should be removed when consent is withdrawn.
+const ANALYTICS_COOKIE_PATTERNS = [/^_ga(_.*)?$/, /^_gid$/, /^_gat(_.*)?$/];
+const MARKETING_COOKIE_PATTERNS = [/^_gcl_(au|aw|dc|gb|gf|ha)$/, /^_fbp$/, /^_fbc$/, /^fr$/];
+
+function deleteCookie(name: string) {
+  const host = window.location.hostname;
+  // Build candidate domains: exact host + all parent domains with leading dot.
+  const parts = host.split(".");
+  const domains = new Set<string>([""]);
+  for (let i = 0; i < parts.length - 1; i++) {
+    domains.add("." + parts.slice(i).join("."));
+  }
+  domains.add("." + host);
+  const expires = "expires=Thu, 01 Jan 1970 00:00:00 GMT";
+  for (const d of domains) {
+    document.cookie = `${name}=; ${expires}; path=/${d ? `; domain=${d}` : ""}`;
+  }
+}
+
+function clearCookiesByPatterns(patterns: RegExp[]) {
+  const removed: string[] = [];
+  document.cookie.split(";").forEach((raw) => {
+    const name = raw.split("=")[0]?.trim();
+    if (!name) return;
+    if (patterns.some((re) => re.test(name))) {
+      deleteCookie(name);
+      removed.push(name);
+    }
+  });
+  return removed;
+}
+
 function applyConsent() {
   const c = getConsent();
   const analytics = c?.analytics ? "granted" : "denied";
   const marketing = c?.marketing ? "granted" : "denied";
+
+  // Clear cookies for any category that is now denied.
+  if (!c?.analytics) {
+    const removed = clearCookiesByPatterns(ANALYTICS_COOKIE_PATTERNS);
+    if (removed.length) consentLog("cleared analytics cookies:", removed);
+  }
+  if (!c?.marketing) {
+    const removed = clearCookiesByPatterns(MARKETING_COOKIE_PATTERNS);
+    if (removed.length) consentLog("cleared marketing cookies:", removed);
+  }
 
   const update = {
     analytics_storage: analytics,
