@@ -77,6 +77,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "author", content: "KSIGN" },
       { property: "og:site_name", content: "KSIGN" },
       { name: "twitter:card", content: "summary_large_image" },
+      { title: "KSIGN — Projektowanie stron internetowych premium dla małych" },
+      { property: "og:title", content: "KSIGN — Projektowanie stron internetowych premium dla małych" },
+      { name: "twitter:title", content: "KSIGN — Projektowanie stron internetowych premium dla małych" },
+      { name: "description", content: "KSIGN Showcase is a premium web design service website." },
+      { property: "og:description", content: "KSIGN Showcase is a premium web design service website." },
+      { name: "twitter:description", content: "KSIGN Showcase is a premium web design service website." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/97311607-e53d-48c7-966a-ac31f05a4799/id-preview-7a9f793f--02ca4f99-bd90-4a4f-bdf0-e7c5fc93a21e.lovable.app-1778621622472.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/97311607-e53d-48c7-966a-ac31f05a4799/id-preview-7a9f793f--02ca4f99-bd90-4a4f-bdf0-e7c5fc93a21e.lovable.app-1778621622472.png" },
+      { property: "og:type", content: "website" },
     ],
     links: [
       {
