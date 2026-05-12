@@ -44,7 +44,7 @@ export const Route = createFileRoute("/")({
           "@graph": [
             {
               "@type": "FAQPage",
-              "@id": "https://ksign-design-showcase.lovable.app/#faq",
+              "@id": "https://ksign.pl/#faq",
               mainEntity: [
                 { q: "Czy za 999 zł dostanę sklep internetowy?", a: "Nie. Pakiet Start obejmuje prostą stronę one-page. Sklep internetowy wyceniamy osobno." },
                 { q: "Czy strona będzie responsywna?", a: "Tak. Strona będzie dopasowana do telefonu, tabletu i komputera." },
@@ -89,10 +89,10 @@ export const Route = createFileRoute("/")({
             },
             {
               "@type": "Service",
-              "@id": "https://ksign-design-showcase.lovable.app/#pakiet-start",
+              "@id": "https://ksign.pl/#pakiet-start",
               name: "Pakiet Start — strona one-page",
               serviceType: "Web design",
-              provider: { "@id": "https://ksign-design-showcase.lovable.app/#business" },
+              provider: { "@id": "https://ksign.pl/#business" },
               areaServed: { "@type": "Country", name: "Poland" },
               description: "Nowoczesna, responsywna strona one-page w premium designie. Realizacja 3–7 dni roboczych.",
               offers: {
@@ -106,7 +106,7 @@ export const Route = createFileRoute("/")({
                   valueAddedTaxIncluded: false,
                 },
                 availability: "https://schema.org/InStock",
-                url: "https://ksign-design-showcase.lovable.app/#pakiet",
+                url: "https://ksign.pl/#pakiet",
               },
             },
             {
@@ -116,7 +116,7 @@ export const Route = createFileRoute("/")({
                   "@type": "ListItem",
                   position: 1,
                   name: "Strona główna",
-                  item: "https://ksign-design-showcase.lovable.app/",
+                  item: "https://ksign.pl/",
                 },
               ],
             },
