@@ -37,8 +37,8 @@ export function FinalCTA() {
               <a href="mailto:hello@ksign.pl" className="text-2xl font-bold hover:text-lime transition">hello@ksign.pl</a>
             </div>
             <div className="bg-white/5 border border-white/10 rounded-3xl p-7">
-              <div className="text-xs font-mono uppercase tracking-widest text-cream/50 mb-2">telefon</div>
-              <a href="tel:+48000000000" className="text-2xl font-bold hover:text-lime transition">+48 000 000 000</a>
+              <div className="text-xs font-mono uppercase tracking-widest text-cream/50 mb-2">odpowiadamy</div>
+              <div className="text-2xl font-bold">w 24h</div>
             </div>
             <div className="bg-lime text-ink rounded-3xl p-7">
               <div className="text-xs font-mono uppercase tracking-widest text-ink/50 mb-2">odpowiadamy</div>
