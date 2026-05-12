@@ -65,10 +65,11 @@ export function FinalCTA() {
                   <Field label="Nazwa firmy" name="company" />
                 </div>
                 <div className="mt-4">
-                  <label className="block text-xs font-mono uppercase tracking-widest text-ink/50 mb-2">
+                  <label htmlFor="field-package" className="block text-xs font-mono uppercase tracking-widest text-ink/50 mb-2">
                     Wybór pakietu
                   </label>
                   <select
+                    id="field-package"
                     name="package"
                     className="w-full bg-white border border-ink/15 rounded-2xl px-4 py-3.5 font-medium focus:outline-none focus:border-ink"
                   >
@@ -79,10 +80,11 @@ export function FinalCTA() {
                   </select>
                 </div>
                 <div className="mt-4">
-                  <label className="block text-xs font-mono uppercase tracking-widest text-ink/50 mb-2">
+                  <label htmlFor="field-message" className="block text-xs font-mono uppercase tracking-widest text-ink/50 mb-2">
                     Wiadomość
                   </label>
                   <textarea
+                    id="field-message"
                     rows={4}
                     name="message"
                     className="w-full bg-white border border-ink/15 rounded-2xl px-4 py-3.5 font-medium focus:outline-none focus:border-ink resize-none"
@@ -143,12 +145,14 @@ export function FinalCTA() {
 }
 
 function Field({ label, name, type = "text" }: { label: string; name: string; type?: string }) {
+  const id = `field-${name}`;
   return (
     <div>
-      <label className="block text-xs font-mono uppercase tracking-widest text-ink/50 mb-2">
+      <label htmlFor={id} className="block text-xs font-mono uppercase tracking-widest text-ink/50 mb-2">
         {label}
       </label>
       <input
+        id={id}
         type={type}
         name={name}
         required

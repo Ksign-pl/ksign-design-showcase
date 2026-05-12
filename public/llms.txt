@@ -1,0 +1,9 @@
+# KSIGN
+
+> Premium web design dla małych firm i marek osobistych. Pakiet Start: nowoczesna strona one-page za 999 zł netto, realizacja 3–7 dni.
+
+## Pages
+
+- [Strona główna](/): Pakiet Start 999 zł, oferta, proces, FAQ, formularz kontaktowy.
+- [Polityka prywatności](/polityka-prywatnosci): Informacje o przetwarzaniu danych zgodnie z RODO.
+- [Polityka cookies](/polityka-cookies): Rodzaje plików cookies i zarządzanie zgodami.

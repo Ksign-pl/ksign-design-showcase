@@ -159,7 +159,8 @@ export function Hero() {
 
         {/* Top huge text */}
         <h1 className="text-display-tight text-[18vw] md:text-[12vw] lg:text-[11rem] animate-fade-up">
-          STRONY,
+          <span className="sr-only">KSIGN — premium strony internetowe za 999 zł</span>
+          <span aria-hidden="true">STRONY,</span>
         </h1>
 
         {/* Mockup + floating cards */}
