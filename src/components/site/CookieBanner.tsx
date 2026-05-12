@@ -4,10 +4,115 @@ import { getConsent, saveConsent, type ConsentState } from "@/lib/consent";
 
 type Mode = "hidden" | "banner" | "settings";
 
+type TestStatus = "idle" | "running" | "ok" | "blocked" | "no-tags";
+
+type TestResult = {
+  status: TestStatus;
+  ga4Hits: number;
+  adsHits: number;
+  pixelHits: number;
+  consent: { analytics: boolean; marketing: boolean };
+  message: string;
+};
+
+const ENDPOINT_PATTERNS = {
+  ga4: /google-analytics\.com\/(g\/collect|collect)|analytics\.google\.com\/g\/collect/,
+  ads: /(google\.com\/(ccm|pagead|rmkt)\/collect|googleadservices\.com|googletagmanager\.com\/gtag\/js\?id=AW-)/,
+  pixel: /facebook\.com\/tr|connect\.facebook\.net\/.*\/fbevents/,
+};
+
+async function runConnectionTest(
+  consent: { analytics: boolean; marketing: boolean },
+): Promise<TestResult> {
+  const w = window as unknown as {
+    gtag?: (...args: unknown[]) => void;
+    fbq?: (...args: unknown[]) => void;
+  };
+
+  const ga4Available = typeof w.gtag === "function";
+  const pixelAvailable = typeof w.fbq === "function";
+
+  if (!ga4Available && !pixelAvailable) {
+    return {
+      status: "no-tags",
+      ga4Hits: 0,
+      adsHits: 0,
+      pixelHits: 0,
+      consent,
+      message: "Brak załadowanych skryptów (gtag/fbq).",
+    };
+  }
+
+  const startedAt = performance.now();
+  let ga4Hits = 0;
+  let adsHits = 0;
+  let pixelHits = 0;
+
+  const observer = new PerformanceObserver((list) => {
+    for (const entry of list.getEntries()) {
+      if (entry.startTime < startedAt) continue;
+      const url = entry.name;
+      if (ENDPOINT_PATTERNS.ga4.test(url)) ga4Hits++;
+      else if (ENDPOINT_PATTERNS.ads.test(url) && url.includes("collect")) adsHits++;
+      else if (ENDPOINT_PATTERNS.pixel.test(url) && url.includes("/tr")) pixelHits++;
+    }
+  });
+  try {
+    observer.observe({ type: "resource", buffered: false });
+  } catch {
+    // Older browsers
+  }
+
+  // Fire test events
+  try {
+    w.gtag?.("event", "ksign_consent_test", {
+      event_category: "diagnostics",
+      event_label: `analytics=${consent.analytics};marketing=${consent.marketing}`,
+      non_interaction: true,
+    });
+  } catch { /* noop */ }
+  try {
+    w.fbq?.("trackCustom", "KsignConsentTest", {
+      analytics: consent.analytics,
+      marketing: consent.marketing,
+    });
+  } catch { /* noop */ }
+
+  // Wait for network activity to settle.
+  await new Promise((r) => setTimeout(r, 1500));
+  observer.disconnect();
+
+  const totalHits = ga4Hits + adsHits + pixelHits;
+  const expectsAnalytics = consent.analytics;
+  const expectsMarketing = consent.marketing;
+
+  let status: TestStatus;
+  let message: string;
+  if (!expectsAnalytics && !expectsMarketing) {
+    status = totalHits === 0 ? "blocked" : "blocked";
+    message =
+      totalHits === 0
+        ? "Zgodnie z oczekiwaniem: zgoda cofnięta, żadne zdarzenia nie zostały wysłane."
+        : `Uwaga: zgoda cofnięta, a wysłano ${totalHits} żądań — sprawdź konfigurację.`;
+  } else {
+    const ok =
+      (!expectsAnalytics || ga4Hits > 0) &&
+      (!expectsMarketing || adsHits > 0 || pixelHits > 0);
+    status = ok ? "ok" : "blocked";
+    message = ok
+      ? "Zdarzenie testowe wysłane pomyślnie."
+      : "Zdarzenie nie zostało wysłane — możliwe blokowanie przez przeglądarkę / adblock lub brak załadowanych tagów.";
+  }
+
+  return { status, ga4Hits, adsHits, pixelHits, consent, message };
+}
+
 export function CookieBanner() {
   const [mode, setMode] = useState<Mode>("hidden");
   const [analytics, setAnalytics] = useState(false);
   const [marketing, setMarketing] = useState(false);
+  const [test, setTest] = useState<TestResult | null>(null);
+  const [testing, setTesting] = useState(false);
 
   useEffect(() => {
     const existing = getConsent();
@@ -114,6 +219,66 @@ export function CookieBanner() {
                 onChange={setMarketing}
               />
             </div>
+
+            <div className="mb-4 rounded-2xl border border-white/10 p-4">
+              <div className="flex items-center justify-between gap-3">
+                <div>
+                  <div className="font-bold text-sm">Testuj połączenie</div>
+                  <div className="text-xs text-cream/60 mt-1">
+                    Wysyła zdarzenie testowe do GA4 / Google Ads / Meta Pixel zgodnie z aktualnymi ustawieniami zgody.
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={async () => {
+                    setTesting(true);
+                    setTest(null);
+                    // Persist current selection first so the test reflects it.
+                    saveConsent({ analytics, marketing });
+                    // Let applyConsent() run before testing.
+                    await new Promise((r) => setTimeout(r, 400));
+                    const result = await runConnectionTest({ analytics, marketing });
+                    setTest(result);
+                    setTesting(false);
+                  }}
+                  disabled={testing}
+                  className="shrink-0 px-4 py-2 rounded-full bg-cream text-ink font-bold text-xs hover:bg-lime transition disabled:opacity-60"
+                >
+                  {testing ? "Testowanie…" : "Testuj"}
+                </button>
+              </div>
+              {test && (
+                <div
+                  role="status"
+                  aria-live="polite"
+                  className={`mt-3 rounded-xl p-3 text-xs ${
+                    test.status === "ok"
+                      ? "bg-lime/10 border border-lime/30 text-lime"
+                      : test.status === "no-tags"
+                      ? "bg-white/5 border border-white/10 text-cream/70"
+                      : "bg-amber-400/10 border border-amber-400/30 text-amber-300"
+                  }`}
+                >
+                  <div className="font-bold mb-1">
+                    {test.status === "ok"
+                      ? "✓ Połączenie OK"
+                      : test.status === "no-tags"
+                      ? "○ Brak tagów"
+                      : "⚠ Zablokowane / brak ruchu"}
+                  </div>
+                  <div className="text-cream/80 mb-2">{test.message}</div>
+                  <ul className="space-y-0.5 text-cream/70">
+                    <li>
+                      Zgoda: analytics={String(test.consent.analytics)}, marketing={String(test.consent.marketing)}
+                    </li>
+                    <li>GA4 hits: {test.ga4Hits}</li>
+                    <li>Google Ads hits: {test.adsHits}</li>
+                    <li>Meta Pixel hits: {test.pixelHits}</li>
+                  </ul>
+                </div>
+              )}
+            </div>
+
             <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
               <button
                 onClick={rejectAll}
