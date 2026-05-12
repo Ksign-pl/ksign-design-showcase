@@ -17,20 +17,24 @@ import { BackToTop } from "@/components/site/BackToTop";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "KSIGN — Premium strona za 999 zł netto" },
-      { name: "description", content: "Premium web design dla małych firm i marek osobistych. Pakiet Start: nowoczesna strona one-page za 999 zł netto. Realizacja 3–7 dni." },
-      { property: "og:title", content: "KSIGN — Premium strona za 999 zł" },
-      { property: "og:description", content: "Nowoczesne strony internetowe od 999 zł netto. Pakiet Start KSIGN — szybka realizacja, premium wygląd." },
+      { title: "KSIGN — Premium web design dla małych firm" },
+      { name: "description", content: "Nowoczesna strona one-page w 3–7 dni za 999 zł netto. KSIGN — premium web design dla firm, które chcą wyglądać profesjonalnie online." },
+      { property: "og:title", content: "KSIGN — Premium web design dla małych firm" },
+      { property: "og:description", content: "Nowoczesna strona one-page w 3–7 dni za 999 zł netto. KSIGN — premium web design dla firm, które chcą wyglądać profesjonalnie online." },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://ksign-design-showcase.lovable.app/" },
+      { property: "og:url", content: "https://ksign.pl/" },
+      { property: "og:image", content: "https://ksign.pl/og-image.jpg" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:type", content: "image/jpeg" },
+      { property: "og:image:alt", content: "KSIGN — premium web design, strona za 999 zł netto" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "KSIGN — Premium strona za 999 zł" },
-      { name: "twitter:description", content: "Pakiet Start: nowoczesna strona one-page za 999 zł netto. Realizacja 3–7 dni." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/a45b5b3c-7d87-4858-accc-cfbeed557deb" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/a45b5b3c-7d87-4858-accc-cfbeed557deb" },
+      { name: "twitter:title", content: "KSIGN — Premium web design dla małych firm" },
+      { name: "twitter:description", content: "Nowoczesna strona one-page w 3–7 dni za 999 zł netto. KSIGN — premium web design dla firm, które chcą wyglądać profesjonalnie online." },
+      { name: "twitter:image", content: "https://ksign.pl/og-image.jpg" },
     ],
     links: [
-      { rel: "canonical", href: "https://ksign-design-showcase.lovable.app/" },
+      { rel: "canonical", href: "https://ksign.pl/" },
     ],
     scripts: [
       {
