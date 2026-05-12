@@ -13,6 +13,7 @@ import { FAQ } from "@/components/site/FAQ";
 import { FinalCTA } from "@/components/site/FinalCTA";
 import { Footer } from "@/components/site/Footer";
 import { BackToTop } from "@/components/site/BackToTop";
+import { SeoStatus } from "@/components/site/SeoStatus";
 
 export const Route = createFileRoute("/")({
   head: () => ({
