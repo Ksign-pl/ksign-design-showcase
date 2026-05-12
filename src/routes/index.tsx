@@ -44,7 +44,7 @@ export const Route = createFileRoute("/")({
           "@graph": [
             {
               "@type": "FAQPage",
-              "@id": "https://ksign-design-showcase.lovable.app/#faq",
+              "@id": "https://ksign.pl/#faq",
               mainEntity: [
                 { q: "Czy za 999 zł dostanę sklep internetowy?", a: "Nie. Pakiet Start obejmuje prostą stronę one-page. Sklep internetowy wyceniamy osobno." },
                 { q: "Czy strona będzie responsywna?", a: "Tak. Strona będzie dopasowana do telefonu, tabletu i komputera." },
@@ -60,22 +60,39 @@ export const Route = createFileRoute("/")({
             },
             {
               "@type": "ProfessionalService",
-              "@id": "https://ksign-design-showcase.lovable.app/#business",
+              "@id": "https://ksign.pl/#business",
               name: "KSIGN",
               description: "Studio premium web design — strony internetowe, sklepy i systemy AI dla małych firm i marek osobistych.",
-              url: "https://ksign-design-showcase.lovable.app/",
+              url: "https://ksign.pl/",
               image: "https://ksign.pl/og-image.jpg",
               email: "hello@ksign.pl",
               priceRange: "999 PLN - 9999 PLN",
               areaServed: { "@type": "Country", name: "Poland" },
               address: { "@type": "PostalAddress", addressCountry: "PL" },
+              sameAs: ["https://www.facebook.com/ksign2026"],
+              contactPoint: [
+                {
+                  "@type": "ContactPoint",
+                  contactType: "customer support",
+                  email: "hello@ksign.pl",
+                  availableLanguage: ["Polish", "English"],
+                  areaServed: "PL",
+                },
+                {
+                  "@type": "ContactPoint",
+                  contactType: "sales",
+                  email: "hello@ksign.pl",
+                  availableLanguage: ["Polish", "English"],
+                  areaServed: "PL",
+                },
+              ],
             },
             {
               "@type": "Service",
-              "@id": "https://ksign-design-showcase.lovable.app/#pakiet-start",
+              "@id": "https://ksign.pl/#pakiet-start",
               name: "Pakiet Start — strona one-page",
               serviceType: "Web design",
-              provider: { "@id": "https://ksign-design-showcase.lovable.app/#business" },
+              provider: { "@id": "https://ksign.pl/#business" },
               areaServed: { "@type": "Country", name: "Poland" },
               description: "Nowoczesna, responsywna strona one-page w premium designie. Realizacja 3–7 dni roboczych.",
               offers: {
@@ -89,7 +106,7 @@ export const Route = createFileRoute("/")({
                   valueAddedTaxIncluded: false,
                 },
                 availability: "https://schema.org/InStock",
-                url: "https://ksign-design-showcase.lovable.app/#pakiet",
+                url: "https://ksign.pl/#pakiet",
               },
             },
             {
@@ -99,7 +116,7 @@ export const Route = createFileRoute("/")({
                   "@type": "ListItem",
                   position: 1,
                   name: "Strona główna",
-                  item: "https://ksign-design-showcase.lovable.app/",
+                  item: "https://ksign.pl/",
                 },
               ],
             },
