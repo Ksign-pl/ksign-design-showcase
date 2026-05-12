@@ -9,6 +9,7 @@ export const Route = createFileRoute("/polityka-cookies")({
       { name: "robots", content: "index,follow" },
       { property: "og:title", content: "Polityka cookies — KSIGN" },
       { property: "og:description", content: "Jakich plików cookies używamy i jak nimi zarządzać." },
+      { property: "og:type", content: "website" },
     ],
   }),
   component: CookiesPage,
