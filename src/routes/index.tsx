@@ -144,6 +144,7 @@ function Index() {
         <Pricing />
         <FAQ />
         <FinalCTA />
+        <SeoStatus />
       </main>
       <Footer />
       <StickyBar />
