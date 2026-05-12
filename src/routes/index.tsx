@@ -64,7 +64,7 @@ export const Route = createFileRoute("/")({
               name: "KSIGN",
               description: "Studio premium web design — strony internetowe, sklepy i systemy AI dla małych firm i marek osobistych.",
               url: "https://ksign-design-showcase.lovable.app/",
-              image: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/a45b5b3c-7d87-4858-accc-cfbeed557deb",
+              image: "https://ksign.pl/og-image.jpg",
               email: "hello@ksign.pl",
               priceRange: "999 PLN - 9999 PLN",
               areaServed: { "@type": "Country", name: "Poland" },
