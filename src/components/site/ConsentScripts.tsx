@@ -4,6 +4,7 @@ import { CONSENT_EVENT, getConsent } from "@/lib/consent";
 // Tracking IDs. Override per-environment via VITE_GA4_ID / VITE_META_PIXEL_ID.
 const GA4_ID = (import.meta.env.VITE_GA4_ID as string | undefined) || "G-GQT4Y20Z0B";
 const META_PIXEL_ID = (import.meta.env.VITE_META_PIXEL_ID as string | undefined) || "";
+const GOOGLE_ADS_ID = (import.meta.env.VITE_GOOGLE_ADS_ID as string | undefined) || "AW-18158941733";
 
 declare global {
   interface Window {
@@ -42,6 +43,17 @@ function loadGA4() {
   document.head.appendChild(s);
   window.gtag("js", new Date());
   window.gtag("config", GA4_ID, { anonymize_ip: true });
+}
+
+function loadGoogleAds() {
+  if (!GOOGLE_ADS_ID || document.getElementById("google-ads-script")) return;
+  const s = document.createElement("script");
+  s.id = "google-ads-script";
+  s.async = true;
+  s.src = `https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`;
+  document.head.appendChild(s);
+  window.gtag("js", new Date());
+  window.gtag("config", GOOGLE_ADS_ID);
 }
 
 function loadMetaPixel() {
@@ -85,7 +97,10 @@ function applyConsent() {
   }
 
   if (c?.analytics) loadGA4();
-  if (c?.marketing) loadMetaPixel();
+  if (c?.marketing) {
+    loadGoogleAds();
+    loadMetaPixel();
+  }
 }
 
 export function ConsentScripts() {
