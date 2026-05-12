@@ -9,8 +9,20 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as PolitykaPrywatnosciRouteImport } from './routes/polityka-prywatnosci'
+import { Route as PolitykaCookiesRouteImport } from './routes/polityka-cookies'
 import { Route as IndexRouteImport } from './routes/index'
 
+const PolitykaPrywatnosciRoute = PolitykaPrywatnosciRouteImport.update({
+  id: '/polityka-prywatnosci',
+  path: '/polityka-prywatnosci',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PolitykaCookiesRoute = PolitykaCookiesRouteImport.update({
+  id: '/polityka-cookies',
+  path: '/polityka-cookies',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +31,50 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/polityka-cookies': typeof PolitykaCookiesRoute
+  '/polityka-prywatnosci': typeof PolitykaPrywatnosciRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/polityka-cookies': typeof PolitykaCookiesRoute
+  '/polityka-prywatnosci': typeof PolitykaPrywatnosciRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/polityka-cookies': typeof PolitykaCookiesRoute
+  '/polityka-prywatnosci': typeof PolitykaPrywatnosciRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/polityka-cookies' | '/polityka-prywatnosci'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/polityka-cookies' | '/polityka-prywatnosci'
+  id: '__root__' | '/' | '/polityka-cookies' | '/polityka-prywatnosci'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  PolitykaCookiesRoute: typeof PolitykaCookiesRoute
+  PolitykaPrywatnosciRoute: typeof PolitykaPrywatnosciRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/polityka-prywatnosci': {
+      id: '/polityka-prywatnosci'
+      path: '/polityka-prywatnosci'
+      fullPath: '/polityka-prywatnosci'
+      preLoaderRoute: typeof PolitykaPrywatnosciRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/polityka-cookies': {
+      id: '/polityka-cookies'
+      path: '/polityka-cookies'
+      fullPath: '/polityka-cookies'
+      preLoaderRoute: typeof PolitykaCookiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +87,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  PolitykaCookiesRoute: PolitykaCookiesRoute,
+  PolitykaPrywatnosciRoute: PolitykaPrywatnosciRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
