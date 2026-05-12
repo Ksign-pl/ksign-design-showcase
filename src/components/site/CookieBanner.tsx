@@ -219,6 +219,66 @@ export function CookieBanner() {
                 onChange={setMarketing}
               />
             </div>
+
+            <div className="mb-4 rounded-2xl border border-white/10 p-4">
+              <div className="flex items-center justify-between gap-3">
+                <div>
+                  <div className="font-bold text-sm">Testuj połączenie</div>
+                  <div className="text-xs text-cream/60 mt-1">
+                    Wysyła zdarzenie testowe do GA4 / Google Ads / Meta Pixel zgodnie z aktualnymi ustawieniami zgody.
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={async () => {
+                    setTesting(true);
+                    setTest(null);
+                    // Persist current selection first so the test reflects it.
+                    saveConsent({ analytics, marketing });
+                    // Let applyConsent() run before testing.
+                    await new Promise((r) => setTimeout(r, 400));
+                    const result = await runConnectionTest({ analytics, marketing });
+                    setTest(result);
+                    setTesting(false);
+                  }}
+                  disabled={testing}
+                  className="shrink-0 px-4 py-2 rounded-full bg-cream text-ink font-bold text-xs hover:bg-lime transition disabled:opacity-60"
+                >
+                  {testing ? "Testowanie…" : "Testuj"}
+                </button>
+              </div>
+              {test && (
+                <div
+                  role="status"
+                  aria-live="polite"
+                  className={`mt-3 rounded-xl p-3 text-xs ${
+                    test.status === "ok"
+                      ? "bg-lime/10 border border-lime/30 text-lime"
+                      : test.status === "no-tags"
+                      ? "bg-white/5 border border-white/10 text-cream/70"
+                      : "bg-amber-400/10 border border-amber-400/30 text-amber-300"
+                  }`}
+                >
+                  <div className="font-bold mb-1">
+                    {test.status === "ok"
+                      ? "✓ Połączenie OK"
+                      : test.status === "no-tags"
+                      ? "○ Brak tagów"
+                      : "⚠ Zablokowane / brak ruchu"}
+                  </div>
+                  <div className="text-cream/80 mb-2">{test.message}</div>
+                  <ul className="space-y-0.5 text-cream/70">
+                    <li>
+                      Zgoda: analytics={String(test.consent.analytics)}, marketing={String(test.consent.marketing)}
+                    </li>
+                    <li>GA4 hits: {test.ga4Hits}</li>
+                    <li>Google Ads hits: {test.adsHits}</li>
+                    <li>Meta Pixel hits: {test.pixelHits}</li>
+                  </ul>
+                </div>
+              )}
+            </div>
+
             <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
               <button
                 onClick={rejectAll}
