@@ -11,6 +11,7 @@ import {
 import appCss from "../styles.css?url";
 import { CookieBanner } from "@/components/site/CookieBanner";
 import { ConsentScripts } from "@/components/site/ConsentScripts";
+import { ConsentDebugPanel } from "@/components/site/ConsentDebugPanel";
 
 function NotFoundComponent() {
   return (
