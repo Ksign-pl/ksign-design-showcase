@@ -70,9 +70,11 @@ export function PackageStart() {
 
               <a
                 href="#kontakt"
+                title="Zamów pakiet Start za 999 zł"
+                aria-label="Zamów pakiet Start za 999 zł — formularz kontaktowy"
                 className="w-full inline-flex items-center justify-center gap-2 bg-lime text-ink px-6 py-4 rounded-full font-bold hover:scale-[1.02] transition-transform"
               >
-                Chcę stronę za 999 zł →
+                Chcę stronę za 999 zł <span aria-hidden="true">→</span>
               </a>
               <p className="mt-4 text-xs text-cream/50 text-center">
                 Bez ukrytych kosztów. Bez zobowiązań abonamentowych.
