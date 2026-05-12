@@ -186,6 +186,31 @@ function logClearReport(r: ClearReport) {
   }
 }
 
+function deactivateGA4() {
+  if (!GA4_ID) return;
+  // Official GA4 opt-out flag — any subsequent gtag('event'/'config') for this
+  // measurement ID becomes a no-op for the rest of the page lifetime.
+  (window as unknown as Record<string, boolean>)[`ga-disable-${GA4_ID}`] = true;
+  consentLog(`GA4 disabled in-session via ga-disable-${GA4_ID}=true`);
+}
+
+function deactivateGoogleAds() {
+  if (!GOOGLE_ADS_ID) return;
+  (window as unknown as Record<string, boolean>)[`ga-disable-${GOOGLE_ADS_ID}`] = true;
+  consentLog(`Google Ads disabled in-session via ga-disable-${GOOGLE_ADS_ID}=true`);
+}
+
+function deactivateMetaPixel() {
+  if (typeof window.fbq !== "function") return;
+  try {
+    // Tells Pixel to stop firing events for this session.
+    window.fbq("consent", "revoke");
+    consentLog("Meta Pixel: fbq('consent','revoke') sent");
+  } catch (err) {
+    consentLog("Meta Pixel revoke failed:", err);
+  }
+}
+
 function applyConsent() {
   const c = getConsent();
   const analytics = c?.analytics ? "granted" : "denied";
@@ -194,7 +219,6 @@ function applyConsent() {
   // Clear cookies for any category that is now denied.
   if (!c?.analytics) logClearReport(clearCategory("analytics", ANALYTICS_COOKIE_PATTERNS));
   if (!c?.marketing) logClearReport(clearCategory("marketing", MARKETING_COOKIE_PATTERNS));
-
 
   const update = {
     analytics_storage: analytics,
@@ -210,16 +234,29 @@ function applyConsent() {
   consentLog("applyConsent →", update, c ? "(stored)" : "(default denied)");
 
   if (c?.analytics) {
+    // Re-enable in case it was disabled earlier in the same session.
+    if (GA4_ID) (window as unknown as Record<string, boolean>)[`ga-disable-${GA4_ID}`] = false;
     loadGA4();
     consentLog("GA4 loaded:", GA4_ID);
+  } else {
+    deactivateGA4();
   }
+
   if (c?.marketing) {
+    if (GOOGLE_ADS_ID) (window as unknown as Record<string, boolean>)[`ga-disable-${GOOGLE_ADS_ID}`] = false;
     loadGoogleAds();
     consentLog("Google Ads loaded:", GOOGLE_ADS_ID);
     loadMetaPixel();
+    if (typeof window.fbq === "function") {
+      try { window.fbq("consent", "grant"); } catch { /* noop */ }
+    }
     if (META_PIXEL_ID) consentLog("Meta Pixel loaded:", META_PIXEL_ID);
+  } else {
+    deactivateGoogleAds();
+    deactivateMetaPixel();
   }
 }
+
 
 export function ConsentScripts() {
   useEffect(() => {
