@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { CONSENT_EVENT, getConsent, consentLog } from "@/lib/consent";
+import { CONSENT_EVENT, getConsent, consentLog, isConsentDebug } from "@/lib/consent";
 
 // Tracking IDs. Override per-environment via VITE_GA4_ID / VITE_META_PIXEL_ID.
 const GA4_ID = (import.meta.env.VITE_GA4_ID as string | undefined) || "G-GQT4Y20Z0B";
