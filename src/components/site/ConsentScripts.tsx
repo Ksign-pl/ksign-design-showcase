@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { CONSENT_EVENT, getConsent } from "@/lib/consent";
+import { CONSENT_EVENT, getConsent, consentLog } from "@/lib/consent";
 
 // Tracking IDs. Override per-environment via VITE_GA4_ID / VITE_META_PIXEL_ID.
 const GA4_ID = (import.meta.env.VITE_GA4_ID as string | undefined) || "G-GQT4Y20Z0B";
@@ -112,28 +112,42 @@ function applyConsent() {
   const analytics = c?.analytics ? "granted" : "denied";
   const marketing = c?.marketing ? "granted" : "denied";
 
+  const update = {
+    analytics_storage: analytics,
+    ad_storage: marketing,
+    ad_user_data: marketing,
+    ad_personalization: marketing,
+  };
+
   if (typeof window.gtag === "function") {
-    window.gtag("consent", "update", {
-      analytics_storage: analytics,
-      ad_storage: marketing,
-      ad_user_data: marketing,
-      ad_personalization: marketing,
-    });
+    window.gtag("consent", "update", update);
   }
 
-  if (c?.analytics) loadGA4();
+  consentLog("applyConsent →", update, c ? "(stored)" : "(default denied)");
+
+  if (c?.analytics) {
+    loadGA4();
+    consentLog("GA4 loaded:", GA4_ID);
+  }
   if (c?.marketing) {
     loadGoogleAds();
+    consentLog("Google Ads loaded:", GOOGLE_ADS_ID);
     loadMetaPixel();
+    if (META_PIXEL_ID) consentLog("Meta Pixel loaded:", META_PIXEL_ID);
   }
 }
 
 export function ConsentScripts() {
   useEffect(() => {
     initConsentMode();
+    consentLog("Consent Mode v2 initialized (default: denied for EEA/PL)");
     loadGTM();
+    consentLog("GTM loaded:", GTM_ID);
     applyConsent();
-    const handler = () => applyConsent();
+    const handler = (e: Event) => {
+      consentLog("CONSENT_EVENT received", (e as CustomEvent).detail);
+      applyConsent();
+    };
     window.addEventListener(CONSENT_EVENT, handler);
     return () => window.removeEventListener(CONSENT_EVENT, handler);
   }, []);
