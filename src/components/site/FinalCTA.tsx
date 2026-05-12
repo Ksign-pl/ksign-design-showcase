@@ -143,12 +143,14 @@ export function FinalCTA() {
 }
 
 function Field({ label, name, type = "text" }: { label: string; name: string; type?: string }) {
+  const id = `field-${name}`;
   return (
     <div>
-      <label className="block text-xs font-mono uppercase tracking-widest text-ink/50 mb-2">
+      <label htmlFor={id} className="block text-xs font-mono uppercase tracking-widest text-ink/50 mb-2">
         {label}
       </label>
       <input
+        id={id}
         type={type}
         name={name}
         required
