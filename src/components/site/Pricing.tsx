@@ -74,13 +74,15 @@ export function Pricing() {
               </div>
               <a
                 href="#kontakt"
+                title={`${p.cta} — przejdź do formularza`}
+                aria-label={`${p.cta} — formularz kontaktowy KSIGN`}
                 className={`inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full font-bold text-sm transition-all ${
                   p.featured
                     ? "bg-lime text-ink hover:scale-105"
                     : "bg-ink text-cream hover:bg-violet hover:text-ink"
                 }`}
               >
-                {p.cta} →
+                {p.cta} <span aria-hidden="true">→</span>
               </a>
             </div>
           ))}
@@ -88,6 +90,8 @@ export function Pricing() {
           {/* Karta: pozostałe usługi */}
           <a
             href="#rozbudowa"
+            title="Zobacz dodatkowe usługi i rozbudowę strony"
+            aria-label="Zobacz dodatkowe usługi i rozbudowę strony"
             className="lg:col-span-3 group relative rounded-3xl p-7 md:p-9 bg-violet text-ink overflow-hidden flex flex-col justify-between hover:scale-[1.01] transition-transform"
           >
             <div className="absolute -right-8 -bottom-8 w-44 h-44 rounded-full bg-ink/10 group-hover:scale-125 transition-transform duration-700" aria-hidden="true" />

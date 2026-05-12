@@ -18,9 +18,16 @@ export function Footer() {
           <div className="md:col-span-3">
             <div className="text-xs font-mono uppercase tracking-widest text-ink/40 mb-4">Nawigacja</div>
             <ul className="space-y-2">
-              {["Oferta", "Pakiet Start", "Proces", "FAQ", "Kontakt"].map((l) => (
-                <li key={l}>
-                  <a href={`#${l.toLowerCase().replace(" ", "")}`} className="font-medium hover:text-violet transition">{l}</a>
+              {[
+                { href: "#oferta", label: "Oferta", title: "Zobacz ofertę KSIGN" },
+                { href: "#pakiet", label: "Pakiet Start 999 zł", title: "Pakiet Start — strona one-page za 999 zł" },
+                { href: "#proces", label: "Proces realizacji", title: "Jak wygląda proces realizacji" },
+                { href: "#realizacje", label: "Realizacje i cennik", title: "Zobacz realizacje i cennik" },
+                { href: "#faq", label: "FAQ", title: "Najczęściej zadawane pytania" },
+                { href: "#kontakt", label: "Kontakt", title: "Skontaktuj się z KSIGN" },
+              ].map((l) => (
+                <li key={l.href}>
+                  <a href={l.href} title={l.title} aria-label={l.title} className="font-medium hover:text-violet transition">{l.label}</a>
                 </li>
               ))}
             </ul>
