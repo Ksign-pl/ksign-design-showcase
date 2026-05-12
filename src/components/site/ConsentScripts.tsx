@@ -264,6 +264,10 @@ export function ConsentScripts() {
     consentLog("Consent Mode v2 initialized (default: denied for EEA/PL)");
     loadGTM();
     consentLog("GTM loaded:", GTM_ID);
+    // Load Google Ads gtag.js unconditionally so Google can detect the tag.
+    // Cookies/conversions are still gated by Consent Mode v2 (ad_storage).
+    loadGoogleAds();
+    consentLog("Google Ads base tag loaded (gated by Consent Mode):", GOOGLE_ADS_ID);
     applyConsent();
     const handler = (e: Event) => {
       consentLog("CONSENT_EVENT received", (e as CustomEvent).detail);
