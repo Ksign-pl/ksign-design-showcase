@@ -1,3 +1,6 @@
+import { Link } from "@tanstack/react-router";
+import { openConsentSettings } from "@/lib/consent";
+
 export function Footer() {
   return (
     <footer className="bg-cream border-t border-ink/10 pt-16 pb-28 md:pb-16">
@@ -41,7 +44,17 @@ export function Footer() {
 
         <div className="mt-16 pt-8 border-t border-ink/10 flex flex-wrap items-center justify-between gap-4 text-sm text-ink/50">
           <div>© {new Date().getFullYear()} KSIGN. Wszelkie prawa zastrzeżone.</div>
-          <div className="font-mono uppercase tracking-widest text-xs">Premium web design / Polska</div>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+            <Link to="/polityka-prywatnosci" className="hover:text-violet transition">Polityka prywatności</Link>
+            <Link to="/polityka-cookies" className="hover:text-violet transition">Polityka cookies</Link>
+            <button
+              type="button"
+              onClick={() => openConsentSettings()}
+              className="hover:text-violet transition underline-offset-2 hover:underline"
+            >
+              Ustawienia cookies
+            </button>
+          </div>
         </div>
       </div>
     </footer>

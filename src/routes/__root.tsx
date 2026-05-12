@@ -9,6 +9,8 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import { CookieBanner } from "@/components/site/CookieBanner";
+import { ConsentScripts } from "@/components/site/ConsentScripts";
 
 function NotFoundComponent() {
   return (
@@ -117,7 +119,9 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <ConsentScripts />
       <Outlet />
+      <CookieBanner />
     </QueryClientProvider>
   );
 }
