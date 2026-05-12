@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { CONSENT_EVENT, getConsent } from "@/lib/consent";
 
-// IDs read from build-time env. If empty, scripts simply do not load.
-const GA4_ID = (import.meta.env.VITE_GA4_ID as string | undefined) ?? "";
-const META_PIXEL_ID = (import.meta.env.VITE_META_PIXEL_ID as string | undefined) ?? "";
+// Tracking IDs. Override per-environment via VITE_GA4_ID / VITE_META_PIXEL_ID.
+const GA4_ID = (import.meta.env.VITE_GA4_ID as string | undefined) || "G-GQT4Y20Z0B";
+const META_PIXEL_ID = (import.meta.env.VITE_META_PIXEL_ID as string | undefined) || "";
 
 declare global {
   interface Window {
