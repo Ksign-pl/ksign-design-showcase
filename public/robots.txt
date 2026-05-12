@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ksign-design-showcase.lovable.app/sitemap.xml
+Sitemap: https://ksign.pl/sitemap.xml
