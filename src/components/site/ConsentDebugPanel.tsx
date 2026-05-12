@@ -184,6 +184,37 @@ export function ConsentDebugPanel() {
               {diag.cookies.length ? diag.cookies.join(", ") : "—"}
             </div>
           </details>
+
+          <button
+            type="button"
+            onClick={() => {
+              const w = window as unknown as Record<string, unknown>;
+              // Re-set Consent Mode v2 defaults to denied for this session.
+              if (typeof (w.gtag as unknown) === "function") {
+                (w.gtag as (...a: unknown[]) => void)("consent", "update", {
+                  ad_storage: "denied",
+                  ad_user_data: "denied",
+                  ad_personalization: "denied",
+                  analytics_storage: "denied",
+                });
+              }
+              // Re-enable ga-disable flags so any later consent grant can re-activate.
+              w[`ga-disable-${GA4_ID}`] = true;
+              w[`ga-disable-${GOOGLE_ADS_ID}`] = true;
+              // Tell Pixel to revoke consent.
+              const fbq = (window as { fbq?: (...a: unknown[]) => void }).fbq;
+              if (typeof fbq === "function") {
+                try { fbq("consent", "revoke"); } catch { /* noop */ }
+              }
+              // Clear stored consent → triggers CONSENT_EVENT → applyConsent()
+              // clears analytics + marketing cookies and re-shows the banner.
+              clearConsent();
+              consentLog("Consent reset to default-denied via debug panel");
+            }}
+            className="mt-2 w-full rounded-md border border-amber-500/40 bg-amber-500/10 px-3 py-2 text-amber-500 hover:bg-amber-500/20 transition"
+          >
+            Resetuj zgodę → default-denied
+          </button>
         </div>
       )}
     </div>
