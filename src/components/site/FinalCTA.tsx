@@ -1,7 +1,21 @@
 import { useState } from "react";
+import { Link } from "@tanstack/react-router";
 
 export function FinalCTA() {
   const [sent, setSent] = useState(false);
+  const [rodo, setRodo] = useState(false);
+  const [marketing, setMarketing] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!rodo) {
+      setError("Aby wysłać zapytanie, musisz wyrazić zgodę na przetwarzanie danych (RODO).");
+      return;
+    }
+    setError(null);
+    setSent(true);
+  };
   return (
     <section id="kontakt" className="py-24 md:py-32 bg-ink text-cream grid-bg-dark">
       <div className="mx-auto max-w-[1400px] px-5 md:px-8">
@@ -33,7 +47,7 @@ export function FinalCTA() {
           </div>
 
           <form
-            onSubmit={(e) => { e.preventDefault(); setSent(true); }}
+            onSubmit={handleSubmit}
             className="lg:col-span-7 bg-cream text-ink rounded-3xl p-7 md:p-10"
           >
             {sent ? (
@@ -75,6 +89,44 @@ export function FinalCTA() {
                     placeholder="Opowiedz krótko o swoim projekcie..."
                   />
                 </div>
+                <div className="mt-6 space-y-3">
+                  <label className="flex items-start gap-3 text-sm text-ink/75 leading-snug cursor-pointer">
+                    <input
+                      type="checkbox"
+                      required
+                      checked={rodo}
+                      onChange={(e) => setRodo(e.target.checked)}
+                      className="mt-1 h-4 w-4 shrink-0 accent-ink"
+                    />
+                    <span>
+                      <span className="text-red-600">*</span> Wyrażam zgodę na przetwarzanie moich danych osobowych
+                      (imię, e-mail, telefon, treść wiadomości) przez KSIGN w celu odpowiedzi na zapytanie, zgodnie
+                      z{" "}
+                      <Link to="/polityka-prywatnosci" className="underline hover:text-violet">Polityką prywatności</Link>.
+                    </span>
+                  </label>
+                  <label className="flex items-start gap-3 text-sm text-ink/75 leading-snug cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={marketing}
+                      onChange={(e) => setMarketing(e.target.checked)}
+                      className="mt-1 h-4 w-4 shrink-0 accent-ink"
+                    />
+                    <span>
+                      Wyrażam zgodę na otrzymywanie informacji handlowych i marketingowych drogą elektroniczną oraz
+                      telefoniczną od KSIGN (zgoda dobrowolna, można ją wycofać w każdej chwili).
+                    </span>
+                  </label>
+                </div>
+                {error && (
+                  <p role="alert" className="mt-3 text-sm text-red-600">{error}</p>
+                )}
+                <p className="mt-4 text-xs text-ink/50 leading-relaxed">
+                  Administratorem danych jest KSIGN. Masz prawo dostępu do danych, ich sprostowania, usunięcia,
+                  ograniczenia przetwarzania, przenoszenia, sprzeciwu oraz wniesienia skargi do Prezesa UODO.
+                  Szczegóły w{" "}
+                  <Link to="/polityka-prywatnosci" className="underline hover:text-violet">Polityce prywatności</Link>.
+                </p>
                 <button
                   type="submit"
                   className="mt-6 w-full inline-flex items-center justify-center gap-2 bg-ink text-cream px-6 py-4 rounded-full font-bold hover:bg-violet hover:text-ink transition-all"
