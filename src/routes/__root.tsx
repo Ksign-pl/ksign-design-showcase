@@ -101,11 +101,28 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "@graph": [
             {
               "@type": "Organization",
-              "@id": "https://ksign-design-showcase.lovable.app/#org",
+              "@id": "https://ksign.pl/#org",
               name: "KSIGN",
-              url: "https://ksign-design-showcase.lovable.app",
+              url: "https://ksign.pl",
               email: "hello@ksign.pl",
               areaServed: "PL",
+              sameAs: ["https://www.facebook.com/ksign2026"],
+              contactPoint: [
+                {
+                  "@type": "ContactPoint",
+                  contactType: "customer support",
+                  email: "hello@ksign.pl",
+                  availableLanguage: ["Polish", "English"],
+                  areaServed: "PL",
+                },
+                {
+                  "@type": "ContactPoint",
+                  contactType: "sales",
+                  email: "hello@ksign.pl",
+                  availableLanguage: ["Polish", "English"],
+                  areaServed: "PL",
+                },
+              ],
             },
             {
               "@type": "WebSite",
