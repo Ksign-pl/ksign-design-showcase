@@ -56,6 +56,18 @@ export function FAQ() {
                 </div>
               );
             })}
+
+            <p className="mt-10 text-base md:text-lg text-ink/70">
+              Nie znalazłeś odpowiedzi?{" "}
+              <a
+                href="#kontakt"
+                title="Skontaktuj się z KSIGN"
+                aria-label="Napisz do KSIGN — formularz kontaktowy"
+                className="font-bold text-ink underline underline-offset-4 decoration-2 decoration-lime hover:text-violet transition-colors"
+              >
+                Napisz do nas →
+              </a>
+            </p>
           </div>
         </div>
       </div>
