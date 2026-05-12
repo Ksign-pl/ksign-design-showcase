@@ -206,12 +206,16 @@ export function Hero() {
           <div className="flex flex-wrap gap-3 md:justify-end">
             <a
               href="#kontakt"
+              title="Zamów stronę za 999 zł — przejdź do formularza"
+              aria-label="Zamów stronę za 999 zł — przejdź do formularza kontaktowego"
               className="inline-flex items-center gap-2 bg-ink text-cream px-6 py-4 rounded-full font-semibold hover:bg-violet hover:text-ink transition-all"
             >
-              Zamów stronę za 999 zł →
+              Zamów stronę za 999 zł <span aria-hidden="true">→</span>
             </a>
             <a
               href="#pakiet"
+              title="Zobacz, co zawiera pakiet Start"
+              aria-label="Zobacz, co zawiera pakiet Start za 999 zł"
               className="inline-flex items-center gap-2 bg-white border border-ink/15 px-6 py-4 rounded-full font-semibold hover:border-ink transition-all"
             >
               Zobacz pakiet Start
