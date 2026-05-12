@@ -166,6 +166,7 @@ function RootComponent() {
       <ConsentScripts />
       <Outlet />
       <CookieBanner />
+      <ConsentDebugPanel />
     </QueryClientProvider>
   );
 }
