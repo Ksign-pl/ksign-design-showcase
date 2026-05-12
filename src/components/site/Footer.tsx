@@ -37,7 +37,6 @@ export function Footer() {
             <div className="text-xs font-mono uppercase tracking-widest text-ink/40 mb-4">Kontakt</div>
             <ul className="space-y-2 mb-6">
               <li><a href="mailto:hello@ksign.pl" className="font-medium hover:text-violet transition">hello@ksign.pl</a></li>
-              <li><a href="tel:+48000000000" className="font-medium hover:text-violet transition">+48 000 000 000</a></li>
             </ul>
             <div className="flex gap-2">
               <a
