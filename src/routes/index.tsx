@@ -26,6 +26,8 @@ export const Route = createFileRoute("/")({
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "KSIGN — Premium strona za 999 zł" },
       { name: "twitter:description", content: "Pakiet Start: nowoczesna strona one-page za 999 zł netto. Realizacja 3–7 dni." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/a45b5b3c-7d87-4858-accc-cfbeed557deb" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/a45b5b3c-7d87-4858-accc-cfbeed557deb" },
     ],
     links: [
       { rel: "canonical", href: "https://ksign-design-showcase.lovable.app/" },

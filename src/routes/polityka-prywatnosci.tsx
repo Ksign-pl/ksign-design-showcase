@@ -8,6 +8,7 @@ export const Route = createFileRoute("/polityka-prywatnosci")({
       { name: "robots", content: "index,follow" },
       { property: "og:title", content: "Polityka prywatności — KSIGN" },
       { property: "og:description", content: "Informacje o przetwarzaniu danych osobowych zgodnie z RODO (UE) 2016/679." },
+      { property: "og:type", content: "website" },
     ],
   }),
   component: PrivacyPage,
