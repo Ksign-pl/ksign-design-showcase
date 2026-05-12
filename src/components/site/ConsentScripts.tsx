@@ -121,7 +121,6 @@ function applyConsent() {
     });
   }
 
-  if (c?.analytics || c?.marketing) loadGTM();
   if (c?.analytics) loadGA4();
   if (c?.marketing) {
     loadGoogleAds();
@@ -132,6 +131,7 @@ function applyConsent() {
 export function ConsentScripts() {
   useEffect(() => {
     initConsentMode();
+    loadGTM();
     applyConsent();
     const handler = () => applyConsent();
     window.addEventListener(CONSENT_EVENT, handler);
