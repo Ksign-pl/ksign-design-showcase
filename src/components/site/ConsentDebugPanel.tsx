@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { CONSENT_EVENT, getConsent, isConsentDebug } from "@/lib/consent";
+import { CONSENT_EVENT, getConsent, isConsentDebug, clearConsent, consentLog } from "@/lib/consent";
 
 const GA4_ID = (import.meta.env.VITE_GA4_ID as string | undefined) || "G-GQT4Y20Z0B";
 const GOOGLE_ADS_ID =
