@@ -18,6 +18,19 @@ export const Route = createFileRoute("/polityka-prywatnosci")({
       { name: "twitter:image", content: "https://ksign.pl/og-image.jpg" },
     ],
     links: [{ rel: "canonical", href: "https://ksign.pl/polityka-prywatnosci" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Strona główna", item: "https://ksign.pl/" },
+            { "@type": "ListItem", position: 2, name: "Polityka prywatności", item: "https://ksign.pl/polityka-prywatnosci" },
+          ],
+        }),
+      },
+    ],
   }),
   component: PrivacyPage,
 });
