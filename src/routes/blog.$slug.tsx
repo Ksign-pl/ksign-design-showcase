@@ -101,7 +101,7 @@ function BlogPost() {
           </header>
 
           <div className="mt-12 space-y-6 text-base md:text-lg text-cream/80 leading-relaxed">
-            {post.content.map((para, i) => (
+            {post.content.map((para: string, i: number) => (
               <p key={i} dangerouslySetInnerHTML={{ __html: para }} />
             ))}
           </div>
