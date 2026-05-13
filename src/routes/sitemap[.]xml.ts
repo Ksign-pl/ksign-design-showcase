@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
+import { BLOG_POSTS } from "@/lib/blog-posts";
 
 const BASE_URL = "https://ksign.pl";
 
@@ -7,15 +8,23 @@ interface SitemapEntry {
   path: string;
   changefreq?: "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never";
   priority?: string;
+  lastmod?: string;
 }
 
 export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async () => {
-        const lastmod = new Date().toISOString().split("T")[0];
+        const today = new Date().toISOString().split("T")[0];
         const entries: SitemapEntry[] = [
           { path: "/", changefreq: "weekly", priority: "1.0" },
+          { path: "/blog", changefreq: "weekly", priority: "0.8" },
+          ...BLOG_POSTS.map((p) => ({
+            path: `/blog/${p.slug}`,
+            changefreq: "monthly" as const,
+            priority: "0.6",
+            lastmod: p.date,
+          })),
           { path: "/sitemap", changefreq: "monthly", priority: "0.4" },
           { path: "/polityka-prywatnosci", changefreq: "yearly", priority: "0.3" },
           { path: "/polityka-cookies", changefreq: "yearly", priority: "0.3" },
