@@ -10,14 +10,14 @@ import imgAds from "@/assets/addon-ads.jpg";
 import imgLanding from "@/assets/addon-landing.jpg";
 
 const ADDONS = [
-  { num: "01", title: "SEO", desc: "Pozycjonowanie i optymalizacja techniczna.", color: "bg-lime", img: imgSeo, alt: "Analityka SEO na ekranie laptopa", caption: "Audyt + Core Web Vitals" },
-  { num: "02", title: "Blog", desc: "Sekcja artykułów z systemem CMS.", color: "bg-white", img: imgBlog, alt: "Notatnik z piórem i kawą", caption: "CMS + edytor treści" },
-  { num: "03", title: "Branding", desc: "Logo, kolory, identyfikacja wizualna.", color: "bg-violet", img: imgBranding, alt: "Wizytówki i próbki kolorów", caption: "Logo + brandbook" },
-  { num: "04", title: "Sklep", desc: "WooCommerce, Shoper lub Shopify.", color: "bg-ink text-cream", img: imgShop, alt: "Pakiet wysyłkowy e-commerce", caption: "Płatności + wysyłki" },
-  { num: "05", title: "Automatyzacje", desc: "Make, Zapier, n8n, integracje API.", color: "bg-white", img: imgAutomation, alt: "Schemat automatyzacji procesów", caption: "Integracje no-code" },
-  { num: "06", title: "Chatbot AI", desc: "Asystent AI dopasowany do firmy.", color: "bg-lime", img: imgChatbot, alt: "Telefon z konwersacją chatbota", caption: "Trenowany na Twoich danych" },
-  { num: "07", title: "Reklamy", desc: "Kampanie Google i Meta Ads.", color: "bg-violet", img: imgAds, alt: "Billboard reklamowy w mieście", caption: "Google + Meta Ads" },
-  { num: "08", title: "Landing", desc: "Strony sprzedażowe pod kampanie.", color: "bg-white", img: imgLanding, alt: "Laptop z landing page na biurku", caption: "A/B testy konwersji" },
+  { num: "01", title: "SEO", desc: "Pozycjonowanie i optymalizacja techniczna.", color: "bg-lime", img: imgSeo, alt: "Audyt SEO i optymalizacja Core Web Vitals strony internetowej", caption: "Audyt + Core Web Vitals" },
+  { num: "02", title: "Blog", desc: "Sekcja artykułów z systemem CMS.", color: "bg-white", img: imgBlog, alt: "System blogowy CMS z edytorem treści dla strony internetowej", caption: "CMS + edytor treści" },
+  { num: "03", title: "Branding", desc: "Logo, kolory, identyfikacja wizualna.", color: "bg-violet", img: imgBranding, alt: "Branding — logo, kolory, identyfikacja wizualna firmy", caption: "Logo + brandbook" },
+  { num: "04", title: "Sklep", desc: "WooCommerce, Shoper lub Shopify.", color: "bg-ink text-cream", img: imgShop, alt: "Sklep internetowy WooCommerce lub Shopify z płatnościami online", caption: "Płatności + wysyłki" },
+  { num: "05", title: "Automatyzacje", desc: "Make, Zapier, n8n, integracje API.", color: "bg-white", img: imgAutomation, alt: "Automatyzacje no-code — integracje Make, Zapier i API", caption: "Integracje no-code" },
+  { num: "06", title: "Chatbot AI", desc: "Asystent AI dopasowany do firmy.", color: "bg-lime", img: imgChatbot, alt: "Chatbot AI trenowany na danych firmy", caption: "Trenowany na Twoich danych" },
+  { num: "07", title: "Reklamy", desc: "Kampanie Google i Meta Ads.", color: "bg-violet", img: imgAds, alt: "Kampanie reklamowe Google Ads i Meta Ads dla małej firmy", caption: "Google + Meta Ads" },
+  { num: "08", title: "Landing", desc: "Strony sprzedażowe pod kampanie.", color: "bg-white", img: imgLanding, alt: "Landing page z testami A/B i optymalizacją konwersji", caption: "A/B testy konwersji" },
 ];
 
 export function AddonsSlider() {
