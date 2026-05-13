@@ -117,6 +117,7 @@ function SitemapPage() {
         <div className="space-y-6">
           <Section title="Strony" items={PRIMARY_LINKS} />
           <Section title="Sekcje strony głównej" items={HOME_SECTIONS} />
+          <Section title="Wpisy bloga" items={BLOG_LINKS} />
           <Section title="Dokumenty prawne" items={LEGAL_LINKS} />
         </div>
       </main>
