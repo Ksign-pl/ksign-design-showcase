@@ -7,6 +7,7 @@ const NAV = [
   { href: "#pakiet", label: "Pakiet 999 zł", title: "Pakiet Start — strona one-page za 999 zł" },
   { href: "#proces", label: "Proces", title: "Jak wygląda proces realizacji" },
   { href: "#realizacje", label: "Realizacje", title: "Zobacz realizacje i cennik" },
+  { href: "/blog", label: "Blog", title: "Blog KSIGN — web design, SEO, marketing", internal: true as const },
   { href: "#faq", label: "FAQ", title: "Najczęściej zadawane pytania" },
   { href: "#kontakt", label: "Kontakt", title: "Skontaktuj się z KSIGN" },
 ];
