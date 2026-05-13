@@ -5,12 +5,20 @@ export const Route = createFileRoute("/polityka-cookies")({
   head: () => ({
     meta: [
       { title: "Polityka cookies — KSIGN" },
-      { name: "description", content: "Jakich plików cookies używamy, w jakim celu oraz jak nimi zarządzać. Zgodność z RODO i ePrivacy." },
-      { name: "robots", content: "index,follow" },
+      { name: "description", content: "Informacje o plikach cookies używanych przez KSIGN — rodzaje, cele i zarządzanie zgodami." },
+      { name: "robots", content: "noindex, follow" },
       { property: "og:title", content: "Polityka cookies — KSIGN" },
-      { property: "og:description", content: "Jakich plików cookies używamy i jak nimi zarządzać." },
+      { property: "og:description", content: "Informacje o plikach cookies i ustawieniach zgód na stronie KSIGN." },
+      { property: "og:image", content: "https://ksign.pl/og-image.jpg" },
+      { property: "og:url", content: "https://ksign.pl/polityka-cookies" },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "KSIGN" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Polityka cookies — KSIGN" },
+      { name: "twitter:description", content: "Informacje o plikach cookies i ustawieniach zgód na stronie KSIGN." },
+      { name: "twitter:image", content: "https://ksign.pl/og-image.jpg" },
     ],
+    links: [{ rel: "canonical", href: "https://ksign.pl/polityka-cookies" }],
   }),
   component: CookiesPage,
 });
