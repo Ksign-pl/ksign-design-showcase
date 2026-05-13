@@ -12,7 +12,14 @@ type SitemapLink = {
 
 const PRIMARY_LINKS: SitemapLink[] = [
   { to: "/", label: "Strona główna", description: "Premium web design dla małych firm — pakiet startowy 999 zł netto." },
+  { to: "/blog", label: "Blog", description: "Artykuły o web design, SEO i marketingu online." },
 ];
+
+const BLOG_LINKS: SitemapLink[] = BLOG_POSTS.map((p) => ({
+  to: `/blog/${p.slug}`,
+  label: p.title,
+  description: p.excerpt,
+}));
 
 const HOME_SECTIONS: SitemapLink[] = [
   { to: "/", hash: "oferta", label: "Oferta / Manifest", description: "Nasze podejście do projektowania stron." },
