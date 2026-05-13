@@ -144,6 +144,7 @@ function Index() {
         <Process />
         <Pricing />
         <FAQ />
+        <BlogPreview />
         <FinalCTA />
         
       </main>
