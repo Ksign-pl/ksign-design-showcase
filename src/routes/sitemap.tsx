@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
+import { BLOG_POSTS } from "@/lib/blog-posts";
 
 type SitemapLink = {
   to: string;
@@ -11,7 +12,14 @@ type SitemapLink = {
 
 const PRIMARY_LINKS: SitemapLink[] = [
   { to: "/", label: "Strona główna", description: "Premium web design dla małych firm — pakiet startowy 999 zł netto." },
+  { to: "/blog", label: "Blog", description: "Artykuły o web design, SEO i marketingu online." },
 ];
+
+const BLOG_LINKS: SitemapLink[] = BLOG_POSTS.map((p) => ({
+  to: `/blog/${p.slug}`,
+  label: p.title,
+  description: p.excerpt,
+}));
 
 const HOME_SECTIONS: SitemapLink[] = [
   { to: "/", hash: "oferta", label: "Oferta / Manifest", description: "Nasze podejście do projektowania stron." },
@@ -109,6 +117,7 @@ function SitemapPage() {
         <div className="space-y-6">
           <Section title="Strony" items={PRIMARY_LINKS} />
           <Section title="Sekcje strony głównej" items={HOME_SECTIONS} />
+          <Section title="Wpisy bloga" items={BLOG_LINKS} />
           <Section title="Dokumenty prawne" items={LEGAL_LINKS} />
         </div>
       </main>
