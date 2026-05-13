@@ -3,7 +3,7 @@ import { CONSENT_EVENT, getConsent, consentLog, isConsentDebug } from "@/lib/con
 
 // Tracking IDs. Override per-environment via VITE_GA4_ID / VITE_META_PIXEL_ID.
 const GA4_ID = (import.meta.env.VITE_GA4_ID as string | undefined) || "G-GQT4Y20Z0B";
-const META_PIXEL_ID = (import.meta.env.VITE_META_PIXEL_ID as string | undefined) || "";
+const META_PIXEL_ID = (import.meta.env.VITE_META_PIXEL_ID as string | undefined) || "1466352945238692";
 const GOOGLE_ADS_ID = (import.meta.env.VITE_GOOGLE_ADS_ID as string | undefined) || "AW-18158941733";
 const GTM_ID = (import.meta.env.VITE_GTM_ID as string | undefined) || "GTM-MHKNMPZ3";
 const CLARITY_ID = (import.meta.env.VITE_CLARITY_ID as string | undefined) || "wq5q06lx8l";
