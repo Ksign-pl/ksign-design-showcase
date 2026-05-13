@@ -137,7 +137,7 @@ function loadMetaPixel() {
 }
 
 // Cookies set by GA4 / Google Ads / Meta Pixel that should be removed when consent is withdrawn.
-const ANALYTICS_COOKIE_PATTERNS = [/^_ga(_.*)?$/, /^_gid$/, /^_gat(_.*)?$/];
+const ANALYTICS_COOKIE_PATTERNS = [/^_ga(_.*)?$/, /^_gid$/, /^_gat(_.*)?$/, /^_clck$/, /^_clsk$/, /^CLID$/, /^MUID$/, /^ANONCHK$/, /^SM$/];
 const MARKETING_COOKIE_PATTERNS = [/^_gcl_(au|aw|dc|gb|gf|ha)$/, /^_fbp$/, /^_fbc$/, /^fr$/];
 
 function listCookieNames(): string[] {
