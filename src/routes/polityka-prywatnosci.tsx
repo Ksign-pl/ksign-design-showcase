@@ -4,12 +4,20 @@ export const Route = createFileRoute("/polityka-prywatnosci")({
   head: () => ({
     meta: [
       { title: "Polityka prywatności — KSIGN" },
-      { name: "description", content: "Informacje o przetwarzaniu danych osobowych zgodnie z RODO (UE) 2016/679. Administrator, podstawy prawne, prawa osób, kontakt." },
-      { name: "robots", content: "index,follow" },
+      { name: "description", content: "Informacje o przetwarzaniu danych osobowych przez KSIGN zgodnie z RODO." },
+      { name: "robots", content: "noindex, follow" },
       { property: "og:title", content: "Polityka prywatności — KSIGN" },
-      { property: "og:description", content: "Informacje o przetwarzaniu danych osobowych zgodnie z RODO (UE) 2016/679." },
+      { property: "og:description", content: "Informacje o przetwarzaniu danych osobowych przez KSIGN zgodnie z RODO." },
+      { property: "og:image", content: "https://ksign.pl/og-image.jpg" },
+      { property: "og:url", content: "https://ksign.pl/polityka-prywatnosci" },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "KSIGN" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Polityka prywatności — KSIGN" },
+      { name: "twitter:description", content: "Informacje o przetwarzaniu danych osobowych przez KSIGN zgodnie z RODO." },
+      { name: "twitter:image", content: "https://ksign.pl/og-image.jpg" },
     ],
+    links: [{ rel: "canonical", href: "https://ksign.pl/polityka-prywatnosci" }],
   }),
   component: PrivacyPage,
 });
