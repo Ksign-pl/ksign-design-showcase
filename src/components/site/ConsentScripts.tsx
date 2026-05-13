@@ -83,6 +83,33 @@ function loadGTM() {
   }
 }
 
+function loadClarity() {
+  if (!CLARITY_ID || document.getElementById("clarity-script")) return;
+  /* eslint-disable */
+  (function (c: any, l: Document, a: string, r: string, i: string) {
+    c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+    const t = l.createElement(r) as HTMLScriptElement;
+    t.id = "clarity-script";
+    t.async = true;
+    t.src = "https://www.clarity.ms/tag/" + i;
+    const y = l.getElementsByTagName(r)[0];
+    y.parentNode?.insertBefore(t, y);
+  })(window, document, "clarity", "script", CLARITY_ID);
+  /* eslint-enable */
+  try { window.clarity?.("consent"); } catch { /* noop */ }
+}
+
+function deactivateClarity() {
+  if (typeof window.clarity !== "function") return;
+  try {
+    // Microsoft Clarity: revoke cookie-based tracking for the session.
+    window.clarity("consent", false);
+    consentLog("Clarity: clarity('consent', false) sent");
+  } catch (err) {
+    consentLog("Clarity revoke failed:", err);
+  }
+}
+
 function loadMetaPixel() {
   if (!META_PIXEL_ID || document.getElementById("meta-pixel-script")) return;
   // Standard Meta Pixel snippet
