@@ -14,11 +14,11 @@ const PRIMARY_LINKS: SitemapLink[] = [
 ];
 
 const HOME_SECTIONS: SitemapLink[] = [
-  { to: "/", hash: "manifest", label: "Manifest", description: "Nasze podejście do projektowania stron." },
+  { to: "/", hash: "oferta", label: "Oferta / Manifest", description: "Nasze podejście do projektowania stron." },
   { to: "/", hash: "pakiet", label: "Pakiet startowy", description: "Co wchodzi w skład strony za 999 zł netto." },
-  { to: "/", hash: "dodatki", label: "Dodatki", description: "Rozszerzenia i opcje dodatkowe." },
+  { to: "/", hash: "rozbudowa", label: "Dodatki i rozbudowa", description: "Rozszerzenia i opcje dodatkowe." },
   { to: "/", hash: "proces", label: "Proces", description: "Jak wygląda współpraca krok po kroku." },
-  { to: "/", hash: "cennik", label: "Cennik", description: "Przejrzyste ceny bez ukrytych kosztów." },
+  { to: "/", hash: "realizacje", label: "Realizacje / Cennik", description: "Przykłady wdrożeń i przejrzyste ceny." },
   { to: "/", hash: "faq", label: "FAQ", description: "Najczęściej zadawane pytania." },
   { to: "/", hash: "kontakt", label: "Kontakt", description: "Napisz do nas: hello@ksign.pl" },
 ];
