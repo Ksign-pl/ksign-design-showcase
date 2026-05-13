@@ -6,6 +6,7 @@ const GA4_ID = (import.meta.env.VITE_GA4_ID as string | undefined) || "G-GQT4Y20
 const META_PIXEL_ID = (import.meta.env.VITE_META_PIXEL_ID as string | undefined) || "";
 const GOOGLE_ADS_ID = (import.meta.env.VITE_GOOGLE_ADS_ID as string | undefined) || "AW-18158941733";
 const GTM_ID = (import.meta.env.VITE_GTM_ID as string | undefined) || "GTM-MHKNMPZ3";
+const CLARITY_ID = (import.meta.env.VITE_CLARITY_ID as string | undefined) || "wq5q06lx8l";
 
 declare global {
   interface Window {
@@ -13,6 +14,7 @@ declare global {
     gtag: (...args: unknown[]) => void;
     fbq: ((...args: unknown[]) => void) & { callMethod?: (...args: unknown[]) => void; queue?: unknown[]; loaded?: boolean; version?: string; push?: (...args: unknown[]) => void };
     _fbq: unknown;
+    clarity?: ((...args: unknown[]) => void) & { q?: unknown[] };
   }
 }
 
