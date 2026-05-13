@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
+import { trackMetaEvent } from "@/lib/meta-capi";
 
 export function FinalCTA() {
   const [sent, setSent] = useState(false);
@@ -14,6 +15,28 @@ export function FinalCTA() {
       return;
     }
     setError(null);
+
+    // Map form fields → Meta CAPI user_data. Email/phone/name are hashed
+    // server-side (SHA-256) in /api/public/meta-capi before forwarding to Meta.
+    const fd = new FormData(e.currentTarget);
+    const fullName = (fd.get("name")?.toString() ?? "").trim();
+    const [firstName, ...rest] = fullName.split(/\s+/);
+    const lastName = rest.join(" ");
+    void trackMetaEvent("Lead", {
+      userData: {
+        email: fd.get("email")?.toString() || undefined,
+        phone: fd.get("phone")?.toString() || undefined,
+        firstName: firstName || undefined,
+        lastName: lastName || undefined,
+        country: "pl",
+      },
+      customData: {
+        content_name: "Kontakt KSIGN",
+        package: fd.get("package")?.toString() || "",
+        marketing_consent: marketing,
+      },
+    });
+
     setSent(true);
   };
   return (
