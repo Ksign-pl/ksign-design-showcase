@@ -54,6 +54,19 @@ export const Route = createFileRoute("/sitemap")({
       { name: "twitter:image", content: "https://ksign.pl/og-image.jpg" },
     ],
     links: [{ rel: "canonical", href: "https://ksign.pl/sitemap" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Strona główna", item: "https://ksign.pl/" },
+            { "@type": "ListItem", position: 2, name: "Mapa witryny", item: "https://ksign.pl/sitemap" },
+          ],
+        }),
+      },
+    ],
   }),
   component: SitemapPage,
 });

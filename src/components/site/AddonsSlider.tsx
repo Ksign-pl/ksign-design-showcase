@@ -121,7 +121,7 @@ export function AddonsSlider() {
                 <div className="absolute inset-0 overflow-hidden" aria-hidden="true" style={{ perspective: "800px" }}>
                   <img
                     src={a.img}
-                    alt={isClone ? "" : a.alt}
+                    alt={a.alt}
                     width={768}
                     height={1024}
                     loading="lazy"
