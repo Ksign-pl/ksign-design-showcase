@@ -267,8 +267,14 @@ function applyConsent() {
     if (GA4_ID) (window as unknown as Record<string, boolean>)[`ga-disable-${GA4_ID}`] = false;
     loadGA4();
     consentLog("GA4 loaded:", GA4_ID);
+    loadClarity();
+    if (typeof window.clarity === "function") {
+      try { window.clarity("consent"); } catch { /* noop */ }
+    }
+    if (CLARITY_ID) consentLog("Clarity loaded:", CLARITY_ID);
   } else {
     deactivateGA4();
+    deactivateClarity();
   }
 
   if (c?.marketing) {
