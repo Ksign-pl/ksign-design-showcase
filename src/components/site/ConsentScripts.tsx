@@ -6,6 +6,7 @@ const GA4_ID = (import.meta.env.VITE_GA4_ID as string | undefined) || "G-GQT4Y20
 const META_PIXEL_ID = (import.meta.env.VITE_META_PIXEL_ID as string | undefined) || "";
 const GOOGLE_ADS_ID = (import.meta.env.VITE_GOOGLE_ADS_ID as string | undefined) || "AW-18158941733";
 const GTM_ID = (import.meta.env.VITE_GTM_ID as string | undefined) || "GTM-MHKNMPZ3";
+const CLARITY_ID = (import.meta.env.VITE_CLARITY_ID as string | undefined) || "wq5q06lx8l";
 
 declare global {
   interface Window {
@@ -13,6 +14,7 @@ declare global {
     gtag: (...args: unknown[]) => void;
     fbq: ((...args: unknown[]) => void) & { callMethod?: (...args: unknown[]) => void; queue?: unknown[]; loaded?: boolean; version?: string; push?: (...args: unknown[]) => void };
     _fbq: unknown;
+    clarity?: ((...args: unknown[]) => void) & { q?: unknown[] };
   }
 }
 
@@ -81,6 +83,33 @@ function loadGTM() {
   }
 }
 
+function loadClarity() {
+  if (!CLARITY_ID || document.getElementById("clarity-script")) return;
+  /* eslint-disable */
+  (function (c: any, l: Document, a: string, r: string, i: string) {
+    c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+    const t = l.createElement(r) as HTMLScriptElement;
+    t.id = "clarity-script";
+    t.async = true;
+    t.src = "https://www.clarity.ms/tag/" + i;
+    const y = l.getElementsByTagName(r)[0];
+    y.parentNode?.insertBefore(t, y);
+  })(window, document, "clarity", "script", CLARITY_ID);
+  /* eslint-enable */
+  try { window.clarity?.("consent"); } catch { /* noop */ }
+}
+
+function deactivateClarity() {
+  if (typeof window.clarity !== "function") return;
+  try {
+    // Microsoft Clarity: revoke cookie-based tracking for the session.
+    window.clarity("consent", false);
+    consentLog("Clarity: clarity('consent', false) sent");
+  } catch (err) {
+    consentLog("Clarity revoke failed:", err);
+  }
+}
+
 function loadMetaPixel() {
   if (!META_PIXEL_ID || document.getElementById("meta-pixel-script")) return;
   // Standard Meta Pixel snippet
@@ -108,7 +137,7 @@ function loadMetaPixel() {
 }
 
 // Cookies set by GA4 / Google Ads / Meta Pixel that should be removed when consent is withdrawn.
-const ANALYTICS_COOKIE_PATTERNS = [/^_ga(_.*)?$/, /^_gid$/, /^_gat(_.*)?$/];
+const ANALYTICS_COOKIE_PATTERNS = [/^_ga(_.*)?$/, /^_gid$/, /^_gat(_.*)?$/, /^_clck$/, /^_clsk$/, /^CLID$/, /^MUID$/, /^ANONCHK$/, /^SM$/];
 const MARKETING_COOKIE_PATTERNS = [/^_gcl_(au|aw|dc|gb|gf|ha)$/, /^_fbp$/, /^_fbc$/, /^fr$/];
 
 function listCookieNames(): string[] {
@@ -238,8 +267,14 @@ function applyConsent() {
     if (GA4_ID) (window as unknown as Record<string, boolean>)[`ga-disable-${GA4_ID}`] = false;
     loadGA4();
     consentLog("GA4 loaded:", GA4_ID);
+    loadClarity();
+    if (typeof window.clarity === "function") {
+      try { window.clarity("consent"); } catch { /* noop */ }
+    }
+    if (CLARITY_ID) consentLog("Clarity loaded:", CLARITY_ID);
   } else {
     deactivateGA4();
+    deactivateClarity();
   }
 
   if (c?.marketing) {
