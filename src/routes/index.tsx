@@ -11,6 +11,7 @@ import { Process } from "@/components/site/Process";
 import { Pricing } from "@/components/site/Pricing";
 import { FAQ } from "@/components/site/FAQ";
 import { FinalCTA } from "@/components/site/FinalCTA";
+import { BlogPreview } from "@/components/site/BlogPreview";
 import { Footer } from "@/components/site/Footer";
 import { BackToTop } from "@/components/site/BackToTop";
 
