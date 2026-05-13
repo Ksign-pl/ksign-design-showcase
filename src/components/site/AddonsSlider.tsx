@@ -121,13 +121,13 @@ export function AddonsSlider() {
                 <div className="absolute inset-0 overflow-hidden" aria-hidden="true" style={{ perspective: "800px" }}>
                   <img
                     src={a.img}
-                    alt=""
+                    alt={isClone ? "" : a.alt}
                     width={768}
                     height={1024}
-                    loading={i < 3 ? "eager" : "lazy"}
-                    decoding={i < 3 ? "sync" : "async"}
+                    loading="lazy"
+                    decoding="async"
                     // @ts-expect-error - fetchpriority is a valid HTML attribute
-                    fetchpriority={i === 0 ? "high" : i < 3 ? "auto" : "low"}
+                    fetchpriority="low"
                     sizes="(max-width: 768px) 280px, 340px"
                     style={{
                       transform:
