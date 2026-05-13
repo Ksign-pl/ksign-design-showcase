@@ -73,6 +73,7 @@ export function Footer() {
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
             <Link to="/polityka-prywatnosci" className="hover:text-violet transition">Polityka prywatności</Link>
             <Link to="/polityka-cookies" className="hover:text-violet transition">Polityka cookies</Link>
+            <Link to="/sitemap" className="hover:text-violet transition">Mapa witryny</Link>
             <button
               type="button"
               onClick={() => openConsentSettings()}
