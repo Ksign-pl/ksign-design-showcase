@@ -13,9 +13,11 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SitemapRouteImport } from './routes/sitemap'
 import { Route as PolitykaPrywatnosciRouteImport } from './routes/polityka-prywatnosci'
 import { Route as PolitykaCookiesRouteImport } from './routes/polityka-cookies'
+import { Route as OgDebugRouteImport } from './routes/og-debug'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as ApiPublicOgDebugRouteImport } from './routes/api/public/og-debug'
 import { Route as ApiPublicMetaCapiRouteImport } from './routes/api/public/meta-capi'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -38,6 +40,11 @@ const PolitykaCookiesRoute = PolitykaCookiesRouteImport.update({
   path: '/polityka-cookies',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OgDebugRoute = OgDebugRouteImport.update({
+  id: '/og-debug',
+  path: '/og-debug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogRoute = BlogRouteImport.update({
   id: '/blog',
   path: '/blog',
@@ -53,6 +60,11 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => BlogRoute,
 } as any)
+const ApiPublicOgDebugRoute = ApiPublicOgDebugRouteImport.update({
+  id: '/api/public/og-debug',
+  path: '/api/public/og-debug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicMetaCapiRoute = ApiPublicMetaCapiRouteImport.update({
   id: '/api/public/meta-capi',
   path: '/api/public/meta-capi',
@@ -62,75 +74,89 @@ const ApiPublicMetaCapiRoute = ApiPublicMetaCapiRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/blog': typeof BlogRouteWithChildren
+  '/og-debug': typeof OgDebugRoute
   '/polityka-cookies': typeof PolitykaCookiesRoute
   '/polityka-prywatnosci': typeof PolitykaPrywatnosciRoute
   '/sitemap': typeof SitemapRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/api/public/meta-capi': typeof ApiPublicMetaCapiRoute
+  '/api/public/og-debug': typeof ApiPublicOgDebugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/blog': typeof BlogRouteWithChildren
+  '/og-debug': typeof OgDebugRoute
   '/polityka-cookies': typeof PolitykaCookiesRoute
   '/polityka-prywatnosci': typeof PolitykaPrywatnosciRoute
   '/sitemap': typeof SitemapRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/api/public/meta-capi': typeof ApiPublicMetaCapiRoute
+  '/api/public/og-debug': typeof ApiPublicOgDebugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/blog': typeof BlogRouteWithChildren
+  '/og-debug': typeof OgDebugRoute
   '/polityka-cookies': typeof PolitykaCookiesRoute
   '/polityka-prywatnosci': typeof PolitykaPrywatnosciRoute
   '/sitemap': typeof SitemapRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/api/public/meta-capi': typeof ApiPublicMetaCapiRoute
+  '/api/public/og-debug': typeof ApiPublicOgDebugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/blog'
+    | '/og-debug'
     | '/polityka-cookies'
     | '/polityka-prywatnosci'
     | '/sitemap'
     | '/sitemap.xml'
     | '/blog/$slug'
     | '/api/public/meta-capi'
+    | '/api/public/og-debug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/blog'
+    | '/og-debug'
     | '/polityka-cookies'
     | '/polityka-prywatnosci'
     | '/sitemap'
     | '/sitemap.xml'
     | '/blog/$slug'
     | '/api/public/meta-capi'
+    | '/api/public/og-debug'
   id:
     | '__root__'
     | '/'
     | '/blog'
+    | '/og-debug'
     | '/polityka-cookies'
     | '/polityka-prywatnosci'
     | '/sitemap'
     | '/sitemap.xml'
     | '/blog/$slug'
     | '/api/public/meta-capi'
+    | '/api/public/og-debug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BlogRoute: typeof BlogRouteWithChildren
+  OgDebugRoute: typeof OgDebugRoute
   PolitykaCookiesRoute: typeof PolitykaCookiesRoute
   PolitykaPrywatnosciRoute: typeof PolitykaPrywatnosciRoute
   SitemapRoute: typeof SitemapRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   ApiPublicMetaCapiRoute: typeof ApiPublicMetaCapiRoute
+  ApiPublicOgDebugRoute: typeof ApiPublicOgDebugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -163,6 +189,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PolitykaCookiesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/og-debug': {
+      id: '/og-debug'
+      path: '/og-debug'
+      fullPath: '/og-debug'
+      preLoaderRoute: typeof OgDebugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog': {
       id: '/blog'
       path: '/blog'
@@ -183,6 +216,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/blog/$slug'
       preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof BlogRoute
+    }
+    '/api/public/og-debug': {
+      id: '/api/public/og-debug'
+      path: '/api/public/og-debug'
+      fullPath: '/api/public/og-debug'
+      preLoaderRoute: typeof ApiPublicOgDebugRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/api/public/meta-capi': {
       id: '/api/public/meta-capi'
@@ -207,11 +247,13 @@ const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BlogRoute: BlogRouteWithChildren,
+  OgDebugRoute: OgDebugRoute,
   PolitykaCookiesRoute: PolitykaCookiesRoute,
   PolitykaPrywatnosciRoute: PolitykaPrywatnosciRoute,
   SitemapRoute: SitemapRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   ApiPublicMetaCapiRoute: ApiPublicMetaCapiRoute,
+  ApiPublicOgDebugRoute: ApiPublicOgDebugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
