@@ -1,6 +1,15 @@
 // Catalog of products available for online checkout (Stripe price IDs).
 // Update here when adding new packages; UI + checkout page read from this.
 
+export interface PostBriefCta {
+  label: string;
+  href: string;
+  /** Open in new tab? Defaults to true when href is external. */
+  external?: boolean;
+  /** Helper line shown under the CTA. */
+  note?: string;
+}
+
 export interface CatalogItem {
   priceId: string;
   name: string;
@@ -15,6 +24,8 @@ export interface CatalogItem {
   deliveryDays?: [number, number];
   /** Items the client should prepare before work starts (shown after brief). */
   preparationChecklist?: string[];
+  /** Primary CTA shown on the success screen once the brief is filled. */
+  postBriefCta?: PostBriefCta;
   highlight?: boolean;
 }
 
@@ -26,8 +37,19 @@ const DEFAULT_PREPARATION_CHECKLIST = [
   "Dane kontaktowe i firmowe do stopki (adres, NIP, telefon).",
 ];
 
+const DEFAULT_POST_BRIEF_CTA: PostBriefCta = {
+  label: "Umów krótką rozmowę (15 min) →",
+  href: "https://cal.com/ksign/15min",
+  external: true,
+  note: "Albo poczekaj na maila — odzywam się w ciągu 24h z planem realizacji.",
+};
+
 export function getPreparationChecklist(item: CatalogItem | undefined): string[] {
   return item?.preparationChecklist ?? DEFAULT_PREPARATION_CHECKLIST;
+}
+
+export function getPostBriefCta(item: CatalogItem | undefined): PostBriefCta {
+  return item?.postBriefCta ?? DEFAULT_POST_BRIEF_CTA;
 }
 
 export const CATALOG: Record<string, CatalogItem> = {
@@ -77,6 +99,19 @@ export const CATALOG: Record<string, CatalogItem> = {
       "Projekt + realizacja w 7–14 dni.",
       "Publikacja, szkolenie z edycji i podstawowe SEO.",
     ],
+    postBriefSteps: [
+      "Brief odebrany — przygotowuję architekturę informacji (do 48h).",
+      "Krótka rozmowa (15 min) z potwierdzeniem zakresu podstron.",
+      "Projekt UI i implementacja w 7–14 dni roboczych.",
+      "Runda uwag → publikacja, szkolenie z edycji, podpięcie analityki.",
+    ],
+    deliveryDays: [7, 14],
+    postBriefCta: {
+      label: "Umów rozmowę o strukturze (15 min) →",
+      href: "https://cal.com/ksign/15min",
+      external: true,
+      note: "Na rozmowie domykamy listę podstron i sekcji — potem już tylko realizacja.",
+    },
   },
   pakiet_premium_one_time: {
     priceId: "pakiet_premium_one_time",
@@ -97,6 +132,20 @@ export const CATALOG: Record<string, CatalogItem> = {
       "Branding + projekt + realizacja w 2–3 tygodnie.",
       "Publikacja, optymalizacja SEO i analityka.",
     ],
+    postBriefSteps: [
+      "Brief odebrany — analizuję strategię i inspiracje (do 48h).",
+      "Warsztat strategiczny online (30–60 min).",
+      "Branding (logo + paleta) i koncept UI w 5–7 dni.",
+      "Implementacja, animacje, SEO i analityka w 2–3 tygodnie.",
+      "Publikacja + raport startowy z metrykami.",
+    ],
+    deliveryDays: [14, 21],
+    postBriefCta: {
+      label: "Zarezerwuj warsztat strategiczny →",
+      href: "https://cal.com/ksign/30min",
+      external: true,
+      note: "30–60 min online — wychodzimy z planem brandu i strony na całość.",
+    },
   },
   pakiet_ecommerce_one_time: {
     priceId: "pakiet_ecommerce_one_time",
@@ -117,6 +166,20 @@ export const CATALOG: Record<string, CatalogItem> = {
       "Realizacja sklepu w 3–4 tygodnie.",
       "Konfiguracja integracji i szkolenie z obsługi.",
     ],
+    postBriefSteps: [
+      "Brief odebrany — dobieram platformę pod Twoje produkty (do 48h).",
+      "Rozmowa techniczna (30 min): płatności, wysyłki, integracje.",
+      "Implementacja sklepu, importy produktów, projekt UI w 3–4 tygodnie.",
+      "Konfiguracja Stripe/P24, wysyłek (InPost, kurier) i analityki.",
+      "Szkolenie z obsługi panelu + publikacja na Twojej domenie.",
+    ],
+    deliveryDays: [21, 28],
+    postBriefCta: {
+      label: "Umów rozmowę techniczną (30 min) →",
+      href: "https://cal.com/ksign/30min",
+      external: true,
+      note: "Domykamy listę integracji i operatora płatności — bez tego nie startujemy.",
+    },
     preparationChecklist: [
       "Dostęp do domeny (panel rejestratora).",
       "Logo + materiały brandowe (kolory, font, ikony).",
@@ -145,6 +208,19 @@ export const CATALOG: Record<string, CatalogItem> = {
       "Drobne zmiany do 1h/miesiąc — zgłaszasz mailem.",
       "Subskrypcję możesz anulować w każdej chwili.",
     ],
+    postBriefSteps: [
+      "Dane dostępowe odebrane — zaczynam audyt środowiska (do 24h).",
+      "Pierwszy backup pełny + raport stanu w 48h.",
+      "Włączam monitoring uptime i aktualizacji — alerty mailowe.",
+      "Drobne zmiany do 1h/miesiąc — zgłaszasz mailem, działam tego samego dnia.",
+    ],
+    deliveryDays: [1, 2],
+    postBriefCta: {
+      label: "Prześlij dostępy do panelu",
+      href: "mailto:hello@ksign.pl?subject=Opieka%20techniczna%20-%20dost%C4%99py",
+      external: false,
+      note: "Im szybciej dostanę dostępy, tym szybciej ruszam z audytem i backupem.",
+    },
     preparationChecklist: [
       "Dostęp administratora do strony (CMS, hosting, FTP).",
       "Kontakt do osoby decyzyjnej po Twojej stronie.",
