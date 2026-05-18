@@ -17,6 +17,12 @@ function safeRedirect(url: unknown): string {
 }
 
 export const Route = createFileRoute("/login")({
+  head: () => ({
+    meta: [
+      { title: "Logowanie — KSIGN" },
+      { name: "robots", content: "noindex,nofollow" },
+    ],
+  }),
   validateSearch: (search: Record<string, unknown>) => ({
     redirect: safeRedirect(search.redirect),
   }),
