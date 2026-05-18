@@ -1,8 +1,9 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/og-debug")({
   head: () => ({
@@ -11,6 +12,12 @@ export const Route = createFileRoute("/og-debug")({
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),
+  beforeLoad: async ({ location }) => {
+    const { data } = await supabase.auth.getUser();
+    if (!data.user) {
+      throw redirect({ to: "/login", search: { redirect: location.href } });
+    }
+  },
   component: OgDebugPage,
 });
 
@@ -33,9 +40,14 @@ function OgDebugPage() {
     setLoading(true);
     setResult(null);
     try {
+      const { data: sessionData } = await supabase.auth.getSession();
+      const token = sessionData.session?.access_token;
       const res = await fetch("/api/public/og-debug", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
         body: JSON.stringify({ url, scrape }),
       });
       setResult(await res.json());

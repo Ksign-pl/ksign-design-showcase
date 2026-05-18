@@ -7,14 +7,23 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 
+function safeRedirect(url: unknown): string {
+  const fallback = "/admin/zamowienia";
+  if (typeof url !== "string" || url.length === 0) return fallback;
+  // Only allow internal, root-relative paths. Reject protocol-relative URLs
+  // ("//evil.com"), absolute URLs ("https://..."), and backslash tricks.
+  if (!url.startsWith("/") || url.startsWith("//") || url.startsWith("/\\")) return fallback;
+  return url;
+}
+
 export const Route = createFileRoute("/login")({
   validateSearch: (search: Record<string, unknown>) => ({
-    redirect: typeof search.redirect === "string" ? search.redirect : "/admin/zamowienia",
+    redirect: safeRedirect(search.redirect),
   }),
   beforeLoad: async ({ search }) => {
     const { data } = await supabase.auth.getUser();
     if (data.user) {
-      throw redirect({ to: search.redirect || "/admin/zamowienia" });
+      throw redirect({ to: safeRedirect(search.redirect) });
     }
   },
   component: LoginPage,
@@ -30,7 +39,7 @@ function LoginPage() {
 
   useEffect(() => {
     const { data: sub } = supabase.auth.onAuthStateChange((_e, session) => {
-      if (session) navigate({ to: search.redirect || "/admin/zamowienia" });
+      if (session) navigate({ to: safeRedirect(search.redirect) });
     });
     return () => sub.subscription.unsubscribe();
   }, [navigate, search.redirect]);
