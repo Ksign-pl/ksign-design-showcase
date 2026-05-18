@@ -624,7 +624,7 @@ function PendingView({
           {refreshing ? "Sprawdzam…" : "Odśwież status"}
         </button>
         <a
-          href="mailto:hello@ksign.pl?subject=Status%20p%C5%82atno%C5%9Bci"
+          href={mailto("Status płatności")}
           className="inline-flex items-center justify-center gap-2 bg-transparent border border-ink/20 text-ink px-7 py-4 rounded-full font-bold hover:bg-ink/5 transition"
         >
           Napisz do nas
