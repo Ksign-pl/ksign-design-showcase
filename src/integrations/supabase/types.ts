@@ -64,6 +64,39 @@ export type Database = {
           },
         ]
       }
+      email_resend_attempts: {
+        Row: {
+          created_at: string
+          email_type: string
+          error_message: string | null
+          id: string
+          idempotency_key: string | null
+          order_id: string
+          recipient_email: string | null
+          status: string
+        }
+        Insert: {
+          created_at?: string
+          email_type?: string
+          error_message?: string | null
+          id?: string
+          idempotency_key?: string | null
+          order_id: string
+          recipient_email?: string | null
+          status: string
+        }
+        Update: {
+          created_at?: string
+          email_type?: string
+          error_message?: string | null
+          id?: string
+          idempotency_key?: string | null
+          order_id?: string
+          recipient_email?: string | null
+          status?: string
+        }
+        Relationships: []
+      }
       orders: {
         Row: {
           amount_cents: number
