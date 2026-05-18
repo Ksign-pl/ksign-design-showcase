@@ -2,16 +2,52 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { CATALOG } from "@/lib/catalog";
 
 export const Route = createFileRoute("/pakiety")({
-  head: () => ({
-    meta: [
-      { title: "Pakiety stron internetowych | KSIGN" },
-      {
-        name: "description",
-        content:
-          "Wybierz pakiet: Start 999 zł, Business 2 499 zł, Premium 4 999 zł, E-commerce 6 000 zł. Opieka techniczna 99 zł/mies. Płatność online.",
-      },
-    ],
-  }),
+  head: () => {
+    const title = "Pakiety stron internetowych | KSIGN";
+    const description =
+      "Wybierz pakiet: Start 999 zł, Business 2 499 zł, Premium 4 999 zł, E-commerce 6 000 zł. Opieka techniczna 99 zł/mies. Płatność online.";
+    const url = "https://ksign.pl/pakiety";
+    const offers = ONE_TIME_ORDER.map((id) => {
+      const p = CATALOG[id];
+      return {
+        "@type": "Service",
+        name: p.name,
+        description: p.blurb,
+        provider: { "@type": "Organization", name: "KSIGN", url: "https://ksign.pl" },
+        offers: {
+          "@type": "Offer",
+          price: p.amountPln,
+          priceCurrency: "PLN",
+          availability: "https://schema.org/InStock",
+          url,
+        },
+      };
+    });
+    return {
+      meta: [
+        { title },
+        { name: "description", content: description },
+        { property: "og:title", content: title },
+        { property: "og:description", content: description },
+        { property: "og:url", content: url },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: "KSIGN" },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:title", content: title },
+        { name: "twitter:description", content: description },
+      ],
+      links: [{ rel: "canonical", href: url }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": offers,
+          }),
+        },
+      ],
+    };
+  },
   component: PaczkiPage,
 });
 
