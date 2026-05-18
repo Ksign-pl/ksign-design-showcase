@@ -14,7 +14,7 @@ export const getOrderBySession = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     const { data: order, error } = await supabaseAdmin
       .from("orders")
-      .select("id, product_name, amount_cents, currency, brief_completed, status, created_at")
+      .select("id, product_name, price_id, amount_cents, currency, brief_completed, status, created_at")
       .eq("stripe_session_id", data.sessionId)
       .maybeSingle();
     if (error) {
