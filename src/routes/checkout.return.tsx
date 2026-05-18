@@ -401,6 +401,15 @@ function PendingView({
   );
 }
 
+function RedirectingView() {
+  return (
+    <Shell>
+      <div className="text-5xl mb-6 animate-pulse">…</div>
+      <p className="text-ink/60">Przekierowuję na stronę anulowanej płatności…</p>
+    </Shell>
+  );
+}
+
 function FailureView() {
   useEffect(() => {
     window.location.replace("/checkout/failed");
