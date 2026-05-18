@@ -321,7 +321,7 @@ function etaRange(minDays: number, maxDays: number): string {
   return `${fmt.format(add(minDays))} – ${fmt.format(add(maxDays))}`;
 }
 
-function PreparationChecklist({ orderId, items }: { orderId: string; items: string[] }) {
+function PreparationChecklist({ orderId, sessionId, items }: { orderId: string; sessionId: string; items: string[] }) {
   const storageKey = `ksign:prep-checklist:${orderId}`;
   const [checked, setChecked] = useState<Set<number>>(() => {
     if (typeof window === "undefined") return new Set();
