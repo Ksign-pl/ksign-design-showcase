@@ -46,7 +46,10 @@ function CheckoutPage() {
         </h1>
         <p className="text-ink/60 mb-8">{item.blurb}</p>
         <div className="rounded-3xl overflow-hidden border border-ink/10 bg-white">
-          <StripeEmbeddedCheckout priceId={priceId} />
+          <StripeEmbeddedCheckout
+            priceId={priceId}
+            returnUrl={`${typeof window !== "undefined" ? window.location.origin : ""}/checkout/return?session_id={CHECKOUT_SESSION_ID}&price=${encodeURIComponent(priceId)}`}
+          />
         </div>
         <p className="mt-6 text-xs text-ink/50">
           Zwrot możliwy do momentu rozpoczęcia prac. Po starcie realizacji opłata jest bezzwrotna.
