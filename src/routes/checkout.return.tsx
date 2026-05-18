@@ -9,6 +9,7 @@ import { getCatalogItem } from "@/lib/catalog";
 const SearchSchema = z.object({
   session_id: z.string().optional(),
   canceled: z.string().optional(),
+  price: z.string().optional(),
 });
 
 export const Route = createFileRoute("/checkout/return")({
