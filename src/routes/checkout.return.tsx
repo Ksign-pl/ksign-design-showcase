@@ -2,8 +2,9 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { z } from "zod";
 import { useServerFn } from "@tanstack/react-start";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { getOrderBySession } from "@/lib/orders.functions";
+import { resendOrderConfirmation } from "@/lib/email.functions";
 import { getCatalogItem } from "@/lib/catalog";
 
 const SearchSchema = z.object({
