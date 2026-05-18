@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { openConsentSettings } from "@/lib/consent";
+import { CONTACT } from "@/lib/contact";
 
 export function Footer() {
   return (
