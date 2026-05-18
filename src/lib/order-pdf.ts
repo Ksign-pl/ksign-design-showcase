@@ -222,20 +222,33 @@ export function generateOrderPdf(input: OrderPdfData): jsPDF {
     y += 8;
   }
 
-  // Footer
-  const footerY = doc.internal.pageSize.getHeight() - 36;
-  doc.setDrawColor(LINE);
-  doc.line(margin, footerY - 14, pageW - margin, footerY - 14);
-  doc.setFont("helvetica", "normal");
-  doc.setFontSize(9);
-  doc.setTextColor(MUTED);
-  doc.text(`ID zamowienia: ${d.orderId}`, margin, footerY);
-  doc.text(
-    `Wygenerowano: ${new Date().toLocaleString("pl-PL")}`,
-    pageW - margin,
-    footerY,
-    { align: "right" },
+  // Footer — applied to every page so customer + meta są zawsze widoczne
+  const pageH = doc.internal.pageSize.getHeight();
+  const totalPages = doc.getNumberOfPages();
+  const customerParts = [d.customerName, d.customerEmail].filter(
+    (v): v is string => !!v && v.length > 0,
   );
+  const customerLine = customerParts.length > 0 ? `Klient: ${customerParts.join(" · ")}` : null;
+
+  for (let p = 1; p <= totalPages; p++) {
+    doc.setPage(p);
+    const footerY = pageH - 36;
+    doc.setDrawColor(LINE);
+    doc.line(margin, footerY - 14, pageW - margin, footerY - 14);
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(9);
+    doc.setTextColor(MUTED);
+    doc.text(`ID zamowienia: ${d.orderId}`, margin, footerY);
+    doc.text(
+      `Wygenerowano: ${new Date().toLocaleString("pl-PL")}`,
+      pageW - margin,
+      footerY,
+      { align: "right" },
+    );
+    if (customerLine) {
+      doc.text(customerLine, margin, footerY - 22);
+    }
+  }
 
   return doc;
 }
