@@ -53,7 +53,7 @@ export function Footer() {
                 </svg>
               </a>
               <a
-                href="https://www.instagram.com/ksing.marketing"
+                href="https://www.instagram.com/ksign.pl/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="KSIGN na Instagramie"

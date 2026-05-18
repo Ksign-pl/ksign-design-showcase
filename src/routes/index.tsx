@@ -72,7 +72,7 @@ export const Route = createFileRoute("/")({
               priceRange: "999–6000 PLN",
               areaServed: { "@type": "Country", name: "Poland" },
               address: { "@type": "PostalAddress", addressCountry: "PL" },
-              sameAs: ["https://www.facebook.com/ksign2026", "https://www.instagram.com/ksing.marketing"],
+              sameAs: ["https://www.facebook.com/ksign2026", "https://www.instagram.com/ksign.pl/"],
               contactPoint: [
                 {
                   "@type": "ContactPoint",
