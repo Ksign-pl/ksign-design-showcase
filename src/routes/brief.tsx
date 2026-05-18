@@ -48,7 +48,7 @@ function BriefPage() {
   if (!order) {
     return (
       <Centered>
-        <p>Nie znaleziono zamówienia. Skontaktuj się z nami: <a className="underline" href="mailto:hello@ksign.pl">hello@ksign.pl</a></p>
+        <p>Nie znaleziono zamówienia. Skontaktuj się z nami: <a className="underline" href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></p>
       </Centered>
     );
   }
