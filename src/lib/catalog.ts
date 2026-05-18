@@ -166,6 +166,20 @@ export const CATALOG: Record<string, CatalogItem> = {
       "Realizacja sklepu w 3–4 tygodnie.",
       "Konfiguracja integracji i szkolenie z obsługi.",
     ],
+    postBriefSteps: [
+      "Brief odebrany — dobieram platformę pod Twoje produkty (do 48h).",
+      "Rozmowa techniczna (30 min): płatności, wysyłki, integracje.",
+      "Implementacja sklepu, importy produktów, projekt UI w 3–4 tygodnie.",
+      "Konfiguracja Stripe/P24, wysyłek (InPost, kurier) i analityki.",
+      "Szkolenie z obsługi panelu + publikacja na Twojej domenie.",
+    ],
+    deliveryDays: [21, 28],
+    postBriefCta: {
+      label: "Umów rozmowę techniczną (30 min) →",
+      href: "https://cal.com/ksign/30min",
+      external: true,
+      note: "Domykamy listę integracji i operatora płatności — bez tego nie startujemy.",
+    },
     preparationChecklist: [
       "Dostęp do domeny (panel rejestratora).",
       "Logo + materiały brandowe (kolory, font, ikony).",
