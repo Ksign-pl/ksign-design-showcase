@@ -419,11 +419,13 @@ function DownloadSummary({
   steps,
   deliveryDays,
   eta,
+  sessionId,
 }: {
   order: { id: string; product_name: string; amount_cents: number; currency: string; brief_completed: boolean };
   steps: string[];
   deliveryDays: [number, number];
   eta: string;
+  sessionId: string;
 }) {
   const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
 
@@ -451,31 +453,86 @@ function DownloadSummary({
 
   const isLoading = status === "loading";
 
+  const generateLink = useServerFn(generateOrderPdfLink);
+  const linkMutation = useMutation({
+    mutationFn: () =>
+      generateLink({
+        data: { orderId: order.id, sessionId, deliveryDays, etaRange: eta, steps },
+      }),
+  });
+
+  const minutesLeft = linkMutation.data
+    ? Math.max(1, Math.round(linkMutation.data.expiresInSec / 60))
+    : null;
+
   return (
-    <div className="mt-8 flex items-center gap-3">
-      <button
-        type="button"
-        onClick={handleDownload}
-        disabled={isLoading}
-        className="inline-flex items-center justify-center gap-2 bg-transparent border border-ink/20 text-ink px-5 py-2.5 rounded-full font-bold text-sm hover:bg-ink/5 transition disabled:opacity-60 disabled:cursor-not-allowed"
-      >
-        {isLoading ? (
-          <>
-            <span className="inline-block w-3.5 h-3.5 border-2 border-ink/30 border-t-ink rounded-full animate-spin" aria-hidden="true" />
-            Generowanie…
-          </>
-        ) : (
-          <>
-            <span aria-hidden="true">⬇</span>
-            Pobierz podsumowanie (PDF)
-          </>
+    <div className="mt-8 space-y-3">
+      <div className="flex flex-wrap items-center gap-3">
+        <button
+          type="button"
+          onClick={handleDownload}
+          disabled={isLoading}
+          className="inline-flex items-center justify-center gap-2 bg-transparent border border-ink/20 text-ink px-5 py-2.5 rounded-full font-bold text-sm hover:bg-ink/5 transition disabled:opacity-60 disabled:cursor-not-allowed"
+        >
+          {isLoading ? (
+            <>
+              <span className="inline-block w-3.5 h-3.5 border-2 border-ink/30 border-t-ink rounded-full animate-spin" aria-hidden="true" />
+              Generowanie…
+            </>
+          ) : (
+            <>
+              <span aria-hidden="true">⬇</span>
+              Pobierz podsumowanie (PDF)
+            </>
+          )}
+        </button>
+        {status === "done" && (
+          <span className="text-sm text-ink/70" role="status">✓ Gotowe</span>
         )}
-      </button>
-      {status === "done" && (
-        <span className="text-sm text-ink/70" role="status">✓ Gotowe</span>
+        {status === "error" && (
+          <span className="text-sm text-red-600" role="status">Błąd generowania</span>
+        )}
+
+        <button
+          type="button"
+          onClick={() => linkMutation.mutate()}
+          disabled={linkMutation.isPending}
+          className="inline-flex items-center justify-center gap-2 bg-transparent border border-ink/20 text-ink px-5 py-2.5 rounded-full font-bold text-sm hover:bg-ink/5 transition disabled:opacity-60 disabled:cursor-not-allowed"
+        >
+          {linkMutation.isPending ? (
+            <>
+              <span className="inline-block w-3.5 h-3.5 border-2 border-ink/30 border-t-ink rounded-full animate-spin" aria-hidden="true" />
+              Tworzenie linku…
+            </>
+          ) : (
+            <>
+              <span aria-hidden="true">🔗</span>
+              Wygeneruj link do pobrania
+            </>
+          )}
+        </button>
+      </div>
+
+      {linkMutation.isSuccess && linkMutation.data && (
+        <div className="text-sm text-ink/70 flex flex-wrap items-center gap-2">
+          <a
+            href={linkMutation.data.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-bold text-ink underline hover:text-violet transition"
+          >
+            Pobierz PDF z serwera
+          </a>
+          <span className="text-ink/50">
+            · link ważny ok. {minutesLeft} min
+          </span>
+        </div>
       )}
-      {status === "error" && (
-        <span className="text-sm text-red-600" role="status">Błąd generowania</span>
+      {linkMutation.isError && (
+        <p className="text-sm text-red-600" role="status">
+          Nie udało się wygenerować linku.{" "}
+          {linkMutation.error instanceof Error ? linkMutation.error.message : ""}
+        </p>
       )}
     </div>
   );
