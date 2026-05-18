@@ -9,6 +9,10 @@ export interface CatalogItem {
   blurb: string;
   features: string[];
   nextSteps: string[];
+  /** Steps shown after brief is completed — "what happens next" timeline. */
+  postBriefSteps?: string[];
+  /** Estimated working-day range for the first preview. */
+  deliveryDays?: [number, number];
   highlight?: boolean;
 }
 
