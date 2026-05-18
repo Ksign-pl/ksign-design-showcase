@@ -13,7 +13,21 @@ export interface CatalogItem {
   postBriefSteps?: string[];
   /** Estimated working-day range for the first preview. */
   deliveryDays?: [number, number];
+  /** Items the client should prepare before work starts (shown after brief). */
+  preparationChecklist?: string[];
   highlight?: boolean;
+}
+
+const DEFAULT_PREPARATION_CHECKLIST = [
+  "Dostęp do domeny (panel rejestratora lub kontakt do administratora).",
+  "Logo w wersji wektorowej (SVG/AI/PDF) lub w wysokiej rozdzielczości.",
+  "Teksty na stronę — albo notatki, na bazie których je napiszemy.",
+  "Zdjęcia / grafiki firmowe (jeśli mają być użyte).",
+  "Dane kontaktowe i firmowe do stopki (adres, NIP, telefon).",
+];
+
+export function getPreparationChecklist(item: CatalogItem | undefined): string[] {
+  return item?.preparationChecklist ?? DEFAULT_PREPARATION_CHECKLIST;
 }
 
 export const CATALOG: Record<string, CatalogItem> = {
