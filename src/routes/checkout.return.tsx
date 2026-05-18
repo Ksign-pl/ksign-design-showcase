@@ -9,6 +9,7 @@ import { getCatalogItem } from "@/lib/catalog";
 const SearchSchema = z.object({
   session_id: z.string().optional(),
   canceled: z.string().optional(),
+  price: z.string().optional(),
 });
 
 export const Route = createFileRoute("/checkout/return")({
@@ -26,19 +27,31 @@ const POLL_INTERVAL_MS = 2000;
 const POLL_MAX = 12; // ~24s before declaring timeout
 
 function CheckoutReturn() {
-  const { session_id, canceled } = Route.useSearch();
+  const { session_id, canceled, price } = Route.useSearch();
   const navigate = useNavigate();
   const fetchOrder = useServerFn(getOrderBySession);
   const [pollCount, setPollCount] = useState(0);
   const [retryCycle, setRetryCycle] = useState(0);
 
-  const noSession = !session_id || canceled === "1";
+  const isCanceled = canceled === "1";
+  const noSession = !session_id || isCanceled;
+
+  // Redirect canceled flow to dedicated page, preserving selected price.
+  useEffect(() => {
+    if (isCanceled) {
+      navigate({
+        to: "/checkout/canceled",
+        search: price ? { price } : {},
+        replace: true,
+      });
+    }
+  }, [isCanceled, price, navigate]);
 
   const { data: order, isFetched, isFetching, refetch } = useQuery({
     queryKey: ["order", session_id, retryCycle],
     queryFn: () =>
       session_id ? fetchOrder({ data: { sessionId: session_id } }) : null,
-    enabled: !!session_id,
+    enabled: !!session_id && !isCanceled,
     refetchInterval: (q) => (q.state.data ? false : POLL_INTERVAL_MS),
   });
 
@@ -57,6 +70,7 @@ function CheckoutReturn() {
     refetch();
   };
 
+  if (isCanceled) return <RedirectingView />;
   if (noSession) return <FailureView />;
 
   if (!order) {
@@ -383,6 +397,15 @@ function PendingView({
         <Link to="/" className="text-sm text-ink/50 underline">← Wróć na stronę</Link>
       </div>
       <p className="text-xs text-ink/30 mt-6 font-mono break-all">ID: {sessionId}</p>
+    </Shell>
+  );
+}
+
+function RedirectingView() {
+  return (
+    <Shell>
+      <div className="text-5xl mb-6 animate-pulse">…</div>
+      <p className="text-ink/60">Przekierowuję na stronę anulowanej płatności…</p>
     </Shell>
   );
 }
