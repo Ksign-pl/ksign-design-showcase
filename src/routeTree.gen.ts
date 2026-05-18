@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SitemapRouteImport } from './routes/sitemap'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as PolitykaPrywatnosciRouteImport } from './routes/polityka-prywatnosci'
 import { Route as PolitykaCookiesRouteImport } from './routes/polityka-cookies'
 import { Route as PakietyRouteImport } from './routes/pakiety'
@@ -41,6 +42,11 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
 const SitemapRoute = SitemapRouteImport.update({
   id: '/sitemap',
   path: '/sitemap',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PolitykaPrywatnosciRoute = PolitykaPrywatnosciRouteImport.update({
@@ -161,6 +167,7 @@ export interface FileRoutesByFullPath {
   '/pakiety': typeof PakietyRoute
   '/polityka-cookies': typeof PolitykaCookiesRoute
   '/polityka-prywatnosci': typeof PolitykaPrywatnosciRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/sitemap': typeof SitemapRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
@@ -185,6 +192,7 @@ export interface FileRoutesByTo {
   '/pakiety': typeof PakietyRoute
   '/polityka-cookies': typeof PolitykaCookiesRoute
   '/polityka-prywatnosci': typeof PolitykaPrywatnosciRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/sitemap': typeof SitemapRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
@@ -211,6 +219,7 @@ export interface FileRoutesById {
   '/pakiety': typeof PakietyRoute
   '/polityka-cookies': typeof PolitykaCookiesRoute
   '/polityka-prywatnosci': typeof PolitykaPrywatnosciRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/sitemap': typeof SitemapRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
@@ -237,6 +246,7 @@ export interface FileRouteTypes {
     | '/pakiety'
     | '/polityka-cookies'
     | '/polityka-prywatnosci'
+    | '/reset-password'
     | '/sitemap'
     | '/sitemap.xml'
     | '/blog/$slug'
@@ -261,6 +271,7 @@ export interface FileRouteTypes {
     | '/pakiety'
     | '/polityka-cookies'
     | '/polityka-prywatnosci'
+    | '/reset-password'
     | '/sitemap'
     | '/sitemap.xml'
     | '/blog/$slug'
@@ -286,6 +297,7 @@ export interface FileRouteTypes {
     | '/pakiety'
     | '/polityka-cookies'
     | '/polityka-prywatnosci'
+    | '/reset-password'
     | '/sitemap'
     | '/sitemap.xml'
     | '/blog/$slug'
@@ -312,6 +324,7 @@ export interface RootRouteChildren {
   PakietyRoute: typeof PakietyRoute
   PolitykaCookiesRoute: typeof PolitykaCookiesRoute
   PolitykaPrywatnosciRoute: typeof PolitykaPrywatnosciRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
   SitemapRoute: typeof SitemapRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   ApiPublicMetaCapiRoute: typeof ApiPublicMetaCapiRoute
@@ -336,6 +349,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap'
       fullPath: '/sitemap'
       preLoaderRoute: typeof SitemapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/polityka-prywatnosci': {
@@ -537,6 +557,7 @@ const rootRouteChildren: RootRouteChildren = {
   PakietyRoute: PakietyRoute,
   PolitykaCookiesRoute: PolitykaCookiesRoute,
   PolitykaPrywatnosciRoute: PolitykaPrywatnosciRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
   SitemapRoute: SitemapRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   ApiPublicMetaCapiRoute: ApiPublicMetaCapiRoute,
@@ -549,3 +570,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
