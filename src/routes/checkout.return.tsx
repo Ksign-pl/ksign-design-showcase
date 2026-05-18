@@ -14,6 +14,10 @@ import {
   listBriefAssets,
   deleteBriefAsset,
 } from "@/lib/brief-assets.functions";
+import {
+  getChecklistProgress,
+  saveChecklistProgress,
+} from "@/lib/checklist-progress.functions";
 
 const SearchSchema = z.object({
   session_id: z.string().optional(),
@@ -327,32 +331,76 @@ function etaRange(minDays: number, maxDays: number): string {
 }
 
 function PreparationChecklist({ orderId, sessionId, items }: { orderId: string; sessionId: string; items: string[] }) {
-  const storageKey = `ksign:prep-checklist:${orderId}`;
-  const [checked, setChecked] = useState<Set<number>>(() => {
-    if (typeof window === "undefined") return new Set();
-    try {
-      const raw = window.localStorage.getItem(storageKey);
-      if (!raw) return new Set();
-      const arr = JSON.parse(raw);
-      return new Set(Array.isArray(arr) ? arr.map(Number).filter((n) => Number.isInteger(n)) : []);
-    } catch {
-      return new Set();
-    }
+  const fetchProgress = useServerFn(getChecklistProgress);
+  const saveProgress = useServerFn(saveChecklistProgress);
+  const legacyKey = `ksign:prep-checklist:${orderId}`;
+
+  const { data, isLoading } = useQuery({
+    queryKey: ["checklist-progress", orderId],
+    queryFn: () => fetchProgress({ data: { orderId, sessionId } }),
   });
 
+  const [checked, setChecked] = useState<Set<number>>(new Set());
+  const [hydrated, setHydrated] = useState(false);
+  const [saveState, setSaveState] = useState<"idle" | "saving" | "saved" | "error">("idle");
+  const saveTimer = useRef<number | null>(null);
+  const migratedRef = useRef(false);
+
+  const persist = (next: Set<number>) => {
+    if (saveTimer.current) window.clearTimeout(saveTimer.current);
+    setSaveState("saving");
+    saveTimer.current = window.setTimeout(async () => {
+      try {
+        await saveProgress({ data: { orderId, sessionId, checked: [...next] } });
+        setSaveState("saved");
+        window.setTimeout(() => setSaveState((s) => (s === "saved" ? "idle" : s)), 1500);
+      } catch {
+        setSaveState("error");
+      }
+    }, 400);
+  };
+
+  // Hydrate from server; one-time migration of any localStorage progress.
   useEffect(() => {
-    try {
-      window.localStorage.setItem(storageKey, JSON.stringify([...checked]));
-    } catch {
-      /* ignore quota / private mode */
+    if (isLoading || hydrated) return;
+    const serverChecked = new Set<number>(data?.checked ?? []);
+    let merged = serverChecked;
+    if (!migratedRef.current && typeof window !== "undefined") {
+      migratedRef.current = true;
+      try {
+        const raw = window.localStorage.getItem(legacyKey);
+        if (raw) {
+          const arr = JSON.parse(raw);
+          if (Array.isArray(arr)) {
+            const local = arr.map(Number).filter((n) => Number.isInteger(n));
+            if (local.length && serverChecked.size === 0) {
+              merged = new Set<number>([...serverChecked, ...local]);
+              persist(merged);
+            }
+          }
+          window.localStorage.removeItem(legacyKey);
+        }
+      } catch {
+        /* ignore */
+      }
     }
-  }, [checked, storageKey]);
+    setChecked(merged);
+    setHydrated(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoading, data]);
+
+  useEffect(() => {
+    return () => {
+      if (saveTimer.current) window.clearTimeout(saveTimer.current);
+    };
+  }, []);
 
   const toggle = (i: number) => {
     setChecked((prev) => {
       const next = new Set(prev);
       if (next.has(i)) next.delete(i);
       else next.add(i);
+      persist(next);
       return next;
     });
   };
@@ -364,10 +412,13 @@ function PreparationChecklist({ orderId, sessionId, items }: { orderId: string; 
 
   return (
     <div className="text-left bg-white border border-ink/10 rounded-2xl p-6 mb-8">
-      <div className="flex items-baseline justify-between mb-3">
+      <div className="flex items-baseline justify-between mb-3 gap-3">
         <h2 className="font-black text-lg">Przygotuj przed startem</h2>
-        <span className="text-xs text-ink/50 font-mono">
-          {done}/{total}
+        <span className="text-xs text-ink/50 font-mono flex items-center gap-2">
+          {saveState === "saving" && <span className="text-ink/40">zapisywanie…</span>}
+          {saveState === "saved" && <span className="text-emerald-600">zapisano ✓</span>}
+          {saveState === "error" && <span className="text-red-600">błąd zapisu</span>}
+          <span>{done}/{total}</span>
         </span>
       </div>
       <p className="text-sm text-ink/60 mb-4">
