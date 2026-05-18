@@ -416,6 +416,162 @@ function PreparationChecklist({ orderId, sessionId, items }: { orderId: string; 
           ✓ Wszystko gotowe — możemy ruszać.
         </p>
       )}
+
+      <BriefAssetUploader orderId={orderId} sessionId={sessionId} />
+    </div>
+  );
+}
+
+function fileToBase64(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onerror = () => reject(reader.error ?? new Error("Błąd odczytu pliku"));
+    reader.onload = () => {
+      const result = reader.result;
+      if (typeof result !== "string") return reject(new Error("Niepoprawny format odczytu"));
+      const comma = result.indexOf(",");
+      resolve(comma >= 0 ? result.slice(comma + 1) : result);
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function formatBytes(n: number): string {
+  if (!n) return "0 B";
+  const units = ["B", "kB", "MB", "GB"];
+  const i = Math.min(units.length - 1, Math.floor(Math.log(n) / Math.log(1024)));
+  return `${(n / Math.pow(1024, i)).toFixed(i === 0 ? 0 : 1)} ${units[i]}`;
+}
+
+const MAX_UPLOAD_BYTES = 10 * 1024 * 1024;
+
+function BriefAssetUploader({ orderId, sessionId }: { orderId: string; sessionId: string }) {
+  const uploadFn = useServerFn(uploadBriefAsset);
+  const listFn = useServerFn(listBriefAssets);
+  const deleteFn = useServerFn(deleteBriefAsset);
+
+  const list = useQuery({
+    queryKey: ["brief-assets", orderId],
+    queryFn: () => listFn({ data: { orderId, sessionId } }),
+  });
+
+  const [error, setError] = useState<string | null>(null);
+  const [uploading, setUploading] = useState(0);
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  const handleFiles = async (files: FileList | null) => {
+    if (!files || files.length === 0) return;
+    setError(null);
+    const arr = Array.from(files);
+    for (const file of arr) {
+      if (file.size > MAX_UPLOAD_BYTES) {
+        setError(`„${file.name}" przekracza limit 10 MB.`);
+        continue;
+      }
+      try {
+        setUploading((n) => n + 1);
+        const contentBase64 = await fileToBase64(file);
+        await uploadFn({
+          data: {
+            orderId,
+            sessionId,
+            fileName: file.name,
+            contentType: file.type || "application/octet-stream",
+            contentBase64,
+          },
+        });
+      } catch (e) {
+        setError(e instanceof Error ? e.message : "Nie udało się wgrać pliku.");
+      } finally {
+        setUploading((n) => n - 1);
+      }
+    }
+    if (inputRef.current) inputRef.current.value = "";
+    list.refetch();
+  };
+
+  const handleDelete = async (path: string) => {
+    if (!window.confirm("Usunąć ten plik?")) return;
+    try {
+      await deleteFn({ data: { orderId, sessionId, path } });
+      list.refetch();
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Nie udało się usunąć pliku.");
+    }
+  };
+
+  const items = list.data?.items ?? [];
+
+  return (
+    <div className="mt-6 pt-6 border-t border-ink/10">
+      <div className="flex items-baseline justify-between mb-2">
+        <h3 className="font-bold text-sm">Załączniki (logo, zdjęcia, teksty)</h3>
+        <span className="text-xs text-ink/40 font-mono">
+          {items.length} {items.length === 1 ? "plik" : "plików"}
+        </span>
+      </div>
+      <p className="text-xs text-ink/50 mb-3">
+        Wgraj pliki, które przygotowałeś z checklisty. Limit 10 MB na plik. Obrazy, PDF, DOC, XLS, ZIP.
+      </p>
+
+      <label className="inline-flex items-center gap-2 cursor-pointer bg-ink/5 hover:bg-ink/10 border border-dashed border-ink/30 rounded-xl px-4 py-3 text-sm font-medium transition">
+        <input
+          ref={inputRef}
+          type="file"
+          multiple
+          className="hidden"
+          accept="image/*,application/pdf,text/plain,.doc,.docx,.xls,.xlsx,.zip"
+          onChange={(e) => handleFiles(e.target.files)}
+          disabled={uploading > 0}
+        />
+        <span>📎</span>
+        <span>{uploading > 0 ? `Wgrywanie… (${uploading})` : "Dodaj pliki"}</span>
+      </label>
+
+      {error && (
+        <p className="text-xs text-red-600 mt-2" role="status">
+          {error}
+        </p>
+      )}
+
+      {list.isLoading && (
+        <p className="text-xs text-ink/40 mt-3">Ładowanie listy plików…</p>
+      )}
+
+      {items.length > 0 && (
+        <ul className="mt-4 space-y-1.5">
+          {items.map((f) => (
+            <li
+              key={f.path}
+              className="flex items-center justify-between gap-3 text-sm bg-ink/[0.03] rounded-lg px-3 py-2"
+            >
+              <div className="min-w-0 flex-1">
+                {f.url ? (
+                  <a
+                    href={f.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium text-ink hover:text-violet underline-offset-2 hover:underline truncate block"
+                  >
+                    {f.name}
+                  </a>
+                ) : (
+                  <span className="font-medium truncate block">{f.name}</span>
+                )}
+                <span className="text-xs text-ink/40">{formatBytes(f.size)}</span>
+              </div>
+              <button
+                type="button"
+                onClick={() => handleDelete(f.path)}
+                className="text-xs text-ink/50 hover:text-red-600 transition flex-none"
+                aria-label={`Usuń ${f.name}`}
+              >
+                Usuń
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
