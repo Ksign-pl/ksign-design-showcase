@@ -14,7 +14,110 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      briefs: {
+        Row: {
+          brand_colors: string | null
+          company_name: string | null
+          content_notes: string | null
+          created_at: string
+          goals: string | null
+          id: string
+          industry: string | null
+          inspirations: string | null
+          logo_url: string | null
+          order_id: string
+          phone: string | null
+        }
+        Insert: {
+          brand_colors?: string | null
+          company_name?: string | null
+          content_notes?: string | null
+          created_at?: string
+          goals?: string | null
+          id?: string
+          industry?: string | null
+          inspirations?: string | null
+          logo_url?: string | null
+          order_id: string
+          phone?: string | null
+        }
+        Update: {
+          brand_colors?: string | null
+          company_name?: string | null
+          content_notes?: string | null
+          created_at?: string
+          goals?: string | null
+          id?: string
+          industry?: string | null
+          inspirations?: string | null
+          logo_url?: string | null
+          order_id?: string
+          phone?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "briefs_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      orders: {
+        Row: {
+          amount_cents: number
+          brief_completed: boolean
+          created_at: string
+          currency: string
+          customer_email: string | null
+          customer_name: string | null
+          environment: string
+          id: string
+          price_id: string
+          product_name: string
+          status: string
+          stripe_customer_id: string | null
+          stripe_payment_intent_id: string | null
+          stripe_session_id: string
+          updated_at: string
+        }
+        Insert: {
+          amount_cents: number
+          brief_completed?: boolean
+          created_at?: string
+          currency?: string
+          customer_email?: string | null
+          customer_name?: string | null
+          environment?: string
+          id?: string
+          price_id: string
+          product_name: string
+          status?: string
+          stripe_customer_id?: string | null
+          stripe_payment_intent_id?: string | null
+          stripe_session_id: string
+          updated_at?: string
+        }
+        Update: {
+          amount_cents?: number
+          brief_completed?: boolean
+          created_at?: string
+          currency?: string
+          customer_email?: string | null
+          customer_name?: string | null
+          environment?: string
+          id?: string
+          price_id?: string
+          product_name?: string
+          status?: string
+          stripe_customer_id?: string | null
+          stripe_payment_intent_id?: string | null
+          stripe_session_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
