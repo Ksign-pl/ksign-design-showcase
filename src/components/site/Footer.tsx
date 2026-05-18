@@ -4,7 +4,7 @@ import { CONTACT } from "@/lib/contact";
 
 export function Footer() {
   return (
-    <footer className="bg-cream border-t border-ink/10 pt-16 pb-28 md:pb-16">
+    <footer className="bg-cream text-ink border-t border-ink/10 pt-16 pb-28 md:pb-16">
       <div className="mx-auto max-w-[1400px] px-5 md:px-8">
         <div className="grid md:grid-cols-12 gap-10">
           <div className="md:col-span-5">
