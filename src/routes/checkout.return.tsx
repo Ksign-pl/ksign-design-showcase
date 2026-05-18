@@ -533,17 +533,17 @@ function ContactSection() {
       <h3 className="font-black text-base mb-4 text-center">Masz pytania? Odezwij się</h3>
       <div className="grid sm:grid-cols-3 gap-3">
         <a
-          href={`mailto:hello@ksign.pl?subject=${encodeURIComponent("Pytanie do zamówienia")}`}
+          href={mailto("Pytanie do zamówienia")}
           className="block bg-white border border-ink/10 rounded-2xl p-4 hover:border-ink transition group"
         >
           <div className="text-2xl mb-2">✉</div>
           <div className="font-bold text-sm">E-mail</div>
           <div className="text-xs text-ink/60 group-hover:text-ink transition truncate">
-            hello@ksign.pl
+            {CONTACT.email}
           </div>
         </a>
         <a
-          href="https://wa.me/48000000000"
+          href={CONTACT.whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="block bg-white border border-ink/10 rounded-2xl p-4 hover:border-ink transition group"
@@ -555,7 +555,7 @@ function ContactSection() {
           </div>
         </a>
         <a
-          href="https://cal.com/ksign/15min"
+          href={CONTACT.calendarShortUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="block bg-white border border-ink/10 rounded-2xl p-4 hover:border-ink transition group"
@@ -568,7 +568,7 @@ function ContactSection() {
         </a>
       </div>
       <p className="text-xs text-ink/40 mt-4 text-center">
-        Odpowiadam pon–pt, 9:00–17:00 (zwykle szybciej).
+        {CONTACT.hours}
       </p>
     </div>
   );
