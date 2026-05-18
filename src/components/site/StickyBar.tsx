@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "@tanstack/react-router";
 
 export function StickyBar() {
   const [show, setShow] = useState(false);
@@ -23,14 +24,15 @@ export function StickyBar() {
         <span className="hidden sm:inline px-3 py-1.5 text-xs font-medium text-cream/60 uppercase tracking-wider">
           3–7 dni
         </span>
-        <a
-          href="#kontakt"
-          title="Zamów pakiet Start za 999 zł"
-          aria-label="Zamów pakiet Start za 999 zł — przejdź do formularza"
+        <Link
+          to="/checkout"
+          search={{ price: "pakiet_start_one_time" }}
+          title="Zapłać online za pakiet Start — 999 zł"
+          aria-label="Zapłać online za pakiet Start — 999 zł"
           className="ml-1 inline-flex items-center gap-1.5 bg-lime text-ink px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wider hover:scale-105 transition-transform"
         >
-          Zamów <span aria-hidden="true">→</span>
-        </a>
+          Zapłać <span aria-hidden="true">→</span>
+        </Link>
       </div>
     </div>
   );

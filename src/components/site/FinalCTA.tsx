@@ -97,9 +97,10 @@ export function FinalCTA() {
                     className="w-full bg-white border border-ink/15 rounded-2xl px-4 py-3.5 font-medium focus:outline-none focus:border-ink"
                   >
                     <option>Start — 999 zł</option>
-                    <option>Business — od 2 499 zł</option>
-                    <option>Premium — od 4 999 zł</option>
-                    <option>E-commerce — od 6 000 zł</option>
+                    <option>Business — 2 499 zł</option>
+                    <option>Premium — 4 999 zł</option>
+                    <option>E-commerce — 6 000 zł</option>
+                    <option>Opieka techniczna — 99 zł/mies.</option>
                   </select>
                 </div>
                 <div className="mt-4">
