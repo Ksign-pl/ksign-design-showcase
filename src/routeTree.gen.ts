@@ -14,8 +14,10 @@ import { Route as SitemapRouteImport } from './routes/sitemap'
 import { Route as PolitykaPrywatnosciRouteImport } from './routes/polityka-prywatnosci'
 import { Route as PolitykaCookiesRouteImport } from './routes/polityka-cookies'
 import { Route as OgDebugRouteImport } from './routes/og-debug'
+import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CheckoutReturnRouteImport } from './routes/checkout.return'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as ApiPublicOgDebugRouteImport } from './routes/api/public/og-debug'
 import { Route as ApiPublicMetaCapiRouteImport } from './routes/api/public/meta-capi'
@@ -45,6 +47,11 @@ const OgDebugRoute = OgDebugRouteImport.update({
   path: '/og-debug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CheckoutRoute = CheckoutRouteImport.update({
+  id: '/checkout',
+  path: '/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogRoute = BlogRouteImport.update({
   id: '/blog',
   path: '/blog',
@@ -54,6 +61,11 @@ const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const CheckoutReturnRoute = CheckoutReturnRouteImport.update({
+  id: '/return',
+  path: '/return',
+  getParentRoute: () => CheckoutRoute,
 } as any)
 const BlogSlugRoute = BlogSlugRouteImport.update({
   id: '/$slug',
@@ -74,24 +86,28 @@ const ApiPublicMetaCapiRoute = ApiPublicMetaCapiRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/blog': typeof BlogRouteWithChildren
+  '/checkout': typeof CheckoutRouteWithChildren
   '/og-debug': typeof OgDebugRoute
   '/polityka-cookies': typeof PolitykaCookiesRoute
   '/polityka-prywatnosci': typeof PolitykaPrywatnosciRoute
   '/sitemap': typeof SitemapRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/checkout/return': typeof CheckoutReturnRoute
   '/api/public/meta-capi': typeof ApiPublicMetaCapiRoute
   '/api/public/og-debug': typeof ApiPublicOgDebugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/blog': typeof BlogRouteWithChildren
+  '/checkout': typeof CheckoutRouteWithChildren
   '/og-debug': typeof OgDebugRoute
   '/polityka-cookies': typeof PolitykaCookiesRoute
   '/polityka-prywatnosci': typeof PolitykaPrywatnosciRoute
   '/sitemap': typeof SitemapRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/checkout/return': typeof CheckoutReturnRoute
   '/api/public/meta-capi': typeof ApiPublicMetaCapiRoute
   '/api/public/og-debug': typeof ApiPublicOgDebugRoute
 }
@@ -99,12 +115,14 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/blog': typeof BlogRouteWithChildren
+  '/checkout': typeof CheckoutRouteWithChildren
   '/og-debug': typeof OgDebugRoute
   '/polityka-cookies': typeof PolitykaCookiesRoute
   '/polityka-prywatnosci': typeof PolitykaPrywatnosciRoute
   '/sitemap': typeof SitemapRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/checkout/return': typeof CheckoutReturnRoute
   '/api/public/meta-capi': typeof ApiPublicMetaCapiRoute
   '/api/public/og-debug': typeof ApiPublicOgDebugRoute
 }
@@ -113,36 +131,42 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/blog'
+    | '/checkout'
     | '/og-debug'
     | '/polityka-cookies'
     | '/polityka-prywatnosci'
     | '/sitemap'
     | '/sitemap.xml'
     | '/blog/$slug'
+    | '/checkout/return'
     | '/api/public/meta-capi'
     | '/api/public/og-debug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/blog'
+    | '/checkout'
     | '/og-debug'
     | '/polityka-cookies'
     | '/polityka-prywatnosci'
     | '/sitemap'
     | '/sitemap.xml'
     | '/blog/$slug'
+    | '/checkout/return'
     | '/api/public/meta-capi'
     | '/api/public/og-debug'
   id:
     | '__root__'
     | '/'
     | '/blog'
+    | '/checkout'
     | '/og-debug'
     | '/polityka-cookies'
     | '/polityka-prywatnosci'
     | '/sitemap'
     | '/sitemap.xml'
     | '/blog/$slug'
+    | '/checkout/return'
     | '/api/public/meta-capi'
     | '/api/public/og-debug'
   fileRoutesById: FileRoutesById
@@ -150,6 +174,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BlogRoute: typeof BlogRouteWithChildren
+  CheckoutRoute: typeof CheckoutRouteWithChildren
   OgDebugRoute: typeof OgDebugRoute
   PolitykaCookiesRoute: typeof PolitykaCookiesRoute
   PolitykaPrywatnosciRoute: typeof PolitykaPrywatnosciRoute
@@ -196,6 +221,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OgDebugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/checkout': {
+      id: '/checkout'
+      path: '/checkout'
+      fullPath: '/checkout'
+      preLoaderRoute: typeof CheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog': {
       id: '/blog'
       path: '/blog'
@@ -209,6 +241,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/checkout/return': {
+      id: '/checkout/return'
+      path: '/return'
+      fullPath: '/checkout/return'
+      preLoaderRoute: typeof CheckoutReturnRouteImport
+      parentRoute: typeof CheckoutRoute
     }
     '/blog/$slug': {
       id: '/blog/$slug'
@@ -244,9 +283,22 @@ const BlogRouteChildren: BlogRouteChildren = {
 
 const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
 
+interface CheckoutRouteChildren {
+  CheckoutReturnRoute: typeof CheckoutReturnRoute
+}
+
+const CheckoutRouteChildren: CheckoutRouteChildren = {
+  CheckoutReturnRoute: CheckoutReturnRoute,
+}
+
+const CheckoutRouteWithChildren = CheckoutRoute._addFileChildren(
+  CheckoutRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BlogRoute: BlogRouteWithChildren,
+  CheckoutRoute: CheckoutRouteWithChildren,
   OgDebugRoute: OgDebugRoute,
   PolitykaCookiesRoute: PolitykaCookiesRoute,
   PolitykaPrywatnosciRoute: PolitykaPrywatnosciRoute,
@@ -258,3 +310,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

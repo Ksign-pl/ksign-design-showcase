@@ -1,0 +1,35 @@
+import { createServerFn } from "@tanstack/react-start";
+import { type StripeEnv, createStripeClient } from "@/lib/stripe.server";
+
+export const createCheckoutSession = createServerFn({ method: "POST" })
+  .inputValidator((data: {
+    priceId: string;
+    quantity?: number;
+    customerEmail?: string;
+    returnUrl: string;
+    environment: StripeEnv;
+  }) => {
+    if (!/^[a-zA-Z0-9_-]+$/.test(data.priceId)) throw new Error("Invalid priceId");
+    if (!data.returnUrl || !/^https?:\/\//.test(data.returnUrl)) throw new Error("Invalid returnUrl");
+    if (data.environment !== "sandbox" && data.environment !== "live") throw new Error("Invalid env");
+    if (data.customerEmail && data.customerEmail.length > 254) throw new Error("Invalid email");
+    return data;
+  })
+  .handler(async ({ data }) => {
+    const stripe = createStripeClient(data.environment);
+
+    const prices = await stripe.prices.list({ lookup_keys: [data.priceId] });
+    if (!prices.data.length) throw new Error("Price not found");
+    const stripePrice = prices.data[0];
+    const isRecurring = stripePrice.type === "recurring";
+
+    const session = await stripe.checkout.sessions.create({
+      line_items: [{ price: stripePrice.id, quantity: data.quantity || 1 }],
+      mode: isRecurring ? "subscription" : "payment",
+      ui_mode: "embedded",
+      return_url: data.returnUrl,
+      ...(data.customerEmail && { customer_email: data.customerEmail }),
+    });
+
+    return session.client_secret;
+  });
