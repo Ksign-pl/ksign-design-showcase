@@ -258,17 +258,26 @@ function SuccessView({
         </div>
       ) : (
         <div className="space-y-3">
-          <a
-            href="https://cal.com/ksign/15min"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 bg-ink text-cream px-7 py-4 rounded-full font-bold hover:bg-violet hover:text-ink transition"
-          >
-            Umów krótką rozmowę (15 min) →
-          </a>
-          <p className="text-xs text-ink/50">
-            Albo poczekaj na maila — odzywam się w ciągu 24h z planem realizacji.
-          </p>
+          {(() => {
+            const cta = getPostBriefCta(item);
+            const isExternal = cta.external ?? cta.href.startsWith("http");
+            return (
+              <>
+                <a
+                  href={cta.href}
+                  {...(isExternal
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
+                  className="inline-flex items-center justify-center gap-2 bg-ink text-cream px-7 py-4 rounded-full font-bold hover:bg-violet hover:text-ink transition"
+                >
+                  {cta.label}
+                </a>
+                {cta.note && (
+                  <p className="text-xs text-ink/50">{cta.note}</p>
+                )}
+              </>
+            );
+          })()}
         </div>
       )}
 
