@@ -13,14 +13,17 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SitemapRouteImport } from './routes/sitemap'
 import { Route as PolitykaPrywatnosciRouteImport } from './routes/polityka-prywatnosci'
 import { Route as PolitykaCookiesRouteImport } from './routes/polityka-cookies'
+import { Route as PakietyRouteImport } from './routes/pakiety'
 import { Route as OgDebugRouteImport } from './routes/og-debug'
 import { Route as CheckoutRouteImport } from './routes/checkout'
+import { Route as BriefRouteImport } from './routes/brief'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CheckoutReturnRouteImport } from './routes/checkout.return'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as ApiPublicOgDebugRouteImport } from './routes/api/public/og-debug'
 import { Route as ApiPublicMetaCapiRouteImport } from './routes/api/public/meta-capi'
+import { Route as ApiPublicPaymentsWebhookRouteImport } from './routes/api/public/payments/webhook'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -42,6 +45,11 @@ const PolitykaCookiesRoute = PolitykaCookiesRouteImport.update({
   path: '/polityka-cookies',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PakietyRoute = PakietyRouteImport.update({
+  id: '/pakiety',
+  path: '/pakiety',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OgDebugRoute = OgDebugRouteImport.update({
   id: '/og-debug',
   path: '/og-debug',
@@ -50,6 +58,11 @@ const OgDebugRoute = OgDebugRouteImport.update({
 const CheckoutRoute = CheckoutRouteImport.update({
   id: '/checkout',
   path: '/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BriefRoute = BriefRouteImport.update({
+  id: '/brief',
+  path: '/brief',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogRoute = BlogRouteImport.update({
@@ -82,12 +95,20 @@ const ApiPublicMetaCapiRoute = ApiPublicMetaCapiRouteImport.update({
   path: '/api/public/meta-capi',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicPaymentsWebhookRoute =
+  ApiPublicPaymentsWebhookRouteImport.update({
+    id: '/api/public/payments/webhook',
+    path: '/api/public/payments/webhook',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/blog': typeof BlogRouteWithChildren
+  '/brief': typeof BriefRoute
   '/checkout': typeof CheckoutRouteWithChildren
   '/og-debug': typeof OgDebugRoute
+  '/pakiety': typeof PakietyRoute
   '/polityka-cookies': typeof PolitykaCookiesRoute
   '/polityka-prywatnosci': typeof PolitykaPrywatnosciRoute
   '/sitemap': typeof SitemapRoute
@@ -96,12 +117,15 @@ export interface FileRoutesByFullPath {
   '/checkout/return': typeof CheckoutReturnRoute
   '/api/public/meta-capi': typeof ApiPublicMetaCapiRoute
   '/api/public/og-debug': typeof ApiPublicOgDebugRoute
+  '/api/public/payments/webhook': typeof ApiPublicPaymentsWebhookRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/blog': typeof BlogRouteWithChildren
+  '/brief': typeof BriefRoute
   '/checkout': typeof CheckoutRouteWithChildren
   '/og-debug': typeof OgDebugRoute
+  '/pakiety': typeof PakietyRoute
   '/polityka-cookies': typeof PolitykaCookiesRoute
   '/polityka-prywatnosci': typeof PolitykaPrywatnosciRoute
   '/sitemap': typeof SitemapRoute
@@ -110,13 +134,16 @@ export interface FileRoutesByTo {
   '/checkout/return': typeof CheckoutReturnRoute
   '/api/public/meta-capi': typeof ApiPublicMetaCapiRoute
   '/api/public/og-debug': typeof ApiPublicOgDebugRoute
+  '/api/public/payments/webhook': typeof ApiPublicPaymentsWebhookRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/blog': typeof BlogRouteWithChildren
+  '/brief': typeof BriefRoute
   '/checkout': typeof CheckoutRouteWithChildren
   '/og-debug': typeof OgDebugRoute
+  '/pakiety': typeof PakietyRoute
   '/polityka-cookies': typeof PolitykaCookiesRoute
   '/polityka-prywatnosci': typeof PolitykaPrywatnosciRoute
   '/sitemap': typeof SitemapRoute
@@ -125,14 +152,17 @@ export interface FileRoutesById {
   '/checkout/return': typeof CheckoutReturnRoute
   '/api/public/meta-capi': typeof ApiPublicMetaCapiRoute
   '/api/public/og-debug': typeof ApiPublicOgDebugRoute
+  '/api/public/payments/webhook': typeof ApiPublicPaymentsWebhookRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/blog'
+    | '/brief'
     | '/checkout'
     | '/og-debug'
+    | '/pakiety'
     | '/polityka-cookies'
     | '/polityka-prywatnosci'
     | '/sitemap'
@@ -141,12 +171,15 @@ export interface FileRouteTypes {
     | '/checkout/return'
     | '/api/public/meta-capi'
     | '/api/public/og-debug'
+    | '/api/public/payments/webhook'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/blog'
+    | '/brief'
     | '/checkout'
     | '/og-debug'
+    | '/pakiety'
     | '/polityka-cookies'
     | '/polityka-prywatnosci'
     | '/sitemap'
@@ -155,12 +188,15 @@ export interface FileRouteTypes {
     | '/checkout/return'
     | '/api/public/meta-capi'
     | '/api/public/og-debug'
+    | '/api/public/payments/webhook'
   id:
     | '__root__'
     | '/'
     | '/blog'
+    | '/brief'
     | '/checkout'
     | '/og-debug'
+    | '/pakiety'
     | '/polityka-cookies'
     | '/polityka-prywatnosci'
     | '/sitemap'
@@ -169,19 +205,23 @@ export interface FileRouteTypes {
     | '/checkout/return'
     | '/api/public/meta-capi'
     | '/api/public/og-debug'
+    | '/api/public/payments/webhook'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BlogRoute: typeof BlogRouteWithChildren
+  BriefRoute: typeof BriefRoute
   CheckoutRoute: typeof CheckoutRouteWithChildren
   OgDebugRoute: typeof OgDebugRoute
+  PakietyRoute: typeof PakietyRoute
   PolitykaCookiesRoute: typeof PolitykaCookiesRoute
   PolitykaPrywatnosciRoute: typeof PolitykaPrywatnosciRoute
   SitemapRoute: typeof SitemapRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   ApiPublicMetaCapiRoute: typeof ApiPublicMetaCapiRoute
   ApiPublicOgDebugRoute: typeof ApiPublicOgDebugRoute
+  ApiPublicPaymentsWebhookRoute: typeof ApiPublicPaymentsWebhookRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -214,6 +254,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PolitykaCookiesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pakiety': {
+      id: '/pakiety'
+      path: '/pakiety'
+      fullPath: '/pakiety'
+      preLoaderRoute: typeof PakietyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/og-debug': {
       id: '/og-debug'
       path: '/og-debug'
@@ -226,6 +273,13 @@ declare module '@tanstack/react-router' {
       path: '/checkout'
       fullPath: '/checkout'
       preLoaderRoute: typeof CheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/brief': {
+      id: '/brief'
+      path: '/brief'
+      fullPath: '/brief'
+      preLoaderRoute: typeof BriefRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog': {
@@ -270,6 +324,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicMetaCapiRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/payments/webhook': {
+      id: '/api/public/payments/webhook'
+      path: '/api/public/payments/webhook'
+      fullPath: '/api/public/payments/webhook'
+      preLoaderRoute: typeof ApiPublicPaymentsWebhookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -298,15 +359,28 @@ const CheckoutRouteWithChildren = CheckoutRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BlogRoute: BlogRouteWithChildren,
+  BriefRoute: BriefRoute,
   CheckoutRoute: CheckoutRouteWithChildren,
   OgDebugRoute: OgDebugRoute,
+  PakietyRoute: PakietyRoute,
   PolitykaCookiesRoute: PolitykaCookiesRoute,
   PolitykaPrywatnosciRoute: PolitykaPrywatnosciRoute,
   SitemapRoute: SitemapRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   ApiPublicMetaCapiRoute: ApiPublicMetaCapiRoute,
   ApiPublicOgDebugRoute: ApiPublicOgDebugRoute,
+  ApiPublicPaymentsWebhookRoute: ApiPublicPaymentsWebhookRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

@@ -2,33 +2,39 @@ const PLANS = [
   {
     name: "START",
     price: "999",
-    unit: "zł netto",
+    unit: "zł",
     desc: "Prosta strona one-page.",
     cta: "Wybieram Start",
+    priceId: "pakiet_start_one_time",
     featured: true,
   },
   {
     name: "BUSINESS",
-    price: "od 2 499",
-    unit: "zł netto",
+    price: "2 499",
+    unit: "zł",
     desc: "Strona 3–5 podstron.",
-    cta: "Zapytaj o Business",
+    cta: "Wybieram Business",
+    priceId: "pakiet_business_one_time",
   },
   {
     name: "PREMIUM",
-    price: "od 4 999",
-    unit: "zł netto",
+    price: "4 999",
+    unit: "zł",
     desc: "Strategia, copywriting, branding, animacje.",
-    cta: "Zapytaj o Premium",
+    cta: "Wybieram Premium",
+    priceId: "pakiet_premium_one_time",
   },
   {
     name: "E-COMMERCE",
-    price: "od 6 000",
-    unit: "zł netto",
+    price: "6 000",
+    unit: "zł",
     desc: "Sklep Shoper / WooCommerce / Shopify.",
-    cta: "Zapytaj o sklep",
+    cta: "Wybieram sklep",
+    priceId: "pakiet_ecommerce_one_time",
   },
 ];
+
+import { Link } from "@tanstack/react-router";
 
 export function Pricing() {
   return (
@@ -60,7 +66,7 @@ export function Pricing() {
                 <div className={`text-xs font-mono uppercase tracking-widest mb-4 ${p.featured ? "text-cream/50" : "text-ink/40"}`}>
                   {p.name}
                 </div>
-                <div className={`flex items-baseline gap-2 mb-3 ${p.featured ? "" : ""}`}>
+                <div className="flex items-baseline gap-2 mb-3">
                   <span className={`font-black tracking-tighter ${p.featured ? "text-7xl md:text-8xl" : "text-4xl md:text-5xl"}`}>
                     {p.price}
                   </span>
@@ -72,10 +78,11 @@ export function Pricing() {
                   {p.desc}
                 </p>
               </div>
-              <a
-                href="#kontakt"
-                title={`${p.cta} — przejdź do formularza`}
-                aria-label={`${p.cta} — formularz kontaktowy KSIGN`}
+              <Link
+                to="/checkout"
+                search={{ price: p.priceId }}
+                title={`${p.cta} — przejdź do płatności online`}
+                aria-label={`${p.cta} — płatność online`}
                 className={`inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full font-bold text-sm transition-all ${
                   p.featured
                     ? "bg-lime text-ink hover:scale-105"
@@ -83,7 +90,7 @@ export function Pricing() {
                 }`}
               >
                 {p.cta} <span aria-hidden="true">→</span>
-              </a>
+              </Link>
             </div>
           ))}
 
