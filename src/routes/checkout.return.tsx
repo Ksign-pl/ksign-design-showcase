@@ -177,35 +177,14 @@ function PendingView({ sessionId }: { sessionId: string }) {
 }
 
 function FailureView() {
+  useEffect(() => {
+    // Redirect anulowane / brakujące sesje do dedykowanej strony błędu
+    window.location.replace("/checkout/failed");
+  }, []);
   return (
     <Shell>
-      <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-100 text-red-600 text-3xl mb-6">
-        ✕
-      </div>
-      <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-3">
-        Płatność nie została zakończona
-      </h1>
-      <p className="text-ink/70 mb-8">
-        Nic nie zostało pobrane. Możesz wrócić do checkoutu i spróbować ponownie —
-        albo napisz, jeśli mam coś zorganizować inaczej.
-      </p>
-      <div className="flex flex-col sm:flex-row gap-3 justify-center">
-        <Link
-          to="/pakiety"
-          className="inline-flex items-center justify-center gap-2 bg-ink text-cream px-7 py-4 rounded-full font-bold hover:bg-violet hover:text-ink transition"
-        >
-          Wybierz pakiet ponownie
-        </Link>
-        <a
-          href="mailto:hello@ksign.pl?subject=Problem%20z%20p%C5%82atno%C5%9Bci%C4%85"
-          className="inline-flex items-center justify-center gap-2 bg-transparent border border-ink/20 text-ink px-7 py-4 rounded-full font-bold hover:bg-ink/5 transition"
-        >
-          Napisz do nas
-        </a>
-      </div>
-      <div className="mt-10">
-        <Link to="/" className="text-sm text-ink/50 underline">← Wróć na stronę</Link>
-      </div>
+      <div className="text-5xl mb-6 animate-pulse">…</div>
+      <p className="text-ink/60">Przekierowuję…</p>
     </Shell>
   );
 }

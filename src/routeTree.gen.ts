@@ -20,6 +20,7 @@ import { Route as BriefRouteImport } from './routes/brief'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CheckoutReturnRouteImport } from './routes/checkout.return'
+import { Route as CheckoutFailedRouteImport } from './routes/checkout.failed'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as ApiPublicOgDebugRouteImport } from './routes/api/public/og-debug'
 import { Route as ApiPublicMetaCapiRouteImport } from './routes/api/public/meta-capi'
@@ -80,6 +81,11 @@ const CheckoutReturnRoute = CheckoutReturnRouteImport.update({
   path: '/return',
   getParentRoute: () => CheckoutRoute,
 } as any)
+const CheckoutFailedRoute = CheckoutFailedRouteImport.update({
+  id: '/failed',
+  path: '/failed',
+  getParentRoute: () => CheckoutRoute,
+} as any)
 const BlogSlugRoute = BlogSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
@@ -114,6 +120,7 @@ export interface FileRoutesByFullPath {
   '/sitemap': typeof SitemapRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/checkout/failed': typeof CheckoutFailedRoute
   '/checkout/return': typeof CheckoutReturnRoute
   '/api/public/meta-capi': typeof ApiPublicMetaCapiRoute
   '/api/public/og-debug': typeof ApiPublicOgDebugRoute
@@ -131,6 +138,7 @@ export interface FileRoutesByTo {
   '/sitemap': typeof SitemapRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/checkout/failed': typeof CheckoutFailedRoute
   '/checkout/return': typeof CheckoutReturnRoute
   '/api/public/meta-capi': typeof ApiPublicMetaCapiRoute
   '/api/public/og-debug': typeof ApiPublicOgDebugRoute
@@ -149,6 +157,7 @@ export interface FileRoutesById {
   '/sitemap': typeof SitemapRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/checkout/failed': typeof CheckoutFailedRoute
   '/checkout/return': typeof CheckoutReturnRoute
   '/api/public/meta-capi': typeof ApiPublicMetaCapiRoute
   '/api/public/og-debug': typeof ApiPublicOgDebugRoute
@@ -168,6 +177,7 @@ export interface FileRouteTypes {
     | '/sitemap'
     | '/sitemap.xml'
     | '/blog/$slug'
+    | '/checkout/failed'
     | '/checkout/return'
     | '/api/public/meta-capi'
     | '/api/public/og-debug'
@@ -185,6 +195,7 @@ export interface FileRouteTypes {
     | '/sitemap'
     | '/sitemap.xml'
     | '/blog/$slug'
+    | '/checkout/failed'
     | '/checkout/return'
     | '/api/public/meta-capi'
     | '/api/public/og-debug'
@@ -202,6 +213,7 @@ export interface FileRouteTypes {
     | '/sitemap'
     | '/sitemap.xml'
     | '/blog/$slug'
+    | '/checkout/failed'
     | '/checkout/return'
     | '/api/public/meta-capi'
     | '/api/public/og-debug'
@@ -303,6 +315,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CheckoutReturnRouteImport
       parentRoute: typeof CheckoutRoute
     }
+    '/checkout/failed': {
+      id: '/checkout/failed'
+      path: '/failed'
+      fullPath: '/checkout/failed'
+      preLoaderRoute: typeof CheckoutFailedRouteImport
+      parentRoute: typeof CheckoutRoute
+    }
     '/blog/$slug': {
       id: '/blog/$slug'
       path: '/$slug'
@@ -345,10 +364,12 @@ const BlogRouteChildren: BlogRouteChildren = {
 const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
 
 interface CheckoutRouteChildren {
+  CheckoutFailedRoute: typeof CheckoutFailedRoute
   CheckoutReturnRoute: typeof CheckoutReturnRoute
 }
 
 const CheckoutRouteChildren: CheckoutRouteChildren = {
+  CheckoutFailedRoute: CheckoutFailedRoute,
   CheckoutReturnRoute: CheckoutReturnRoute,
 }
 
