@@ -10,9 +10,11 @@ const InputSchema = z.object({
     .min(10)
     .max(255)
     .regex(/^[a-zA-Z0-9_]+$/),
-  deliveryDays: z.tuple([z.number().int().min(1).max(120), z.number().int().min(1).max(120)]),
-  etaRange: z.string().min(1).max(200),
-  steps: z.array(z.string().min(1).max(500)).max(20),
+  deliveryDays: z
+    .tuple([z.number().int().min(1).max(120), z.number().int().min(1).max(120)])
+    .optional(),
+  etaRange: z.string().min(1).max(200).optional(),
+  steps: z.array(z.string().min(1).max(500)).max(20).optional(),
 });
 
 const BUCKET = "order-pdfs";

@@ -2,13 +2,13 @@ import { jsPDF } from "jspdf";
 
 export interface OrderPdfData {
   orderId: string;
-  productName: string;
-  amountCents: number;
-  currency: string;
-  briefCompleted: boolean;
-  deliveryDays: [number, number];
-  etaRange: string;
-  steps: string[];
+  productName?: string | null;
+  amountCents?: number | null;
+  currency?: string | null;
+  briefCompleted?: boolean | null;
+  deliveryDays?: [number, number] | null;
+  etaRange?: string | null;
+  steps?: string[] | null;
   customerEmail?: string | null;
   customerName?: string | null;
 }
@@ -17,7 +17,114 @@ const INK = "#111111";
 const MUTED = "#666666";
 const LINE = "#dddddd";
 
-export function generateOrderPdf(d: OrderPdfData): jsPDF {
+const FALLBACK = {
+  productName: "Zamówienie KSIGN",
+  currency: "PLN",
+  deliveryDays: [7, 14] as [number, number],
+  etaRange: "Termin zostanie potwierdzony mailem",
+  steps: [
+    "Potwierdzimy szczegóły mailem w ciągu 24 h.",
+    "Po zebraniu materiałów rozpoczniemy realizację.",
+  ],
+  missing: "Brak danych",
+};
+
+export interface NormalizedOrderPdf {
+  orderId: string;
+  productName: string;
+  amountCents: number;
+  currency: string;
+  briefCompleted: boolean;
+  deliveryDays: [number, number];
+  etaRange: string;
+  steps: string[];
+  customerEmail: string | null;
+  customerName: string | null;
+  warnings: string[];
+}
+
+export function normalizeOrderPdfData(d: OrderPdfData): NormalizedOrderPdf {
+  const warnings: string[] = [];
+
+  if (!d.orderId || typeof d.orderId !== "string") {
+    throw new Error("Brak ID zamówienia — nie można wygenerować PDF.");
+  }
+
+  const productName =
+    typeof d.productName === "string" && d.productName.trim()
+      ? d.productName.trim().slice(0, 200)
+      : (warnings.push("Brak nazwy produktu — użyto wartości domyślnej."), FALLBACK.productName);
+
+  const amountCents =
+    typeof d.amountCents === "number" && Number.isFinite(d.amountCents) && d.amountCents >= 0
+      ? Math.round(d.amountCents)
+      : (warnings.push("Brak kwoty — wyświetlono 0."), 0);
+
+  const currency =
+    typeof d.currency === "string" && /^[a-zA-Z]{3}$/.test(d.currency)
+      ? d.currency
+      : (warnings.push("Brak waluty — użyto PLN."), FALLBACK.currency);
+
+  const briefCompleted = d.briefCompleted === true;
+
+  let deliveryDays: [number, number] = FALLBACK.deliveryDays;
+  if (
+    Array.isArray(d.deliveryDays) &&
+    d.deliveryDays.length === 2 &&
+    Number.isFinite(d.deliveryDays[0]) &&
+    Number.isFinite(d.deliveryDays[1]) &&
+    d.deliveryDays[0] > 0 &&
+    d.deliveryDays[1] >= d.deliveryDays[0]
+  ) {
+    deliveryDays = [Math.round(d.deliveryDays[0]), Math.round(d.deliveryDays[1])];
+  } else {
+    warnings.push("Brak terminu realizacji — użyto wartości domyślnej 7–14 dni.");
+  }
+
+  const etaRange =
+    typeof d.etaRange === "string" && d.etaRange.trim()
+      ? d.etaRange.trim().slice(0, 200)
+      : (warnings.push("Brak ETA — wyświetlono komunikat zastępczy."), FALLBACK.etaRange);
+
+  const cleanSteps = Array.isArray(d.steps)
+    ? d.steps
+        .filter((s): s is string => typeof s === "string" && s.trim().length > 0)
+        .map((s) => s.trim().slice(0, 500))
+        .slice(0, 20)
+    : [];
+  const steps = cleanSteps.length > 0
+    ? cleanSteps
+    : (warnings.push("Brak listy kroków — użyto domyślnych."), [...FALLBACK.steps]);
+
+  const customerName =
+    typeof d.customerName === "string" && d.customerName.trim()
+      ? d.customerName.trim().slice(0, 200)
+      : null;
+  const customerEmail =
+    typeof d.customerEmail === "string" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.customerEmail.trim())
+      ? d.customerEmail.trim().slice(0, 255)
+      : null;
+  if (!customerName && !customerEmail) {
+    warnings.push("Brak danych kontaktowych klienta — pominięto sekcję.");
+  }
+
+  return {
+    orderId: d.orderId,
+    productName,
+    amountCents,
+    currency,
+    briefCompleted,
+    deliveryDays,
+    etaRange,
+    steps,
+    customerEmail,
+    customerName,
+    warnings,
+  };
+}
+
+export function generateOrderPdf(input: OrderPdfData): jsPDF {
+  const d = normalizeOrderPdfData(input);
   const doc = new jsPDF({ unit: "pt", format: "a4" });
   const pageW = doc.internal.pageSize.getWidth();
   const margin = 48;
