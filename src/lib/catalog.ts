@@ -8,6 +8,7 @@ export interface CatalogItem {
   recurring: boolean;
   blurb: string;
   features: string[];
+  nextSteps: string[];
   highlight?: boolean;
 }
 
