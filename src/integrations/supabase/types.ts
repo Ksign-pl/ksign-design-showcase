@@ -101,18 +101,21 @@ export type Database = {
         Row: {
           checked_indices: number[]
           created_at: string
+          notes: Json
           order_id: string
           updated_at: string
         }
         Insert: {
           checked_indices?: number[]
           created_at?: string
+          notes?: Json
           order_id: string
           updated_at?: string
         }
         Update: {
           checked_indices?: number[]
           created_at?: string
+          notes?: Json
           order_id?: string
           updated_at?: string
         }
