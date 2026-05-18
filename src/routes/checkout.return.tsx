@@ -5,7 +5,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { getOrderBySession } from "@/lib/orders.functions";
 import { resendOrderConfirmation } from "@/lib/email.functions";
-import { getCatalogItem } from "@/lib/catalog";
+import { getCatalogItem, getPreparationChecklist } from "@/lib/catalog";
 import { generateOrderPdf } from "@/lib/order-pdf";
 
 const SearchSchema = z.object({
@@ -234,6 +234,14 @@ function SuccessView({
         </div>
       )}
 
+      {briefDone && (
+        <PreparationChecklist
+          orderId={order.id}
+          items={getPreparationChecklist(item)}
+        />
+      )}
+
+
       {/* Dynamic primary CTA */}
       {!briefDone ? (
         <div className="space-y-3">
@@ -298,6 +306,100 @@ function etaRange(minDays: number, maxDays: number): string {
     return d;
   };
   return `${fmt.format(add(minDays))} – ${fmt.format(add(maxDays))}`;
+}
+
+function PreparationChecklist({ orderId, items }: { orderId: string; items: string[] }) {
+  const storageKey = `ksign:prep-checklist:${orderId}`;
+  const [checked, setChecked] = useState<Set<number>>(() => {
+    if (typeof window === "undefined") return new Set();
+    try {
+      const raw = window.localStorage.getItem(storageKey);
+      if (!raw) return new Set();
+      const arr = JSON.parse(raw);
+      return new Set(Array.isArray(arr) ? arr.map(Number).filter((n) => Number.isInteger(n)) : []);
+    } catch {
+      return new Set();
+    }
+  });
+
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(storageKey, JSON.stringify([...checked]));
+    } catch {
+      /* ignore quota / private mode */
+    }
+  }, [checked, storageKey]);
+
+  const toggle = (i: number) => {
+    setChecked((prev) => {
+      const next = new Set(prev);
+      if (next.has(i)) next.delete(i);
+      else next.add(i);
+      return next;
+    });
+  };
+
+  const done = checked.size;
+  const total = items.length;
+  const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+  const allDone = done === total && total > 0;
+
+  return (
+    <div className="text-left bg-white border border-ink/10 rounded-2xl p-6 mb-8">
+      <div className="flex items-baseline justify-between mb-3">
+        <h2 className="font-black text-lg">Przygotuj przed startem</h2>
+        <span className="text-xs text-ink/50 font-mono">
+          {done}/{total}
+        </span>
+      </div>
+      <p className="text-sm text-ink/60 mb-4">
+        Zbierz te rzeczy zanim zaczniemy — dzięki temu ruszamy bez przestojów.
+      </p>
+
+      <div
+        className="w-full h-1.5 rounded-full bg-ink/10 overflow-hidden mb-4"
+        role="progressbar"
+        aria-valuemin={0}
+        aria-valuemax={total}
+        aria-valuenow={done}
+        aria-label="Postęp przygotowań"
+      >
+        <div
+          className={`h-full transition-[width] duration-500 ease-out ${allDone ? "bg-emerald-600" : "bg-ink"}`}
+          style={{ width: `${pct}%` }}
+        />
+      </div>
+
+      <ul className="space-y-2">
+        {items.map((item, i) => {
+          const isChecked = checked.has(i);
+          return (
+            <li key={i}>
+              <label className="flex gap-3 items-start cursor-pointer group p-2 -m-2 rounded-lg hover:bg-ink/5 transition">
+                <input
+                  type="checkbox"
+                  checked={isChecked}
+                  onChange={() => toggle(i)}
+                  className="mt-0.5 flex-none w-5 h-5 rounded border-ink/30 text-ink focus:ring-ink/30 cursor-pointer"
+                />
+                <span
+                  className={`text-sm leading-snug ${isChecked ? "text-ink/40 line-through" : "text-ink/80"}`}
+                >
+                  {item}
+                </span>
+              </label>
+            </li>
+          );
+        })}
+      </ul>
+
+      {allDone && (
+        <p className="text-xs text-emerald-700 font-bold mt-4">
+          ✓ Wszystko gotowe — możemy ruszać.
+        </p>
+      )}
+    </div>
+  );
 }
 
 function DownloadSummary({

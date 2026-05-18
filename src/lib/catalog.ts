@@ -13,7 +13,21 @@ export interface CatalogItem {
   postBriefSteps?: string[];
   /** Estimated working-day range for the first preview. */
   deliveryDays?: [number, number];
+  /** Items the client should prepare before work starts (shown after brief). */
+  preparationChecklist?: string[];
   highlight?: boolean;
+}
+
+const DEFAULT_PREPARATION_CHECKLIST = [
+  "Dostęp do domeny (panel rejestratora lub kontakt do administratora).",
+  "Logo w wersji wektorowej (SVG/AI/PDF) lub w wysokiej rozdzielczości.",
+  "Teksty na stronę — albo notatki, na bazie których je napiszemy.",
+  "Zdjęcia / grafiki firmowe (jeśli mają być użyte).",
+  "Dane kontaktowe i firmowe do stopki (adres, NIP, telefon).",
+];
+
+export function getPreparationChecklist(item: CatalogItem | undefined): string[] {
+  return item?.preparationChecklist ?? DEFAULT_PREPARATION_CHECKLIST;
 }
 
 export const CATALOG: Record<string, CatalogItem> = {
@@ -103,6 +117,15 @@ export const CATALOG: Record<string, CatalogItem> = {
       "Realizacja sklepu w 3–4 tygodnie.",
       "Konfiguracja integracji i szkolenie z obsługi.",
     ],
+    preparationChecklist: [
+      "Dostęp do domeny (panel rejestratora).",
+      "Logo + materiały brandowe (kolory, font, ikony).",
+      "Lista produktów: nazwy, opisy, ceny, warianty.",
+      "Zdjęcia produktów (min. 1000×1000 px na białym tle).",
+      "Konto/umowa z operatorem płatności (Stripe, Przelewy24, PayU).",
+      "Dane do integracji wysyłki (InPost, kurierzy, własne strefy).",
+      "Regulamin sklepu i polityka prywatności (lub zlecenie ich przygotowania).",
+    ],
   },
   opieka_miesiac: {
     priceId: "opieka_miesiac",
@@ -121,6 +144,12 @@ export const CATALOG: Record<string, CatalogItem> = {
       "Pierwszy backup i audyt w ciągu 48h.",
       "Drobne zmiany do 1h/miesiąc — zgłaszasz mailem.",
       "Subskrypcję możesz anulować w każdej chwili.",
+    ],
+    preparationChecklist: [
+      "Dostęp administratora do strony (CMS, hosting, FTP).",
+      "Kontakt do osoby decyzyjnej po Twojej stronie.",
+      "Lista bieżących integracji (analytics, formularze, płatności).",
+      "Aktualna kopia zapasowa (jeśli posiadasz) — albo zlecimy nową.",
     ],
   },
 };
