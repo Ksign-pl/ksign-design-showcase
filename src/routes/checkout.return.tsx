@@ -170,7 +170,7 @@ function SuccessView({
   sessionId,
   navigate,
 }: {
-  order: { product_name: string; price_id: string; amount_cents: number; currency: string; brief_completed: boolean };
+  order: { id: string; product_name: string; price_id: string; amount_cents: number; currency: string; brief_completed: boolean };
   sessionId: string;
   navigate: ReturnType<typeof useNavigate>;
 }) {
