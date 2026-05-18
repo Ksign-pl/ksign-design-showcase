@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { z } from "zod";
 import { getCatalogItem } from "@/lib/catalog";
+import { mailto } from "@/lib/contact";
 
 const SearchSchema = z.object({
   price: z.string().optional(),
