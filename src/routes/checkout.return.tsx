@@ -9,6 +9,11 @@ import { getCatalogItem, getPreparationChecklist, getPostBriefCta } from "@/lib/
 import { CONTACT, mailto } from "@/lib/contact";
 import { generateOrderPdf } from "@/lib/order-pdf";
 import { generateOrderPdfLink } from "@/lib/order-pdf.functions";
+import {
+  uploadBriefAsset,
+  listBriefAssets,
+  deleteBriefAsset,
+} from "@/lib/brief-assets.functions";
 
 const SearchSchema = z.object({
   session_id: z.string().optional(),
