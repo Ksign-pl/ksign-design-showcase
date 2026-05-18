@@ -23,7 +23,7 @@ import {
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { catalog } from "@/lib/catalog";
+import { CATALOG } from "@/lib/catalog";
 
 const STATUS_OPTIONS: { value: OrderStatusFilter; label: string }[] = [
   { value: "all", label: "Wszystkie" },
@@ -161,9 +161,9 @@ function AdminOrdersPage() {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">Wszystkie pakiety</SelectItem>
-                {catalog.map((c) => (
-                  <SelectItem key={c.priceId} value={c.priceId}>
-                    {c.name}
+                {Object.entries(CATALOG).map(([priceId, item]) => (
+                  <SelectItem key={priceId} value={priceId}>
+                    {item.name}
                   </SelectItem>
                 ))}
               </SelectContent>
