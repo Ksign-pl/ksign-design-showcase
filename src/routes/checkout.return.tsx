@@ -234,6 +234,14 @@ function SuccessView({
         </div>
       )}
 
+      {briefDone && (
+        <PreparationChecklist
+          orderId={order.id}
+          items={getPreparationChecklist(item)}
+        />
+      )}
+
+
       {/* Dynamic primary CTA */}
       {!briefDone ? (
         <div className="space-y-3">
