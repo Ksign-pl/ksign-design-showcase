@@ -14,6 +14,10 @@ import {
   listBriefAssets,
   deleteBriefAsset,
 } from "@/lib/brief-assets.functions";
+import {
+  getChecklistProgress,
+  saveChecklistProgress,
+} from "@/lib/checklist-progress.functions";
 
 const SearchSchema = z.object({
   session_id: z.string().optional(),
