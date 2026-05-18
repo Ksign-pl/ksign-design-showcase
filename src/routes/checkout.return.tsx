@@ -8,6 +8,7 @@ import { resendOrderConfirmation } from "@/lib/email.functions";
 import { getCatalogItem, getPreparationChecklist, getPostBriefCta } from "@/lib/catalog";
 import { CONTACT, mailto } from "@/lib/contact";
 import { generateOrderPdf } from "@/lib/order-pdf";
+import { generateOrderPdfLink } from "@/lib/order-pdf.functions";
 
 const SearchSchema = z.object({
   session_id: z.string().optional(),
