@@ -117,7 +117,29 @@ export const CATALOG: Record<string, CatalogItem> = {
       "Realizacja sklepu w 3–4 tygodnie.",
       "Konfiguracja integracji i szkolenie z obsługi.",
     ],
+    preparationChecklist: [
+      "Dostęp do domeny (panel rejestratora).",
+      "Logo + materiały brandowe (kolory, font, ikony).",
+      "Lista produktów: nazwy, opisy, ceny, warianty.",
+      "Zdjęcia produktów (min. 1000×1000 px na białym tle).",
+      "Konto/umowa z operatorem płatności (Stripe, Przelewy24, PayU).",
+      "Dane do integracji wysyłki (InPost, kurierzy, własne strefy).",
+      "Regulamin sklepu i polityka prywatności (lub zlecenie ich przygotowania).",
+    ],
   },
+  opieka_miesiac: {
+    priceId: "opieka_miesiac",
+    name: "Opieka techniczna",
+    amountPln: 99,
+    recurring: true,
+    blurb: "Aktualizacje, backup, drobne zmiany.",
+    features: [
+      "Aktualizacje + monitoring",
+      "Kopie zapasowe",
+      "Drobne zmiany do 1h/mies.",
+      "Priorytetowe wsparcie",
+    ],
+    nextSteps: [
   opieka_miesiac: {
     priceId: "opieka_miesiac",
     name: "Opieka techniczna",
