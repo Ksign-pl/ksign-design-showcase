@@ -84,6 +84,28 @@ async function handleSubscriptionEvent(sub: any, env: StripeEnv, eventType: stri
   console.log(`[subscription] ${eventType} env=${env} id=${sub.id} status=${sub.status}`);
 }
 
+// Update order status by stripe_session_id. Used for expiration events.
+async function updateOrderStatusBySession(sessionId: string, status: string, env: StripeEnv) {
+  const { error } = await supabaseAdmin
+    .from("orders")
+    .update({ status, updated_at: new Date().toISOString() })
+    .eq("stripe_session_id", sessionId)
+    .eq("environment", env);
+  if (error) console.error(`[order] update status=${status} session=${sessionId}:`, error);
+  else console.log(`[order] status=${status} session=${sessionId}`);
+}
+
+// Update order status by stripe_payment_intent_id. Used for charge/payment_intent events.
+async function updateOrderStatusByPaymentIntent(paymentIntentId: string, status: string, env: StripeEnv) {
+  const { error } = await supabaseAdmin
+    .from("orders")
+    .update({ status, updated_at: new Date().toISOString() })
+    .eq("stripe_payment_intent_id", paymentIntentId)
+    .eq("environment", env);
+  if (error) console.error(`[order] update status=${status} pi=${paymentIntentId}:`, error);
+  else console.log(`[order] status=${status} pi=${paymentIntentId}`);
+}
+
 export const Route = createFileRoute("/api/public/payments/webhook")({
   server: {
     handlers: {
@@ -95,10 +117,31 @@ export const Route = createFileRoute("/api/public/payments/webhook")({
         const env: StripeEnv = rawEnv;
         try {
           const event = await verifyWebhook(request, env);
+          const obj: any = event.data.object;
           switch (event.type) {
             case "checkout.session.completed":
             case "transaction.completed":
-              await handleCheckoutCompleted(event.data.object, env);
+              await handleCheckoutCompleted(obj, env);
+              break;
+            case "checkout.session.async_payment_succeeded":
+              await updateOrderStatusBySession(obj.id, "paid", env);
+              break;
+            case "checkout.session.async_payment_failed":
+              await updateOrderStatusBySession(obj.id, "failed", env);
+              break;
+            case "checkout.session.expired":
+              await updateOrderStatusBySession(obj.id, "expired", env);
+              break;
+            case "payment_intent.payment_failed":
+              await updateOrderStatusByPaymentIntent(obj.id, "failed", env);
+              break;
+            case "payment_intent.canceled":
+              await updateOrderStatusByPaymentIntent(obj.id, "canceled", env);
+              break;
+            case "charge.refunded":
+              if (typeof obj.payment_intent === "string") {
+                await updateOrderStatusByPaymentIntent(obj.payment_intent, "refunded", env);
+              }
               break;
             case "customer.subscription.created":
             case "customer.subscription.updated":
@@ -106,7 +149,7 @@ export const Route = createFileRoute("/api/public/payments/webhook")({
             case "subscription.created":
             case "subscription.updated":
             case "subscription.canceled":
-              await handleSubscriptionEvent(event.data.object, env, event.type);
+              await handleSubscriptionEvent(obj, env, event.type);
               break;
             default:
               console.log("[webhook] unhandled:", event.type);
