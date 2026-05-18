@@ -22,40 +22,64 @@ export const Route = createFileRoute("/checkout/return")({
   component: CheckoutReturn,
 });
 
-const POLL_MAX = 12; // ~24s
+const POLL_INTERVAL_MS = 2000;
+const POLL_MAX = 12; // ~24s before declaring timeout
 
 function CheckoutReturn() {
   const { session_id, canceled } = Route.useSearch();
   const navigate = useNavigate();
   const fetchOrder = useServerFn(getOrderBySession);
   const [pollCount, setPollCount] = useState(0);
+  const [retryCycle, setRetryCycle] = useState(0);
 
   const noSession = !session_id || canceled === "1";
 
-  const { data: order, isFetched } = useQuery({
-    queryKey: ["order", session_id, pollCount],
-    queryFn: () => (session_id ? fetchOrder({ data: { sessionId: session_id } }) : null),
+  const { data: order, isFetched, isFetching, refetch } = useQuery({
+    queryKey: ["order", session_id, retryCycle],
+    queryFn: () =>
+      session_id ? fetchOrder({ data: { sessionId: session_id } }) : null,
     enabled: !!session_id,
-    refetchInterval: (q) => (q.state.data ? false : 2000),
+    refetchInterval: (q) => (q.state.data ? false : POLL_INTERVAL_MS),
   });
 
   useEffect(() => {
-    if (noSession) return;
-    const t = setInterval(() => setPollCount((c) => (c < POLL_MAX ? c + 1 : c)), 2000);
+    if (noSession || order) return;
+    const t = setInterval(
+      () => setPollCount((c) => (c < POLL_MAX ? c + 1 : c)),
+      POLL_INTERVAL_MS,
+    );
     return () => clearInterval(t);
-  }, [noSession]);
+  }, [noSession, order, retryCycle]);
 
-  // State: cancellation / no session
+  const handleRefresh = () => {
+    setPollCount(0);
+    setRetryCycle((c) => c + 1);
+    refetch();
+  };
+
   if (noSession) return <FailureView />;
 
-  // State: webhook hasn't landed yet
   if (!order) {
     const timedOut = pollCount >= POLL_MAX && isFetched;
-    if (timedOut) return <PendingView sessionId={session_id} />;
-    return <LoadingView />;
+    if (timedOut) {
+      return (
+        <PendingView
+          sessionId={session_id}
+          onRefresh={handleRefresh}
+          refreshing={isFetching}
+          retryCycle={retryCycle}
+        />
+      );
+    }
+    return (
+      <LoadingView
+        pollCount={pollCount}
+        max={POLL_MAX}
+        retryCycle={retryCycle}
+      />
+    );
   }
 
-  // State: success
   return <SuccessView order={order} sessionId={session_id!} navigate={navigate} />;
 }
 
@@ -67,16 +91,61 @@ function Shell({ children }: { children: React.ReactNode }) {
   );
 }
 
-function LoadingView() {
+function ProgressBar({ value, max }: { value: number; max: number }) {
+  const pct = Math.min(100, Math.round((value / max) * 100));
+  return (
+    <div
+      className="w-full h-2 rounded-full bg-ink/10 overflow-hidden"
+      role="progressbar"
+      aria-valuemin={0}
+      aria-valuemax={max}
+      aria-valuenow={value}
+      aria-label="Postęp weryfikacji płatności"
+    >
+      <div
+        className="h-full bg-ink transition-[width] duration-500 ease-out"
+        style={{ width: `${pct}%` }}
+      />
+    </div>
+  );
+}
+
+function LoadingView({
+  pollCount,
+  max,
+  retryCycle,
+}: {
+  pollCount: number;
+  max: number;
+  retryCycle: number;
+}) {
+  const secondsLeft = Math.max(0, (max - pollCount) * 2);
+  const stillWaiting = pollCount > max / 2;
+  const isReverify = retryCycle > 0;
+
   return (
     <Shell>
       <div className="text-5xl mb-6 animate-pulse">⏳</div>
       <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-3">
-        Potwierdzamy płatność…
+        {isReverify ? "Ponowna weryfikacja…" : "Potwierdzamy płatność…"}
       </h1>
-      <p className="text-ink/60">
-        To zwykle trwa kilka sekund. Nie zamykaj tej strony.
+      <p className="text-ink/60 mb-8">
+        {stillWaiting
+          ? "To trwa dłużej niż zwykle — czekamy na potwierdzenie ze Stripe."
+          : "Czekamy na webhook ze Stripe. Zwykle zajmuje to kilka sekund — nie zamykaj tej strony."}
       </p>
+
+      <div className="bg-white/60 border border-ink/10 rounded-2xl p-6">
+        <ProgressBar value={pollCount} max={max} />
+        <div className="flex justify-between mt-3 text-xs text-ink/50 font-mono">
+          <span>
+            Próba {Math.min(pollCount + 1, max)}/{max}
+          </span>
+          <span>
+            {secondsLeft > 0 ? `~${secondsLeft}s pozostało` : "kończymy…"}
+          </span>
+        </div>
+      </div>
     </Shell>
   );
 }
@@ -148,7 +217,17 @@ function SuccessView({
   );
 }
 
-function PendingView({ sessionId }: { sessionId: string }) {
+function PendingView({
+  sessionId,
+  onRefresh,
+  refreshing,
+  retryCycle,
+}: {
+  sessionId: string;
+  onRefresh: () => void;
+  refreshing: boolean;
+  retryCycle: number;
+}) {
   return (
     <Shell>
       <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-amber-100 text-amber-700 text-3xl mb-6">
@@ -157,17 +236,44 @@ function PendingView({ sessionId }: { sessionId: string }) {
       <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-3">
         Płatność w trakcie potwierdzania
       </h1>
-      <p className="text-ink/70 mb-6">
-        Przyjęliśmy zlecenie, ale potwierdzenie ze Stripe jeszcze nie dotarło. Zwykle
-        zajmuje to chwilę. Sprawdź e-mail za kilka minut lub napisz do nas — szybko
-        zweryfikujemy status.
+      <p className="text-ink/70 mb-2">
+        Przyjęliśmy zlecenie, ale potwierdzenie ze Stripe (webhook) jeszcze nie dotarło.
       </p>
-      <a
-        href="mailto:hello@ksign.pl?subject=Status%20p%C5%82atno%C5%9Bci"
-        className="inline-flex items-center justify-center gap-2 bg-ink text-cream px-7 py-4 rounded-full font-bold hover:bg-violet hover:text-ink transition"
-      >
-        Napisz do nas
-      </a>
+      <p className="text-ink/60 mb-6">
+        Jeśli karta została obciążona — wszystko jest w porządku, status zaktualizuje się automatycznie.
+        Możesz odświeżyć teraz albo wrócić tu za kilka minut.
+      </p>
+
+      <div className="bg-white/60 border border-ink/10 rounded-2xl p-6 mb-6">
+        <div className="flex items-center justify-between text-sm">
+          <span className="text-ink/60">Status webhooka</span>
+          <span className="font-mono text-amber-700">oczekiwanie ⏱</span>
+        </div>
+        {retryCycle > 0 && (
+          <div className="mt-2 text-xs text-ink/40 text-right">
+            Ponowna weryfikacja: {retryCycle}×
+          </div>
+        )}
+      </div>
+
+      <div className="flex flex-col sm:flex-row gap-3 justify-center">
+        <button
+          type="button"
+          onClick={onRefresh}
+          disabled={refreshing}
+          className="inline-flex items-center justify-center gap-2 bg-ink text-cream px-7 py-4 rounded-full font-bold hover:bg-violet hover:text-ink transition disabled:opacity-60 disabled:cursor-not-allowed"
+        >
+          <span className={refreshing ? "inline-block animate-spin" : "inline-block"}>↻</span>
+          {refreshing ? "Sprawdzam…" : "Odśwież status"}
+        </button>
+        <a
+          href="mailto:hello@ksign.pl?subject=Status%20p%C5%82atno%C5%9Bci"
+          className="inline-flex items-center justify-center gap-2 bg-transparent border border-ink/20 text-ink px-7 py-4 rounded-full font-bold hover:bg-ink/5 transition"
+        >
+          Napisz do nas
+        </a>
+      </div>
+
       <div className="mt-10">
         <Link to="/" className="text-sm text-ink/50 underline">← Wróć na stronę</Link>
       </div>
@@ -178,7 +284,6 @@ function PendingView({ sessionId }: { sessionId: string }) {
 
 function FailureView() {
   useEffect(() => {
-    // Redirect anulowane / brakujące sesje do dedykowanej strony błędu
     window.location.replace("/checkout/failed");
   }, []);
   return (
