@@ -64,7 +64,7 @@ function PrivacyPage() {
           <Section title="2. Inspektor Ochrony Danych">
             <p>
               Nie wyznaczyliśmy Inspektora Ochrony Danych. We wszelkich sprawach związanych z przetwarzaniem danych
-              osobowych prosimy o kontakt: <a href="mailto:hello@ksign.pl" className="underline">hello@ksign.pl</a>.
+              osobowych prosimy o kontakt: <a href={`mailto:${CONTACT.email}`} className="underline">{CONTACT.email}</a>.
             </p>
           </Section>
 
