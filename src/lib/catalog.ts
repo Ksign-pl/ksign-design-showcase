@@ -132,6 +132,20 @@ export const CATALOG: Record<string, CatalogItem> = {
       "Branding + projekt + realizacja w 2–3 tygodnie.",
       "Publikacja, optymalizacja SEO i analityka.",
     ],
+    postBriefSteps: [
+      "Brief odebrany — analizuję strategię i inspiracje (do 48h).",
+      "Warsztat strategiczny online (30–60 min).",
+      "Branding (logo + paleta) i koncept UI w 5–7 dni.",
+      "Implementacja, animacje, SEO i analityka w 2–3 tygodnie.",
+      "Publikacja + raport startowy z metrykami.",
+    ],
+    deliveryDays: [14, 21],
+    postBriefCta: {
+      label: "Zarezerwuj warsztat strategiczny →",
+      href: "https://cal.com/ksign/30min",
+      external: true,
+      note: "30–60 min online — wychodzimy z planem brandu i strony na całość.",
+    },
   },
   pakiet_ecommerce_one_time: {
     priceId: "pakiet_ecommerce_one_time",
