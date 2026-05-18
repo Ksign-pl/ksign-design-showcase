@@ -39,7 +39,7 @@ function LoginPage() {
 
   useEffect(() => {
     const { data: sub } = supabase.auth.onAuthStateChange((_e, session) => {
-      if (session) navigate({ to: search.redirect || "/admin/zamowienia" });
+      if (session) navigate({ to: safeRedirect(search.redirect) });
     });
     return () => sub.subscription.unsubscribe();
   }, [navigate, search.redirect]);
