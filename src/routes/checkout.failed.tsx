@@ -67,7 +67,7 @@ function CheckoutFailed() {
 
         <div className="mt-8">
           <a
-            href="mailto:hello@ksign.pl?subject=Problem%20z%20p%C5%82atno%C5%9Bci%C4%85"
+            href={mailto("Problem z płatnością")}
             className="text-sm text-ink/50 underline"
           >
             Napisz do nas
