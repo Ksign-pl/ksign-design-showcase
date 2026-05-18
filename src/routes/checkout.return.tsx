@@ -288,6 +288,7 @@ function SuccessView({
         steps={steps}
         deliveryDays={[minDays, maxDays]}
         eta={eta}
+        sessionId={sessionId}
       />
 
       <ResendConfirmation orderId={order.id} sessionId={sessionId} />
