@@ -54,7 +54,7 @@ function PrivacyPage() {
               <strong>KSIGN [pełna nazwa firmy]</strong><br />
               ul. [adres], [kod] [miasto], Polska<br />
               NIP: [NIP], REGON: [REGON]<br />
-              E-mail: <a href="mailto:hello@ksign.pl" className="underline">hello@ksign.pl</a>
+              E-mail: <a href={`mailto:${CONTACT.email}`} className="underline">{CONTACT.email}</a>
             </p>
             <p className="mt-3 text-sm text-ink/60">
               Uzupełnij dane firmy przed publikacją.
