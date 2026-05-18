@@ -1,5 +1,8 @@
 // Catalog of products available for online checkout (Stripe price IDs).
 // Update here when adding new packages; UI + checkout page read from this.
+// Contact/calendar links come from CONTACT (env-driven) — never hardcode.
+
+import { CONTACT, mailto } from "./contact";
 
 export interface PostBriefCta {
   label: string;
