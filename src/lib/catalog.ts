@@ -99,6 +99,19 @@ export const CATALOG: Record<string, CatalogItem> = {
       "Projekt + realizacja w 7–14 dni.",
       "Publikacja, szkolenie z edycji i podstawowe SEO.",
     ],
+    postBriefSteps: [
+      "Brief odebrany — przygotowuję architekturę informacji (do 48h).",
+      "Krótka rozmowa (15 min) z potwierdzeniem zakresu podstron.",
+      "Projekt UI i implementacja w 7–14 dni roboczych.",
+      "Runda uwag → publikacja, szkolenie z edycji, podpięcie analityki.",
+    ],
+    deliveryDays: [7, 14],
+    postBriefCta: {
+      label: "Umów rozmowę o strukturze (15 min) →",
+      href: "https://cal.com/ksign/15min",
+      external: true,
+      note: "Na rozmowie domykamy listę podstron i sekcji — potem już tylko realizacja.",
+    },
   },
   pakiet_premium_one_time: {
     priceId: "pakiet_premium_one_time",
