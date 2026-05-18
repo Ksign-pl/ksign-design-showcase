@@ -18,22 +18,23 @@ export const Route = createFileRoute("/blog/$slug")({
         meta: [{ title: "Wpis nie znaleziony — KSIGN" }],
       };
     }
+    const ogImage = "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/71437845-488b-42eb-9d0f-dc3a205b7e74";
     return {
       meta: [
-        { title: `${post.title} — Blog KSIGN` },
+        { title: post.title },
         { name: "description", content: post.excerpt },
         { property: "og:title", content: post.title },
         { property: "og:description", content: post.excerpt },
         { property: "og:type", content: "article" },
         { property: "og:url", content: url },
-        { property: "og:image", content: "https://ksign.pl/og-image.jpg" },
+        { property: "og:image", content: ogImage },
         { property: "article:published_time", content: post.date },
         { property: "article:author", content: post.author },
         { property: "article:section", content: post.category },
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: post.title },
         { name: "twitter:description", content: post.excerpt },
-        { name: "twitter:image", content: "https://ksign.pl/og-image.jpg" },
+        { name: "twitter:image", content: ogImage },
       ],
       links: [{ rel: "canonical", href: url }],
       scripts: [
@@ -44,8 +45,13 @@ export const Route = createFileRoute("/blog/$slug")({
             "@type": "BlogPosting",
             headline: post.title,
             description: post.excerpt,
+            image: [ogImage],
             author: { "@type": "Organization", name: post.author },
-            publisher: { "@type": "Organization", name: "KSIGN" },
+            publisher: {
+              "@type": "Organization",
+              name: "KSIGN",
+              logo: { "@type": "ImageObject", url: ogImage },
+            },
             datePublished: post.date,
             dateModified: post.date,
             mainEntityOfPage: url,
