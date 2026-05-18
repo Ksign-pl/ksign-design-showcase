@@ -14,6 +14,7 @@ import { FinalCTA } from "@/components/site/FinalCTA";
 import { BlogPreview } from "@/components/site/BlogPreview";
 import { Footer } from "@/components/site/Footer";
 import { BackToTop } from "@/components/site/BackToTop";
+import { CONTACT } from "@/lib/contact";
 
 
 export const Route = createFileRoute("/")({
