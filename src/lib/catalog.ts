@@ -1,5 +1,8 @@
 // Catalog of products available for online checkout (Stripe price IDs).
 // Update here when adding new packages; UI + checkout page read from this.
+// Contact/calendar links come from CONTACT (env-driven) — never hardcode.
+
+import { CONTACT, mailto } from "./contact";
 
 export interface PostBriefCta {
   label: string;
@@ -39,7 +42,7 @@ const DEFAULT_PREPARATION_CHECKLIST = [
 
 const DEFAULT_POST_BRIEF_CTA: PostBriefCta = {
   label: "Umów krótką rozmowę (15 min) →",
-  href: "https://cal.com/ksign/15min",
+  href: CONTACT.calendarShortUrl,
   external: true,
   note: "Albo poczekaj na maila — odzywam się w ciągu 24h z planem realizacji.",
 };
@@ -108,7 +111,7 @@ export const CATALOG: Record<string, CatalogItem> = {
     deliveryDays: [7, 14],
     postBriefCta: {
       label: "Umów rozmowę o strukturze (15 min) →",
-      href: "https://cal.com/ksign/15min",
+      href: CONTACT.calendarShortUrl,
       external: true,
       note: "Na rozmowie domykamy listę podstron i sekcji — potem już tylko realizacja.",
     },
@@ -142,7 +145,7 @@ export const CATALOG: Record<string, CatalogItem> = {
     deliveryDays: [14, 21],
     postBriefCta: {
       label: "Zarezerwuj warsztat strategiczny →",
-      href: "https://cal.com/ksign/30min",
+      href: CONTACT.calendarLongUrl,
       external: true,
       note: "30–60 min online — wychodzimy z planem brandu i strony na całość.",
     },
@@ -176,7 +179,7 @@ export const CATALOG: Record<string, CatalogItem> = {
     deliveryDays: [21, 28],
     postBriefCta: {
       label: "Umów rozmowę techniczną (30 min) →",
-      href: "https://cal.com/ksign/30min",
+      href: CONTACT.calendarLongUrl,
       external: true,
       note: "Domykamy listę integracji i operatora płatności — bez tego nie startujemy.",
     },
@@ -217,7 +220,7 @@ export const CATALOG: Record<string, CatalogItem> = {
     deliveryDays: [1, 2],
     postBriefCta: {
       label: "Prześlij dostępy do panelu",
-      href: "mailto:hello@ksign.pl?subject=Opieka%20techniczna%20-%20dost%C4%99py",
+      href: mailto("Opieka techniczna - dostępy"),
       external: false,
       note: "Im szybciej dostanę dostępy, tym szybciej ruszam z audytem i backupem.",
     },

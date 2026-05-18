@@ -12,6 +12,7 @@ import appCss from "../styles.css?url";
 import { CookieBanner } from "@/components/site/CookieBanner";
 import { ConsentScripts } from "@/components/site/ConsentScripts";
 import { ConsentDebugPanel } from "@/components/site/ConsentDebugPanel";
+import { CONTACT } from "@/lib/contact";
 
 function NotFoundComponent() {
   return (
@@ -105,21 +106,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
               "@id": "https://ksign.pl/#org",
               name: "KSIGN",
               url: "https://ksign.pl",
-              email: "hello@ksign.pl",
+              email: CONTACT.email,
               areaServed: "PL",
               sameAs: ["https://www.facebook.com/ksign2026", "https://www.instagram.com/ksing.marketing"],
               contactPoint: [
                 {
                   "@type": "ContactPoint",
                   contactType: "customer support",
-                  email: "hello@ksign.pl",
+                  email: CONTACT.email,
                   availableLanguage: ["Polish", "English"],
                   areaServed: "PL",
                 },
                 {
                   "@type": "ContactPoint",
                   contactType: "sales",
-                  email: "hello@ksign.pl",
+                  email: CONTACT.email,
                   availableLanguage: ["Polish", "English"],
                   areaServed: "PL",
                 },

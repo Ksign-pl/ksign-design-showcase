@@ -14,6 +14,7 @@ import { FinalCTA } from "@/components/site/FinalCTA";
 import { BlogPreview } from "@/components/site/BlogPreview";
 import { Footer } from "@/components/site/Footer";
 import { BackToTop } from "@/components/site/BackToTop";
+import { CONTACT } from "@/lib/contact";
 
 
 export const Route = createFileRoute("/")({
@@ -67,7 +68,7 @@ export const Route = createFileRoute("/")({
               description: "Premium strony internetowe dla małych firm. Pakiet Start — one-page za 999 zł netto, realizacja 3–7 dni roboczych.",
               url: "https://ksign.pl/",
               image: "https://ksign.pl/og-image.jpg",
-              email: "hello@ksign.pl",
+              email: CONTACT.email,
               priceRange: "999–6000 PLN",
               areaServed: { "@type": "Country", name: "Poland" },
               address: { "@type": "PostalAddress", addressCountry: "PL" },
@@ -76,14 +77,14 @@ export const Route = createFileRoute("/")({
                 {
                   "@type": "ContactPoint",
                   contactType: "customer support",
-                  email: "hello@ksign.pl",
+                  email: CONTACT.email,
                   availableLanguage: ["Polish", "English"],
                   areaServed: "PL",
                 },
                 {
                   "@type": "ContactPoint",
                   contactType: "sales",
-                  email: "hello@ksign.pl",
+                  email: CONTACT.email,
                   availableLanguage: ["Polish", "English"],
                   areaServed: "PL",
                 },

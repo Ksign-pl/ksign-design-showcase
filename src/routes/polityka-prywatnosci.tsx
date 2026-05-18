@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { CONTACT } from "@/lib/contact";
 
 export const Route = createFileRoute("/polityka-prywatnosci")({
   head: () => ({
@@ -53,7 +54,7 @@ function PrivacyPage() {
               <strong>KSIGN [pełna nazwa firmy]</strong><br />
               ul. [adres], [kod] [miasto], Polska<br />
               NIP: [NIP], REGON: [REGON]<br />
-              E-mail: <a href="mailto:hello@ksign.pl" className="underline">hello@ksign.pl</a>
+              E-mail: <a href={`mailto:${CONTACT.email}`} className="underline">{CONTACT.email}</a>
             </p>
             <p className="mt-3 text-sm text-ink/60">
               Uzupełnij dane firmy przed publikacją.
@@ -63,7 +64,7 @@ function PrivacyPage() {
           <Section title="2. Inspektor Ochrony Danych">
             <p>
               Nie wyznaczyliśmy Inspektora Ochrony Danych. We wszelkich sprawach związanych z przetwarzaniem danych
-              osobowych prosimy o kontakt: <a href="mailto:hello@ksign.pl" className="underline">hello@ksign.pl</a>.
+              osobowych prosimy o kontakt: <a href={`mailto:${CONTACT.email}`} className="underline">{CONTACT.email}</a>.
             </p>
           </Section>
 

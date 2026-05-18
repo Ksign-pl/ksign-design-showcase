@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { z } from "zod";
 import { getCatalogItem } from "@/lib/catalog";
+import { mailto } from "@/lib/contact";
 
 const SearchSchema = z.object({
   price: z.string().optional(),
@@ -73,7 +74,7 @@ function CheckoutCanceled() {
 
         <div className="mt-8">
           <a
-            href="mailto:hello@ksign.pl?subject=Inna%20forma%20p%C5%82atno%C5%9Bci"
+            href={mailto("Inna forma płatności")}
             className="text-sm text-ink/50 underline"
           >
             Napisz do nas o inną formę płatności

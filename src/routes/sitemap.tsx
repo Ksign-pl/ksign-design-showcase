@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { BLOG_POSTS } from "@/lib/blog-posts";
+import { CONTACT } from "@/lib/contact";
 
 type SitemapLink = {
   to: string;
@@ -28,7 +29,7 @@ const HOME_SECTIONS: SitemapLink[] = [
   { to: "/", hash: "proces", label: "Proces", description: "Jak wygląda współpraca krok po kroku." },
   { to: "/", hash: "realizacje", label: "Realizacje / Cennik", description: "Przykłady wdrożeń i przejrzyste ceny." },
   { to: "/", hash: "faq", label: "FAQ", description: "Najczęściej zadawane pytania." },
-  { to: "/", hash: "kontakt", label: "Kontakt", description: "Napisz do nas: hello@ksign.pl" },
+  { to: "/", hash: "kontakt", label: "Kontakt", description: `Napisz do nas: ${CONTACT.email}` },
 ];
 
 const LEGAL_LINKS: SitemapLink[] = [

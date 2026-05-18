@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { openConsentSettings } from "@/lib/consent";
+import { CONTACT } from "@/lib/contact";
 
 export function Footer() {
   return (
@@ -36,7 +37,7 @@ export function Footer() {
           <div className="md:col-span-4">
             <div className="text-xs font-mono uppercase tracking-widest text-ink/40 mb-4">Kontakt</div>
             <ul className="space-y-2 mb-6">
-              <li><a href="mailto:hello@ksign.pl" className="font-medium hover:text-violet transition">hello@ksign.pl</a></li>
+              <li><a href={`mailto:${CONTACT.email}`} className="font-medium hover:text-violet transition">{CONTACT.email}</a></li>
             </ul>
             <div className="flex gap-2">
               <a
