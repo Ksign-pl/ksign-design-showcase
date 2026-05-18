@@ -423,30 +423,58 @@ function DownloadSummary({
   deliveryDays: [number, number];
   eta: string;
 }) {
-  const handleDownload = () => {
-    const doc = generateOrderPdf({
-      orderId: order.id,
-      productName: order.product_name,
-      amountCents: order.amount_cents,
-      currency: order.currency,
-      briefCompleted: order.brief_completed,
-      deliveryDays,
-      etaRange: eta,
-      steps,
-    });
-    doc.save(`ksign-zamowienie-${order.id.slice(0, 8)}.pdf`);
+  const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
+
+  const handleDownload = async () => {
+    setStatus("loading");
+    try {
+      const doc = generateOrderPdf({
+        orderId: order.id,
+        productName: order.product_name,
+        amountCents: order.amount_cents,
+        currency: order.currency,
+        briefCompleted: order.brief_completed,
+        deliveryDays,
+        etaRange: eta,
+        steps,
+      });
+      doc.save(`ksign-zamowienie-${order.id.slice(0, 8)}.pdf`);
+      setStatus("done");
+      setTimeout(() => setStatus("idle"), 2500);
+    } catch {
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 2500);
+    }
   };
 
+  const isLoading = status === "loading";
+
   return (
-    <div className="mt-8">
+    <div className="mt-8 flex items-center gap-3">
       <button
         type="button"
         onClick={handleDownload}
-        className="inline-flex items-center justify-center gap-2 bg-transparent border border-ink/20 text-ink px-5 py-2.5 rounded-full font-bold text-sm hover:bg-ink/5 transition"
+        disabled={isLoading}
+        className="inline-flex items-center justify-center gap-2 bg-transparent border border-ink/20 text-ink px-5 py-2.5 rounded-full font-bold text-sm hover:bg-ink/5 transition disabled:opacity-60 disabled:cursor-not-allowed"
       >
-        <span>⬇</span>
-        Pobierz podsumowanie (PDF)
+        {isLoading ? (
+          <>
+            <span className="inline-block w-3.5 h-3.5 border-2 border-ink/30 border-t-ink rounded-full animate-spin" aria-hidden="true" />
+            Generowanie…
+          </>
+        ) : (
+          <>
+            <span aria-hidden="true">⬇</span>
+            Pobierz podsumowanie (PDF)
+          </>
+        )}
       </button>
+      {status === "done" && (
+        <span className="text-sm text-ink/70" role="status">✓ Gotowe</span>
+      )}
+      {status === "error" && (
+        <span className="text-sm text-red-600" role="status">Błąd generowania</span>
+      )}
     </div>
   );
 }
