@@ -11,7 +11,7 @@ export const RecoveryEmail = ({
   siteName,
   confirmationUrl,
 }: RecoveryEmailProps) => (
-  <EmailShell preview={`Zresetuj hasło dla ${siteName}`}>
+  <EmailShell preview="Reset hasła — KSIGN">
     <Heading style={styles.h1}>Zresetuj swoje hasło</Heading>
     <Text style={styles.text}>
       Otrzymaliśmy prośbę o zresetowanie hasła dla {siteName}. Kliknij przycisk

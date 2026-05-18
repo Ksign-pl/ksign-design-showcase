@@ -7,7 +7,7 @@ interface ReauthenticationEmailProps {
 }
 
 export const ReauthenticationEmail = ({ token }: ReauthenticationEmailProps) => (
-  <EmailShell preview="Twój kod weryfikacyjny">
+  <EmailShell preview="Kod weryfikacyjny — KSIGN">
     <Heading style={styles.h1}>Potwierdź ponowną autoryzację</Heading>
     <Text style={styles.text}>Użyj poniższego kodu, aby potwierdzić swoją tożsamość:</Text>
     <Text style={styles.code}>{token}</Text>

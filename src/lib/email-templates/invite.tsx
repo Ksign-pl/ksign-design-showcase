@@ -13,7 +13,7 @@ export const InviteEmail = ({
   siteUrl,
   confirmationUrl,
 }: InviteEmailProps) => (
-  <EmailShell preview={`Zaproszenie do ${siteName}`}>
+  <EmailShell preview="Zaproszenie — KSIGN">
     <Heading style={styles.h1}>Masz zaproszenie</Heading>
     <Text style={styles.text}>
       Zaproszono Cię do{' '}

@@ -11,7 +11,7 @@ export const MagicLinkEmail = ({
   siteName,
   confirmationUrl,
 }: MagicLinkEmailProps) => (
-  <EmailShell preview={`Twój link logowania do ${siteName}`}>
+  <EmailShell preview="Link logowania — KSIGN">
     <Heading style={styles.h1}>Twój link logowania</Heading>
     <Text style={styles.text}>
       Kliknij przycisk poniżej, aby zalogować się do {siteName}. Link wygaśnie
