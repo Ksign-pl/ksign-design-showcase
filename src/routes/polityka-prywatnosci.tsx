@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { CONTACT } from "@/lib/contact";
 
 export const Route = createFileRoute("/polityka-prywatnosci")({
   head: () => ({
