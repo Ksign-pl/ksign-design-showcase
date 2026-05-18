@@ -29,6 +29,7 @@ import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as ApiPublicOgDebugRouteImport } from './routes/api/public/og-debug'
 import { Route as ApiPublicMetaCapiRouteImport } from './routes/api/public/meta-capi'
 import { Route as AuthenticatedAdminZamowieniaRouteImport } from './routes/_authenticated/admin/zamowienia'
+import { Route as AuthenticatedAdminGscStatusRouteImport } from './routes/_authenticated/admin/gsc-status'
 import { Route as LovableEmailQueueProcessRouteImport } from './routes/lovable/email/queue/process'
 import { Route as LovableEmailAuthWebhookRouteImport } from './routes/lovable/email/auth/webhook'
 import { Route as LovableEmailAuthPreviewRouteImport } from './routes/lovable/email/auth/preview'
@@ -134,6 +135,12 @@ const AuthenticatedAdminZamowieniaRoute =
     path: '/admin/zamowienia',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
+const AuthenticatedAdminGscStatusRoute =
+  AuthenticatedAdminGscStatusRouteImport.update({
+    id: '/admin/gsc-status',
+    path: '/admin/gsc-status',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 const LovableEmailQueueProcessRoute =
   LovableEmailQueueProcessRouteImport.update({
     id: '/lovable/email/queue/process',
@@ -174,6 +181,7 @@ export interface FileRoutesByFullPath {
   '/checkout/canceled': typeof CheckoutCanceledRoute
   '/checkout/failed': typeof CheckoutFailedRoute
   '/checkout/return': typeof CheckoutReturnRoute
+  '/admin/gsc-status': typeof AuthenticatedAdminGscStatusRoute
   '/admin/zamowienia': typeof AuthenticatedAdminZamowieniaRoute
   '/api/public/meta-capi': typeof ApiPublicMetaCapiRoute
   '/api/public/og-debug': typeof ApiPublicOgDebugRoute
@@ -199,6 +207,7 @@ export interface FileRoutesByTo {
   '/checkout/canceled': typeof CheckoutCanceledRoute
   '/checkout/failed': typeof CheckoutFailedRoute
   '/checkout/return': typeof CheckoutReturnRoute
+  '/admin/gsc-status': typeof AuthenticatedAdminGscStatusRoute
   '/admin/zamowienia': typeof AuthenticatedAdminZamowieniaRoute
   '/api/public/meta-capi': typeof ApiPublicMetaCapiRoute
   '/api/public/og-debug': typeof ApiPublicOgDebugRoute
@@ -226,6 +235,7 @@ export interface FileRoutesById {
   '/checkout/canceled': typeof CheckoutCanceledRoute
   '/checkout/failed': typeof CheckoutFailedRoute
   '/checkout/return': typeof CheckoutReturnRoute
+  '/_authenticated/admin/gsc-status': typeof AuthenticatedAdminGscStatusRoute
   '/_authenticated/admin/zamowienia': typeof AuthenticatedAdminZamowieniaRoute
   '/api/public/meta-capi': typeof ApiPublicMetaCapiRoute
   '/api/public/og-debug': typeof ApiPublicOgDebugRoute
@@ -253,6 +263,7 @@ export interface FileRouteTypes {
     | '/checkout/canceled'
     | '/checkout/failed'
     | '/checkout/return'
+    | '/admin/gsc-status'
     | '/admin/zamowienia'
     | '/api/public/meta-capi'
     | '/api/public/og-debug'
@@ -278,6 +289,7 @@ export interface FileRouteTypes {
     | '/checkout/canceled'
     | '/checkout/failed'
     | '/checkout/return'
+    | '/admin/gsc-status'
     | '/admin/zamowienia'
     | '/api/public/meta-capi'
     | '/api/public/og-debug'
@@ -304,6 +316,7 @@ export interface FileRouteTypes {
     | '/checkout/canceled'
     | '/checkout/failed'
     | '/checkout/return'
+    | '/_authenticated/admin/gsc-status'
     | '/_authenticated/admin/zamowienia'
     | '/api/public/meta-capi'
     | '/api/public/og-debug'
@@ -477,6 +490,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminZamowieniaRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/admin/gsc-status': {
+      id: '/_authenticated/admin/gsc-status'
+      path: '/admin/gsc-status'
+      fullPath: '/admin/gsc-status'
+      preLoaderRoute: typeof AuthenticatedAdminGscStatusRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
     '/lovable/email/queue/process': {
       id: '/lovable/email/queue/process'
       path: '/lovable/email/queue/process'
@@ -509,10 +529,12 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedRouteChildren {
+  AuthenticatedAdminGscStatusRoute: typeof AuthenticatedAdminGscStatusRoute
   AuthenticatedAdminZamowieniaRoute: typeof AuthenticatedAdminZamowieniaRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
+  AuthenticatedAdminGscStatusRoute: AuthenticatedAdminGscStatusRoute,
   AuthenticatedAdminZamowieniaRoute: AuthenticatedAdminZamowieniaRoute,
 }
 
