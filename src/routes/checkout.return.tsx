@@ -341,29 +341,39 @@ function PreparationChecklist({ orderId, sessionId, items }: { orderId: string; 
   });
 
   const [checked, setChecked] = useState<Set<number>>(new Set());
+  const [notes, setNotes] = useState<Record<string, string>>({});
+  const [openNote, setOpenNote] = useState<number | null>(null);
   const [hydrated, setHydrated] = useState(false);
   const [saveState, setSaveState] = useState<"idle" | "saving" | "saved" | "error">("idle");
   const saveTimer = useRef<number | null>(null);
   const migratedRef = useRef(false);
 
-  const persist = (next: Set<number>) => {
+  const persist = (nextChecked: Set<number>, nextNotes: Record<string, string>) => {
     if (saveTimer.current) window.clearTimeout(saveTimer.current);
     setSaveState("saving");
     saveTimer.current = window.setTimeout(async () => {
       try {
-        await saveProgress({ data: { orderId, sessionId, checked: [...next] } });
+        await saveProgress({
+          data: {
+            orderId,
+            sessionId,
+            checked: [...nextChecked],
+            notes: nextNotes,
+          },
+        });
         setSaveState("saved");
         window.setTimeout(() => setSaveState((s) => (s === "saved" ? "idle" : s)), 1500);
       } catch {
         setSaveState("error");
       }
-    }, 400);
+    }, 500);
   };
 
   // Hydrate from server; one-time migration of any localStorage progress.
   useEffect(() => {
     if (isLoading || hydrated) return;
     const serverChecked = new Set<number>(data?.checked ?? []);
+    const serverNotes = (data?.notes ?? {}) as Record<string, string>;
     let merged = serverChecked;
     if (!migratedRef.current && typeof window !== "undefined") {
       migratedRef.current = true;
@@ -375,7 +385,7 @@ function PreparationChecklist({ orderId, sessionId, items }: { orderId: string; 
             const local = arr.map(Number).filter((n) => Number.isInteger(n));
             if (local.length && serverChecked.size === 0) {
               merged = new Set<number>([...serverChecked, ...local]);
-              persist(merged);
+              persist(merged, serverNotes);
             }
           }
           window.localStorage.removeItem(legacyKey);
@@ -385,6 +395,7 @@ function PreparationChecklist({ orderId, sessionId, items }: { orderId: string; 
       }
     }
     setChecked(merged);
+    setNotes(serverNotes);
     setHydrated(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading, data]);
@@ -400,7 +411,18 @@ function PreparationChecklist({ orderId, sessionId, items }: { orderId: string; 
       const next = new Set(prev);
       if (next.has(i)) next.delete(i);
       else next.add(i);
-      persist(next);
+      persist(next, notes);
+      return next;
+    });
+  };
+
+  const updateNote = (i: number, value: string) => {
+    const capped = value.slice(0, 2000);
+    setNotes((prev) => {
+      const next = { ...prev };
+      if (capped.trim()) next[String(i)] = capped;
+      else delete next[String(i)];
+      persist(checked, next);
       return next;
     });
   };
@@ -422,7 +444,7 @@ function PreparationChecklist({ orderId, sessionId, items }: { orderId: string; 
         </span>
       </div>
       <p className="text-sm text-ink/60 mb-4">
-        Zbierz te rzeczy zanim zaczniemy — dzięki temu ruszamy bez przestojów.
+        Zbierz te rzeczy zanim zaczniemy — dzięki temu ruszamy bez przestojów. Możesz dopisać notatkę z detalami dla KSIGN do każdego punktu.
       </p>
 
       <div
@@ -442,21 +464,58 @@ function PreparationChecklist({ orderId, sessionId, items }: { orderId: string; 
       <ul className="space-y-2">
         {items.map((item, i) => {
           const isChecked = checked.has(i);
+          const note = notes[String(i)] ?? "";
+          const isOpen = openNote === i || note.length > 0;
           return (
-            <li key={i}>
-              <label className="flex gap-3 items-start cursor-pointer group p-2 -m-2 rounded-lg hover:bg-ink/5 transition">
+            <li key={i} className="rounded-lg hover:bg-ink/5 transition p-2 -m-2">
+              <div className="flex gap-3 items-start">
                 <input
+                  id={`prep-${i}`}
                   type="checkbox"
                   checked={isChecked}
                   onChange={() => toggle(i)}
                   className="mt-0.5 flex-none w-5 h-5 rounded border-ink/30 text-ink focus:ring-ink/30 cursor-pointer"
                 />
-                <span
-                  className={`text-sm leading-snug ${isChecked ? "text-ink/40 line-through" : "text-ink/80"}`}
+                <label
+                  htmlFor={`prep-${i}`}
+                  className={`flex-1 text-sm leading-snug cursor-pointer ${isChecked ? "text-ink/40 line-through" : "text-ink/80"}`}
                 >
                   {item}
-                </span>
-              </label>
+                </label>
+                <button
+                  type="button"
+                  onClick={() => setOpenNote((cur) => (cur === i ? null : i))}
+                  className="text-[11px] font-mono uppercase tracking-wide text-ink/50 hover:text-ink underline-offset-2 hover:underline flex-none"
+                  aria-expanded={isOpen}
+                  aria-controls={`note-${i}`}
+                >
+                  {note ? "notatka ✎" : "+ notatka"}
+                </button>
+              </div>
+              {isOpen && (
+                <div id={`note-${i}`} className="mt-2 ml-8">
+                  <textarea
+                    value={note}
+                    onChange={(e) => updateNote(i, e.target.value)}
+                    placeholder="Dopisz szczegóły dla KSIGN (linki, wymiary, marka, deadline…)"
+                    maxLength={2000}
+                    rows={2}
+                    className="w-full text-sm rounded-md border border-ink/15 bg-ink/5 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ink/20 resize-y min-h-[60px]"
+                  />
+                  <div className="flex justify-between mt-1">
+                    <span className="text-[10px] text-ink/40 font-mono">{note.length}/2000</span>
+                    {note && (
+                      <button
+                        type="button"
+                        onClick={() => updateNote(i, "")}
+                        className="text-[10px] text-ink/50 hover:text-red-600 font-mono uppercase"
+                      >
+                        Usuń notatkę
+                      </button>
+                    )}
+                  </div>
+                </div>
+              )}
             </li>
           );
         })}
