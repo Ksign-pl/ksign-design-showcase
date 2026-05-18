@@ -140,23 +140,16 @@ export const CATALOG: Record<string, CatalogItem> = {
       "Priorytetowe wsparcie",
     ],
     nextSteps: [
-  opieka_miesiac: {
-    priceId: "opieka_miesiac",
-    name: "Opieka techniczna",
-    amountPln: 99,
-    recurring: true,
-    blurb: "Aktualizacje, backup, drobne zmiany.",
-    features: [
-      "Aktualizacje + monitoring",
-      "Kopie zapasowe",
-      "Drobne zmiany do 1h/mies.",
-      "Priorytetowe wsparcie",
-    ],
-    nextSteps: [
       "Dostajesz mailowo dane kontaktowe do zgłoszeń.",
       "Pierwszy backup i audyt w ciągu 48h.",
       "Drobne zmiany do 1h/miesiąc — zgłaszasz mailem.",
       "Subskrypcję możesz anulować w każdej chwili.",
+    ],
+    preparationChecklist: [
+      "Dostęp administratora do strony (CMS, hosting, FTP).",
+      "Kontakt do osoby decyzyjnej po Twojej stronie.",
+      "Lista bieżących integracji (analytics, formularze, płatności).",
+      "Aktualna kopia zapasowa (jeśli posiadasz) — albo zlecimy nową.",
     ],
   },
 };
