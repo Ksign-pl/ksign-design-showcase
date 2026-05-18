@@ -1,6 +1,15 @@
 // Catalog of products available for online checkout (Stripe price IDs).
 // Update here when adding new packages; UI + checkout page read from this.
 
+export interface PostBriefCta {
+  label: string;
+  href: string;
+  /** Open in new tab? Defaults to true when href is external. */
+  external?: boolean;
+  /** Helper line shown under the CTA. */
+  note?: string;
+}
+
 export interface CatalogItem {
   priceId: string;
   name: string;
@@ -15,6 +24,8 @@ export interface CatalogItem {
   deliveryDays?: [number, number];
   /** Items the client should prepare before work starts (shown after brief). */
   preparationChecklist?: string[];
+  /** Primary CTA shown on the success screen once the brief is filled. */
+  postBriefCta?: PostBriefCta;
   highlight?: boolean;
 }
 
@@ -26,8 +37,19 @@ const DEFAULT_PREPARATION_CHECKLIST = [
   "Dane kontaktowe i firmowe do stopki (adres, NIP, telefon).",
 ];
 
+const DEFAULT_POST_BRIEF_CTA: PostBriefCta = {
+  label: "Umów krótką rozmowę (15 min) →",
+  href: "https://cal.com/ksign/15min",
+  external: true,
+  note: "Albo poczekaj na maila — odzywam się w ciągu 24h z planem realizacji.",
+};
+
 export function getPreparationChecklist(item: CatalogItem | undefined): string[] {
   return item?.preparationChecklist ?? DEFAULT_PREPARATION_CHECKLIST;
+}
+
+export function getPostBriefCta(item: CatalogItem | undefined): PostBriefCta {
+  return item?.postBriefCta ?? DEFAULT_POST_BRIEF_CTA;
 }
 
 export const CATALOG: Record<string, CatalogItem> = {
