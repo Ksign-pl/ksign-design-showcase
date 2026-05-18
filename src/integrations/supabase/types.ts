@@ -97,6 +97,27 @@ export type Database = {
         }
         Relationships: []
       }
+      order_checklist_progress: {
+        Row: {
+          checked_indices: number[]
+          created_at: string
+          order_id: string
+          updated_at: string
+        }
+        Insert: {
+          checked_indices?: number[]
+          created_at?: string
+          order_id: string
+          updated_at?: string
+        }
+        Update: {
+          checked_indices?: number[]
+          created_at?: string
+          order_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       orders: {
         Row: {
           amount_cents: number
