@@ -8,6 +8,7 @@ export interface CatalogItem {
   recurring: boolean;
   blurb: string;
   features: string[];
+  nextSteps: string[];
   highlight?: boolean;
 }
 
@@ -24,6 +25,12 @@ export const CATALOG: Record<string, CatalogItem> = {
       "Wersja mobilna i podstawowe SEO",
       "Realizacja 3–7 dni roboczych",
     ],
+    nextSteps: [
+      "Wypełnij krótki brief (logo, kolory, treści) — link niżej.",
+      "W ciągu 24h odzywam się mailowo z planem realizacji.",
+      "Pierwsza wersja strony w 3–7 dni roboczych.",
+      "Maks. 2 rundy poprawek i publikacja na Twojej domenie.",
+    ],
     highlight: true,
   },
   pakiet_business_one_time: {
@@ -39,6 +46,12 @@ export const CATALOG: Record<string, CatalogItem> = {
       "SEO on-page + Google Analytics",
       "Realizacja 7–14 dni",
     ],
+    nextSteps: [
+      "Wypełnij brief — opisz strukturę podstron i cele.",
+      "Krótka rozmowa (15 min) z ustaleniem zakresu.",
+      "Projekt + realizacja w 7–14 dni.",
+      "Publikacja, szkolenie z edycji i podstawowe SEO.",
+    ],
   },
   pakiet_premium_one_time: {
     priceId: "pakiet_premium_one_time",
@@ -52,6 +65,12 @@ export const CATALOG: Record<string, CatalogItem> = {
       "Animacje i mikrointerakcje",
       "Pełne SEO on-page",
       "Realizacja 2–3 tygodnie",
+    ],
+    nextSteps: [
+      "Wypełnij brief — strategia, branding, inspiracje.",
+      "Warsztat strategiczny (30–60 min).",
+      "Branding + projekt + realizacja w 2–3 tygodnie.",
+      "Publikacja, optymalizacja SEO i analityka.",
     ],
   },
   pakiet_ecommerce_one_time: {
@@ -67,6 +86,12 @@ export const CATALOG: Record<string, CatalogItem> = {
       "Integracje z analityką",
       "Realizacja 3–4 tygodnie",
     ],
+    nextSteps: [
+      "Wypełnij brief — produkty, dostawy, płatności.",
+      "Wybieramy platformę (Shoper / Woo / Shopify).",
+      "Realizacja sklepu w 3–4 tygodnie.",
+      "Konfiguracja integracji i szkolenie z obsługi.",
+    ],
   },
   opieka_miesiac: {
     priceId: "opieka_miesiac",
@@ -79,6 +104,12 @@ export const CATALOG: Record<string, CatalogItem> = {
       "Kopie zapasowe",
       "Drobne zmiany do 1h/mies.",
       "Priorytetowe wsparcie",
+    ],
+    nextSteps: [
+      "Dostajesz mailowo dane kontaktowe do zgłoszeń.",
+      "Pierwszy backup i audyt w ciągu 48h.",
+      "Drobne zmiany do 1h/miesiąc — zgłaszasz mailem.",
+      "Subskrypcję możesz anulować w każdej chwili.",
     ],
   },
 };
