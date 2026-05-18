@@ -160,7 +160,10 @@ function SuccessView({
   navigate: ReturnType<typeof useNavigate>;
 }) {
   const item = getCatalogItem(order.price_id);
-  const steps = item?.nextSteps ?? [];
+  const briefDone = order.brief_completed;
+  const steps = briefDone ? (item?.postBriefSteps ?? item?.nextSteps ?? []) : (item?.nextSteps ?? []);
+  const [minDays, maxDays] = item?.deliveryDays ?? [3, 7];
+  const eta = etaRange(minDays, maxDays);
 
   return (
     <Shell>
@@ -168,7 +171,7 @@ function SuccessView({
         ✓
       </div>
       <h1 className="text-4xl md:text-5xl font-black tracking-tight mb-3">
-        Dzięki za zamówienie!
+        {briefDone ? "Wszystko gotowe — startujemy!" : "Dzięki za zamówienie!"}
       </h1>
       <p className="text-ink/70 mb-2">
         <strong>{order.product_name}</strong> —{" "}
@@ -179,9 +182,29 @@ function SuccessView({
         Potwierdzenie wysłaliśmy na Twój e-mail.
       </p>
 
+      {/* Status + ETA bar */}
+      <div className="grid grid-cols-2 gap-3 mb-8 text-left">
+        <div className="bg-white border border-ink/10 rounded-2xl p-4">
+          <div className="text-xs text-ink/50 uppercase tracking-wide mb-1">Status briefu</div>
+          <div className="font-bold">
+            {briefDone ? "✓ wypełniony" : "○ oczekuje"}
+          </div>
+        </div>
+        <div className="bg-white border border-ink/10 rounded-2xl p-4">
+          <div className="text-xs text-ink/50 uppercase tracking-wide mb-1">
+            {briefDone ? "Pierwsza wersja do" : "Realizacja"}
+          </div>
+          <div className="font-bold">
+            {briefDone ? eta : `${minDays}–${maxDays} dni rob.`}
+          </div>
+        </div>
+      </div>
+
       {steps.length > 0 && (
         <div className="text-left bg-white border border-ink/10 rounded-2xl p-6 mb-8">
-          <h2 className="font-black text-lg mb-4">Co dalej?</h2>
+          <h2 className="font-black text-lg mb-4">
+            {briefDone ? "Co dzieje się teraz?" : "Co dalej?"}
+          </h2>
           <ol className="space-y-3">
             {steps.map((step, i) => (
               <li key={i} className="flex gap-3 text-sm text-ink/80">
@@ -195,17 +218,37 @@ function SuccessView({
         </div>
       )}
 
-      {!order.brief_completed ? (
-        <button
-          type="button"
-          onClick={() => navigate({ to: "/brief", search: { session_id: sessionId } })}
-          className="inline-flex items-center justify-center gap-2 bg-ink text-cream px-7 py-4 rounded-full font-bold hover:bg-violet hover:text-ink transition"
-        >
-          Wypełnij brief →
-        </button>
+      {/* Dynamic primary CTA */}
+      {!briefDone ? (
+        <div className="space-y-3">
+          <button
+            type="button"
+            onClick={() => navigate({ to: "/brief", search: { session_id: sessionId } })}
+            className="inline-flex items-center justify-center gap-2 bg-ink text-cream px-7 py-4 rounded-full font-bold hover:bg-violet hover:text-ink transition"
+          >
+            Wypełnij brief →
+          </button>
+          <p className="text-xs text-ink/50">
+            Im szybciej wypełnisz brief, tym szybciej zaczynam — zwykle ten sam dzień.
+          </p>
+        </div>
       ) : (
-        <p className="text-sm text-ink/60">Brief już wypełniony — odzywam się mailowo.</p>
+        <div className="space-y-3">
+          <a
+            href="https://cal.com/ksign/15min"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 bg-ink text-cream px-7 py-4 rounded-full font-bold hover:bg-violet hover:text-ink transition"
+          >
+            Umów krótką rozmowę (15 min) →
+          </a>
+          <p className="text-xs text-ink/50">
+            Albo poczekaj na maila — odzywam się w ciągu 24h z planem realizacji.
+          </p>
+        </div>
       )}
+
+      <ContactSection />
 
       <div className="mt-10">
         <Link to="/" className="text-sm text-ink/50 underline">
@@ -214,6 +257,68 @@ function SuccessView({
       </div>
       <p className="text-xs text-ink/30 mt-6 font-mono break-all">ID: {sessionId}</p>
     </Shell>
+  );
+}
+
+function etaRange(minDays: number, maxDays: number): string {
+  const fmt = new Intl.DateTimeFormat("pl-PL", { day: "numeric", month: "short" });
+  const add = (n: number) => {
+    const d = new Date();
+    let added = 0;
+    while (added < n) {
+      d.setDate(d.getDate() + 1);
+      const day = d.getDay();
+      if (day !== 0 && day !== 6) added++;
+    }
+    return d;
+  };
+  return `${fmt.format(add(minDays))} – ${fmt.format(add(maxDays))}`;
+}
+
+function ContactSection() {
+  return (
+    <div className="mt-10 pt-8 border-t border-ink/10 text-left">
+      <h3 className="font-black text-base mb-4 text-center">Masz pytania? Odezwij się</h3>
+      <div className="grid sm:grid-cols-3 gap-3">
+        <a
+          href={`mailto:hello@ksign.pl?subject=${encodeURIComponent("Pytanie do zamówienia")}`}
+          className="block bg-white border border-ink/10 rounded-2xl p-4 hover:border-ink transition group"
+        >
+          <div className="text-2xl mb-2">✉</div>
+          <div className="font-bold text-sm">E-mail</div>
+          <div className="text-xs text-ink/60 group-hover:text-ink transition truncate">
+            hello@ksign.pl
+          </div>
+        </a>
+        <a
+          href="https://wa.me/48000000000"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block bg-white border border-ink/10 rounded-2xl p-4 hover:border-ink transition group"
+        >
+          <div className="text-2xl mb-2">💬</div>
+          <div className="font-bold text-sm">WhatsApp</div>
+          <div className="text-xs text-ink/60 group-hover:text-ink transition">
+            Szybka odpowiedź
+          </div>
+        </a>
+        <a
+          href="https://cal.com/ksign/15min"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block bg-white border border-ink/10 rounded-2xl p-4 hover:border-ink transition group"
+        >
+          <div className="text-2xl mb-2">📅</div>
+          <div className="font-bold text-sm">Umów rozmowę</div>
+          <div className="text-xs text-ink/60 group-hover:text-ink transition">
+            15 min, online
+          </div>
+        </a>
+      </div>
+      <p className="text-xs text-ink/40 mt-4 text-center">
+        Odpowiadam pon–pt, 9:00–17:00 (zwykle szybciej).
+      </p>
+    </div>
   );
 }
 
