@@ -300,6 +300,45 @@ function etaRange(minDays: number, maxDays: number): string {
   return `${fmt.format(add(minDays))} – ${fmt.format(add(maxDays))}`;
 }
 
+function DownloadSummary({
+  order,
+  steps,
+  deliveryDays,
+  eta,
+}: {
+  order: { id: string; product_name: string; amount_cents: number; currency: string; brief_completed: boolean };
+  steps: string[];
+  deliveryDays: [number, number];
+  eta: string;
+}) {
+  const handleDownload = () => {
+    const doc = generateOrderPdf({
+      orderId: order.id,
+      productName: order.product_name,
+      amountCents: order.amount_cents,
+      currency: order.currency,
+      briefCompleted: order.brief_completed,
+      deliveryDays,
+      etaRange: eta,
+      steps,
+    });
+    doc.save(`ksign-zamowienie-${order.id.slice(0, 8)}.pdf`);
+  };
+
+  return (
+    <div className="mt-8">
+      <button
+        type="button"
+        onClick={handleDownload}
+        className="inline-flex items-center justify-center gap-2 bg-transparent border border-ink/20 text-ink px-5 py-2.5 rounded-full font-bold text-sm hover:bg-ink/5 transition"
+      >
+        <span>⬇</span>
+        Pobierz podsumowanie (PDF)
+      </button>
+    </div>
+  );
+}
+
 function ResendConfirmation({ orderId, sessionId }: { orderId: string; sessionId: string }) {
   const resend = useServerFn(resendOrderConfirmation);
   const [lastSentAt, setLastSentAt] = useState<number | null>(null);
