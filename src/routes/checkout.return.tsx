@@ -239,6 +239,7 @@ function SuccessView({
       {briefDone && (
         <PreparationChecklist
           orderId={order.id}
+          sessionId={sessionId}
           items={getPreparationChecklist(item)}
         />
       )}
