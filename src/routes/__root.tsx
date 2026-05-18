@@ -78,16 +78,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "author", content: "KSIGN" },
       { property: "og:site_name", content: "KSIGN" },
+      { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { title: "KSIGN — Projektowanie stron internetowych premium dla małych" },
-      { property: "og:title", content: "KSIGN — Projektowanie stron internetowych premium dla małych" },
-      { name: "twitter:title", content: "KSIGN — Projektowanie stron internetowych premium dla małych" },
-      { name: "description", content: "Nowoczesna strona jednostronicowa w 3–7 dni za 999 zł netto. KSIGN — premium web design dla firmy, która jest odpowiedzialna za korzystanie z Internetu." },
-      { property: "og:description", content: "Nowoczesna strona jednostronicowa w 3–7 dni za 999 zł netto. KSIGN — premium web design dla firmy, która jest odpowiedzialna za korzystanie z Internetu." },
-      { name: "twitter:description", content: "Nowoczesna strona jednostronicowa w 3–7 dni za 999 zł netto. KSIGN — premium web design dla firmy, która jest odpowiedzialna za korzystanie z Internetu." },
       { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/71437845-488b-42eb-9d0f-dc3a205b7e74" },
       { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/71437845-488b-42eb-9d0f-dc3a205b7e74" },
-      { property: "og:type", content: "website" },
     ],
     links: [
       {
