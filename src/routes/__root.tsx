@@ -108,7 +108,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
               url: "https://ksign.pl",
               email: CONTACT.email,
               areaServed: "PL",
-              sameAs: ["https://www.facebook.com/ksign2026", "https://www.instagram.com/ksing.marketing"],
+              sameAs: ["https://www.facebook.com/ksign2026", "https://www.instagram.com/ksign.pl/"],
               contactPoint: [
                 {
                   "@type": "ContactPoint",
