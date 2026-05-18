@@ -85,9 +85,28 @@ export const resendOrderConfirmation = createServerFn({ method: "POST" })
     const bucket = Math.floor(Date.now() / 60_000);
     const idempotencyKey = `order-confirm-${order.id}-${bucket}`;
 
-    // POST to the Lovable transactional email server route. Returns a
-    // descriptive error if the email infrastructure has not been set up yet
-    // (the route will respond with 404 in that case).
+    // Log the attempt as pending — we update to sent/error below.
+    const { data: attempt } = await supabaseAdmin
+      .from("email_resend_attempts")
+      .insert({
+        order_id: order.id,
+        email_type: "order-confirmation",
+        recipient_email: order.customer_email,
+        status: "pending",
+        idempotency_key: idempotencyKey,
+      })
+      .select("id")
+      .single();
+
+    const markError = async (msg: string) => {
+      if (attempt?.id) {
+        await supabaseAdmin
+          .from("email_resend_attempts")
+          .update({ status: "error", error_message: msg })
+          .eq("id", attempt.id);
+      }
+    };
+
     const host = getRequestHost();
     const proto = host.includes("localhost") ? "http" : "https";
     const sendUrl = `${proto}://${host}/lovable/email/transactional/send`;
@@ -115,10 +134,12 @@ export const resendOrderConfirmation = createServerFn({ method: "POST" })
       });
     } catch (err) {
       console.error("resendOrderConfirmation fetch error:", err);
+      await markError("network_error");
       throw new Error("Wysyłka e-maila chwilowo niedostępna. Spróbuj później.");
     }
 
     if (res.status === 404) {
+      await markError("email_infra_not_configured");
       throw new Error(
         "Wysyłka e-maili nie jest jeszcze skonfigurowana. Skonfiguruj domenę nadawczą w ustawieniach.",
       );
@@ -126,12 +147,21 @@ export const resendOrderConfirmation = createServerFn({ method: "POST" })
     if (!res.ok) {
       const body = await res.text().catch(() => "");
       console.error("resendOrderConfirmation send failed:", res.status, body);
+      await markError(`send_failed_${res.status}`);
       throw new Error("Nie udało się zlecić wysyłki. Spróbuj ponownie za chwilę.");
+    }
+
+    if (attempt?.id) {
+      await supabaseAdmin
+        .from("email_resend_attempts")
+        .update({ status: "sent" })
+        .eq("id", attempt.id);
     }
 
     return {
       ok: true,
       message: "Potwierdzenie zostało zlecone do wysyłki.",
       orderId: order.id,
+      recipientEmail: order.customer_email,
     };
   });

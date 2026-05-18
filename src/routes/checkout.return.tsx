@@ -2,8 +2,9 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { z } from "zod";
 import { useServerFn } from "@tanstack/react-start";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { getOrderBySession } from "@/lib/orders.functions";
+import { resendOrderConfirmation } from "@/lib/email.functions";
 import { getCatalogItem } from "@/lib/catalog";
 
 const SearchSchema = z.object({
@@ -169,7 +170,7 @@ function SuccessView({
   sessionId,
   navigate,
 }: {
-  order: { product_name: string; price_id: string; amount_cents: number; currency: string; brief_completed: boolean };
+  order: { id: string; product_name: string; price_id: string; amount_cents: number; currency: string; brief_completed: boolean };
   sessionId: string;
   navigate: ReturnType<typeof useNavigate>;
 }) {
@@ -262,6 +263,8 @@ function SuccessView({
         </div>
       )}
 
+      <ResendConfirmation orderId={order.id} sessionId={sessionId} />
+
       <ContactSection />
 
       <div className="mt-10">
@@ -287,6 +290,82 @@ function etaRange(minDays: number, maxDays: number): string {
     return d;
   };
   return `${fmt.format(add(minDays))} – ${fmt.format(add(maxDays))}`;
+}
+
+function ResendConfirmation({ orderId, sessionId }: { orderId: string; sessionId: string }) {
+  const resend = useServerFn(resendOrderConfirmation);
+  const [lastSentAt, setLastSentAt] = useState<number | null>(null);
+
+  const mutation = useMutation({
+    mutationFn: () => resend({ data: { orderId, sessionId } }),
+    onSuccess: () => setLastSentAt(Date.now()),
+  });
+
+  const status: "idle" | "sending" | "sent" | "error" = mutation.isPending
+    ? "sending"
+    : mutation.isError
+      ? "error"
+      : mutation.isSuccess
+        ? "sent"
+        : "idle";
+
+  const cooldownSec = 30;
+  const sinceSent = lastSentAt ? Math.floor((Date.now() - lastSentAt) / 1000) : null;
+  const inCooldown = sinceSent !== null && sinceSent < cooldownSec;
+
+  const [, force] = useState(0);
+  useEffect(() => {
+    if (!inCooldown) return;
+    const t = setInterval(() => force((n) => n + 1), 1000);
+    return () => clearInterval(t);
+  }, [inCooldown]);
+
+  const disabled = mutation.isPending || inCooldown;
+
+  const statusStyles: Record<typeof status, string> = {
+    idle: "text-ink/50",
+    sending: "text-ink/70",
+    sent: "text-emerald-700",
+    error: "text-red-700",
+  };
+
+  const statusLabel: Record<typeof status, string> = {
+    idle: "Nie otrzymałeś e-maila? Możemy wysłać ponownie.",
+    sending: "Wysyłanie…",
+    sent: "✓ Wysłane — sprawdź skrzynkę (także spam)",
+    error:
+      mutation.error instanceof Error
+        ? `Błąd: ${mutation.error.message}`
+        : "Nie udało się wysłać. Spróbuj ponownie.",
+  };
+
+  return (
+    <div className="mt-10 pt-8 border-t border-ink/10">
+      <h3 className="font-black text-base mb-2">Potwierdzenie e-mail</h3>
+      <p className={`text-sm mb-3 ${statusStyles[status]}`} aria-live="polite">
+        {statusLabel[status]}
+      </p>
+      <button
+        type="button"
+        onClick={() => mutation.mutate()}
+        disabled={disabled}
+        className="inline-flex items-center justify-center gap-2 bg-transparent border border-ink/20 text-ink px-5 py-2.5 rounded-full font-bold text-sm hover:bg-ink/5 transition disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        <span className={mutation.isPending ? "inline-block animate-spin" : ""}>
+          {status === "sent" ? "✓" : status === "error" ? "↻" : "✉"}
+        </span>
+        {mutation.isPending
+          ? "Wysyłanie…"
+          : inCooldown
+            ? `Ponów za ${cooldownSec - (sinceSent ?? 0)}s`
+            : status === "sent"
+              ? "Wyślij ponownie"
+              : status === "error"
+                ? "Spróbuj ponownie"
+                : "Wyślij ponownie potwierdzenie"}
+      </button>
+    </div>
+  );
 }
 
 function ContactSection() {
