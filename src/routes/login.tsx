@@ -51,7 +51,7 @@ function LoginPage() {
       if (mode === "signin") {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
-      } else {
+      } else if (mode === "signup") {
         const { error } = await supabase.auth.signUp({
           email,
           password,
@@ -59,6 +59,13 @@ function LoginPage() {
         });
         if (error) throw error;
         toast.success("Konto utworzone. Możesz się zalogować.");
+      } else {
+        const { error } = await supabase.auth.resetPasswordForEmail(email, {
+          redirectTo: window.location.origin + "/reset-password",
+        });
+        if (error) throw error;
+        toast.success("Sprawdź skrzynkę — wysłaliśmy link do resetu hasła.");
+        setMode("signin");
       }
     } catch (err: any) {
       toast.error(err?.message ?? "Błąd logowania");
