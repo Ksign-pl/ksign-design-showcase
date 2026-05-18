@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { trackMetaEvent } from "@/lib/meta-capi";
+import { CONTACT } from "@/lib/contact";
 
 export function FinalCTA() {
   const [sent, setSent] = useState(false);
