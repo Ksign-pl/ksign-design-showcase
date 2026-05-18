@@ -208,6 +208,19 @@ export const CATALOG: Record<string, CatalogItem> = {
       "Drobne zmiany do 1h/miesiąc — zgłaszasz mailem.",
       "Subskrypcję możesz anulować w każdej chwili.",
     ],
+    postBriefSteps: [
+      "Dane dostępowe odebrane — zaczynam audyt środowiska (do 24h).",
+      "Pierwszy backup pełny + raport stanu w 48h.",
+      "Włączam monitoring uptime i aktualizacji — alerty mailowe.",
+      "Drobne zmiany do 1h/miesiąc — zgłaszasz mailem, działam tego samego dnia.",
+    ],
+    deliveryDays: [1, 2],
+    postBriefCta: {
+      label: "Prześlij dostępy do panelu",
+      href: "mailto:hello@ksign.pl?subject=Opieka%20techniczna%20-%20dost%C4%99py",
+      external: false,
+      note: "Im szybciej dostanę dostępy, tym szybciej ruszam z audytem i backupem.",
+    },
     preparationChecklist: [
       "Dostęp administratora do strony (CMS, hosting, FTP).",
       "Kontakt do osoby decyzyjnej po Twojej stronie.",
