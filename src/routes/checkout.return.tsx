@@ -263,7 +263,7 @@ function SuccessView({
         </div>
       )}
 
-      <ResendConfirmation orderId={(order as any).id} sessionId={sessionId} />
+      <ResendConfirmation orderId={order.id} sessionId={sessionId} />
 
       <ContactSection />
 
