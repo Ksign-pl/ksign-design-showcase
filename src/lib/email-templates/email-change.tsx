@@ -16,7 +16,7 @@ export const EmailChangeEmail = ({
   newEmail,
   confirmationUrl,
 }: EmailChangeEmailProps) => (
-  <EmailShell preview={`Potwierdź zmianę adresu e-mail dla ${siteName}`}>
+  <EmailShell preview="Zmiana e-maila — KSIGN">
     <Heading style={styles.h1}>Potwierdź zmianę adresu e-mail</Heading>
     <Text style={styles.text}>
       Poprosiłeś/aś o zmianę adresu e-mail dla {siteName} z{' '}

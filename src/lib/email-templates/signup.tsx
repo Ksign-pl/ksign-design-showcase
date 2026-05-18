@@ -15,7 +15,7 @@ export const SignupEmail = ({
   recipient,
   confirmationUrl,
 }: SignupEmailProps) => (
-  <EmailShell preview={`Potwierdź adres e-mail dla ${siteName}`}>
+  <EmailShell preview="Potwierdź e-mail — KSIGN">
     <Heading style={styles.h1}>Potwierdź swój adres e-mail</Heading>
     <Text style={styles.text}>
       Dziękujemy za rejestrację w{' '}
