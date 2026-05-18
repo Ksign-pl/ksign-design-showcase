@@ -23,6 +23,7 @@ import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CheckoutReturnRouteImport } from './routes/checkout.return'
 import { Route as CheckoutFailedRouteImport } from './routes/checkout.failed'
+import { Route as CheckoutCanceledRouteImport } from './routes/checkout.canceled'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as ApiPublicOgDebugRouteImport } from './routes/api/public/og-debug'
 import { Route as ApiPublicMetaCapiRouteImport } from './routes/api/public/meta-capi'
@@ -98,6 +99,11 @@ const CheckoutFailedRoute = CheckoutFailedRouteImport.update({
   path: '/failed',
   getParentRoute: () => CheckoutRoute,
 } as any)
+const CheckoutCanceledRoute = CheckoutCanceledRouteImport.update({
+  id: '/canceled',
+  path: '/canceled',
+  getParentRoute: () => CheckoutRoute,
+} as any)
 const BlogSlugRoute = BlogSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
@@ -139,6 +145,7 @@ export interface FileRoutesByFullPath {
   '/sitemap': typeof SitemapRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/checkout/canceled': typeof CheckoutCanceledRoute
   '/checkout/failed': typeof CheckoutFailedRoute
   '/checkout/return': typeof CheckoutReturnRoute
   '/admin/zamowienia': typeof AuthenticatedAdminZamowieniaRoute
@@ -159,6 +166,7 @@ export interface FileRoutesByTo {
   '/sitemap': typeof SitemapRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/checkout/canceled': typeof CheckoutCanceledRoute
   '/checkout/failed': typeof CheckoutFailedRoute
   '/checkout/return': typeof CheckoutReturnRoute
   '/admin/zamowienia': typeof AuthenticatedAdminZamowieniaRoute
@@ -181,6 +189,7 @@ export interface FileRoutesById {
   '/sitemap': typeof SitemapRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/checkout/canceled': typeof CheckoutCanceledRoute
   '/checkout/failed': typeof CheckoutFailedRoute
   '/checkout/return': typeof CheckoutReturnRoute
   '/_authenticated/admin/zamowienia': typeof AuthenticatedAdminZamowieniaRoute
@@ -203,6 +212,7 @@ export interface FileRouteTypes {
     | '/sitemap'
     | '/sitemap.xml'
     | '/blog/$slug'
+    | '/checkout/canceled'
     | '/checkout/failed'
     | '/checkout/return'
     | '/admin/zamowienia'
@@ -223,6 +233,7 @@ export interface FileRouteTypes {
     | '/sitemap'
     | '/sitemap.xml'
     | '/blog/$slug'
+    | '/checkout/canceled'
     | '/checkout/failed'
     | '/checkout/return'
     | '/admin/zamowienia'
@@ -244,6 +255,7 @@ export interface FileRouteTypes {
     | '/sitemap'
     | '/sitemap.xml'
     | '/blog/$slug'
+    | '/checkout/canceled'
     | '/checkout/failed'
     | '/checkout/return'
     | '/_authenticated/admin/zamowienia'
@@ -370,6 +382,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CheckoutFailedRouteImport
       parentRoute: typeof CheckoutRoute
     }
+    '/checkout/canceled': {
+      id: '/checkout/canceled'
+      path: '/canceled'
+      fullPath: '/checkout/canceled'
+      preLoaderRoute: typeof CheckoutCanceledRouteImport
+      parentRoute: typeof CheckoutRoute
+    }
     '/blog/$slug': {
       id: '/blog/$slug'
       path: '/$slug'
@@ -431,11 +450,13 @@ const BlogRouteChildren: BlogRouteChildren = {
 const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
 
 interface CheckoutRouteChildren {
+  CheckoutCanceledRoute: typeof CheckoutCanceledRoute
   CheckoutFailedRoute: typeof CheckoutFailedRoute
   CheckoutReturnRoute: typeof CheckoutReturnRoute
 }
 
 const CheckoutRouteChildren: CheckoutRouteChildren = {
+  CheckoutCanceledRoute: CheckoutCanceledRoute,
   CheckoutFailedRoute: CheckoutFailedRoute,
   CheckoutReturnRoute: CheckoutReturnRoute,
 }
