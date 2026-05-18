@@ -264,6 +264,13 @@ function SuccessView({
         </div>
       )}
 
+      <DownloadSummary
+        order={order}
+        steps={steps}
+        deliveryDays={[minDays, maxDays]}
+        eta={eta}
+      />
+
       <ResendConfirmation orderId={order.id} sessionId={sessionId} />
 
       <ContactSection />
