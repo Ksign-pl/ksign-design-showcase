@@ -58,7 +58,7 @@ export function FinalCTA() {
           <div className="lg:col-span-5 space-y-6">
             <div className="bg-white/5 border border-white/10 rounded-3xl p-7">
               <div className="text-xs font-mono uppercase tracking-widest text-cream/50 mb-2">e-mail</div>
-              <a href="mailto:hello@ksign.pl" className="text-2xl font-bold hover:text-lime transition">hello@ksign.pl</a>
+              <a href={`mailto:${CONTACT.email}`} className="text-2xl font-bold hover:text-lime transition">{CONTACT.email}</a>
             </div>
             <div className="bg-white/5 border border-white/10 rounded-3xl p-7">
               <div className="text-xs font-mono uppercase tracking-widest text-cream/50 mb-2">facebook</div>
