@@ -35,6 +35,13 @@ export const CATALOG: Record<string, CatalogItem> = {
       "Pierwsza wersja strony w 3–7 dni roboczych.",
       "Maks. 2 rundy poprawek i publikacja na Twojej domenie.",
     ],
+    postBriefSteps: [
+      "Brief odebrany — analizuję treści i inspiracje (do 24h).",
+      "Wysyłam mailem plan realizacji i potwierdzenie terminu.",
+      "Pierwsza wersja strony w 3–7 dni roboczych.",
+      "Runda uwag → publikacja na Twojej domenie.",
+    ],
+    deliveryDays: [3, 7],
     highlight: true,
   },
   pakiet_business_one_time: {
