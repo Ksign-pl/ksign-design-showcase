@@ -12,12 +12,12 @@ import { EmailChangeEmail } from '@/lib/email-templates/email-change'
 import { ReauthenticationEmail } from '@/lib/email-templates/reauthentication'
 
 const EMAIL_SUBJECTS: Record<string, string> = {
-  signup: 'Confirm your email',
-  invite: "You've been invited",
-  magiclink: 'Your login link',
-  recovery: 'Reset your password',
-  email_change: 'Confirm your new email',
-  reauthentication: 'Your verification code',
+  signup: 'Potwierdź e-mail — KSIGN',
+  invite: 'Zaproszenie — KSIGN',
+  magiclink: 'Link logowania — KSIGN',
+  recovery: 'Reset hasła — KSIGN',
+  email_change: 'Zmiana e-maila — KSIGN',
+  reauthentication: 'Kod weryfikacyjny — KSIGN',
 }
 
 // Template mapping
@@ -30,11 +30,13 @@ const EMAIL_TEMPLATES: Record<string, React.ComponentType<any>> = {
   reauthentication: ReauthenticationEmail,
 }
 
-// Configuration
-const SITE_NAME = "ksign-design-showcase"
+// Configuration — unified KSIGN sender identity
+const SITE_NAME = "KSIGN"
 const SENDER_DOMAIN = "notify.ksign.pl"
 const ROOT_DOMAIN = "ksign.pl"
-const FROM_DOMAIN = "ksign.pl"
+const FROM_DOMAIN = "notify.ksign.pl"
+const FROM_ADDRESS = `KSIGN <noreply@${FROM_DOMAIN}>`
+const REPLY_TO_ADDRESS = `KSIGN <kontakt@${ROOT_DOMAIN}>`
 
 function redactEmail(email: string | null | undefined): string {
   if (!email) return '***'
@@ -177,9 +179,10 @@ export const Route = createFileRoute("/lovable/email/auth/webhook")({
             run_id,
             message_id: messageId,
             to: payload.data.email,
-            from: `${SITE_NAME} <noreply@${FROM_DOMAIN}>`,
+            from: FROM_ADDRESS,
+            reply_to: REPLY_TO_ADDRESS,
             sender_domain: SENDER_DOMAIN,
-            subject: EMAIL_SUBJECTS[emailType] || 'Notification',
+            subject: EMAIL_SUBJECTS[emailType] || 'KSIGN',
             html,
             text,
             purpose: 'transactional',
