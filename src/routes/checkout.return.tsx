@@ -412,10 +412,13 @@ function PreparationChecklist({ orderId, sessionId, items }: { orderId: string; 
 
   return (
     <div className="text-left bg-white border border-ink/10 rounded-2xl p-6 mb-8">
-      <div className="flex items-baseline justify-between mb-3">
+      <div className="flex items-baseline justify-between mb-3 gap-3">
         <h2 className="font-black text-lg">Przygotuj przed startem</h2>
-        <span className="text-xs text-ink/50 font-mono">
-          {done}/{total}
+        <span className="text-xs text-ink/50 font-mono flex items-center gap-2">
+          {saveState === "saving" && <span className="text-ink/40">zapisywanie…</span>}
+          {saveState === "saved" && <span className="text-emerald-600">zapisano ✓</span>}
+          {saveState === "error" && <span className="text-red-600">błąd zapisu</span>}
+          <span>{done}/{total}</span>
         </span>
       </div>
       <p className="text-sm text-ink/60 mb-4">
