@@ -6,6 +6,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { getOrderBySession } from "@/lib/orders.functions";
 import { resendOrderConfirmation } from "@/lib/email.functions";
 import { getCatalogItem, getPreparationChecklist, getPostBriefCta } from "@/lib/catalog";
+import { CONTACT, mailto } from "@/lib/contact";
 import { generateOrderPdf } from "@/lib/order-pdf";
 
 const SearchSchema = z.object({
