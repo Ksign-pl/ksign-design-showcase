@@ -402,33 +402,56 @@ function instrumentFbq() {
 
 export function ConsentScripts() {
   useEffect(() => {
+    // Initialize Consent Mode v2 synchronously so any early gtag() calls queue properly.
     initConsentMode();
     consentLog("Consent Mode v2 initialized (default: denied for EEA/PL)");
     if (isConsentDebug()) instrumentGtag();
-    loadGTM();
-    consentLog("GTM loaded:", GTM_ID);
-    // Load Google Ads gtag.js unconditionally so Google can detect the tag.
-    // Cookies/conversions are still gated by Consent Mode v2 (ad_storage).
-    loadGoogleAds();
-    consentLog("Google Ads base tag loaded (gated by Consent Mode):", GOOGLE_ADS_ID);
-    applyConsent();
-    // Instrument fbq once it gets defined (after marketing consent + Pixel load).
-    if (isConsentDebug()) {
-      const tryFbq = window.setInterval(() => {
-        if (typeof window.fbq === "function") {
-          instrumentFbq();
-          window.clearInterval(tryFbq);
-        }
-      }, 500);
-      window.setTimeout(() => window.clearInterval(tryFbq), 30_000);
-    }
+
+    let booted = false;
+    const boot = () => {
+      if (booted) return;
+      booted = true;
+      loadGTM();
+      consentLog("GTM loaded:", GTM_ID);
+      loadGoogleAds();
+      consentLog("Google Ads base tag loaded (gated by Consent Mode):", GOOGLE_ADS_ID);
+      applyConsent();
+      if (isConsentDebug()) {
+        const tryFbq = window.setInterval(() => {
+          if (typeof window.fbq === "function") {
+            instrumentFbq();
+            window.clearInterval(tryFbq);
+          }
+        }, 500);
+        window.setTimeout(() => window.clearInterval(tryFbq), 30_000);
+      }
+    };
+
+    // Defer third-party scripts off the critical path: idle, first interaction,
+    // or 4s fallback — whichever comes first. Massively reduces TBT / main-thread time on mobile.
+    const ric = (window as unknown as { requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number }).requestIdleCallback;
+    const idleTimer = ric
+      ? ric(() => boot(), { timeout: 4000 })
+      : window.setTimeout(boot, 2500);
+    const interactionEvents: Array<keyof WindowEventMap> = ["pointerdown", "touchstart", "keydown", "scroll"];
+    const onInteract = () => {
+      boot();
+      interactionEvents.forEach((ev) => window.removeEventListener(ev, onInteract));
+    };
+    interactionEvents.forEach((ev) => window.addEventListener(ev, onInteract, { passive: true, once: false }));
+
     const handler = (e: Event) => {
       consentLog("CONSENT_EVENT received", (e as CustomEvent).detail);
+      boot(); // ensure GTM is up so consent updates flow through
       applyConsent();
       if (isConsentDebug()) instrumentFbq();
     };
     window.addEventListener(CONSENT_EVENT, handler);
-    return () => window.removeEventListener(CONSENT_EVENT, handler);
+    return () => {
+      window.removeEventListener(CONSENT_EVENT, handler);
+      interactionEvents.forEach((ev) => window.removeEventListener(ev, onInteract));
+      if (!ric) window.clearTimeout(idleTimer as number);
+    };
   }, []);
   return null;
 }
