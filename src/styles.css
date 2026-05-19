@@ -176,6 +176,11 @@
     .phone-mockup {
       box-shadow: 0 10px 20px -10px color-mix(in oklab, var(--ink) 30%, transparent);
     }
+    /* Pause continuous repaints on mobile — biggest perf win for LCP/TBT */
+    .phone-scroll { animation: none !important; }
+    .pill-light { animation: none !important; }
+    .addons-marquee .addons-track { animation-duration: 90s; }
+    .phone-tilt { filter: drop-shadow(0 10px 16px color-mix(in oklab, var(--ink) 18%, transparent)); }
   }
   @keyframes heroDrift {
     0%, 100% { translate: 0 0; }
