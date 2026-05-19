@@ -26,9 +26,10 @@ export function Hero() {
     if (reduceMotion) return;
 
     const isMobile = window.matchMedia("(max-width: 767px)").matches;
-    // Lighter motion on mobile
-    const scrollFactor = isMobile ? 0.04 : 0.08;
-    const pointerFactor = isMobile ? 0.45 : 1; // touch is gentler than mouse
+    // Skip all scroll/touch-driven motion on mobile — biggest INP/TBT win.
+    if (isMobile) return;
+    const scrollFactor = 0.08;
+    const pointerFactor = 1;
 
     let inView = true;
     let ticking = false;
