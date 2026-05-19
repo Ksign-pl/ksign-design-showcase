@@ -217,23 +217,78 @@
     filter: drop-shadow(0 30px 40px color-mix(in oklab, var(--ink) 25%, transparent));
     transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1), filter 400ms ease;
   }
+  /* ===== Reduced motion — pełny tryb zgodny z preferencjami systemu =====
+     Wycisza wszystkie animacje, transitiony, parallaxy i scroll-driven
+     efekty. Zostawia tylko statyczny układ. */
   @media (prefers-reduced-motion: reduce) {
-    .pill-light, .phone-mockup { animation: none !important; }
-    .phone-scroll { animation: none !important; }
-    .addons-marquee .addons-track { animation: none !important; }
-    /* Calm phone: no rotation, lighter shadow */
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      animation-delay: 0ms !important;
+      transition-duration: 0.001ms !important;
+      transition-delay: 0ms !important;
+      scroll-behavior: auto !important;
+    }
+    .pill-light,
+    .phone-mockup,
+    .phone-scroll,
+    .addons-marquee .addons-track {
+      animation: none !important;
+    }
     .phone-tilt {
       transform: none !important;
       rotate: 0deg !important;
       filter: drop-shadow(0 8px 16px color-mix(in oklab, var(--ink) 12%, transparent)) !important;
     }
-    /* Disable any parallax CSS-var driven offsets */
-    [style*="--px"], [style*="--py"] { --px: 0px !important; --py: 0px !important; }
+    /* Wyłącz parallax sterowany CSS-zmiennymi */
+    [style*="--px"], [style*="--py"], [style*="--tilt"] {
+      --px: 0px !important;
+      --py: 0px !important;
+      --tilt: 0 !important;
+    }
     .pill-light { transform: none !important; }
-    /* Cancel addon-card tilt vars */
-    .addons-marquee [style*="--tilt"] { --tilt: 0 !important; --px: 0 !important; --py: 0 !important; }
+    html { scroll-behavior: auto !important; }
+  }
+
+  /* ===== Mobile — max 1-2 efekty na przewinięcie =====
+     Na ekranach <768px wyłączamy wszystko poza:
+       (1) marquee w sekcji addons (lekki, GPU-only)
+       (2) fade-in nagłówków przy wejściu do viewportu
+     Reszta animacji/transitiony są zredukowane do minimum. */
+  @media (max-width: 767px) and (prefers-reduced-motion: no-preference) {
+    .pill-light,
+    .phone-mockup,
+    .phone-scroll {
+      animation: none !important;
+    }
+    .phone-tilt {
+      transform: none !important;
+      rotate: 0deg !important;
+      transition: none !important;
+    }
+    /* Wyłącz parallax / mouse-follow na mobile (brak myszy, marnuje CPU) */
+    [style*="--px"], [style*="--py"], [style*="--tilt"] {
+      --px: 0px !important;
+      --py: 0px !important;
+      --tilt: 0 !important;
+    }
+    /* Dłuższe, lżejsze transitiony tła/kolorów — bez hoverów na touchu */
+    *,
+    *::before,
+    *::after {
+      animation-duration: 400ms;
+      transition-duration: 200ms;
+    }
+    /* Skróć kosztowne keyframes do minimum */
+    .animate-fade-in,
+    .animate-scale-in {
+      animation-duration: 250ms !important;
+    }
     html { scroll-behavior: auto; }
   }
+
   .glow-lime {
     box-shadow: 0 0 0 1px color-mix(in oklab, var(--lime) 40%, transparent),
                 0 30px 80px -20px color-mix(in oklab, var(--lime) 60%, transparent);
