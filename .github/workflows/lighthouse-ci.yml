@@ -1,0 +1,40 @@
+name: Lighthouse CI (mobile)
+
+# Blocks merges to main if mobile performance thresholds drop.
+# Thresholds (lab, mobile emulation, 4x CPU slowdown, Slow 4G):
+#   - LCP <= 2500ms
+#   - TBT <= 200ms          (lab proxy for INP)
+#   - Time to Interactive <= 3800ms
+#   - CLS <= 0.1
+#   - Performance score >= 0.85
+#
+# Because Lovable publishes from the connected GitHub repo, requiring this
+# check on the `main` branch in repo settings (Branch protection rules) is
+# what actually blocks a regression from reaching production.
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  lhci:
+    name: Lighthouse CI — mobile
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Lighthouse CI
+        run: npm install -g @lhci/cli@0.14.x
+
+      - name: Run Lighthouse CI against production
+        run: lhci autorun --config=./.lighthouserc.json
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
