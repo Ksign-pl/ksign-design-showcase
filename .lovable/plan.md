@@ -1,52 +1,41 @@
+
 ## Cel
 
-Przygotować spójny zestaw treści do wklejenia w dialog „Opublikowany" w Lovable oraz zaktualizować meta tagi w kodzie, żeby strona udostępniana w mediach społecznościowych prezentowała tę samą treść co dialog publikacji.
+Dodać drugi workflow Lighthouse CI, który uruchamia się równolegle obok obecnego (produkcyjnego) i testuje `https://staging.ksign.pl` na każdym PR do `main`. Wyniki raportowane jako warn — widać w PR, ale **nie blokują merge**. Obecny workflow na `ksign.pl` zostaje bez zmian i nadal blokuje regresje na produkcji.
 
-## Wartości do wpisania w dialog publikacji
+## Co powstanie
 
-- **Ikona i tytuł** (44/60): `KSIGN — Premium web design dla małych firm`
-- **Opis** (138/160): `Nowoczesna strona one-page w 3–7 dni za 999 zł netto. KSIGN — premium web design dla firm, które chcą wyglądać profesjonalnie online.`
-- **Wizerunek społeczny**: wgrać nowo wygenerowany plik `og-image.jpg` (1200×630) — zostanie zapisany w `public/og-image.jpg` i dodatkowo udostępniony do pobrania z `/mnt/documents/og-image.jpg`.
+### 1. `.lighthouserc.staging.json` (nowy)
+Kopia obecnego `.lighthouserc.json` z dwiema zmianami:
+- `collect.url` → `https://staging.ksign.pl/`, `/pakiety`, `/blog`
+- `assert.assertions` → wszystkie metryki zmienione z `"error"` na `"warn"` (LCP, TBT, TTI, CLS, Performance score, FCP, Speed Index). Dzięki temu `lhci autorun` zawsze kończy się exit 0 i nie blokuje merge, a wyniki dalej są widoczne w komentarzu PR i w raporcie temporary-public-storage.
+- Reszta (mobile emulation, Slow 4G, 4× CPU, 3 runs) bez zmian — żeby porównanie staging vs prod było rzetelne.
 
-## Kroki implementacji
+### 2. `.github/workflows/lighthouse-ci-staging.yml` (nowy)
+Bliźniaczy do istniejącego `lighthouse-ci.yml`:
+- Triggery: `pull_request` → `main`, `push` → `main`, `workflow_dispatch`
+- Job o nazwie `Lighthouse CI — staging (mobile, non-blocking)`
+- Krok pre-check: `curl -sfI https://staging.ksign.pl` — jeśli staging nie odpowiada, job kończy się `continue-on-error` z czytelnym komunikatem (zamiast czerwonego ❌ z LHCI).
+- Uruchamia `lhci autorun --config=./.lighthouserc.staging.json`
+- Cały job dostaje `continue-on-error: true` jako podwójne zabezpieczenie, żeby nawet nieoczekiwany błąd LHCI nie zablokował merge.
 
-### 1. Wygenerować nowy obraz OG 1200×630
+### 3. Bez zmian
+- `.github/workflows/lighthouse-ci.yml` zostaje — dalej testuje produkcję na `pull_request`/`push` do `main` i blokuje regresje.
+- `.lighthouserc.json` bez zmian.
 
-Plik: `public/og-image.jpg`
+## Szczegóły techniczne
 
-Brief dla generatora (premium, jpg, bez przezroczystości):
-- Tło w kolorze `cream` (jasny beż) z subtelnym szumem/papierowym tekstem.
-- Lewa strona: duże, czarne, mocno waflowe lettering „KSIGN" (blackface, geometryczny grotesk) + pod spodem cienka linia akcentu w kolorze `lime`.
-- Prawa strona: nagłówek „Premium strona za **999 zł** netto" + podtytuł „Realizacja 3–7 dni" — typografia czysta, kontrastowa, ink/cream/lime, układ inspirowany editorial / Swiss design.
-- Małe, dyskretne `ksign.pl` w prawym dolnym rogu.
-- Bez stockowych zdjęć, bez efektów AI-glow; estetyka zgodna z paletą strony (cream / ink / lime).
+**Dlaczego osobny config zamiast `--collect.url` z CLI:** progi (`assert.assertions`) muszą być inne dla staging (warn) niż dla prod (error), a tego nie da się nadpisać prostym flagiem CLI bez gubienia reszty configu. Drugi plik jest najczystszy.
 
-Skopiować plik również do `/mnt/documents/og-image.jpg` i wystawić jako `<lov-artifact>` żeby user mógł pobrać i wgrać do dialogu.
+**Wymóg po stronie infry (poza kodem):** subdomena `staging.ksign.pl` musi wskazywać na środowisko testowe i być publicznie dostępna (HTTP 200 na `/`, `/pakiety`, `/blog`). Jeśli staging jest za Basic Auth / VPN, LHCI nie zaloguje się i wszystkie audyty wyjdą jako warn na pustej stronie — wtedy trzeba będzie dodać `extraHeaders` z tokenem do configu albo upublicznić staging na czas audytu.
 
-### 2. Zaktualizować meta tagi w `src/routes/index.tsx`
+**Branch protection:** w ustawieniach repo na GitHubie tylko obecny `Lighthouse CI — mobile` powinien być wymagany do merge. Nowy `Lighthouse CI — staging (mobile, non-blocking)` celowo zostaje opcjonalny — `continue-on-error: true` w workflow sprawia, że GitHub i tak zaraportuje go jako sukces.
 
-W bloku `head().meta`:
-- `{ title: "KSIGN — Premium web design dla małych firm" }` (zamiast obecnego „Premium strona za 999 zł netto")
-- `description`, `og:title`, `og:description`, `twitter:title`, `twitter:description` — zmienione na nowy opis.
-- `og:image` i `twitter:image` — przepiąć ze starego URL Google Storage (`a45b5b3c…`) na `https://ksign.pl/og-image.jpg`.
-- Dodać `{ property: "og:image:width", content: "1200" }`, `{ property: "og:image:height", content: "630" }`, `{ property: "og:image:type", content: "image/jpeg" }`, `{ property: "og:image:alt", content: "KSIGN — premium web design, strona za 999 zł netto" }` (ułatwia parserom typu LinkedIn dobry crop).
+## Plik diff (skrót)
 
-### 3. Zaktualizować JSON-LD w `src/routes/index.tsx`
-
-W bloku `ProfessionalService` zmienić `image` z URL Google Storage na `https://ksign.pl/og-image.jpg`, żeby Schema.org wskazywała na trwały zasób na własnej domenie.
-
-### 4. Spójność z istniejącą domeną
-
-W całym pliku trzymać kanonicznie `https://ksign.pl` (zgodnie z dodaną wcześniej regułą domeny i custom domain `ksign.pl` na projekcie). Pozostawić bez zmian `__root.tsx` (Organization/WebSite już używa właściwej domeny ksign-design-showcase, opcjonalnie ujednolicić — patrz „Otwarte pytanie" niżej).
-
-## Co dostanie użytkownik na koniec
-
-1. Plik `og-image.jpg` do pobrania (artifact) — wgrywa do pola „Wizerunek społeczny" w dialogu.
-2. Gotowe do skopiowania:
-   - Tytuł: `KSIGN — Premium web design dla małych firm`
-   - Opis: `Nowoczesna strona one-page w 3–7 dni za 999 zł netto. KSIGN — premium web design dla firm, które chcą wyglądać profesjonalnie online.`
-3. Spójne meta na stronie — po opublikowaniu Facebook/LinkedIn/Slack będą pokazywać ten sam tytuł, opis i obraz.
-
-## Otwarte pytanie (do potwierdzenia po implementacji)
-
-W `__root.tsx` Organization/WebSite JSON-LD nadal używa domeny `ksign-design-showcase.lovable.app` zamiast `ksign.pl`. Mogę zmienić to przy okazji — daj znać, czy to ujednolicić.
+```text
++ .lighthouserc.staging.json           (nowy, ~30 linii)
++ .github/workflows/lighthouse-ci-staging.yml  (nowy, ~35 linii)
+  .lighthouserc.json                   (bez zmian)
+  .github/workflows/lighthouse-ci.yml  (bez zmian)
+```
