@@ -1,0 +1,51 @@
+name: Lighthouse CI — staging (mobile, non-blocking)
+
+# Runs alongside the production Lighthouse CI workflow. Targets
+# https://staging.ksign.pl with the same mobile emulation profile (Slow 4G,
+# 4x CPU slowdown, 3 runs), but all assertions are "warn" — results show up
+# in the PR comment but never fail the check. Use this to spot regressions
+# before they reach production without blocking merges.
+#
+# Requires staging.ksign.pl to be publicly reachable. If it is behind
+# Basic Auth or a VPN, add `extraHeaders` to .lighthouserc.staging.json.
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  lhci-staging:
+    name: Lighthouse CI — staging (mobile, non-blocking)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Check staging is reachable
+        id: staging_up
+        run: |
+          if curl -sfI --max-time 10 https://staging.ksign.pl/ > /dev/null; then
+            echo "Staging is reachable."
+            echo "ok=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "::warning::staging.ksign.pl is not reachable — skipping Lighthouse CI staging audit."
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Install Lighthouse CI
+        if: steps.staging_up.outputs.ok == 'true'
+        run: npm install -g @lhci/cli@0.14.x
+
+      - name: Run Lighthouse CI against staging
+        if: steps.staging_up.outputs.ok == 'true'
+        run: lhci autorun --config=./.lighthouserc.staging.json
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
