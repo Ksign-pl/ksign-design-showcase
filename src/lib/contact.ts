@@ -16,8 +16,8 @@ const env = (import.meta.env ?? {}) as Record<string, string | undefined>;
 
 const fallback = {
   email: "hello@ksign.pl",
-  phone: "+48000000000",
-  whatsappUrl: "https://wa.me/48000000000",
+  phone: "+48606576517",
+  whatsappUrl: "https://wa.me/48606576517",
   calendarShortUrl: "https://cal.com/ksign/15min",
   calendarLongUrl: "https://cal.com/ksign/30min",
   hours: "Odpowiadam pon–pt, 9:00–17:00 (zwykle szybciej).",
