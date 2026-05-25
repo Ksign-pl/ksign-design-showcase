@@ -61,6 +61,10 @@ export function FinalCTA() {
               <a href={`mailto:${CONTACT.email}`} className="text-2xl font-bold hover:text-lime transition">{CONTACT.email}</a>
             </div>
             <div className="bg-white/5 border border-white/10 rounded-3xl p-7">
+              <div className="text-xs font-mono uppercase tracking-widest text-cream/50 mb-2">telefon</div>
+              <a href={`tel:${CONTACT.phone}`} className="text-2xl font-bold hover:text-lime transition">606 576 517</a>
+            </div>
+            <div className="bg-white/5 border border-white/10 rounded-3xl p-7">
               <div className="text-xs font-mono uppercase tracking-widest text-cream/50 mb-2">facebook</div>
               <a href="https://www.facebook.com/ksign2026" target="_blank" rel="noopener noreferrer" className="text-2xl font-bold hover:text-lime transition">/ksign2026</a>
             </div>
