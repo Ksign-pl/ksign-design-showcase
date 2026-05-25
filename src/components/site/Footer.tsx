@@ -38,6 +38,7 @@ export function Footer() {
             <div className="text-xs font-mono uppercase tracking-widest text-ink/40 mb-4">Kontakt</div>
             <ul className="space-y-2 mb-6">
               <li><a href={`mailto:${CONTACT.email}`} className="font-medium hover:text-violet transition">{CONTACT.email}</a></li>
+              <li><a href={`tel:${CONTACT.phone}`} className="font-medium hover:text-violet transition">606 576 517</a></li>
             </ul>
             <div className="flex gap-2">
               <a
