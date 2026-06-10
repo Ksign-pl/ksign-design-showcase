@@ -29,7 +29,11 @@ export const Route = createFileRoute("/checkout/return")({
   head: () => ({
     meta: [
       { title: "Status płatności | KSIGN" },
+      { name: "description", content: "Potwierdzenie statusu Twojej płatności w KSIGN i dalsze kroki realizacji zamówienia." },
       { name: "robots", content: "noindex,nofollow" },
+      { property: "og:title", content: "Status płatności | KSIGN" },
+      { property: "og:description", content: "Potwierdzenie statusu Twojej płatności w KSIGN i dalsze kroki realizacji zamówienia." },
+      { property: "og:url", content: "https://ksign.pl/checkout/return" },
     ],
   }),
   validateSearch: (s) => SearchSchema.parse(s),
