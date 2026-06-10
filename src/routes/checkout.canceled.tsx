@@ -11,7 +11,11 @@ export const Route = createFileRoute("/checkout/canceled")({
   head: () => ({
     meta: [
       { title: "Płatność anulowana | KSIGN" },
+      { name: "description", content: "Twoja płatność została anulowana. Możesz wrócić do wyboru pakietu i spróbować ponownie." },
       { name: "robots", content: "noindex,nofollow" },
+      { property: "og:title", content: "Płatność anulowana | KSIGN" },
+      { property: "og:description", content: "Twoja płatność została anulowana. Możesz wrócić do wyboru pakietu i spróbować ponownie." },
+      { property: "og:url", content: "https://ksign.pl/checkout/canceled" },
     ],
   }),
   validateSearch: (s) => SearchSchema.parse(s),
