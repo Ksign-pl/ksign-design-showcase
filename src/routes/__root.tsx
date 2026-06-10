@@ -83,6 +83,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/71437845-488b-42eb-9d0f-dc3a205b7e74" },
       { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/71437845-488b-42eb-9d0f-dc3a205b7e74" },
       { name: "google-site-verification", content: "S2o5wKlzjOCj6UvtXbHl9G5uTqK6kClgxpESHmVR77k" },
+      { title: "KSIGN — strona za 999 zł" },
+      { property: "og:title", content: "KSIGN — strona za 999 zł" },
+      { name: "twitter:title", content: "KSIGN — strona za 999 zł" },
+      { name: "description", content: "Nowoczesna strona internetowa dla małej firmy. Pakiet Start: 999 zł, realizacja 3–7 dni, premium wygląd i prosty proces." },
+      { property: "og:description", content: "Nowoczesna strona internetowa dla małej firmy. Pakiet Start: 999 zł, realizacja 3–7 dni, premium wygląd i prosty proces." },
+      { name: "twitter:description", content: "Nowoczesna strona internetowa dla małej firmy. Pakiet Start: 999 zł, realizacja 3–7 dni, premium wygląd i prosty proces." },
     ],
     links: [
       {
