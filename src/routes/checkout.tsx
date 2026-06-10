@@ -12,7 +12,11 @@ export const Route = createFileRoute("/checkout")({
   head: () => ({
     meta: [
       { title: "Zamówienie | KSIGN" },
+      { name: "description", content: "Sfinalizuj zamówienie pakietu KSIGN — bezpieczna płatność online i szybki start prac nad Twoją stroną." },
       { name: "robots", content: "noindex,nofollow" },
+      { property: "og:title", content: "Zamówienie | KSIGN" },
+      { property: "og:description", content: "Sfinalizuj zamówienie pakietu KSIGN — bezpieczna płatność online i szybki start prac nad Twoją stroną." },
+      { property: "og:url", content: "https://ksign.pl/checkout" },
     ],
   }),
   validateSearch: (search) => SearchSchema.parse(search),

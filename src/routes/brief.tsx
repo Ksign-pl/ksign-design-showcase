@@ -14,7 +14,11 @@ export const Route = createFileRoute("/brief")({
   head: () => ({
     meta: [
       { title: "Brief projektu | KSIGN" },
+      { name: "description", content: "Uzupełnij brief swojego projektu — przekaż nam treści i materiały, żebyśmy mogli wystartować z realizacją strony." },
       { name: "robots", content: "noindex,nofollow" },
+      { property: "og:title", content: "Brief projektu | KSIGN" },
+      { property: "og:description", content: "Uzupełnij brief swojego projektu — przekaż nam treści i materiały, żebyśmy mogli wystartować z realizacją strony." },
+      { property: "og:url", content: "https://ksign.pl/brief" },
     ],
   }),
   validateSearch: (s) => SearchSchema.parse(s),

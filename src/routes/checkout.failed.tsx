@@ -12,7 +12,11 @@ export const Route = createFileRoute("/checkout/failed")({
   head: () => ({
     meta: [
       { title: "Płatność nieudana | KSIGN" },
+      { name: "description", content: "Płatność nie powiodła się. Spróbuj ponownie lub skontaktuj się z nami, żebyśmy pomogli sfinalizować zamówienie." },
       { name: "robots", content: "noindex,nofollow" },
+      { property: "og:title", content: "Płatność nieudana | KSIGN" },
+      { property: "og:description", content: "Płatność nie powiodła się. Spróbuj ponownie lub skontaktuj się z nami, żebyśmy pomogli sfinalizować zamówienie." },
+      { property: "og:url", content: "https://ksign.pl/checkout/failed" },
     ],
   }),
   validateSearch: (s) => SearchSchema.parse(s),

@@ -20,7 +20,11 @@ export const Route = createFileRoute("/login")({
   head: () => ({
     meta: [
       { title: "Logowanie — KSIGN" },
+      { name: "description", content: "Zaloguj się do panelu KSIGN, aby zarządzać zamówieniami i swoim kontem." },
       { name: "robots", content: "noindex,nofollow" },
+      { property: "og:title", content: "Logowanie — KSIGN" },
+      { property: "og:description", content: "Zaloguj się do panelu KSIGN, aby zarządzać zamówieniami i swoim kontem." },
+      { property: "og:url", content: "https://ksign.pl/login" },
     ],
   }),
   validateSearch: (search: Record<string, unknown>) => ({
