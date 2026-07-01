@@ -2,19 +2,23 @@ import { createServerFn } from "@tanstack/react-start";
 import { type StripeEnv, createStripeClient } from "@/lib/stripe.server";
 
 export const createCheckoutSession = createServerFn({ method: "POST" })
-  .inputValidator((data: {
-    priceId: string;
-    quantity?: number;
-    customerEmail?: string;
-    returnUrl: string;
-    environment: StripeEnv;
-  }) => {
-    if (!/^[a-zA-Z0-9_-]+$/.test(data.priceId)) throw new Error("Invalid priceId");
-    if (!data.returnUrl || !/^https?:\/\//.test(data.returnUrl)) throw new Error("Invalid returnUrl");
-    if (data.environment !== "sandbox" && data.environment !== "live") throw new Error("Invalid env");
-    if (data.customerEmail && data.customerEmail.length > 254) throw new Error("Invalid email");
-    return data;
-  })
+  .inputValidator(
+    (data: {
+      priceId: string;
+      quantity?: number;
+      customerEmail?: string;
+      returnUrl: string;
+      environment: StripeEnv;
+    }) => {
+      if (!/^[a-zA-Z0-9_-]+$/.test(data.priceId)) throw new Error("Invalid priceId");
+      if (!data.returnUrl || !/^https?:\/\//.test(data.returnUrl))
+        throw new Error("Invalid returnUrl");
+      if (data.environment !== "sandbox" && data.environment !== "live")
+        throw new Error("Invalid env");
+      if (data.customerEmail && data.customerEmail.length > 254) throw new Error("Invalid email");
+      return data;
+    },
+  )
   .handler(async ({ data }) => {
     const stripe = createStripeClient(data.environment);
 

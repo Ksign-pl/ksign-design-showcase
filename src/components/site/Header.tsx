@@ -26,9 +26,7 @@ export function Header() {
   return (
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-cream/80 backdrop-blur-xl border-b border-ink/5"
-          : "bg-transparent"
+        scrolled ? "bg-cream/80 backdrop-blur-xl border-b border-ink/5" : "bg-transparent"
       }`}
     >
       <div className="mx-auto max-w-[1400px] px-5 md:px-8 h-16 md:h-20 flex items-center justify-between">
@@ -57,14 +55,12 @@ export function Header() {
           className="hidden lg:inline-flex items-center gap-2 bg-ink text-cream px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-violet hover:text-ink transition-all"
         >
           Zamów stronę
-          <span className="inline-block" aria-hidden="true">→</span>
+          <span className="inline-block" aria-hidden="true">
+            →
+          </span>
         </a>
 
-        <button
-          onClick={() => setOpen(!open)}
-          className="lg:hidden p-2 -mr-2"
-          aria-label="Menu"
-        >
+        <button onClick={() => setOpen(!open)} className="lg:hidden p-2 -mr-2" aria-label="Menu">
           {open ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>

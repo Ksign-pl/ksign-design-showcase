@@ -23,7 +23,10 @@ export function BeforeAfter() {
           [ 04 / Różnica ]
         </div>
         <h2 className="text-display-tight text-[12vw] md:text-[7vw] lg:text-[6.5rem] mb-16 md:mb-20">
-          RÓŻNICA<br/>JEST<br/>W <span className="bg-lime px-3 rounded-2xl">ODBIORZE.</span>
+          RÓŻNICA
+          <br />
+          JEST
+          <br />W <span className="bg-lime px-3 rounded-2xl">ODBIORZE.</span>
         </h2>
 
         <div className="grid md:grid-cols-2 gap-5 md:gap-8">
@@ -48,10 +51,10 @@ export function BeforeAfter() {
             <div className="absolute -top-3 -right-3 pill bg-lime text-ink font-bold rotate-3">
               KSIGN ✓
             </div>
-            <div className="text-xs font-mono uppercase tracking-widest text-lime mb-4">Inaczej</div>
-            <h3 className="text-2xl md:text-3xl font-black tracking-tight mb-6">
-              Strona KSIGN
-            </h3>
+            <div className="text-xs font-mono uppercase tracking-widest text-lime mb-4">
+              Inaczej
+            </div>
+            <h3 className="text-2xl md:text-3xl font-black tracking-tight mb-6">Strona KSIGN</h3>
             <ul className="space-y-3">
               {RIGHT.map((r) => (
                 <li key={r} className="flex items-start gap-3">

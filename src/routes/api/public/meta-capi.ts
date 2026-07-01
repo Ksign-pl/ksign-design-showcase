@@ -31,7 +31,9 @@ const PayloadSchema = z.object({
   eventId: z.string().min(8).max(128),
   eventSourceUrl: z.string().url().max(2048).optional(),
   userData: UserDataSchema.optional(),
-  customData: z.record(z.string().max(64), z.union([z.string().max(512), z.number(), z.boolean()])).optional(),
+  customData: z
+    .record(z.string().max(64), z.union([z.string().max(512), z.number(), z.boolean()]))
+    .optional(),
 });
 
 const sha256 = (v: string) => createHash("sha256").update(v).digest("hex");

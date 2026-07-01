@@ -21,9 +21,10 @@ const ENDPOINT_PATTERNS = {
   pixel: /facebook\.com\/tr|connect\.facebook\.net\/.*\/fbevents/,
 };
 
-async function runConnectionTest(
-  consent: { analytics: boolean; marketing: boolean },
-): Promise<TestResult> {
+async function runConnectionTest(consent: {
+  analytics: boolean;
+  marketing: boolean;
+}): Promise<TestResult> {
   const w = window as unknown as {
     gtag?: (...args: unknown[]) => void;
     fbq?: (...args: unknown[]) => void;
@@ -70,13 +71,17 @@ async function runConnectionTest(
       event_label: `analytics=${consent.analytics};marketing=${consent.marketing}`,
       non_interaction: true,
     });
-  } catch { /* noop */ }
+  } catch {
+    /* noop */
+  }
   try {
     w.fbq?.("trackCustom", "KsignConsentTest", {
       analytics: consent.analytics,
       marketing: consent.marketing,
     });
-  } catch { /* noop */ }
+  } catch {
+    /* noop */
+  }
 
   // Wait for network activity to settle.
   await new Promise((r) => setTimeout(r, 1500));
@@ -96,8 +101,7 @@ async function runConnectionTest(
         : `Uwaga: zgoda cofnięta, a wysłano ${totalHits} żądań — sprawdź konfigurację.`;
   } else {
     const ok =
-      (!expectsAnalytics || ga4Hits > 0) &&
-      (!expectsMarketing || adsHits > 0 || pixelHits > 0);
+      (!expectsAnalytics || ga4Hits > 0) && (!expectsMarketing || adsHits > 0 || pixelHits > 0);
     status = ok ? "ok" : "blocked";
     message = ok
       ? "Zdarzenie testowe wysłane pomyślnie."
@@ -158,18 +162,28 @@ export function CookieBanner() {
         {mode === "banner" ? (
           <>
             <div className="flex items-start gap-3 mb-4">
-              <div className="text-2xl" aria-hidden>🍪</div>
+              <div className="text-2xl" aria-hidden>
+                🍪
+              </div>
               <div>
-                <h2 id="cookie-banner-title" className="text-lg md:text-xl font-black tracking-tight">
+                <h2
+                  id="cookie-banner-title"
+                  className="text-lg md:text-xl font-black tracking-tight"
+                >
                   Szanujemy Twoją prywatność
                 </h2>
                 <p className="mt-2 text-sm text-cream/70 leading-relaxed">
-                  Używamy plików cookies, aby strona działała poprawnie, analizować ruch i (za Twoją zgodą)
-                  dopasowywać działania marketingowe. Możesz zaakceptować wszystkie, odrzucić opcjonalne lub
-                  wybrać samodzielnie. Szczegóły znajdziesz w{" "}
-                  <Link to="/polityka-cookies" className="underline hover:text-lime">Polityce cookies</Link>{" "}
+                  Używamy plików cookies, aby strona działała poprawnie, analizować ruch i (za Twoją
+                  zgodą) dopasowywać działania marketingowe. Możesz zaakceptować wszystkie, odrzucić
+                  opcjonalne lub wybrać samodzielnie. Szczegóły znajdziesz w{" "}
+                  <Link to="/polityka-cookies" className="underline hover:text-lime">
+                    Polityce cookies
+                  </Link>{" "}
                   i{" "}
-                  <Link to="/polityka-prywatnosci" className="underline hover:text-lime">Polityce prywatności</Link>.
+                  <Link to="/polityka-prywatnosci" className="underline hover:text-lime">
+                    Polityce prywatności
+                  </Link>
+                  .
                 </p>
               </div>
             </div>
@@ -196,7 +210,10 @@ export function CookieBanner() {
           </>
         ) : (
           <>
-            <h2 id="cookie-banner-title" className="text-lg md:text-xl font-black tracking-tight mb-4">
+            <h2
+              id="cookie-banner-title"
+              className="text-lg md:text-xl font-black tracking-tight mb-4"
+            >
               Ustawienia plików cookies
             </h2>
             <div className="space-y-3 mb-5">
@@ -225,7 +242,8 @@ export function CookieBanner() {
                 <div>
                   <div className="font-bold text-sm">Testuj połączenie</div>
                   <div className="text-xs text-cream/60 mt-1">
-                    Wysyła zdarzenie testowe do GA4 / Google Ads / Meta Pixel zgodnie z aktualnymi ustawieniami zgody.
+                    Wysyła zdarzenie testowe do GA4 / Google Ads / Meta Pixel zgodnie z aktualnymi
+                    ustawieniami zgody.
                   </div>
                 </div>
                 <button
@@ -255,21 +273,22 @@ export function CookieBanner() {
                     test.status === "ok"
                       ? "bg-lime/10 border border-lime/30 text-lime"
                       : test.status === "no-tags"
-                      ? "bg-white/5 border border-white/10 text-cream/70"
-                      : "bg-amber-400/10 border border-amber-400/30 text-amber-300"
+                        ? "bg-white/5 border border-white/10 text-cream/70"
+                        : "bg-amber-400/10 border border-amber-400/30 text-amber-300"
                   }`}
                 >
                   <div className="font-bold mb-1">
                     {test.status === "ok"
                       ? "✓ Połączenie OK"
                       : test.status === "no-tags"
-                      ? "○ Brak tagów"
-                      : "⚠ Zablokowane / brak ruchu"}
+                        ? "○ Brak tagów"
+                        : "⚠ Zablokowane / brak ruchu"}
                   </div>
                   <div className="text-cream/80 mb-2">{test.message}</div>
                   <ul className="space-y-0.5 text-cream/70">
                     <li>
-                      Zgoda: analytics={String(test.consent.analytics)}, marketing={String(test.consent.marketing)}
+                      Zgoda: analytics={String(test.consent.analytics)}, marketing=
+                      {String(test.consent.marketing)}
                     </li>
                     <li>GA4 hits: {test.ga4Hits}</li>
                     <li>Google Ads hits: {test.adsHits}</li>
@@ -320,7 +339,9 @@ function Toggle({
   disabled?: boolean;
 }) {
   return (
-    <label className={`flex items-start gap-4 p-4 rounded-2xl border border-white/10 ${disabled ? "opacity-70" : "cursor-pointer hover:bg-white/5"}`}>
+    <label
+      className={`flex items-start gap-4 p-4 rounded-2xl border border-white/10 ${disabled ? "opacity-70" : "cursor-pointer hover:bg-white/5"}`}
+    >
       <div className="flex-1">
         <div className="font-bold text-sm">{label}</div>
         <div className="text-xs text-cream/60 mt-1 leading-relaxed">{description}</div>

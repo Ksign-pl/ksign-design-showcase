@@ -31,7 +31,11 @@ async function gscFetch(path: string, init: RequestInit = {}) {
   return { ok: res.ok, status: res.status, body: text };
 }
 
-async function withRetry<T>(fn: () => Promise<T>, max = 3, delayMs = 1500): Promise<{ result: T; attempts: number }> {
+async function withRetry<T>(
+  fn: () => Promise<T>,
+  max = 3,
+  delayMs = 1500,
+): Promise<{ result: T; attempts: number }> {
   let lastErr: unknown;
   for (let i = 1; i <= max; i++) {
     try {
@@ -54,7 +58,9 @@ export const runGscVerification = createServerFn({ method: "POST" })
     try {
       const r = await fetch(GSC_SITE_URL, { headers: { "User-Agent": "KSIGN-GSC-Verifier/1.0" } });
       const html = await r.text();
-      const present = html.includes(`content="${GSC_META_TOKEN}"`) || html.includes(`content='${GSC_META_TOKEN}'`);
+      const present =
+        html.includes(`content="${GSC_META_TOKEN}"`) ||
+        html.includes(`content='${GSC_META_TOKEN}'`);
       steps.push({
         key: "meta",
         label: "Meta tag obecny w opublikowanym HTML",
@@ -65,7 +71,12 @@ export const runGscVerification = createServerFn({ method: "POST" })
       });
       if (!present) return { steps, success: false };
     } catch (e) {
-      steps.push({ key: "meta", label: "Meta tag obecny w opublikowanym HTML", status: "fail", detail: String(e) });
+      steps.push({
+        key: "meta",
+        label: "Meta tag obecny w opublikowanym HTML",
+        status: "fail",
+        detail: String(e),
+      });
       return { steps, success: false };
     }
 
@@ -100,7 +111,9 @@ export const runGscVerification = createServerFn({ method: "POST" })
     // Step 3: add site to Search Console
     try {
       const { attempts } = await withRetry(async () => {
-        const res = await gscFetch(`/webmasters/v3/sites/${encodeURIComponent(GSC_SITE_URL)}`, { method: "PUT" });
+        const res = await gscFetch(`/webmasters/v3/sites/${encodeURIComponent(GSC_SITE_URL)}`, {
+          method: "PUT",
+        });
         // 204 No Content on success; 409/200 if already present is also fine
         if (!res.ok && res.status !== 204 && res.status !== 409) {
           throw new Error(`HTTP ${res.status}: ${res.body}`);

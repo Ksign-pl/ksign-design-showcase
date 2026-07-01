@@ -2,14 +2,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 
-const StatusEnum = z.enum([
-  "all",
-  "paid",
-  "failed",
-  "expired",
-  "canceled",
-  "refunded",
-]);
+const StatusEnum = z.enum(["all", "paid", "failed", "expired", "canceled", "refunded"]);
 
 export type OrderStatusFilter = z.infer<typeof StatusEnum>;
 

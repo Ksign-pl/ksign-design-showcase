@@ -44,7 +44,9 @@ export function Pricing() {
           [ 08 / Pakiety ]
         </div>
         <h2 className="text-display-tight text-[10vw] md:text-[6vw] lg:text-[5.5rem] mb-14 md:mb-20">
-          WYBIERZ POZIOM<br/><span className="bg-violet px-3 rounded-2xl">STARTU.</span>
+          WYBIERZ POZIOM
+          <br />
+          <span className="bg-violet px-3 rounded-2xl">STARTU.</span>
         </h2>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-12 gap-5">
@@ -63,18 +65,24 @@ export function Pricing() {
                 </div>
               )}
               <div>
-                <div className={`text-xs font-mono uppercase tracking-widest mb-4 ${p.featured ? "text-cream/50" : "text-ink/40"}`}>
+                <div
+                  className={`text-xs font-mono uppercase tracking-widest mb-4 ${p.featured ? "text-cream/50" : "text-ink/40"}`}
+                >
                   {p.name}
                 </div>
                 <div className="flex items-baseline gap-2 mb-3">
-                  <span className={`font-black tracking-tighter ${p.featured ? "text-7xl md:text-8xl" : "text-4xl md:text-5xl"}`}>
+                  <span
+                    className={`font-black tracking-tighter ${p.featured ? "text-7xl md:text-8xl" : "text-4xl md:text-5xl"}`}
+                  >
                     {p.price}
                   </span>
                   <span className={`text-sm ${p.featured ? "text-cream/60" : "text-ink/50"}`}>
                     {p.unit}
                   </span>
                 </div>
-                <p className={`${p.featured ? "text-lg md:text-xl text-cream/70" : "text-sm text-ink/60"} leading-snug mb-6`}>
+                <p
+                  className={`${p.featured ? "text-lg md:text-xl text-cream/70" : "text-sm text-ink/60"} leading-snug mb-6`}
+                >
                   {p.desc}
                 </p>
               </div>
@@ -101,8 +109,14 @@ export function Pricing() {
             aria-label="Zobacz dodatkowe usługi i rozbudowę strony"
             className="lg:col-span-3 group relative rounded-3xl p-7 md:p-9 bg-violet text-ink overflow-hidden flex flex-col justify-between hover:scale-[1.01] transition-transform"
           >
-            <div className="absolute -right-8 -bottom-8 w-44 h-44 rounded-full bg-ink/10 group-hover:scale-125 transition-transform duration-700" aria-hidden="true" />
-            <div className="absolute right-6 top-6 w-10 h-10 rounded-full bg-ink text-cream flex items-center justify-center group-hover:rotate-45 transition-transform" aria-hidden="true">
+            <div
+              className="absolute -right-8 -bottom-8 w-44 h-44 rounded-full bg-ink/10 group-hover:scale-125 transition-transform duration-700"
+              aria-hidden="true"
+            />
+            <div
+              className="absolute right-6 top-6 w-10 h-10 rounded-full bg-ink text-cream flex items-center justify-center group-hover:rotate-45 transition-transform"
+              aria-hidden="true"
+            >
               →
             </div>
             <div className="relative">
@@ -110,7 +124,11 @@ export function Pricing() {
                 EXTRA
               </div>
               <div className="text-3xl md:text-4xl font-black tracking-tighter leading-[0.9] mb-3">
-                ZOBACZ<br/>POZOSTAŁE<br/>USŁUGI
+                ZOBACZ
+                <br />
+                POZOSTAŁE
+                <br />
+                USŁUGI
               </div>
               <p className="text-sm text-ink/70 leading-snug">
                 SEO, blog, branding, automatyzacje, chatbot AI i więcej.

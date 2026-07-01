@@ -63,10 +63,10 @@ function readDiag(): Diag {
       status: !META_PIXEL_ID
         ? "n/a"
         : !pixelLoaded
-        ? "not-loaded"
-        : !c?.marketing
-        ? "blocked"
-        : "active",
+          ? "not-loaded"
+          : !c?.marketing
+            ? "blocked"
+            : "active",
     },
     gtm: {
       id: GTM_ID,
@@ -204,7 +204,11 @@ export function ConsentDebugPanel() {
               // Tell Pixel to revoke consent.
               const fbq = (window as { fbq?: (...a: unknown[]) => void }).fbq;
               if (typeof fbq === "function") {
-                try { fbq("consent", "revoke"); } catch { /* noop */ }
+                try {
+                  fbq("consent", "revoke");
+                } catch {
+                  /* noop */
+                }
               }
               // Clear stored consent → triggers CONSENT_EVENT → applyConsent()
               // clears analytics + marketing cookies and re-shows the banner.

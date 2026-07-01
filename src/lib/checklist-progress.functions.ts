@@ -59,17 +59,15 @@ export const saveChecklistProgress = createServerFn({ method: "POST" })
       const trimmed = v.trim();
       if (trimmed) cleanNotes[k] = trimmed;
     }
-    const { error } = await supabaseAdmin
-      .from("order_checklist_progress")
-      .upsert(
-        {
-          order_id: data.orderId,
-          checked_indices: unique,
-          notes: cleanNotes,
-          updated_at: new Date().toISOString(),
-        },
-        { onConflict: "order_id" },
-      );
+    const { error } = await supabaseAdmin.from("order_checklist_progress").upsert(
+      {
+        order_id: data.orderId,
+        checked_indices: unique,
+        notes: cleanNotes,
+        updated_at: new Date().toISOString(),
+      },
+      { onConflict: "order_id" },
+    );
     if (error) throw new Error("Nie udało się zapisać postępu.");
     return { ok: true, checked: unique, notes: cleanNotes };
   });

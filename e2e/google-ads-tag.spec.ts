@@ -99,8 +99,7 @@ test.describe("Google Ads tag — detection & consent gating", () => {
         (req) => {
           const u = req.url();
           return (
-            (ADS_COLLECT_RE.test(u) || u.includes(ADS_ID)) &&
-            /collect|conversion|rmkt|ccm/.test(u)
+            (ADS_COLLECT_RE.test(u) || u.includes(ADS_ID)) && /collect|conversion|rmkt|ccm/.test(u)
           );
         },
         { timeout: 10_000 },

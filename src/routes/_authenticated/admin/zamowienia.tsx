@@ -34,7 +34,10 @@ const STATUS_OPTIONS: { value: OrderStatusFilter; label: string }[] = [
   { value: "refunded", label: "Zwrócone" },
 ];
 
-const STATUS_LABEL: Record<string, { label: string; variant: "default" | "secondary" | "destructive" | "outline" }> = {
+const STATUS_LABEL: Record<
+  string,
+  { label: string; variant: "default" | "secondary" | "destructive" | "outline" }
+> = {
   paid: { label: "Opłacone", variant: "default" },
   failed: { label: "Nieudane", variant: "destructive" },
   expired: { label: "Wygasłe", variant: "secondary" },
@@ -101,7 +104,8 @@ function AdminOrdersPage() {
           <p className="text-sm text-muted-foreground">
             Twoje konto ({adminQuery.data.email}) nie ma uprawnień administratora.
             <br />
-            Skontaktuj się z właścicielem projektu, aby nadać rolę <code>admin</code> w tabeli <code>user_roles</code>.
+            Skontaktuj się z właścicielem projektu, aby nadać rolę <code>admin</code> w tabeli{" "}
+            <code>user_roles</code>.
           </p>
           <div className="flex justify-center gap-2">
             <Button variant="outline" asChild>
@@ -171,7 +175,9 @@ function AdminOrdersPage() {
           </div>
 
           <div className="flex-1 min-w-[200px] space-y-1">
-            <label className="text-xs text-muted-foreground">Szukaj (e-mail / nazwisko / sesja)</label>
+            <label className="text-xs text-muted-foreground">
+              Szukaj (e-mail / nazwisko / sesja)
+            </label>
             <Input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
@@ -215,7 +221,10 @@ function AdminOrdersPage() {
                 </TableRow>
               )}
               {filtered.map((o) => {
-                const meta = STATUS_LABEL[o.status] ?? { label: o.status, variant: "outline" as const };
+                const meta = STATUS_LABEL[o.status] ?? {
+                  label: o.status,
+                  variant: "outline" as const,
+                };
                 return (
                   <TableRow key={o.id}>
                     <TableCell className="text-sm whitespace-nowrap">
@@ -225,9 +234,7 @@ function AdminOrdersPage() {
                       })}
                     </TableCell>
                     <TableCell>
-                      <div className="text-sm font-medium">
-                        {o.customer_name || "—"}
-                      </div>
+                      <div className="text-sm font-medium">{o.customer_name || "—"}</div>
                       <div className="text-xs text-muted-foreground">
                         {o.customer_email || "brak e-maila"}
                       </div>
@@ -242,9 +249,7 @@ function AdminOrdersPage() {
                     <TableCell>
                       <Badge variant={meta.variant}>{meta.label}</Badge>
                     </TableCell>
-                    <TableCell className="text-xs text-muted-foreground">
-                      {o.environment}
-                    </TableCell>
+                    <TableCell className="text-xs text-muted-foreground">{o.environment}</TableCell>
                   </TableRow>
                 );
               })}

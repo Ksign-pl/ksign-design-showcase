@@ -11,10 +11,18 @@ export const Route = createFileRoute("/checkout/canceled")({
   head: () => ({
     meta: [
       { title: "Płatność anulowana | KSIGN" },
-      { name: "description", content: "Twoja płatność została anulowana. Możesz wrócić do wyboru pakietu i spróbować ponownie." },
+      {
+        name: "description",
+        content:
+          "Twoja płatność została anulowana. Możesz wrócić do wyboru pakietu i spróbować ponownie.",
+      },
       { name: "robots", content: "noindex,nofollow" },
       { property: "og:title", content: "Płatność anulowana | KSIGN" },
-      { property: "og:description", content: "Twoja płatność została anulowana. Możesz wrócić do wyboru pakietu i spróbować ponownie." },
+      {
+        property: "og:description",
+        content:
+          "Twoja płatność została anulowana. Możesz wrócić do wyboru pakietu i spróbować ponownie.",
+      },
       { property: "og:url", content: "https://ksign.pl/checkout/canceled" },
     ],
   }),
@@ -33,14 +41,13 @@ function CheckoutCanceled() {
         <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-ink/10 text-ink text-3xl mb-6">
           ⏸
         </div>
-        <h1 className="text-3xl md:text-5xl font-black tracking-tight mb-3">
-          Płatność anulowana
-        </h1>
+        <h1 className="text-3xl md:text-5xl font-black tracking-tight mb-3">Płatność anulowana</h1>
         <p className="text-ink/70 mb-2">
           Nic nie zostało pobrane z Twojej karty.
           {item && (
             <>
-              {" "}Zamówienie <strong>{item.name}</strong> nie zostało zrealizowane.
+              {" "}
+              Zamówienie <strong>{item.name}</strong> nie zostało zrealizowane.
             </>
           )}
         </p>
@@ -49,13 +56,15 @@ function CheckoutCanceled() {
           <h2 className="font-bold mb-3">Co możesz zrobić dalej?</h2>
           <ul className="space-y-2 text-sm text-ink/75">
             <li>
-              <strong>1.</strong> Wróć do checkoutu i dokończ płatność — Twój wybór pakietu nie został utracony.
+              <strong>1.</strong> Wróć do checkoutu i dokończ płatność — Twój wybór pakietu nie
+              został utracony.
             </li>
             <li>
               <strong>2.</strong> Zobacz ponownie ofertę pakietów i wybierz inny wariant.
             </li>
             <li>
-              <strong>3.</strong> Jeśli wolisz przelew tradycyjny lub fakturę proforma — napisz, ustalimy płatność poza Stripe.
+              <strong>3.</strong> Jeśli wolisz przelew tradycyjny lub fakturę proforma — napisz,
+              ustalimy płatność poza Stripe.
             </li>
           </ul>
         </div>
@@ -77,10 +86,7 @@ function CheckoutCanceled() {
         </div>
 
         <div className="mt-8">
-          <a
-            href={mailto("Inna forma płatności")}
-            className="text-sm text-ink/50 underline"
-          >
+          <a href={mailto("Inna forma płatności")} className="text-sm text-ink/50 underline">
             Napisz do nas o inną formę płatności
           </a>
         </div>

@@ -7,14 +7,20 @@ import { supabaseAdmin } from "@/integrations/supabase/client.server";
 export const getOrderBySession = createServerFn({ method: "POST" })
   .inputValidator((input: { sessionId: string }) => {
     const schema = z.object({
-      sessionId: z.string().min(10).max(255).regex(/^[a-zA-Z0-9_]+$/),
+      sessionId: z
+        .string()
+        .min(10)
+        .max(255)
+        .regex(/^[a-zA-Z0-9_]+$/),
     });
     return schema.parse(input);
   })
   .handler(async ({ data }) => {
     const { data: order, error } = await supabaseAdmin
       .from("orders")
-      .select("id, product_name, price_id, amount_cents, currency, brief_completed, status, created_at")
+      .select(
+        "id, product_name, price_id, amount_cents, currency, brief_completed, status, created_at",
+      )
       .eq("stripe_session_id", data.sessionId)
       .maybeSingle();
     if (error) {
@@ -25,7 +31,11 @@ export const getOrderBySession = createServerFn({ method: "POST" })
   });
 
 const BriefSchema = z.object({
-  sessionId: z.string().min(10).max(255).regex(/^[a-zA-Z0-9_]+$/),
+  sessionId: z
+    .string()
+    .min(10)
+    .max(255)
+    .regex(/^[a-zA-Z0-9_]+$/),
   companyName: z.string().min(1).max(255),
   industry: z.string().min(1).max(255),
   goals: z.string().min(1).max(2000),
@@ -60,17 +70,14 @@ export const submitBrief = createServerFn({ method: "POST" })
         inspirations: data.inspirations,
         phone: data.phone,
       },
-      { onConflict: "order_id" }
+      { onConflict: "order_id" },
     );
     if (error) {
       console.error("submitBrief insert error:", error);
       throw new Error("Nie udało się zapisać briefu.");
     }
 
-    await supabaseAdmin
-      .from("orders")
-      .update({ brief_completed: true })
-      .eq("id", order.id);
+    await supabaseAdmin.from("orders").update({ brief_completed: true }).eq("id", order.id);
 
     return { ok: true };
   });

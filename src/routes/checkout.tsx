@@ -12,10 +12,18 @@ export const Route = createFileRoute("/checkout")({
   head: () => ({
     meta: [
       { title: "Zamówienie | KSIGN" },
-      { name: "description", content: "Sfinalizuj zamówienie pakietu KSIGN — bezpieczna płatność online i szybki start prac nad Twoją stroną." },
+      {
+        name: "description",
+        content:
+          "Sfinalizuj zamówienie pakietu KSIGN — bezpieczna płatność online i szybki start prac nad Twoją stroną.",
+      },
       { name: "robots", content: "noindex,nofollow" },
       { property: "og:title", content: "Zamówienie | KSIGN" },
-      { property: "og:description", content: "Sfinalizuj zamówienie pakietu KSIGN — bezpieczna płatność online i szybki start prac nad Twoją stroną." },
+      {
+        property: "og:description",
+        content:
+          "Sfinalizuj zamówienie pakietu KSIGN — bezpieczna płatność online i szybki start prac nad Twoją stroną.",
+      },
       { property: "og:url", content: "https://ksign.pl/checkout" },
     ],
   }),
@@ -39,8 +47,12 @@ function CheckoutPage() {
       <PaymentTestModeBanner />
       <header className="border-b border-ink/10">
         <div className="mx-auto max-w-[1400px] px-5 md:px-8 py-5 flex items-center justify-between">
-          <Link to="/" className="font-black tracking-tight text-xl">KSIGN</Link>
-          <Link to="/pakiety" className="text-sm text-ink/60 hover:text-ink">← Wybierz inny pakiet</Link>
+          <Link to="/" className="font-black tracking-tight text-xl">
+            KSIGN
+          </Link>
+          <Link to="/pakiety" className="text-sm text-ink/60 hover:text-ink">
+            ← Wybierz inny pakiet
+          </Link>
         </div>
       </header>
       <main className="mx-auto max-w-[1100px] px-5 md:px-8 py-10 md:py-16">

@@ -10,14 +10,78 @@ import imgAds from "@/assets/addon-ads.jpg";
 import imgLanding from "@/assets/addon-landing.jpg";
 
 const ADDONS = [
-  { num: "01", title: "SEO", desc: "Pozycjonowanie i optymalizacja techniczna.", color: "bg-lime", img: imgSeo, alt: "Audyt SEO i optymalizacja Core Web Vitals strony internetowej", caption: "Audyt + Core Web Vitals" },
-  { num: "02", title: "Blog", desc: "Sekcja artykułów z systemem CMS.", color: "bg-white", img: imgBlog, alt: "System blogowy CMS z edytorem treści dla strony internetowej", caption: "CMS + edytor treści" },
-  { num: "03", title: "Branding", desc: "Logo, kolory, identyfikacja wizualna.", color: "bg-violet", img: imgBranding, alt: "Branding — logo, kolory, identyfikacja wizualna firmy", caption: "Logo + brandbook" },
-  { num: "04", title: "Sklep", desc: "WooCommerce, Shoper lub Shopify.", color: "bg-ink text-cream", img: imgShop, alt: "Sklep internetowy WooCommerce lub Shopify z płatnościami online", caption: "Płatności + wysyłki" },
-  { num: "05", title: "Automatyzacje", desc: "Make, Zapier, n8n, integracje API.", color: "bg-white", img: imgAutomation, alt: "Automatyzacje no-code — integracje Make, Zapier i API", caption: "Integracje no-code" },
-  { num: "06", title: "Chatbot AI", desc: "Asystent AI dopasowany do firmy.", color: "bg-lime", img: imgChatbot, alt: "Chatbot AI trenowany na danych firmy", caption: "Trenowany na Twoich danych" },
-  { num: "07", title: "Reklamy", desc: "Kampanie Google i Meta Ads.", color: "bg-violet", img: imgAds, alt: "Kampanie reklamowe Google Ads i Meta Ads dla małej firmy", caption: "Google + Meta Ads" },
-  { num: "08", title: "Landing", desc: "Strony sprzedażowe pod kampanie.", color: "bg-white", img: imgLanding, alt: "Landing page z testami A/B i optymalizacją konwersji", caption: "A/B testy konwersji" },
+  {
+    num: "01",
+    title: "SEO",
+    desc: "Pozycjonowanie i optymalizacja techniczna.",
+    color: "bg-lime",
+    img: imgSeo,
+    alt: "Audyt SEO i optymalizacja Core Web Vitals strony internetowej",
+    caption: "Audyt + Core Web Vitals",
+  },
+  {
+    num: "02",
+    title: "Blog",
+    desc: "Sekcja artykułów z systemem CMS.",
+    color: "bg-white",
+    img: imgBlog,
+    alt: "System blogowy CMS z edytorem treści dla strony internetowej",
+    caption: "CMS + edytor treści",
+  },
+  {
+    num: "03",
+    title: "Branding",
+    desc: "Logo, kolory, identyfikacja wizualna.",
+    color: "bg-violet",
+    img: imgBranding,
+    alt: "Branding — logo, kolory, identyfikacja wizualna firmy",
+    caption: "Logo + brandbook",
+  },
+  {
+    num: "04",
+    title: "Sklep",
+    desc: "WooCommerce, Shoper lub Shopify.",
+    color: "bg-ink text-cream",
+    img: imgShop,
+    alt: "Sklep internetowy WooCommerce lub Shopify z płatnościami online",
+    caption: "Płatności + wysyłki",
+  },
+  {
+    num: "05",
+    title: "Automatyzacje",
+    desc: "Make, Zapier, n8n, integracje API.",
+    color: "bg-white",
+    img: imgAutomation,
+    alt: "Automatyzacje no-code — integracje Make, Zapier i API",
+    caption: "Integracje no-code",
+  },
+  {
+    num: "06",
+    title: "Chatbot AI",
+    desc: "Asystent AI dopasowany do firmy.",
+    color: "bg-lime",
+    img: imgChatbot,
+    alt: "Chatbot AI trenowany na danych firmy",
+    caption: "Trenowany na Twoich danych",
+  },
+  {
+    num: "07",
+    title: "Reklamy",
+    desc: "Kampanie Google i Meta Ads.",
+    color: "bg-violet",
+    img: imgAds,
+    alt: "Kampanie reklamowe Google Ads i Meta Ads dla małej firmy",
+    caption: "Google + Meta Ads",
+  },
+  {
+    num: "08",
+    title: "Landing",
+    desc: "Strony sprzedażowe pod kampanie.",
+    color: "bg-white",
+    img: imgLanding,
+    alt: "Landing page z testami A/B i optymalizacją konwersji",
+    caption: "A/B testy konwersji",
+  },
 ];
 
 export function AddonsSlider() {
@@ -44,7 +108,9 @@ export function AddonsSlider() {
               id="addons-heading"
               className="text-display-tight text-[10vw] md:text-[6vw] lg:text-[5.5rem] max-w-4xl"
             >
-              CO MOŻESZ<br/>DODAĆ <span className="text-violet">PÓŹNIEJ?</span>
+              CO MOŻESZ
+              <br />
+              DODAĆ <span className="text-violet">PÓŹNIEJ?</span>
             </h2>
           </div>
           <div className="flex gap-2" role="group" aria-label="Sterowanie karuzelą">
@@ -61,7 +127,11 @@ export function AddonsSlider() {
               aria-label={paused ? "Wznów przewijanie" : "Zatrzymaj przewijanie"}
               className="w-12 h-12 rounded-full bg-white border border-ink/15 flex items-center justify-center hover:bg-ink hover:text-cream transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-cream"
             >
-              {paused ? <Play size={16} aria-hidden="true" /> : <Pause size={16} aria-hidden="true" />}
+              {paused ? (
+                <Play size={16} aria-hidden="true" />
+              ) : (
+                <Pause size={16} aria-hidden="true" />
+              )}
             </button>
             <button
               onClick={() => setDirection("left")}
@@ -97,7 +167,9 @@ export function AddonsSlider() {
                 role="group"
                 aria-roledescription="slide"
                 aria-hidden={isClone ? "true" : undefined}
-                aria-label={!isClone ? `${(i % ADDONS.length) + 1} z ${ADDONS.length}: ${a.title}` : undefined}
+                aria-label={
+                  !isClone ? `${(i % ADDONS.length) + 1} z ${ADDONS.length}: ${a.title}` : undefined
+                }
                 tabIndex={isClone ? -1 : 0}
                 onPointerMove={(e) => {
                   if (e.pointerType !== "mouse" && e.pointerType !== "pen") return;
@@ -118,7 +190,11 @@ export function AddonsSlider() {
                 }}
                 className={`${a.color} group flex-shrink-0 w-[280px] md:w-[340px] aspect-[3/4] rounded-3xl overflow-hidden flex flex-col justify-between cursor-pointer relative focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-violet focus-visible:ring-offset-2 focus-visible:ring-offset-cream [--px:0] [--py:0] [--tilt:0]`}
               >
-                <div className="absolute inset-0 overflow-hidden" aria-hidden="true" style={{ perspective: "800px" }}>
+                <div
+                  className="absolute inset-0 overflow-hidden"
+                  aria-hidden="true"
+                  style={{ perspective: "800px" }}
+                >
                   <img
                     src={a.img}
                     alt={a.alt}
@@ -142,20 +218,27 @@ export function AddonsSlider() {
                   <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/45 to-transparent" />
                 </div>
                 <div className="relative flex items-start justify-between p-7 text-white">
-                  <span className="text-sm font-mono opacity-90 drop-shadow-md" aria-hidden="true">{a.num}</span>
-                  <span className="w-8 h-8 rounded-full bg-white/15 backdrop-blur-sm border border-white/40 flex items-center justify-center" aria-hidden="true">
+                  <span className="text-sm font-mono opacity-90 drop-shadow-md" aria-hidden="true">
+                    {a.num}
+                  </span>
+                  <span
+                    className="w-8 h-8 rounded-full bg-white/15 backdrop-blur-sm border border-white/40 flex items-center justify-center"
+                    aria-hidden="true"
+                  >
                     <ArrowRight size={14} />
                   </span>
                 </div>
                 <div className="relative p-7 text-white">
-                  <span
-                    className="inline-flex items-center gap-1.5 mb-3 px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider bg-white/15 backdrop-blur-sm border border-white/30 text-white opacity-0 -translate-y-1 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:translate-y-0"
-                  >
+                  <span className="inline-flex items-center gap-1.5 mb-3 px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider bg-white/15 backdrop-blur-sm border border-white/30 text-white opacity-0 -translate-y-1 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:translate-y-0">
                     <span className="w-1 h-1 rounded-full bg-white/80" aria-hidden="true" />
                     {a.caption}
                   </span>
-                  <h3 className="text-4xl md:text-5xl font-black tracking-tighter mb-3 [text-shadow:0_2px_12px_rgba(0,0,0,0.55)]">{a.title}</h3>
-                  <p className="text-sm leading-snug text-white/95 [text-shadow:0_1px_6px_rgba(0,0,0,0.6)]">{a.desc}</p>
+                  <h3 className="text-4xl md:text-5xl font-black tracking-tighter mb-3 [text-shadow:0_2px_12px_rgba(0,0,0,0.55)]">
+                    {a.title}
+                  </h3>
+                  <p className="text-sm leading-snug text-white/95 [text-shadow:0_1px_6px_rgba(0,0,0,0.6)]">
+                    {a.desc}
+                  </p>
                 </div>
               </div>
             );

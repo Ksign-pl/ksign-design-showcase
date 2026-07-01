@@ -47,7 +47,11 @@ export function FinalCTA() {
           [ 10 / Zamów ]
         </div>
         <h2 className="text-display-tight text-[11vw] md:text-[6.5vw] lg:text-[6.5rem] max-w-6xl">
-          ZRÓB STRONĘ,<br/>KTÓRA <span className="text-lime">NIE WYGLĄDA</span><br/>NA 999 ZŁ.
+          ZRÓB STRONĘ,
+          <br />
+          KTÓRA <span className="text-lime">NIE WYGLĄDA</span>
+          <br />
+          NA 999 ZŁ.
         </h2>
         <p className="mt-8 text-lg md:text-xl text-cream/70 max-w-2xl leading-snug">
           Pakiet Start KSIGN to szybki sposób, żeby Twoja firma wyglądała nowocześnie,
@@ -57,19 +61,44 @@ export function FinalCTA() {
         <div className="mt-14 grid lg:grid-cols-12 gap-10">
           <div className="lg:col-span-5 space-y-6">
             <div className="bg-white/5 border border-white/10 rounded-3xl p-7">
-              <div className="text-xs font-mono uppercase tracking-widest text-cream/50 mb-2">e-mail</div>
-              <a href={`mailto:${CONTACT.email}`} className="text-2xl font-bold hover:text-lime transition">{CONTACT.email}</a>
+              <div className="text-xs font-mono uppercase tracking-widest text-cream/50 mb-2">
+                e-mail
+              </div>
+              <a
+                href={`mailto:${CONTACT.email}`}
+                className="text-2xl font-bold hover:text-lime transition"
+              >
+                {CONTACT.email}
+              </a>
             </div>
             <div className="bg-white/5 border border-white/10 rounded-3xl p-7">
-              <div className="text-xs font-mono uppercase tracking-widest text-cream/50 mb-2">telefon</div>
-              <a href={`tel:${CONTACT.phone}`} className="text-2xl font-bold hover:text-lime transition">606 576 517</a>
+              <div className="text-xs font-mono uppercase tracking-widest text-cream/50 mb-2">
+                telefon
+              </div>
+              <a
+                href={`tel:${CONTACT.phone}`}
+                className="text-2xl font-bold hover:text-lime transition"
+              >
+                606 576 517
+              </a>
             </div>
             <div className="bg-white/5 border border-white/10 rounded-3xl p-7">
-              <div className="text-xs font-mono uppercase tracking-widest text-cream/50 mb-2">facebook</div>
-              <a href="https://www.facebook.com/ksign2026" target="_blank" rel="noopener noreferrer" className="text-2xl font-bold hover:text-lime transition">/ksign2026</a>
+              <div className="text-xs font-mono uppercase tracking-widest text-cream/50 mb-2">
+                facebook
+              </div>
+              <a
+                href="https://www.facebook.com/ksign2026"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-2xl font-bold hover:text-lime transition"
+              >
+                /ksign2026
+              </a>
             </div>
             <div className="bg-lime text-ink rounded-3xl p-7">
-              <div className="text-xs font-mono uppercase tracking-widest text-ink/50 mb-2">odpowiadamy</div>
+              <div className="text-xs font-mono uppercase tracking-widest text-ink/50 mb-2">
+                odpowiadamy
+              </div>
               <div className="text-2xl font-bold">w 24h</div>
             </div>
           </div>
@@ -93,7 +122,10 @@ export function FinalCTA() {
                   <Field label="Nazwa firmy" name="company" />
                 </div>
                 <div className="mt-4">
-                  <label htmlFor="field-package" className="block text-xs font-mono uppercase tracking-widest text-ink/50 mb-2">
+                  <label
+                    htmlFor="field-package"
+                    className="block text-xs font-mono uppercase tracking-widest text-ink/50 mb-2"
+                  >
                     Wybór pakietu
                   </label>
                   <select
@@ -109,7 +141,10 @@ export function FinalCTA() {
                   </select>
                 </div>
                 <div className="mt-4">
-                  <label htmlFor="field-message" className="block text-xs font-mono uppercase tracking-widest text-ink/50 mb-2">
+                  <label
+                    htmlFor="field-message"
+                    className="block text-xs font-mono uppercase tracking-widest text-ink/50 mb-2"
+                  >
                     Wiadomość
                   </label>
                   <textarea
@@ -130,10 +165,13 @@ export function FinalCTA() {
                       className="mt-1 h-4 w-4 shrink-0 accent-ink"
                     />
                     <span>
-                      <span className="text-red-600">*</span> Wyrażam zgodę na przetwarzanie moich danych osobowych
-                      (imię, e-mail, telefon, treść wiadomości) przez KSIGN w celu odpowiedzi na zapytanie, zgodnie
-                      z{" "}
-                      <Link to="/polityka-prywatnosci" className="underline hover:text-violet">Polityką prywatności</Link>.
+                      <span className="text-red-600">*</span> Wyrażam zgodę na przetwarzanie moich
+                      danych osobowych (imię, e-mail, telefon, treść wiadomości) przez KSIGN w celu
+                      odpowiedzi na zapytanie, zgodnie z{" "}
+                      <Link to="/polityka-prywatnosci" className="underline hover:text-violet">
+                        Polityką prywatności
+                      </Link>
+                      .
                     </span>
                   </label>
                   <label className="flex items-start gap-3 text-sm text-ink/75 leading-snug cursor-pointer">
@@ -144,19 +182,25 @@ export function FinalCTA() {
                       className="mt-1 h-4 w-4 shrink-0 accent-ink"
                     />
                     <span>
-                      Wyrażam zgodę na otrzymywanie informacji handlowych i marketingowych drogą elektroniczną oraz
-                      telefoniczną od KSIGN (zgoda dobrowolna, można ją wycofać w każdej chwili).
+                      Wyrażam zgodę na otrzymywanie informacji handlowych i marketingowych drogą
+                      elektroniczną oraz telefoniczną od KSIGN (zgoda dobrowolna, można ją wycofać w
+                      każdej chwili).
                     </span>
                   </label>
                 </div>
                 {error && (
-                  <p role="alert" className="mt-3 text-sm text-red-600">{error}</p>
+                  <p role="alert" className="mt-3 text-sm text-red-600">
+                    {error}
+                  </p>
                 )}
                 <p className="mt-4 text-xs text-ink/50 leading-relaxed">
-                  Administratorem danych jest KSIGN. Masz prawo dostępu do danych, ich sprostowania, usunięcia,
-                  ograniczenia przetwarzania, przenoszenia, sprzeciwu oraz wniesienia skargi do Prezesa UODO.
-                  Szczegóły w{" "}
-                  <Link to="/polityka-prywatnosci" className="underline hover:text-violet">Polityce prywatności</Link>.
+                  Administratorem danych jest KSIGN. Masz prawo dostępu do danych, ich sprostowania,
+                  usunięcia, ograniczenia przetwarzania, przenoszenia, sprzeciwu oraz wniesienia
+                  skargi do Prezesa UODO. Szczegóły w{" "}
+                  <Link to="/polityka-prywatnosci" className="underline hover:text-violet">
+                    Polityce prywatności
+                  </Link>
+                  .
                 </p>
                 <button
                   type="submit"
@@ -177,7 +221,10 @@ function Field({ label, name, type = "text" }: { label: string; name: string; ty
   const id = `field-${name}`;
   return (
     <div>
-      <label htmlFor={id} className="block text-xs font-mono uppercase tracking-widest text-ink/50 mb-2">
+      <label
+        htmlFor={id}
+        className="block text-xs font-mono uppercase tracking-widest text-ink/50 mb-2"
+      >
         {label}
       </label>
       <input

@@ -12,10 +12,18 @@ export const Route = createFileRoute("/checkout/failed")({
   head: () => ({
     meta: [
       { title: "Płatność nieudana | KSIGN" },
-      { name: "description", content: "Płatność nie powiodła się. Spróbuj ponownie lub skontaktuj się z nami, żebyśmy pomogli sfinalizować zamówienie." },
+      {
+        name: "description",
+        content:
+          "Płatność nie powiodła się. Spróbuj ponownie lub skontaktuj się z nami, żebyśmy pomogli sfinalizować zamówienie.",
+      },
       { name: "robots", content: "noindex,nofollow" },
       { property: "og:title", content: "Płatność nieudana | KSIGN" },
-      { property: "og:description", content: "Płatność nie powiodła się. Spróbuj ponownie lub skontaktuj się z nami, żebyśmy pomogli sfinalizować zamówienie." },
+      {
+        property: "og:description",
+        content:
+          "Płatność nie powiodła się. Spróbuj ponownie lub skontaktuj się z nami, żebyśmy pomogli sfinalizować zamówienie.",
+      },
       { property: "og:url", content: "https://ksign.pl/checkout/failed" },
     ],
   }),
@@ -34,23 +42,20 @@ function CheckoutFailed() {
         <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-100 text-red-600 text-3xl mb-6">
           ✕
         </div>
-        <h1 className="text-3xl md:text-5xl font-black tracking-tight mb-3">
-          Płatność nieudana
-        </h1>
+        <h1 className="text-3xl md:text-5xl font-black tracking-tight mb-3">Płatność nieudana</h1>
         <p className="text-ink/70 mb-2">
           Nic nie zostało pobrane z Twojej karty.
           {item && (
             <>
-              {" "}Zamówienie <strong>{item.name}</strong> nie zostało opłacone.
+              {" "}
+              Zamówienie <strong>{item.name}</strong> nie zostało opłacone.
             </>
           )}
         </p>
-        {reason && (
-          <p className="text-sm text-ink/50 mb-2">Powód: {reason}</p>
-        )}
+        {reason && <p className="text-sm text-ink/50 mb-2">Powód: {reason}</p>}
         <p className="text-ink/60 mb-8">
-          Możesz spróbować ponownie lub wrócić do wyboru pakietu. Jeśli problem się
-          powtarza — napisz, ustalimy inny sposób płatności.
+          Możesz spróbować ponownie lub wrócić do wyboru pakietu. Jeśli problem się powtarza —
+          napisz, ustalimy inny sposób płatności.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -70,10 +75,7 @@ function CheckoutFailed() {
         </div>
 
         <div className="mt-8">
-          <a
-            href={mailto("Problem z płatnością")}
-            className="text-sm text-ink/50 underline"
-          >
+          <a href={mailto("Problem z płatnością")} className="text-sm text-ink/50 underline">
             Napisz do nas
           </a>
         </div>

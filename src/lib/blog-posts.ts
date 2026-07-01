@@ -133,9 +133,7 @@ export function getPostBySlug(slug: string): BlogPost | undefined {
 }
 
 export function getLatestPosts(limit = 3): BlogPost[] {
-  return [...BLOG_POSTS]
-    .sort((a, b) => b.date.localeCompare(a.date))
-    .slice(0, limit);
+  return [...BLOG_POSTS].sort((a, b) => b.date.localeCompare(a.date)).slice(0, limit);
 }
 
 export function formatDate(iso: string): string {

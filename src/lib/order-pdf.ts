@@ -92,9 +92,10 @@ export function normalizeOrderPdfData(d: OrderPdfData): NormalizedOrderPdf {
         .map((s) => s.trim().slice(0, 500))
         .slice(0, 20)
     : [];
-  const steps = cleanSteps.length > 0
-    ? cleanSteps
-    : (warnings.push("Brak listy kroków — użyto domyślnych."), [...FALLBACK.steps]);
+  const steps =
+    cleanSteps.length > 0
+      ? cleanSteps
+      : (warnings.push("Brak listy kroków — użyto domyślnych."), [...FALLBACK.steps]);
 
   const customerName =
     typeof d.customerName === "string" && d.customerName.trim()
@@ -239,12 +240,9 @@ export function generateOrderPdf(input: OrderPdfData): jsPDF {
     doc.setFontSize(9);
     doc.setTextColor(MUTED);
     doc.text(`ID zamowienia: ${d.orderId}`, margin, footerY);
-    doc.text(
-      `Wygenerowano: ${new Date().toLocaleString("pl-PL")}`,
-      pageW - margin,
-      footerY,
-      { align: "right" },
-    );
+    doc.text(`Wygenerowano: ${new Date().toLocaleString("pl-PL")}`, pageW - margin, footerY, {
+      align: "right",
+    });
     if (customerLine) {
       doc.text(customerLine, margin, footerY - 22);
     }
@@ -253,14 +251,7 @@ export function generateOrderPdf(input: OrderPdfData): jsPDF {
   return doc;
 }
 
-function drawInfoBox(
-  doc: jsPDF,
-  x: number,
-  y: number,
-  w: number,
-  label: string,
-  value: string,
-) {
+function drawInfoBox(doc: jsPDF, x: number, y: number, w: number, label: string, value: string) {
   doc.setDrawColor(LINE);
   doc.setFillColor(250, 250, 247);
   doc.roundedRect(x, y, w, 64, 8, 8, "FD");

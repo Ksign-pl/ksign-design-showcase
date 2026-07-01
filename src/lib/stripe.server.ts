@@ -1,4 +1,4 @@
-import Stripe from 'stripe';
+import Stripe from "stripe";
 
 const getEnv = (key: string): string => {
   const value = process.env[key];
@@ -6,31 +6,29 @@ const getEnv = (key: string): string => {
   return value;
 };
 
-export type StripeEnv = 'sandbox' | 'live';
+export type StripeEnv = "sandbox" | "live";
 
-const GATEWAY_STRIPE_BASE = 'https://connector-gateway.lovable.dev/stripe';
+const GATEWAY_STRIPE_BASE = "https://connector-gateway.lovable.dev/stripe";
 
 export function getConnectionApiKey(env: StripeEnv): string {
-  return env === 'sandbox'
-    ? getEnv('STRIPE_SANDBOX_API_KEY')
-    : getEnv('STRIPE_LIVE_API_KEY');
+  return env === "sandbox" ? getEnv("STRIPE_SANDBOX_API_KEY") : getEnv("STRIPE_LIVE_API_KEY");
 }
 
 export function createStripeClient(env: StripeEnv): Stripe {
   const connectionApiKey = getConnectionApiKey(env);
-  const lovableApiKey = getEnv('LOVABLE_API_KEY');
+  const lovableApiKey = getEnv("LOVABLE_API_KEY");
 
   return new Stripe(connectionApiKey, {
-    apiVersion: '2026-03-25.dahlia',
+    apiVersion: "2026-03-25.dahlia",
     httpClient: Stripe.createFetchHttpClient(((input: URL | RequestInfo, init?: RequestInit) => {
-      const url = typeof input === 'string' || input instanceof URL ? input.toString() : input.url;
-      const gatewayUrl = url.replace('https://api.stripe.com', GATEWAY_STRIPE_BASE);
+      const url = typeof input === "string" || input instanceof URL ? input.toString() : input.url;
+      const gatewayUrl = url.replace("https://api.stripe.com", GATEWAY_STRIPE_BASE);
       return fetch(gatewayUrl, {
         ...init,
         headers: {
           ...Object.fromEntries(new Headers(init?.headers).entries()),
-          'X-Connection-Api-Key': connectionApiKey,
-          'Lovable-API-Key': lovableApiKey,
+          "X-Connection-Api-Key": connectionApiKey,
+          "Lovable-API-Key": lovableApiKey,
         },
       });
     }) as typeof fetch),

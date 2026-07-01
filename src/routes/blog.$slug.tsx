@@ -68,7 +68,12 @@ export const Route = createFileRoute("/blog/$slug")({
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Strona główna", item: "https://ksign.pl/" },
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Strona główna",
+                item: "https://ksign.pl/",
+              },
               { "@type": "ListItem", position: 2, name: "Blog", item: "https://ksign.pl/blog" },
               { "@type": "ListItem", position: 3, name: post.title, item: url },
             ],
@@ -218,10 +223,7 @@ function BlogPost() {
                     <Tag size={12} aria-hidden="true" /> {post.category}
                   </span>
                   <span aria-hidden="true">•</span>
-                  <time
-                    dateTime={post.date}
-                    className="inline-flex items-center gap-1.5"
-                  >
+                  <time dateTime={post.date} className="inline-flex items-center gap-1.5">
                     <Calendar size={12} aria-hidden="true" /> {formatDate(post.date)}
                   </time>
                   <span aria-hidden="true">•</span>
@@ -260,8 +262,8 @@ function BlogPost() {
                   Potrzebujesz strony dla swojej firmy?
                 </h2>
                 <p className="text-cream/70 mb-6 max-w-xl">
-                  Premium one-page od KSIGN — projekt graficzny custom, mobile-first, podstawy SEO
-                  i certyfikat SSL. Gotowe w 3–7 dni roboczych za 999 zł netto.
+                  Premium one-page od KSIGN — projekt graficzny custom, mobile-first, podstawy SEO i
+                  certyfikat SSL. Gotowe w 3–7 dni roboczych za 999 zł netto.
                 </p>
                 <div className="flex flex-wrap gap-3">
                   <Link
@@ -287,10 +289,7 @@ function BlogPost() {
 
               {/* Prev / next navigation */}
               {(prev || next) && (
-                <nav
-                  aria-label="Inne wpisy"
-                  className="mt-12 grid gap-4 md:grid-cols-2"
-                >
+                <nav aria-label="Inne wpisy" className="mt-12 grid gap-4 md:grid-cols-2">
                   {prev ? (
                     <Link
                       to="/blog/$slug"
@@ -363,7 +362,8 @@ function BlogPost() {
                     Pakiet Start
                   </div>
                   <p className="text-sm text-cream/80 mb-4 leading-relaxed">
-                    Premium one-page w 3–7 dni za <strong className="text-cream">999 zł netto</strong>.
+                    Premium one-page w 3–7 dni za{" "}
+                    <strong className="text-cream">999 zł netto</strong>.
                   </p>
                   <Link
                     to="/"
@@ -381,9 +381,7 @@ function BlogPost() {
           {related.length > 0 && (
             <section className="mt-24 pt-12 border-t border-cream/10">
               <div className="flex items-end justify-between gap-6 mb-8 flex-wrap">
-                <h2 className="text-2xl md:text-3xl font-black tracking-tight">
-                  Czytaj dalej
-                </h2>
+                <h2 className="text-2xl md:text-3xl font-black tracking-tight">Czytaj dalej</h2>
                 <Link
                   to="/blog"
                   className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-cream/50 hover:text-lime transition-colors"

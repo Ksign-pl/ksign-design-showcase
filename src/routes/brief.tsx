@@ -14,10 +14,18 @@ export const Route = createFileRoute("/brief")({
   head: () => ({
     meta: [
       { title: "Brief projektu | KSIGN" },
-      { name: "description", content: "Uzupełnij brief swojego projektu — przekaż nam treści i materiały, żebyśmy mogli wystartować z realizacją strony." },
+      {
+        name: "description",
+        content:
+          "Uzupełnij brief swojego projektu — przekaż nam treści i materiały, żebyśmy mogli wystartować z realizacją strony.",
+      },
       { name: "robots", content: "noindex,nofollow" },
       { property: "og:title", content: "Brief projektu | KSIGN" },
-      { property: "og:description", content: "Uzupełnij brief swojego projektu — przekaż nam treści i materiały, żebyśmy mogli wystartować z realizacją strony." },
+      {
+        property: "og:description",
+        content:
+          "Uzupełnij brief swojego projektu — przekaż nam treści i materiały, żebyśmy mogli wystartować z realizacją strony.",
+      },
       { property: "og:url", content: "https://ksign.pl/brief" },
     ],
   }),
@@ -44,15 +52,31 @@ function BriefPage() {
   if (!session_id) {
     return (
       <Centered>
-        <p>Brak identyfikatora zamówienia. <Link to="/" className="underline">Wróć na stronę</Link>.</p>
+        <p>
+          Brak identyfikatora zamówienia.{" "}
+          <Link to="/" className="underline">
+            Wróć na stronę
+          </Link>
+          .
+        </p>
       </Centered>
     );
   }
-  if (isLoading) return <Centered><p>Ładowanie…</p></Centered>;
+  if (isLoading)
+    return (
+      <Centered>
+        <p>Ładowanie…</p>
+      </Centered>
+    );
   if (!order) {
     return (
       <Centered>
-        <p>Nie znaleziono zamówienia. Skontaktuj się z nami: <a className="underline" href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></p>
+        <p>
+          Nie znaleziono zamówienia. Skontaktuj się z nami:{" "}
+          <a className="underline" href={`mailto:${CONTACT.email}`}>
+            {CONTACT.email}
+          </a>
+        </p>
       </Centered>
     );
   }
@@ -62,7 +86,9 @@ function BriefPage() {
         <div className="text-6xl mb-6">✓</div>
         <h1 className="text-3xl font-black mb-3">Brief odebrany</h1>
         <p className="text-ink/70 mb-6">Odezwiemy się w ciągu 24h, żeby ustalić start prac.</p>
-        <Link to="/" className="underline text-sm">← Strona główna</Link>
+        <Link to="/" className="underline text-sm">
+          ← Strona główna
+        </Link>
       </Centered>
     );
   }
@@ -98,20 +124,51 @@ function BriefPage() {
   return (
     <div className="min-h-screen bg-cream text-ink py-12 md:py-20">
       <div className="mx-auto max-w-3xl px-5 md:px-8">
-        <Link to="/" className="text-sm text-ink/50 hover:text-ink">← Strona główna</Link>
+        <Link to="/" className="text-sm text-ink/50 hover:text-ink">
+          ← Strona główna
+        </Link>
         <h1 className="text-4xl md:text-5xl font-black tracking-tight mt-4 mb-2">Brief projektu</h1>
         <p className="text-ink/60 mb-8">
           {order.product_name} — opłacone. Wypełnij krótki brief, żebyśmy mogli zacząć prace.
         </p>
 
-        <form onSubmit={handleSubmit} className="space-y-5 bg-white border border-ink/10 rounded-3xl p-7 md:p-9">
+        <form
+          onSubmit={handleSubmit}
+          className="space-y-5 bg-white border border-ink/10 rounded-3xl p-7 md:p-9"
+        >
           <Field label="Nazwa firmy *" name="companyName" required />
-          <Field label="Branża *" name="industry" required placeholder="np. fotografia ślubna, kawiarnia, kancelaria" />
-          <TextArea label="Cel strony *" name="goals" required placeholder="Co strona ma osiągnąć? Co klient ma zrobić?" />
-          <Field label="Kolory / preferencje brandowe" name="brandColors" placeholder="np. czerń + złoto, lub mam już brandbook" />
-          <Field label="Logo (link do pliku)" name="logoUrl" type="url" placeholder="https://… (Drive, Dropbox, WeTransfer)" />
-          <TextArea label="Treści / czego nie pisać" name="contentNotes" placeholder="Wklej teksty albo opisz, co ma się znaleźć" />
-          <TextArea label="Inspiracje (linki do stron, które Ci się podobają)" name="inspirations" />
+          <Field
+            label="Branża *"
+            name="industry"
+            required
+            placeholder="np. fotografia ślubna, kawiarnia, kancelaria"
+          />
+          <TextArea
+            label="Cel strony *"
+            name="goals"
+            required
+            placeholder="Co strona ma osiągnąć? Co klient ma zrobić?"
+          />
+          <Field
+            label="Kolory / preferencje brandowe"
+            name="brandColors"
+            placeholder="np. czerń + złoto, lub mam już brandbook"
+          />
+          <Field
+            label="Logo (link do pliku)"
+            name="logoUrl"
+            type="url"
+            placeholder="https://… (Drive, Dropbox, WeTransfer)"
+          />
+          <TextArea
+            label="Treści / czego nie pisać"
+            name="contentNotes"
+            placeholder="Wklej teksty albo opisz, co ma się znaleźć"
+          />
+          <TextArea
+            label="Inspiracje (linki do stron, które Ci się podobają)"
+            name="inspirations"
+          />
           <Field label="Telefon kontaktowy" name="phone" type="tel" />
 
           {error && <p className="text-sm text-red-600">{error}</p>}
@@ -137,22 +194,68 @@ function Centered({ children }: { children: React.ReactNode }) {
   );
 }
 
-function Field({ label, name, type = "text", required, placeholder }: { label: string; name: string; type?: string; required?: boolean; placeholder?: string }) {
+function Field({
+  label,
+  name,
+  type = "text",
+  required,
+  placeholder,
+}: {
+  label: string;
+  name: string;
+  type?: string;
+  required?: boolean;
+  placeholder?: string;
+}) {
   const id = `f-${name}`;
   return (
     <div>
-      <label htmlFor={id} className="block text-xs font-mono uppercase tracking-widest text-ink/50 mb-2">{label}</label>
-      <input id={id} name={name} type={type} required={required} placeholder={placeholder} className="w-full bg-white border border-ink/15 rounded-2xl px-4 py-3.5 font-medium focus:outline-none focus:border-ink" />
+      <label
+        htmlFor={id}
+        className="block text-xs font-mono uppercase tracking-widest text-ink/50 mb-2"
+      >
+        {label}
+      </label>
+      <input
+        id={id}
+        name={name}
+        type={type}
+        required={required}
+        placeholder={placeholder}
+        className="w-full bg-white border border-ink/15 rounded-2xl px-4 py-3.5 font-medium focus:outline-none focus:border-ink"
+      />
     </div>
   );
 }
 
-function TextArea({ label, name, required, placeholder }: { label: string; name: string; required?: boolean; placeholder?: string }) {
+function TextArea({
+  label,
+  name,
+  required,
+  placeholder,
+}: {
+  label: string;
+  name: string;
+  required?: boolean;
+  placeholder?: string;
+}) {
   const id = `f-${name}`;
   return (
     <div>
-      <label htmlFor={id} className="block text-xs font-mono uppercase tracking-widest text-ink/50 mb-2">{label}</label>
-      <textarea id={id} name={name} required={required} placeholder={placeholder} rows={4} className="w-full bg-white border border-ink/15 rounded-2xl px-4 py-3.5 font-medium focus:outline-none focus:border-ink resize-none" />
+      <label
+        htmlFor={id}
+        className="block text-xs font-mono uppercase tracking-widest text-ink/50 mb-2"
+      >
+        {label}
+      </label>
+      <textarea
+        id={id}
+        name={name}
+        required={required}
+        placeholder={placeholder}
+        rows={4}
+        className="w-full bg-white border border-ink/15 rounded-2xl px-4 py-3.5 font-medium focus:outline-none focus:border-ink resize-none"
+      />
     </div>
   );
 }
