@@ -231,7 +231,19 @@
       transition-duration: 0.001ms !important;
       transition-delay: 0ms !important;
       scroll-behavior: auto !important;
+      /* Wyłącz scroll-driven animacje (np. rail w sekcji Proces) */
+      animation-timeline: auto !important;
+      animation-range: normal !important;
     }
+    /* Zatrzymaj marquee/ticker w Hero mimo inline stylu animation */
+    [style*="animation:"] {
+      animation: none !important;
+    }
+    /* Nie odtwarzaj wideo autoplay przy reduced-motion */
+    video[autoplay] {
+      display: none !important;
+    }
+
     .pill-light,
     .phone-mockup,
     .phone-scroll,
