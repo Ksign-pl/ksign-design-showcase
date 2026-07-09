@@ -28,7 +28,9 @@ export function AddonsSlider() {
   const [active, setActive] = useState(0);
   const [dragX, setDragX] = useState(0); // live pointer drag offset
   const [pointer, setPointer] = useState({ x: 0, y: 0 }); // -0.5..0.5 for parallax
+  const [paused, setPaused] = useState(false);
   const trackRef = useRef<HTMLDivElement>(null);
+  const dragging = useRef<{ startX: number; startY: number; captured: boolean } | null>(null);
   const dragging = useRef<{ startX: number; startY: number; captured: boolean } | null>(null);
   const trackId = "addons-slider-track";
   const liveMessage = `Slajd ${active + 1} z ${ADDONS.length}: ${ADDONS[active].title}`;
