@@ -56,9 +56,10 @@ export function FAQ() {
                     id={panelId}
                     role="region"
                     aria-labelledby={btnId}
-                    hidden={!isOpen}
-                    className={`grid transition-all duration-300 ${isOpen ? "grid-rows-[1fr] opacity-100 pb-6 md:pb-8" : "grid-rows-[0fr] opacity-0"}`}
+                    aria-hidden={!isOpen}
+                    className={`grid transition-all duration-300 ${isOpen ? "grid-rows-[1fr] opacity-100 pb-6 md:pb-8" : "grid-rows-[0fr] opacity-0 pointer-events-none"}`}
                   >
+
                     <div className="overflow-hidden">
                       <p className="text-base md:text-lg text-ink/70 max-w-2xl leading-relaxed">
                         {item.a}
