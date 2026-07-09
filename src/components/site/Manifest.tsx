@@ -1,64 +1,138 @@
+const PILLARS = [
+  {
+    n: "01",
+    h: "Estetyka brutalna",
+    p: "Nie robimy ładnych obrazków. Tworzymy cyfrowe rzeźby, które wymuszają uwagę. Jeśli Twoja strona nie wywołuje emocji — jest niewidzialna.",
+    accent: "cream",
+  },
+  {
+    n: "02",
+    h: "Prędkość to waluta",
+    p: "3–7 dni roboczych. To nie obietnica, to proces. Optymalizujemy każdy ruch myszki, żebyś Ty mógł optymalizować swój biznes.",
+    accent: "violet",
+  },
+  {
+    n: "03",
+    h: "Zero kompromisów",
+    p: "999 zł netto to cena wejścia do świata designu premium. Usuwamy zbędne spotkania, zostawiamy czystą esencję Twojej marki.",
+    accent: "lime",
+  },
+] as const;
+
 export function Manifest() {
   return (
     <section
       id="oferta"
-      className="relative bg-ink text-cream py-24 md:py-40 overflow-hidden grid-bg-dark"
+      className="relative bg-ink text-cream py-24 md:py-40 overflow-hidden"
     >
-      {/* huge KSIGN watermark */}
+      {/* Kinetic marquee background — huge, low opacity */}
       <div
         aria-hidden
-        className="absolute -right-10 top-1/2 -translate-y-1/2 font-heading font-bold text-[30vw] opacity-[0.04] pointer-events-none select-none uppercase whitespace-nowrap"
+        className="absolute top-16 md:top-24 left-0 w-full overflow-hidden pointer-events-none select-none"
       >
-        KSIGN
+        <div
+          className="whitespace-nowrap font-heading font-bold uppercase text-cream/[0.06] leading-none"
+          style={{
+            fontSize: "18vw",
+            animation: "marquee 45s linear infinite",
+            width: "max-content",
+          }}
+        >
+          MANIFESTO&nbsp;·&nbsp;MANIFESTO&nbsp;·&nbsp;MANIFESTO&nbsp;·&nbsp;MANIFESTO&nbsp;·&nbsp;
+        </div>
       </div>
 
-      <div className="relative mx-auto max-w-[1400px] px-5 md:px-8">
-        <div className="text-xs md:text-sm font-mono uppercase tracking-[0.3em] text-cream/50 mb-8">
-          [ 02 / Manifest ]
-        </div>
-
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-          <div className="space-y-8 reveal-up">
-            <span className="inline-block bg-violet text-ink px-3 py-1 font-bold text-sm tracking-tight uppercase">
-              Nasz Manifest
-            </span>
-            <h2 className="font-heading font-bold text-5xl md:text-7xl leading-[0.95] tracking-tight">
+      <div className="relative z-10 mx-auto max-w-[1400px] px-5 md:px-10">
+        {/* Section header */}
+        <div className="flex items-start justify-between gap-6 mb-16 md:mb-24 flex-wrap">
+          <div className="max-w-3xl">
+            <div className="text-[10px] md:text-xs font-mono uppercase tracking-[0.4em] text-lime mb-6">
+              [ 02 / Filozofia pracy ]
+            </div>
+            <h2 className="font-heading font-bold text-5xl md:text-7xl lg:text-8xl leading-[0.88] tracking-tighter">
               Nie robimy stron.<br />
-              Budujemy <span className="text-lime">cyfrowe imperia.</span>
+              Budujemy{" "}
+              <span className="italic font-light text-cream/50">cyfrowe</span>{" "}
+              <span className="text-lime">imperia<span className="text-violet">.</span></span>
             </h2>
           </div>
-
-          <div className="flex flex-col justify-end gap-8 lg:pt-24 reveal-up">
-            <p className="text-xl md:text-2xl leading-relaxed text-cream/80">
-              W branży pełnej szablonów i przeciętności stawiamy na bezczelną jakość.
-              Broken-grid, kinetyczna typografia i technologie 2026 — po to,
-              żeby Twój biznes nie tylko był widoczny,{" "}
-              <span className="text-cream font-medium">ale dominował.</span>
-            </p>
-            <div className="h-1 w-24 bg-lime" />
+          <div className="hidden md:flex flex-col items-end gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-cream/40 pt-4">
+            <span>KSIGN / MANIFEST</span>
+            <span>03 zasady</span>
           </div>
         </div>
 
-        {/* three pillars */}
-        <div className="mt-20 md:mt-32 grid md:grid-cols-3 gap-8">
-          {[
-            { n: "01", h: "Bez szablonów", p: "Każdy pixel projektujemy od zera pod Twoje DNA marki." },
-            { n: "02", h: "Ultra-szybkość", p: "Optymalizacja pod Core Web Vitals 2026. Google to kocha." },
-            { n: "03", h: "Broken grid", p: "Awwwards-level kompozycja. Wyróżnij się z pierwszego kliknięcia." },
-          ].map((c, i) => (
-            <div
-              key={c.n}
-              className={`reveal-up ${i === 1 ? "md:mt-12" : i === 2 ? "md:mt-24" : ""}`}
-            >
-              <div className="font-heading font-bold text-6xl text-lime mb-4">{c.n}</div>
-              <h3 className="font-heading font-bold text-2xl uppercase mb-3 tracking-tight">
-                {c.h}
-              </h3>
-              <p className="text-cream/70 leading-relaxed">{c.p}</p>
-            </div>
-          ))}
+        {/* Three pillars — asymmetric */}
+        <div className="space-y-16 md:space-y-24">
+          {PILLARS.map((c, i) => {
+            const accentText =
+              c.accent === "violet"
+                ? "text-violet"
+                : c.accent === "lime"
+                ? "text-lime"
+                : "text-cream";
+            // Broken-grid indentation
+            const indent =
+              i === 0 ? "md:pl-0" : i === 1 ? "md:pl-[16%]" : "md:pl-[8%]";
+            return (
+              <article
+                key={c.n}
+                className={`reveal-up group ${indent} border-t border-cream/15 pt-8 md:pt-10`}
+              >
+                <div className="flex items-baseline justify-between mb-6">
+                  <span
+                    className={`font-heading font-light italic text-6xl md:text-7xl opacity-40 group-hover:opacity-100 transition-opacity ${accentText}`}
+                  >
+                    {c.n}
+                  </span>
+                  <div className="flex-1 mx-6 md:mx-10 h-px bg-cream/15 relative overflow-hidden">
+                    <span
+                      aria-hidden
+                      className={`absolute inset-y-0 left-0 ${
+                        c.accent === "violet"
+                          ? "bg-violet"
+                          : c.accent === "lime"
+                          ? "bg-lime"
+                          : "bg-cream"
+                      }`}
+                      style={{
+                        width: "0%",
+                        animation: "manifestGrow linear both",
+                        animationTimeline: "view()",
+                        animationRange: "entry 10% cover 40%",
+                      } as React.CSSProperties}
+                    />
+                  </div>
+                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-cream/40">
+                    Filar
+                  </span>
+                </div>
+
+                <div className="grid md:grid-cols-12 gap-6 items-start">
+                  <h3
+                    className={`md:col-span-5 font-heading font-bold text-3xl md:text-5xl uppercase tracking-tighter leading-[0.9] ${
+                      c.accent === "violet" ? "text-violet" : ""
+                    }`}
+                  >
+                    {c.h}
+                  </h3>
+                  <p className="md:col-span-6 md:col-start-7 text-base md:text-lg leading-relaxed text-cream/75 max-w-xl">
+                    {c.p}
+                  </p>
+                </div>
+              </article>
+            );
+          })}
         </div>
       </div>
+
+      {/* keyframe for progress line */}
+      <style>{`
+        @keyframes manifestGrow {
+          from { width: 0%; }
+          to   { width: 100%; }
+        }
+      `}</style>
     </section>
   );
 }
