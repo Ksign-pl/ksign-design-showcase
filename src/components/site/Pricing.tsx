@@ -50,7 +50,7 @@ export function Pricing() {
           loop
           playsInline
           preload="metadata"
-          className="w-full h-full object-cover opacity-30"
+          className="hidden md:block w-full h-full object-cover opacity-30"
           style={{ filter: "hue-rotate(230deg) saturate(1.6) blur(3px)" }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-ink via-ink/80 to-ink" />
