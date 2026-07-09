@@ -2,19 +2,44 @@ import { Link } from "@tanstack/react-router";
 import { openConsentSettings } from "@/lib/consent";
 import { CONTACT } from "@/lib/contact";
 
+const FOOTER_VIDEO = "https://cdn.pixabay.com/video/2023/10/16/185338-877842799_large.mp4";
+
 export function Footer() {
   return (
-    <footer className="bg-cream text-ink border-t border-ink/10 pt-16 pb-28 md:pb-16">
-      <div className="mx-auto max-w-[1400px] px-5 md:px-8">
+    <footer className="relative bg-ink text-cream border-t border-cream/10 pt-16 pb-28 md:pb-16 overflow-hidden">
+      {/* Ambient video */}
+      <div className="absolute inset-0 z-0" aria-hidden="true">
+        <video
+          src={FOOTER_VIDEO}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className="w-full h-full object-cover opacity-20"
+          style={{ filter: "hue-rotate(220deg) saturate(1.4) blur(2px)" }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/85 to-ink" />
+        <div
+          className="absolute inset-0 opacity-60"
+          style={{
+            background:
+              "radial-gradient(50% 60% at 15% 0%, color-mix(in oklab, var(--violet) 45%, transparent), transparent 65%), radial-gradient(40% 50% at 95% 100%, color-mix(in oklab, var(--lime) 20%, transparent), transparent 65%)",
+          }}
+        />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-[1400px] px-5 md:px-8">
         <div className="grid md:grid-cols-12 gap-10">
           <div className="md:col-span-5">
             <div className="text-4xl md:text-5xl font-black tracking-tighter mb-4">
-              KSIGN<span className="text-violet">.</span>
+              KSIGN<span className="text-lime">.</span>
             </div>
-            <p className="text-ink/60 max-w-sm leading-snug">
+            <p className="text-cream/60 max-w-sm leading-snug">
               Premium web design dla firm, które chcą wyglądać lepiej od konkurencji.
             </p>
           </div>
+
 
           <div className="md:col-span-3">
             <div className="text-xs font-mono uppercase tracking-widest text-ink/40 mb-4">Nawigacja</div>
