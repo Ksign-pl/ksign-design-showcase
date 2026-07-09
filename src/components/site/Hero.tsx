@@ -96,7 +96,7 @@ export function Hero() {
         </div>
 
         {/* Right: price card */}
-        <div className="md:col-span-4 relative min-h-[300px] md:min-h-[420px] flex items-end">
+        <div className="md:col-span-4 min-w-0 relative min-h-[300px] md:min-h-[420px] flex items-end">
           <div className="w-full bg-cream text-ink p-6 md:p-8 relative z-20 shadow-[0_40px_80px_-20px_oklch(0.74_0.16_300_/_0.5)] border border-cream/10">
             <div className="flex items-start justify-between mb-4">
               <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-ink/60">
