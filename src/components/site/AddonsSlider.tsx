@@ -247,7 +247,7 @@ export function AddonsSlider() {
                   willChange: "transform, opacity",
                 }}
               >
-                {/* image with inner parallax */}
+                {/* image + micro-loop video with inner parallax */}
                 <div className="absolute inset-0 overflow-hidden">
                   <img
                     src={a.img}
@@ -261,10 +261,28 @@ export function AddonsSlider() {
                     style={{
                       transform: `translate3d(${pointer.x * -22}px, ${pointer.y * -22}px, 0) scale(${isActive ? 1.12 : 1.05})`,
                       transition: "transform 800ms cubic-bezier(0.22, 1, 0.36, 1)",
-                      opacity: isActive ? 0.75 : 0.5,
+                      opacity: isActive ? 0.55 : 0.5,
                       willChange: "transform",
                     }}
                   />
+                  {isActive && (
+                    <video
+                      src={a.video}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="none"
+                      aria-hidden="true"
+                      className="absolute inset-0 w-full h-full object-cover mix-blend-luminosity"
+                      style={{
+                        transform: `translate3d(${pointer.x * -22}px, ${pointer.y * -22}px, 0) scale(1.12)`,
+                        transition: "transform 800ms cubic-bezier(0.22, 1, 0.36, 1)",
+                        opacity: 0.75,
+                        willChange: "transform",
+                      }}
+                    />
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/50 to-transparent" />
                   <div
                     className="absolute inset-0 opacity-40"
@@ -274,6 +292,7 @@ export function AddonsSlider() {
                     }}
                   />
                 </div>
+
 
                 {/* top row */}
                 <div className="relative flex items-start justify-between p-6">
