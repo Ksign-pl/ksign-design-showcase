@@ -119,7 +119,42 @@
     font-feature-settings: "ss01", "cv11";
   }
   ::selection { background: var(--lime); color: var(--ink); }
+
+  /* WCAG 2.4.7 — widoczny wskaźnik focusu dla klawiatury.
+     Dotyczy wszystkich interaktywnych elementów, które nie mają
+     własnego stylu focus-visible w klasach Tailwind. */
+  :where(a, button, [role="button"], input, select, textarea, summary, [tabindex]:not([tabindex="-1"])):focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  /* Warianty na ciemnym tle — kontrast AA */
+  .bg-ink :where(a, button, [role="button"], [tabindex]:not([tabindex="-1"])):focus-visible,
+  [data-theme="dark"] :where(a, button, [role="button"], [tabindex]:not([tabindex="-1"])):focus-visible {
+    outline-color: var(--lime);
+  }
+
+  /* Skip link — pojawia się po Tab z klawiatury */
+  .skip-link {
+    position: fixed;
+    top: 0.5rem;
+    left: 0.5rem;
+    z-index: 100;
+    padding: 0.75rem 1rem;
+    background: var(--ink);
+    color: var(--cream);
+    font-weight: 700;
+    border-radius: 9999px;
+    transform: translateY(-150%);
+    transition: transform 200ms ease;
+  }
+  .skip-link:focus-visible {
+    transform: translateY(0);
+    outline: 2px solid var(--lime);
+    outline-offset: 3px;
+  }
 }
+
 
 @layer utilities {
   .grid-bg {
