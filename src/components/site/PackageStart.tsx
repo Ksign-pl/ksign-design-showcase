@@ -1,5 +1,7 @@
 import { Check } from "lucide-react";
 import { Link } from "@tanstack/react-router";
+import { LazyVideo } from "./LazyVideo";
+
 
 const FEATURES = [
   "strona one-page",
