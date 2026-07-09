@@ -61,41 +61,36 @@ export function PackageStart() {
               </div>
             </div>
 
-            {/* Mobile poster/gradient fallback for the reel */}
-            <div
-              aria-hidden
-              className="md:hidden mt-6 relative aspect-[16/9] w-full rounded-2xl overflow-hidden border border-ink/10 bg-ink shadow-xl"
-            >
+            {/* Mobile poster/gradient fallback for the reel — matches desktop aspect + tilt */}
+            <div className="md:hidden mt-8 flex justify-center">
               <div
-                className="absolute inset-0"
-                style={{
-                  backgroundImage:
-                    "url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=60')",
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  opacity: 0.5,
-                }}
-              />
-              <div
-                className="absolute inset-0"
-                style={{
-                  background:
-                    "radial-gradient(70% 60% at 80% 20%, oklch(0.74 0.16 300 / 0.55), transparent 60%), linear-gradient(180deg, rgba(10,10,12,0.35) 0%, rgba(10,10,12,0.9) 100%)",
-                }}
-              />
-              <div className="absolute inset-0 p-4 flex flex-col justify-between text-cream">
-                <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.25em]">
+                aria-hidden
+                className="relative w-[62%] max-w-[240px] aspect-[3/4] rounded-2xl overflow-hidden border border-ink/10 bg-ink shadow-2xl rotate-[-4deg]"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=55"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  className="absolute inset-0 w-full h-full object-cover opacity-55"
+                />
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background:
+                      "radial-gradient(70% 60% at 80% 20%, oklch(0.74 0.16 300 / 0.55), transparent 60%), linear-gradient(180deg, rgba(10,10,12,0.25) 0%, rgba(10,10,12,0.9) 100%)",
+                  }}
+                />
+                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.25em] text-cream/80">
                   <span className="inline-flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-lime animate-pulse" />
                     Live preview
                   </span>
                   <span className="text-lime">3–7 dni</span>
                 </div>
-                <div className="font-heading font-black uppercase tracking-tight text-2xl leading-none">
-                  Pakiet <span className="text-lime">Start</span>
-                </div>
               </div>
             </div>
+
 
 
 
