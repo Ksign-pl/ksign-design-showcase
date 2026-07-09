@@ -26,46 +26,49 @@ export function PackageStart() {
           {/* Big number + video reel */}
           <div className="lg:col-span-7 relative">
             <div className="relative">
-              <div className="text-[40vw] md:text-[28vw] lg:text-[22rem] leading-[0.8] font-black tracking-tighter text-ink">
+              <div className="text-[28vw] md:text-[28vw] lg:text-[22rem] leading-[0.8] font-black tracking-tighter text-ink">
                 999
               </div>
-              <div className="absolute -top-2 -right-2 md:top-6 md:right-12 pill bg-violet text-ink font-bold rotate-[-6deg]">
+              <div className="absolute -top-2 right-0 md:top-6 md:right-12 pill bg-violet text-ink font-bold rotate-[-6deg]">
                 ★ Najlepszy start
               </div>
-              <div className="absolute bottom-6 right-0 md:right-12 text-xl md:text-3xl font-bold text-ink/60">
+              <div className="absolute bottom-2 right-0 md:right-12 text-xl md:text-3xl font-bold text-ink/60">
                 zł
               </div>
 
-              {/* Floating video reel — "strona w akcji" */}
-              <div className="hidden md:block absolute -left-4 md:-left-8 top-[8%] w-[38%] max-w-[280px] aspect-[3/4] rounded-2xl overflow-hidden border border-ink/10 shadow-2xl rotate-[-4deg] bg-ink">
-                <video
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                  aria-hidden
-                  className="absolute inset-0 w-full h-full object-cover"
-                >
-                  <source
-                    src="https://cdn.pixabay.com/video/2022/12/11/142348-780429796_large.mp4"
-                    type="video/mp4"
+              {/* Floating video reel — desktop only */}
+              <div className="hidden md:contents">
+                <div className="absolute -left-4 md:-left-8 top-[8%] w-[38%] max-w-[280px] aspect-[3/4] rounded-2xl overflow-hidden border border-ink/10 shadow-2xl rotate-[-4deg] bg-ink">
+                  <video
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    aria-hidden
+                    className="absolute inset-0 w-full h-full object-cover"
+                  >
+                    <source
+                      src="https://cdn.pixabay.com/video/2022/12/11/142348-780429796_large.mp4"
+                      type="video/mp4"
+                    />
+                  </video>
+                  <div
+                    aria-hidden
+                    className="absolute inset-0"
+                    style={{
+                      background:
+                        "linear-gradient(180deg, transparent 55%, rgba(10,10,12,0.85) 100%)",
+                    }}
                   />
-                </video>
-                <div
-                  aria-hidden
-                  className="absolute inset-0"
-                  style={{
-                    background:
-                      "linear-gradient(180deg, transparent 55%, rgba(10,10,12,0.85) 100%)",
-                  }}
-                />
-                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.25em] text-cream/80">
-                  <span>● Live preview</span>
-                  <span className="text-lime">3–7 dni</span>
+                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.25em] text-cream/80">
+                    <span>● Live preview</span>
+                    <span className="text-lime">3–7 dni</span>
+                  </div>
                 </div>
               </div>
             </div>
+
 
             <div className="mt-6 max-w-md">
               <h3 className="text-3xl md:text-4xl font-black tracking-tight mb-3">Pakiet Start</h3>
