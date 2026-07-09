@@ -41,13 +41,21 @@ export function FinalCTA() {
     setSent(true);
   };
   return (
-    <section id="kontakt" className="py-24 md:py-32 bg-ink text-cream grid-bg-dark">
-      <div className="mx-auto max-w-[1400px] px-5 md:px-8">
-        <div className="text-xs md:text-sm font-mono uppercase tracking-widest text-cream/50 mb-8">
+    <section id="kontakt" className="relative py-24 md:py-32 bg-ink text-cream grid-bg-dark overflow-hidden">
+      <div
+        aria-hidden
+        className="absolute -left-10 bottom-10 font-heading font-bold text-[25vw] opacity-[0.04] pointer-events-none select-none uppercase whitespace-nowrap"
+      >
+        999 ZŁ
+      </div>
+      <div className="relative mx-auto max-w-[1400px] px-5 md:px-8">
+        <div className="text-xs md:text-sm font-mono uppercase tracking-[0.3em] text-cream/50 mb-8">
           [ 10 / Zamów ]
         </div>
-        <h2 className="text-display-tight text-[11vw] md:text-[6.5vw] lg:text-[6.5rem] max-w-6xl">
-          ZRÓB STRONĘ,<br/>KTÓRA <span className="text-lime">NIE WYGLĄDA</span><br/>NA 999 ZŁ.
+        <h2 className="font-heading font-bold text-5xl md:text-7xl lg:text-8xl uppercase leading-[0.85] max-w-6xl">
+          Przestań być<br />
+          <span className="text-violet">standardowy.</span><br />
+          Zamów za <span className="bg-lime text-ink px-3 -rotate-1 inline-block">999 zł</span>
         </h2>
         <p className="mt-8 text-lg md:text-xl text-cream/70 max-w-2xl leading-snug">
           Pakiet Start KSIGN to szybki sposób, żeby Twoja firma wyglądała nowocześnie,
