@@ -170,14 +170,23 @@ export function AddonsSlider() {
         style={{ perspective: "1600px" }}
       >
         <div
+          id={trackId}
           ref={trackRef}
-          className="relative mx-auto"
+          role="group"
+          aria-roledescription="karuzela"
+          aria-label="Dodatkowe usługi"
+          aria-live="polite"
+          aria-atomic="true"
+          tabIndex={0}
+          onKeyDown={onTrackKeyDown}
+          className="relative mx-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-4 focus-visible:ring-offset-cream rounded-3xl"
           style={{ height: 520 }}
           onPointerDown={onPointerDown}
           onPointerMove={onPointerMove}
           onPointerUp={endDrag}
           onPointerCancel={endDrag}
         >
+          <span className="sr-only">{liveMessage}</span>
           {ADDONS.map((a, i) => {
             const offset = i - active;
             const isActive = offset === 0;
