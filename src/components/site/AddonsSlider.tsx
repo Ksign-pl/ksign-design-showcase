@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import imgSeo from "@/assets/addon-seo.jpg";
 import imgBlog from "@/assets/addon-blog.jpg";
@@ -30,20 +30,36 @@ export function AddonsSlider() {
   const [pointer, setPointer] = useState({ x: 0, y: 0 }); // -0.5..0.5 for parallax
   const trackRef = useRef<HTMLDivElement>(null);
   const dragging = useRef<{ startX: number; startY: number; captured: boolean } | null>(null);
+  const trackId = "addons-slider-track";
+  const liveMessage = `Slajd ${active + 1} z ${ADDONS.length}: ${ADDONS[active].title}`;
 
   const clamp = useCallback((i: number) => Math.max(0, Math.min(ADDONS.length - 1, i)), []);
   const go = useCallback((delta: number) => setActive((i) => clamp(i + delta)), [clamp]);
+  const goTo = useCallback((i: number) => setActive(clamp(i)), [clamp]);
 
-  // Keyboard
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (!trackRef.current?.matches(":focus-within")) return;
-      if (e.key === "ArrowLeft") { e.preventDefault(); go(-1); }
-      if (e.key === "ArrowRight") { e.preventDefault(); go(1); }
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [go]);
+  // Keyboard nav on the track (Left/Right/Home/End/PageUp/PageDown)
+  const onTrackKeyDown = (e: React.KeyboardEvent) => {
+    switch (e.key) {
+      case "ArrowLeft":
+      case "PageUp":
+        e.preventDefault();
+        go(-1);
+        break;
+      case "ArrowRight":
+      case "PageDown":
+        e.preventDefault();
+        go(1);
+        break;
+      case "Home":
+        e.preventDefault();
+        goTo(0);
+        break;
+      case "End":
+        e.preventDefault();
+        goTo(ADDONS.length - 1);
+        break;
+    }
+  };
 
   // Pointer parallax over the whole stage
   const onStageMove = (e: React.PointerEvent) => {
@@ -90,6 +106,7 @@ export function AddonsSlider() {
       id="rozbudowa"
       className="relative py-24 md:py-32 bg-cream overflow-hidden scroll-mt-24"
       aria-labelledby="addons-heading"
+      aria-roledescription="karuzela"
     >
       {/* huge watermark */}
       <div
@@ -114,25 +131,29 @@ export function AddonsSlider() {
           </div>
 
           <div className="flex items-center gap-4">
-            <span className="font-mono text-sm tabular-nums text-ink/60">
+            <span className="font-mono text-sm tabular-nums text-ink/60" aria-hidden="true">
               <span className="font-bold text-ink">{String(active + 1).padStart(2, "0")}</span>
               <span className="mx-1">/</span>
               {String(ADDONS.length).padStart(2, "0")}
             </span>
-            <div className="flex gap-2" role="group" aria-label="Nawigacja">
+            <div className="flex gap-2" role="group" aria-label="Sterowanie karuzelą dodatków">
               <button
+                type="button"
                 onClick={() => go(-1)}
                 disabled={active === 0}
-                aria-label="Poprzedni"
-                className="w-12 h-12 rounded-full bg-white border border-ink/15 flex items-center justify-center hover:bg-ink hover:text-cream disabled:opacity-40 disabled:cursor-not-allowed transition"
+                aria-label="Poprzedni dodatek"
+                aria-controls={trackId}
+                className="w-12 h-12 rounded-full bg-white border border-ink/15 flex items-center justify-center hover:bg-ink hover:text-cream disabled:opacity-40 disabled:cursor-not-allowed transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-cream"
               >
                 <ArrowLeft size={18} aria-hidden="true" />
               </button>
               <button
+                type="button"
                 onClick={() => go(1)}
                 disabled={active === ADDONS.length - 1}
-                aria-label="Następny"
-                className="w-12 h-12 rounded-full bg-ink text-cream flex items-center justify-center hover:bg-violet hover:text-ink disabled:opacity-40 disabled:cursor-not-allowed transition"
+                aria-label="Następny dodatek"
+                aria-controls={trackId}
+                className="w-12 h-12 rounded-full bg-ink text-cream flex items-center justify-center hover:bg-violet hover:text-ink disabled:opacity-40 disabled:cursor-not-allowed transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-cream"
               >
                 <ArrowRight size={18} aria-hidden="true" />
               </button>
@@ -149,14 +170,23 @@ export function AddonsSlider() {
         style={{ perspective: "1600px" }}
       >
         <div
+          id={trackId}
           ref={trackRef}
-          className="relative mx-auto"
+          role="group"
+          aria-roledescription="karuzela"
+          aria-label="Dodatkowe usługi"
+          aria-live="polite"
+          aria-atomic="true"
+          tabIndex={0}
+          onKeyDown={onTrackKeyDown}
+          className="relative mx-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-4 focus-visible:ring-offset-cream rounded-3xl"
           style={{ height: 520 }}
           onPointerDown={onPointerDown}
           onPointerMove={onPointerMove}
           onPointerUp={endDrag}
           onPointerCancel={endDrag}
         >
+          <span className="sr-only">{liveMessage}</span>
           {ADDONS.map((a, i) => {
             const offset = i - active;
             const isActive = offset === 0;
@@ -177,8 +207,11 @@ export function AddonsSlider() {
                 key={a.num}
                 type="button"
                 onClick={() => !isActive && setActive(i)}
-                aria-label={`${i + 1}. ${a.title}`}
+                role="group"
+                aria-roledescription="slajd"
+                aria-label={`Slajd ${i + 1} z ${ADDONS.length}: ${a.title}. ${a.desc}`}
                 aria-current={isActive ? "true" : undefined}
+                aria-hidden={abs > 1 ? "true" : undefined}
                 tabIndex={isActive ? 0 : -1}
                 className="absolute left-1/2 top-1/2 rounded-3xl overflow-hidden bg-ink text-cream text-left cursor-grab active:cursor-grabbing focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-lime"
                 style={{
@@ -262,19 +295,32 @@ export function AddonsSlider() {
         </div>
 
         {/* dots */}
-        <div className="relative mt-10 flex justify-center gap-2" role="tablist" aria-label="Wybór slajdu">
-          {ADDONS.map((a, i) => (
-            <button
-              key={a.num}
-              onClick={() => setActive(i)}
-              role="tab"
-              aria-selected={i === active}
-              aria-label={`Przejdź do ${a.title}`}
-              className={`h-1.5 rounded-full transition-all ${
-                i === active ? "w-8 bg-ink" : "w-4 bg-ink/25 hover:bg-ink/50"
-              }`}
-            />
-          ))}
+        <div
+          className="relative mt-10 flex justify-center gap-1"
+          role="group"
+          aria-label="Wybór slajdu"
+        >
+          {ADDONS.map((a, i) => {
+            const isCurrent = i === active;
+            return (
+              <button
+                key={a.num}
+                type="button"
+                onClick={() => goTo(i)}
+                aria-label={`Przejdź do slajdu ${i + 1} z ${ADDONS.length}: ${a.title}`}
+                aria-current={isCurrent ? "true" : undefined}
+                aria-controls={trackId}
+                className="group inline-flex items-center justify-center min-h-11 min-w-11 p-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-cream"
+              >
+                <span
+                  aria-hidden="true"
+                  className={`h-1.5 rounded-full transition-all ${
+                    isCurrent ? "w-8 bg-ink" : "w-4 bg-ink/25 group-hover:bg-ink/50"
+                  }`}
+                />
+              </button>
+            );
+          })}
         </div>
       </div>
     </section>
