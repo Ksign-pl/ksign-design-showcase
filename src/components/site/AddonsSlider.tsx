@@ -295,19 +295,32 @@ export function AddonsSlider() {
         </div>
 
         {/* dots */}
-        <div className="relative mt-10 flex justify-center gap-2" role="tablist" aria-label="Wybór slajdu">
-          {ADDONS.map((a, i) => (
-            <button
-              key={a.num}
-              onClick={() => setActive(i)}
-              role="tab"
-              aria-selected={i === active}
-              aria-label={`Przejdź do ${a.title}`}
-              className={`h-1.5 rounded-full transition-all ${
-                i === active ? "w-8 bg-ink" : "w-4 bg-ink/25 hover:bg-ink/50"
-              }`}
-            />
-          ))}
+        <div
+          className="relative mt-10 flex justify-center gap-1"
+          role="group"
+          aria-label="Wybór slajdu"
+        >
+          {ADDONS.map((a, i) => {
+            const isCurrent = i === active;
+            return (
+              <button
+                key={a.num}
+                type="button"
+                onClick={() => goTo(i)}
+                aria-label={`Przejdź do slajdu ${i + 1} z ${ADDONS.length}: ${a.title}`}
+                aria-current={isCurrent ? "true" : undefined}
+                aria-controls={trackId}
+                className="group inline-flex items-center justify-center min-h-11 min-w-11 p-2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-cream"
+              >
+                <span
+                  aria-hidden="true"
+                  className={`h-1.5 rounded-full transition-all ${
+                    isCurrent ? "w-8 bg-ink" : "w-4 bg-ink/25 group-hover:bg-ink/50"
+                  }`}
+                />
+              </button>
+            );
+          })}
         </div>
       </div>
     </section>
