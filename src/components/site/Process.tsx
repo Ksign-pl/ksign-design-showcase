@@ -49,15 +49,10 @@ export function Process() {
           />
           <div
             aria-hidden
-            className="absolute left-0 md:left-[16.6667%] top-0 w-px bg-lime pointer-events-none origin-top"
-            style={{
-              height: "100%",
-              animation: "processRailGrow linear both",
-              animationTimeline: "view()",
-              animationRange: "entry 5% cover 90%",
-              transform: "scaleY(0)",
-            } as React.CSSProperties}
+            className="process-rail-fill absolute left-0 md:left-[16.6667%] top-0 w-px bg-lime pointer-events-none origin-top"
+            style={{ height: "100%" }}
           />
+
 
           {STEPS.map((s) => (
             <article
@@ -139,12 +134,8 @@ export function Process() {
         </div>
       </div>
 
-      <style>{`
-        @keyframes processRailGrow {
-          from { transform: scaleY(0); }
-          to   { transform: scaleY(1); }
-        }
-      `}</style>
+
+
     </section>
   );
 }
