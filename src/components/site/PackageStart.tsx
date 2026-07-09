@@ -1,5 +1,7 @@
 import { Check } from "lucide-react";
 import { Link } from "@tanstack/react-router";
+import { LazyVideo } from "./LazyVideo";
+
 
 const FEATURES = [
   "strona one-page",
@@ -38,21 +40,12 @@ export function PackageStart() {
 
               {/* Floating video reel — desktop only */}
               <div className="hidden md:block absolute -left-8 top-[8%] w-[38%] max-w-[280px] aspect-[3/4] rounded-2xl overflow-hidden border border-ink/10 shadow-2xl rotate-[-4deg] bg-ink">
-                <video
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
+                <LazyVideo
+                  src="https://cdn.pixabay.com/video/2022/12/11/142348-780429796_large.mp4"
                   poster="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=60"
-                  aria-hidden
-                  className="absolute inset-0 w-full h-full object-cover"
-                >
-                  <source
-                    src="https://cdn.pixabay.com/video/2022/12/11/142348-780429796_large.mp4"
-                    type="video/mp4"
-                  />
-                </video>
+                  className="absolute inset-0 w-full h-full"
+                />
+
                 <div
                   aria-hidden
                   className="absolute inset-0"
