@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from "react";
+import { trackCta } from "@/lib/analytics";
+
 
 const HERO_VIDEO =
   "https://cdn.pixabay.com/video/2023/10/07/183021-872881864_large.mp4";
