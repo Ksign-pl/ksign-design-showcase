@@ -173,6 +173,10 @@ function RootShell({ children }: { children: React.ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
+  useEffect(() => {
+    initMotionFallbacks();
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <ConsentScripts />
@@ -182,3 +186,4 @@ function RootComponent() {
     </QueryClientProvider>
   );
 }
+
