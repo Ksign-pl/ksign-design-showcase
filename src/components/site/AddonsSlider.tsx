@@ -207,8 +207,11 @@ export function AddonsSlider() {
                 key={a.num}
                 type="button"
                 onClick={() => !isActive && setActive(i)}
-                aria-label={`${i + 1}. ${a.title}`}
+                role="group"
+                aria-roledescription="slajd"
+                aria-label={`Slajd ${i + 1} z ${ADDONS.length}: ${a.title}. ${a.desc}`}
                 aria-current={isActive ? "true" : undefined}
+                aria-hidden={abs > 1 ? "true" : undefined}
                 tabIndex={isActive ? 0 : -1}
                 className="absolute left-1/2 top-1/2 rounded-3xl overflow-hidden bg-ink text-cream text-left cursor-grab active:cursor-grabbing focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-lime"
                 style={{
