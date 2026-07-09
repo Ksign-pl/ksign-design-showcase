@@ -45,14 +45,39 @@ export function BlogPreview() {
         </div>
 
         <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {posts.map((post) => (
+          {posts.map((post, i) => (
             <li key={post.slug}>
               <Link
                 to="/blog/$slug"
                 params={{ slug: post.slug }}
-                className="group flex flex-col h-full p-7 md:p-8 rounded-3xl border border-cream/10 bg-cream/[0.03] hover:bg-cream/[0.07] hover:border-lime/40 transition-all"
+                className="group relative flex flex-col h-full p-7 md:p-8 rounded-3xl border border-cream/10 bg-cream/[0.03] hover:border-lime/40 transition-all overflow-hidden"
               >
-                <div className="flex items-center justify-between gap-3 mb-6">
+                {/* Video hover preview */}
+                <video
+                  muted
+                  loop
+                  playsInline
+                  preload="none"
+                  aria-hidden
+                  onMouseEnter={(e) => e.currentTarget.play().catch(() => {})}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.pause();
+                    e.currentTarget.currentTime = 0;
+                  }}
+                  className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-30 transition-opacity duration-700"
+                >
+                  <source src={HOVER_VIDEOS[i % HOVER_VIDEOS.length]} type="video/mp4" />
+                </video>
+                <div
+                  aria-hidden
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, rgba(10,10,12,0.4) 0%, rgba(10,10,12,0.85) 100%)",
+                  }}
+                />
+
+                <div className="relative flex items-center justify-between gap-3 mb-6">
                   <span className="text-[10px] font-mono uppercase tracking-widest text-lime">
                     {post.category}
                   </span>
@@ -61,14 +86,14 @@ export function BlogPreview() {
                   </span>
                 </div>
 
-                <h3 className="text-xl md:text-2xl font-black tracking-tight leading-snug mb-3 group-hover:text-lime transition-colors">
+                <h3 className="relative text-xl md:text-2xl font-black tracking-tight leading-snug mb-3 group-hover:text-lime transition-colors">
                   {post.title}
                 </h3>
-                <p className="text-sm text-cream/60 leading-relaxed mb-6 line-clamp-3">
+                <p className="relative text-sm text-cream/60 leading-relaxed mb-6 line-clamp-3 group-hover:text-cream/80 transition-colors">
                   {post.excerpt}
                 </p>
 
-                <div className="mt-auto pt-6 border-t border-cream/10 flex items-center justify-between text-xs font-mono uppercase tracking-wider text-cream/50">
+                <div className="relative mt-auto pt-6 border-t border-cream/10 flex items-center justify-between text-xs font-mono uppercase tracking-wider text-cream/50">
                   <time dateTime={post.date}>{formatDate(post.date)}</time>
                   <span>{post.readingTime}</span>
                 </div>
