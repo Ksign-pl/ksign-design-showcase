@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { trackMetaEvent } from "@/lib/meta-capi";
+import { trackFormSubmit, trackFormError } from "@/lib/analytics";
 import { CONTACT } from "@/lib/contact";
+
 
 export function FinalCTA() {
   const [sent, setSent] = useState(false);
