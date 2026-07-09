@@ -29,6 +29,15 @@ const detect = (): MotionFlags => {
   const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
   if (reduced) return { scrollAnim: "off", marquee: "off" };
 
+  const mobileLike =
+    window.matchMedia?.("(max-width: 767px)").matches ||
+    window.matchMedia?.("(pointer: coarse)").matches;
+
+  // Na telefonach problem był widoczny jako puste karty / skoki przy
+  // scroll-driven animacjach i marquee. Wybieramy statyczny układ: bez CLS,
+  // bez zależności od jakości implementacji WebView/Safari/Chrome Mobile.
+  if (mobileLike) return { scrollAnim: "off", marquee: "off" };
+
   const supportsScrollTimeline =
     typeof CSS !== "undefined" &&
     typeof CSS.supports === "function" &&

@@ -154,7 +154,7 @@ export function CookieBanner() {
       aria-labelledby="cookie-banner-title"
       className="fixed inset-x-0 bottom-0 z-[100] p-3 sm:p-5 md:p-6 pointer-events-none"
     >
-      <div className="pointer-events-auto mx-auto max-w-4xl bg-ink text-cream rounded-3xl shadow-2xl border border-white/10 p-5 md:p-7">
+      <div className="pointer-events-auto mx-auto max-h-[72svh] max-w-4xl overflow-y-auto bg-ink text-cream rounded-3xl shadow-2xl border border-white/10 p-4 md:p-7">
         {mode === "banner" ? (
           <>
             <div className="flex items-start gap-3 mb-4">

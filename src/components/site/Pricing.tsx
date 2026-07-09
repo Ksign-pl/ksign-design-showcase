@@ -36,23 +36,11 @@ const PLANS = [
 
 import { Link } from "@tanstack/react-router";
 
-const BG_VIDEO = "https://cdn.pixabay.com/video/2022/11/12/139245-770920825_large.mp4";
-
 export function Pricing() {
   return (
     <section id="realizacje" className="relative py-24 md:py-32 bg-ink text-cream overflow-hidden">
       {/* Ambient video + violet glow */}
       <div className="absolute inset-0 z-0" aria-hidden="true">
-        <video
-          src={BG_VIDEO}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          className="hidden md:block w-full h-full object-cover opacity-30"
-          style={{ filter: "hue-rotate(230deg) saturate(1.6) blur(3px)" }}
-        />
         <div className="absolute inset-0 bg-gradient-to-b from-ink via-ink/80 to-ink" />
         <div
           className="absolute inset-0"

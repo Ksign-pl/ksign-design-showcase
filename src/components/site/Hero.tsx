@@ -1,46 +1,21 @@
-import { useEffect, useRef, useState } from "react";
 import { trackCta } from "@/lib/analytics";
 
 
-const HERO_VIDEO =
-  "https://cdn.pixabay.com/video/2023/10/07/183021-872881864_large.mp4";
-const HERO_POSTER =
-  "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600&q=70";
-
 export function Hero() {
-  const [reduce, setReduce] = useState(false);
-
-  useEffect(() => {
-    const m = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReduce(m.matches);
-    const on = () => setReduce(m.matches);
-    m.addEventListener("change", on);
-    return () => m.removeEventListener("change", on);
-  }, []);
-
-  const videoRef = useRef<HTMLVideoElement>(null);
-  useEffect(() => {
-    if (reduce) videoRef.current?.pause();
-  }, [reduce]);
-
   return (
     <section
       className="relative min-h-[100svh] flex flex-col justify-between px-5 md:px-10 pt-24 md:pt-28 pb-10 md:pb-16 overflow-hidden bg-ink text-cream"
     >
-      {/* Background video */}
-      <video
-        ref={videoRef}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        poster={HERO_POSTER}
+      {/* Stable visual background — no failing third-party video requests */}
+      <div
         aria-hidden
-        className="absolute inset-0 w-full h-full object-cover opacity-40"
-      >
-        <source src={HERO_VIDEO} type="video/mp4" />
-      </video>
+        className="absolute inset-0 opacity-80"
+        style={{
+          background:
+            "radial-gradient(80% 60% at 78% 28%, color-mix(in oklab, var(--violet) 36%, transparent), transparent 68%), radial-gradient(72% 52% at 18% 88%, color-mix(in oklab, var(--lime) 15%, transparent), transparent 72%), linear-gradient(180deg, color-mix(in oklab, var(--ink) 88%, black), var(--ink))",
+        }}
+      />
+      <div aria-hidden className="absolute inset-0 grid-bg-dark opacity-35" />
 
       {/* Dark gradient overlay for legibility */}
       <div

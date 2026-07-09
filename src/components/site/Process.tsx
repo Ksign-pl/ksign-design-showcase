@@ -3,29 +3,21 @@ const STEPS = [
     n: "01",
     title: "Brief",
     desc: "Mówisz, czym się zajmujesz i czego potrzebujesz.",
-    video:
-      "https://cdn.pixabay.com/video/2023/10/07/183021-872881864_large.mp4",
   },
   {
     n: "02",
     title: "Struktura",
     desc: "Układamy ofertę tak, żeby klient szybko ją zrozumiał.",
-    video:
-      "https://cdn.pixabay.com/video/2020/09/08/49375-459823152_large.mp4",
   },
   {
     n: "03",
     title: "Design",
     desc: "Tworzymy wygląd, który buduje zaufanie.",
-    video:
-      "https://cdn.pixabay.com/video/2021/10/12/91744-635195953_large.mp4",
   },
   {
     n: "04",
     title: "Publikacja",
     desc: "Podpinamy domenę i oddajemy gotową stronę.",
-    video:
-      "https://cdn.pixabay.com/video/2023/06/26/168269-841127723_large.mp4",
   },
 ];
 
@@ -79,24 +71,18 @@ export function Process() {
                 </p>
               </div>
 
-              {/* Video reel — desktop only, reveal on hover */}
+              {/* Static reel — no failing third-party video requests */}
               <div className="md:col-span-2 hidden md:block">
-                <div className="relative aspect-[4/5] rounded-xl overflow-hidden border border-cream/10 bg-cream/[0.03]">
-                  <video
-                    muted
-                    loop
-                    playsInline
-                    preload="none"
+                <div className="relative aspect-[4/5] rounded-xl overflow-hidden border border-cream/10 bg-cream/[0.03] transition-colors group-hover:border-lime/40">
+                  <div
                     aria-hidden
-                    onMouseEnter={(e) => e.currentTarget.play().catch(() => {})}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.pause();
-                      e.currentTarget.currentTime = 0;
+                    className="absolute inset-0 opacity-70 transition-opacity duration-500 group-hover:opacity-100"
+                    style={{
+                      background:
+                        "radial-gradient(70% 55% at 70% 18%, color-mix(in oklab, var(--violet) 52%, transparent), transparent 64%), radial-gradient(55% 50% at 20% 84%, color-mix(in oklab, var(--lime) 24%, transparent), transparent 70%), linear-gradient(135deg, color-mix(in oklab, var(--cream) 8%, transparent), color-mix(in oklab, var(--ink) 98%, black))",
                     }}
-                    className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-90 transition-opacity duration-700"
-                  >
-                    <source src={s.video} type="video/mp4" />
-                  </video>
+                  />
+                  <div aria-hidden className="absolute inset-0 grid-bg-dark opacity-35" />
                   <div
                     aria-hidden
                     className="absolute inset-0 pointer-events-none"

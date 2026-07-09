@@ -2,23 +2,11 @@ import { Link } from "@tanstack/react-router";
 import { openConsentSettings } from "@/lib/consent";
 import { CONTACT } from "@/lib/contact";
 
-const FOOTER_VIDEO = "https://cdn.pixabay.com/video/2023/10/16/185338-877842799_large.mp4";
-
 export function Footer() {
   return (
     <footer className="relative bg-ink text-cream border-t border-cream/10 pt-16 pb-28 md:pb-16 overflow-hidden">
       {/* Ambient video */}
       <div className="absolute inset-0 z-0" aria-hidden="true">
-        <video
-          src={FOOTER_VIDEO}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          className="hidden md:block w-full h-full object-cover opacity-20"
-          style={{ filter: "hue-rotate(220deg) saturate(1.4) blur(2px)" }}
-        />
         <div className="absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/85 to-ink" />
         <div
           className="absolute inset-0 opacity-60"

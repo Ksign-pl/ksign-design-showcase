@@ -16,11 +16,6 @@ const RIGHT = [
   "buduje pierwsze wrażenie",
 ];
 
-const BEFORE_VIDEO =
-  "https://cdn.pixabay.com/video/2020/09/08/49375-459823152_large.mp4";
-const AFTER_VIDEO =
-  "https://cdn.pixabay.com/video/2023/10/07/183021-872881864_large.mp4";
-
 export function BeforeAfter() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [split, setSplit] = useState(15); // 0-100, initial "before" heavy
@@ -122,17 +117,15 @@ export function BeforeAfter() {
           aria-label="Porównanie: strona typowa vs. strona KSIGN. Przesuń, żeby porównać."
         >
           {/* AFTER — full layer underneath */}
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
+          <div
             aria-hidden
-            className="absolute inset-0 w-full h-full object-cover"
-          >
-            <source src={AFTER_VIDEO} type="video/mp4" />
-          </video>
+            className="absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(60% 55% at 72% 28%, color-mix(in oklab, var(--violet) 52%, transparent), transparent 66%), radial-gradient(54% 48% at 22% 86%, color-mix(in oklab, var(--lime) 28%, transparent), transparent 70%), linear-gradient(135deg, color-mix(in oklab, var(--ink) 92%, var(--cream)), var(--ink))",
+            }}
+          />
+          <div aria-hidden className="absolute inset-0 grid-bg-dark opacity-25" />
           <div
             aria-hidden
             className="absolute inset-0"
@@ -151,17 +144,16 @@ export function BeforeAfter() {
             }}
             aria-hidden
           >
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              className="absolute inset-0 w-full h-full object-cover"
-              style={{ filter: "grayscale(0.85) brightness(0.55) contrast(0.9)" }}
-            >
-              <source src={BEFORE_VIDEO} type="video/mp4" />
-            </video>
+            <div
+              aria-hidden
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(135deg, color-mix(in oklab, var(--ink) 86%, var(--cream)), var(--ink))",
+                filter: "grayscale(0.85) brightness(0.55) contrast(0.9)",
+              }}
+            />
+            <div aria-hidden className="absolute inset-0 grid-bg-dark opacity-20" />
             <div
               className="absolute inset-0"
               style={{ background: "rgba(10,10,12,0.35)" }}

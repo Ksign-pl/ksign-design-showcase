@@ -4,24 +4,18 @@ const PILLARS = [
     h: "Estetyka brutalna",
     p: "Nie robimy ładnych obrazków. Tworzymy cyfrowe rzeźby, które wymuszają uwagę. Jeśli Twoja strona nie wywołuje emocji — jest niewidzialna.",
     accent: "cream",
-    video:
-      "https://cdn.pixabay.com/video/2021/10/12/91744-635195953_large.mp4",
   },
   {
     n: "02",
     h: "Prędkość to waluta",
     p: "3–7 dni roboczych. To nie obietnica, to proces. Optymalizujemy każdy ruch myszki, żebyś Ty mógł optymalizować swój biznes.",
     accent: "violet",
-    video:
-      "https://cdn.pixabay.com/video/2023/06/26/168269-841127723_large.mp4",
   },
   {
     n: "03",
     h: "Zero kompromisów",
     p: "999 zł netto to cena wejścia do świata designu premium. Usuwamy zbędne spotkania, zostawiamy czystą esencję Twojej marki.",
     accent: "lime",
-    video:
-      "https://cdn.pixabay.com/video/2020/09/08/49375-459823152_large.mp4",
   },
 ] as const;
 
@@ -91,21 +85,15 @@ export function Manifest() {
                     {c.n}
                   </span>
                   <div className="flex-1 mx-6 md:mx-10 h-px bg-cream/15 relative overflow-hidden">
-                    <span
+                      <span
                       aria-hidden
-                      className={`absolute inset-y-0 left-0 ${
+                        className={`manifest-grow-line absolute inset-y-0 left-0 ${
                         c.accent === "violet"
                           ? "bg-violet"
                           : c.accent === "lime"
                           ? "bg-lime"
                           : "bg-cream"
                       }`}
-                      style={{
-                        width: "0%",
-                        animation: "manifestGrow linear both",
-                        animationTimeline: "view()",
-                        animationRange: "entry 10% cover 40%",
-                      } as React.CSSProperties}
                     />
                   </div>
                   <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-cream/85">
@@ -128,17 +116,39 @@ export function Manifest() {
 
                   {/* Video reel — visual anchor per pillar */}
                   <div className="md:col-span-3 relative aspect-[4/5] rounded-2xl overflow-hidden border border-cream/10 bg-cream/[0.03]">
-                    <video
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      preload="metadata"
+                    <div
                       aria-hidden
-                      className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-90 transition-opacity duration-700"
+                      className="absolute inset-0 opacity-70 transition-opacity duration-700 group-hover:opacity-95"
+                      style={{
+                        background:
+                          c.accent === "violet"
+                            ? "radial-gradient(70% 55% at 74% 18%, color-mix(in oklab, var(--violet) 64%, transparent), transparent 64%), linear-gradient(135deg, var(--ink), color-mix(in oklab, var(--ink) 76%, var(--cream)))"
+                            : c.accent === "lime"
+                            ? "radial-gradient(70% 55% at 24% 82%, color-mix(in oklab, var(--lime) 36%, transparent), transparent 68%), linear-gradient(135deg, var(--ink), color-mix(in oklab, var(--ink) 82%, var(--violet)))"
+                            : "radial-gradient(70% 55% at 72% 18%, color-mix(in oklab, var(--cream) 24%, transparent), transparent 64%), linear-gradient(135deg, var(--ink), color-mix(in oklab, var(--ink) 78%, var(--violet)))",
+                      }}
+                    />
+                    <div aria-hidden className="absolute inset-0 grid-bg-dark opacity-30" />
+                    <div
+                      aria-hidden
+                      className="absolute inset-0 flex flex-col items-center justify-center text-center"
                     >
-                      <source src={c.video} type="video/mp4" />
-                    </video>
+                      <span
+                        className={`font-heading text-7xl font-black leading-none opacity-45 ${
+                          c.accent === "violet"
+                            ? "text-violet"
+                            : c.accent === "lime"
+                            ? "text-lime"
+                            : "text-cream"
+                        }`}
+                      >
+                        {c.n}
+                      </span>
+                      <span className="mt-4 h-px w-16 bg-cream/30" />
+                      <span className="mt-4 font-mono text-[10px] uppercase tracking-[0.35em] text-cream/70">
+                        KSIGN
+                      </span>
+                    </div>
                     <div
                       aria-hidden
                       className="absolute inset-0 pointer-events-none"
@@ -166,13 +176,6 @@ export function Manifest() {
           })}
         </div>
       </div>
-
-      <style>{`
-        @keyframes manifestGrow {
-          from { width: 0%; }
-          to   { width: 100%; }
-        }
-      `}</style>
     </section>
   );
 }

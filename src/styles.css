@@ -367,13 +367,13 @@
     transform: none;
   }
   @supports (animation-timeline: view()) {
-    @media (prefers-reduced-motion: no-preference) {
-      .reveal-up {
+    @media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
+      html:not([data-scroll-anim="off"]) .reveal-up {
         animation: revealUp linear both;
         animation-timeline: view();
         animation-range: entry 5% cover 35%;
       }
-      .reveal-tilt {
+      html:not([data-scroll-anim="off"]) .reveal-tilt {
         animation: revealTilt linear both;
         animation-timeline: view();
         animation-range: entry 0% cover 40%;
@@ -387,6 +387,24 @@
   @keyframes revealTilt {
     from { opacity: 0; transform: translateY(120px) rotate(6deg) scale(0.94); }
     to   { opacity: 1; transform: translateY(0) rotate(0) scale(1); }
+  }
+
+  .manifest-grow-line {
+    width: 100%;
+  }
+  @keyframes manifestGrow {
+    from { width: 0%; }
+    to   { width: 100%; }
+  }
+  @supports (animation-timeline: view()) {
+    @media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
+      html:not([data-scroll-anim="off"]) .manifest-grow-line {
+        width: 0%;
+        animation: manifestGrow linear both;
+        animation-timeline: view();
+        animation-range: entry 10% cover 40%;
+      }
+    }
   }
 
   /* ===== Process rail — scroll-driven z bezpiecznym fallbackiem =====
@@ -404,7 +422,7 @@
     to   { transform: scaleY(1); }
   }
   @supports (animation-timeline: view()) {
-    @media (prefers-reduced-motion: no-preference) {
+    @media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
       html:not([data-scroll-anim="off"]) .process-rail-fill {
         animation: processRailGrow linear both;
         animation-timeline: view();
@@ -427,6 +445,13 @@
   html[data-marquee="off"] [style*="animation:marquee"] {
     animation: none !important;
     transform: none !important;
+  }
+  @media (max-width: 767px) {
+    [style*="animation: marquee"],
+    [style*="animation:marquee"] {
+      animation: none !important;
+      transform: none !important;
+    }
   }
   /* Reveal-up/tilt również wyłączane przez runtime detector */
   html[data-scroll-anim="off"] .reveal-up,

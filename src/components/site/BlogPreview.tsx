@@ -2,12 +2,6 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { getLatestPosts, formatDate } from "@/lib/blog-posts";
 
-const HOVER_VIDEOS = [
-  "https://cdn.pixabay.com/video/2023/10/07/183021-872881864_large.mp4",
-  "https://cdn.pixabay.com/video/2021/10/12/91744-635195953_large.mp4",
-  "https://cdn.pixabay.com/video/2023/06/26/168269-841127723_large.mp4",
-];
-
 export function BlogPreview() {
   const posts = getLatestPosts(3);
 
@@ -52,22 +46,17 @@ export function BlogPreview() {
                 params={{ slug: post.slug }}
                 className="group relative flex flex-col h-full p-7 md:p-8 rounded-3xl border border-cream/10 bg-cream/[0.03] hover:border-lime/40 transition-all overflow-hidden"
               >
-                {/* Video hover preview */}
-                <video
-                  muted
-                  loop
-                  playsInline
-                  preload="none"
+                {/* Hover visual — stable fallback without third-party video */}
+                <div
                   aria-hidden
-                  onMouseEnter={(e) => e.currentTarget.play().catch(() => {})}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.pause();
-                    e.currentTarget.currentTime = 0;
+                  className="absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-35"
+                  style={{
+                    background:
+                      i % 2 === 0
+                        ? "radial-gradient(70% 60% at 80% 20%, color-mix(in oklab, var(--violet) 58%, transparent), transparent 65%), linear-gradient(135deg, var(--ink), color-mix(in oklab, var(--ink) 72%, var(--lime)))"
+                        : "radial-gradient(60% 55% at 20% 80%, color-mix(in oklab, var(--lime) 35%, transparent), transparent 68%), linear-gradient(135deg, var(--ink), color-mix(in oklab, var(--ink) 72%, var(--violet)))",
                   }}
-                  className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-30 transition-opacity duration-700"
-                >
-                  <source src={HOVER_VIDEOS[i % HOVER_VIDEOS.length]} type="video/mp4" />
-                </video>
+                />
                 <div
                   aria-hidden
                   className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
