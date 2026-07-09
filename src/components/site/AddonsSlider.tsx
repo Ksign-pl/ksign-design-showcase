@@ -177,7 +177,10 @@ export function AddonsSlider() {
       <div
         className="relative select-none"
         onPointerMove={onStageMove}
-        onPointerLeave={onStageLeave}
+        onPointerLeave={() => { onStageLeave(); setPaused(false); }}
+        onPointerEnter={() => setPaused(true)}
+        onFocus={() => setPaused(true)}
+        onBlur={() => setPaused(false)}
         style={{ perspective: "1600px" }}
       >
         <div
