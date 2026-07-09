@@ -19,7 +19,7 @@ export function BigNumbers() {
           loop
           playsInline
           preload="metadata"
-          className="w-full h-full object-cover opacity-25"
+          className="hidden md:block w-full h-full object-cover opacity-25"
           style={{ filter: "hue-rotate(220deg) saturate(1.4) blur(2px)" }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-ink via-ink/70 to-ink" />
