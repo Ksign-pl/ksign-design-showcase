@@ -53,7 +53,6 @@ export function Header() {
               key={n.href}
               href={n.href}
               title={n.title}
-              aria-label={n.title}
               className="rounded-full px-3.5 py-1.5 text-sm font-medium text-cream/70 hover:text-cream hover:bg-cream/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
             >
               {n.label}
@@ -101,7 +100,6 @@ export function Header() {
                 key={n.href}
                 href={n.href}
                 title={n.title}
-                aria-label={n.title}
                 onClick={() => setOpen(false)}
                 className="text-xl font-bold tracking-tight text-cream/90 hover:text-lime transition-colors rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
               >

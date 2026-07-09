@@ -125,7 +125,6 @@ export function Process() {
           <a
             href="#realizacje"
             title="Zobacz realizacje i cennik pakietów"
-            aria-label="Zobacz realizacje i cennik pakietów KSIGN"
             className="inline-flex items-center gap-2 bg-lime text-ink px-6 py-3.5 rounded-full font-bold text-sm hover:scale-105 transition-transform"
           >
             Zobacz realizacje i cennik <span aria-hidden="true">→</span>
@@ -133,7 +132,6 @@ export function Process() {
           <a
             href="#kontakt"
             title="Umów rozmowę z KSIGN"
-            aria-label="Umów bezpłatną rozmowę z KSIGN"
             className="inline-flex items-center gap-2 border border-cream/30 text-cream px-6 py-3.5 rounded-full font-bold text-sm hover:bg-cream hover:text-ink transition-colors"
           >
             Umów rozmowę

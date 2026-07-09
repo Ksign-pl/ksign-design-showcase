@@ -130,14 +130,15 @@ export function AddonsSlider() {
       <div className="relative mx-auto max-w-[1400px] px-5 md:px-8">
         <div className="flex items-end justify-between gap-6 mb-10 md:mb-14 flex-wrap">
           <div>
-            <div className="text-xs md:text-sm font-mono uppercase tracking-[0.3em] text-ink/50 mb-4">
+            <div className="text-xs md:text-sm font-mono uppercase tracking-[0.3em] text-ink/70 mb-4">
               [ 06 / Rozbudowa ]
             </div>
             <h2
               id="addons-heading"
               className="font-heading font-bold text-5xl md:text-7xl uppercase leading-[0.85] max-w-4xl"
             >
-              CO MOŻESZ<br/>DODAĆ <span className="text-violet">PÓŹNIEJ?</span>
+              CO MOŻESZ<br/>DODAĆ <span className="bg-violet text-ink px-2 rounded-lg">PÓŹNIEJ?</span>
+
             </h2>
           </div>
 
@@ -221,12 +222,12 @@ export function AddonsSlider() {
                 key={a.num}
                 type="button"
                 onClick={() => !isActive && setActive(i)}
-                role="group"
                 aria-roledescription="slajd"
-                aria-label={`Slajd ${i + 1} z ${ADDONS.length}: ${a.title}. ${a.desc}`}
+                aria-label={`Slajd ${i + 1} z ${ADDONS.length}: ${a.num} ${a.title}. ${a.caption}. ${a.desc}${isActive ? " Zapytaj o dodatek." : ""}`}
                 aria-current={isActive ? "true" : undefined}
                 aria-hidden={abs > 1 ? "true" : undefined}
                 tabIndex={isActive ? 0 : -1}
+
                 className="absolute left-1/2 top-1/2 rounded-3xl overflow-hidden bg-ink text-cream text-left cursor-grab active:cursor-grabbing focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-lime"
                 style={{
                   width: CARD_W,
@@ -315,12 +316,14 @@ export function AddonsSlider() {
                   </h3>
                   <p className="text-sm text-cream/85 leading-snug max-w-[85%]">{a.desc}</p>
                   <div
+                    aria-hidden={!isActive}
                     className={`mt-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest transition-all ${
                       isActive ? "opacity-100 translate-x-0 text-lime" : "opacity-0 -translate-x-2"
                     }`}
                   >
                     Zapytaj o dodatek <ArrowRight size={14} aria-hidden="true" />
                   </div>
+
                 </div>
               </button>
             );

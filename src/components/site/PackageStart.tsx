@@ -131,7 +131,6 @@ export function PackageStart() {
               <Link
                 to="/checkout"
                 title="Zapłać za pakiet Start — 999 zł"
-                aria-label="Zapłać online za pakiet Start — 999 zł"
                 onClick={() => trackCta({ location: "pakiet_start_card", label: "Zapłać online — 999 zł", href: "/checkout", variant: "primary" })}
                 className="w-full inline-flex items-center justify-center gap-2 bg-lime text-ink px-6 py-4 rounded-full font-bold hover:scale-[1.02] transition-transform"
               >

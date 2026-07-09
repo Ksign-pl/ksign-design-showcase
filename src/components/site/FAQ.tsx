@@ -17,7 +17,7 @@ export function FAQ() {
       <div className="mx-auto max-w-[1400px] px-5 md:px-8">
         <div className="grid lg:grid-cols-12 gap-10">
           <div className="lg:col-span-4">
-            <div className="text-xs md:text-sm font-mono uppercase tracking-widest text-ink/50 mb-8">
+            <div className="text-xs md:text-sm font-mono uppercase tracking-widest text-ink/70 mb-8">
               [ 09 / FAQ ]
             </div>
             <h2 className="text-display-tight text-[10vw] md:text-[5vw] lg:text-[5rem]">
@@ -77,9 +77,9 @@ export function FAQ() {
               <a
                 href="#kontakt"
                 title="Skontaktuj się z KSIGN"
-                aria-label="Napisz do KSIGN — formularz kontaktowy"
                 className="font-bold text-ink underline underline-offset-4 decoration-2 decoration-lime hover:text-violet transition-colors"
               >
+
                 Napisz do nas →
               </a>
             </p>

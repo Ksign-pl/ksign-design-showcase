@@ -106,7 +106,7 @@ export function BeforeAfter() {
   return (
     <section className="relative py-24 md:py-32 bg-cream">
       <div className="mx-auto max-w-[1400px] px-5 md:px-8" ref={sectionRef}>
-        <div className="text-xs md:text-sm font-mono uppercase tracking-widest text-ink/50 mb-8">
+        <div className="text-xs md:text-sm font-mono uppercase tracking-widest text-ink/70 mb-8">
           [ 04 / Różnica ]
         </div>
         <h2 className="text-display-tight text-[12vw] md:text-[7vw] lg:text-[6.5rem] mb-10 md:mb-16">
@@ -202,15 +202,15 @@ export function BeforeAfter() {
         {/* Pros/cons summary below */}
         <div className="grid md:grid-cols-2 gap-5 md:gap-8 mt-10 md:mt-14">
           <div className="bg-white border border-ink/10 rounded-3xl p-7 md:p-10 opacity-70">
-            <div className="text-xs font-mono uppercase tracking-widest text-ink/40 mb-4">
+            <div className="text-xs font-mono uppercase tracking-widest text-ink/80 mb-4">
               Tak
             </div>
-            <h3 className="text-2xl md:text-3xl font-black tracking-tight mb-6 text-ink/60">
+            <h3 className="text-2xl md:text-3xl font-black tracking-tight mb-6 text-ink/80">
               Strona, która tylko istnieje
             </h3>
             <ul className="space-y-3">
               {LEFT.map((l) => (
-                <li key={l} className="flex items-start gap-3 text-ink/60">
+                <li key={l} className="flex items-start gap-3 text-ink/80">
                   <span className="mt-0.5 w-5 h-5 rounded-full border border-ink/20 flex items-center justify-center">
                     <X size={12} className="stroke-2" />
                   </span>
