@@ -9,7 +9,6 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as StudioRouteImport } from './routes/studio'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SitemapRouteImport } from './routes/sitemap'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
@@ -36,11 +35,6 @@ import { Route as LovableEmailAuthWebhookRouteImport } from './routes/lovable/em
 import { Route as LovableEmailAuthPreviewRouteImport } from './routes/lovable/email/auth/preview'
 import { Route as ApiPublicPaymentsWebhookRouteImport } from './routes/api/public/payments/webhook'
 
-const StudioRoute = StudioRouteImport.update({
-  id: '/studio',
-  path: '/studio',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
@@ -183,7 +177,6 @@ export interface FileRoutesByFullPath {
   '/reset-password': typeof ResetPasswordRoute
   '/sitemap': typeof SitemapRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/studio': typeof StudioRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/checkout/canceled': typeof CheckoutCanceledRoute
   '/checkout/failed': typeof CheckoutFailedRoute
@@ -210,7 +203,6 @@ export interface FileRoutesByTo {
   '/reset-password': typeof ResetPasswordRoute
   '/sitemap': typeof SitemapRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/studio': typeof StudioRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/checkout/canceled': typeof CheckoutCanceledRoute
   '/checkout/failed': typeof CheckoutFailedRoute
@@ -239,7 +231,6 @@ export interface FileRoutesById {
   '/reset-password': typeof ResetPasswordRoute
   '/sitemap': typeof SitemapRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/studio': typeof StudioRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/checkout/canceled': typeof CheckoutCanceledRoute
   '/checkout/failed': typeof CheckoutFailedRoute
@@ -268,7 +259,6 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/sitemap'
     | '/sitemap.xml'
-    | '/studio'
     | '/blog/$slug'
     | '/checkout/canceled'
     | '/checkout/failed'
@@ -295,7 +285,6 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/sitemap'
     | '/sitemap.xml'
-    | '/studio'
     | '/blog/$slug'
     | '/checkout/canceled'
     | '/checkout/failed'
@@ -323,7 +312,6 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/sitemap'
     | '/sitemap.xml'
-    | '/studio'
     | '/blog/$slug'
     | '/checkout/canceled'
     | '/checkout/failed'
@@ -352,7 +340,6 @@ export interface RootRouteChildren {
   ResetPasswordRoute: typeof ResetPasswordRoute
   SitemapRoute: typeof SitemapRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
-  StudioRoute: typeof StudioRoute
   ApiPublicMetaCapiRoute: typeof ApiPublicMetaCapiRoute
   ApiPublicOgDebugRoute: typeof ApiPublicOgDebugRoute
   ApiPublicPaymentsWebhookRoute: typeof ApiPublicPaymentsWebhookRoute
@@ -363,13 +350,6 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/studio': {
-      id: '/studio'
-      path: '/studio'
-      fullPath: '/studio'
-      preLoaderRoute: typeof StudioRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
@@ -602,7 +582,6 @@ const rootRouteChildren: RootRouteChildren = {
   ResetPasswordRoute: ResetPasswordRoute,
   SitemapRoute: SitemapRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
-  StudioRoute: StudioRoute,
   ApiPublicMetaCapiRoute: ApiPublicMetaCapiRoute,
   ApiPublicOgDebugRoute: ApiPublicOgDebugRoute,
   ApiPublicPaymentsWebhookRoute: ApiPublicPaymentsWebhookRoute,
