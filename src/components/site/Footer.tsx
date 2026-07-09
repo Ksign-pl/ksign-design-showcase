@@ -42,7 +42,7 @@ export function Footer() {
 
 
           <div className="md:col-span-3">
-            <div className="text-xs font-mono uppercase tracking-widest text-ink/40 mb-4">Nawigacja</div>
+            <div className="text-xs font-mono uppercase tracking-widest text-cream/40 mb-4">Nawigacja</div>
             <ul className="space-y-2">
               {[
                 { href: "#oferta", label: "Oferta", title: "Zobacz ofertę KSIGN" },
@@ -53,17 +53,17 @@ export function Footer() {
                 { href: "#kontakt", label: "Kontakt", title: "Skontaktuj się z KSIGN" },
               ].map((l) => (
                 <li key={l.href}>
-                  <a href={l.href} title={l.title} aria-label={l.title} className="font-medium hover:text-violet transition">{l.label}</a>
+                  <a href={l.href} title={l.title} aria-label={l.title} className="font-medium hover:text-lime transition">{l.label}</a>
                 </li>
               ))}
             </ul>
           </div>
 
           <div className="md:col-span-4">
-            <div className="text-xs font-mono uppercase tracking-widest text-ink/40 mb-4">Kontakt</div>
+            <div className="text-xs font-mono uppercase tracking-widest text-cream/40 mb-4">Kontakt</div>
             <ul className="space-y-2 mb-6">
-              <li><a href={`mailto:${CONTACT.email}`} className="font-medium hover:text-violet transition">{CONTACT.email}</a></li>
-              <li><a href={`tel:${CONTACT.phone}`} className="font-medium hover:text-violet transition">606 576 517</a></li>
+              <li><a href={`mailto:${CONTACT.email}`} className="font-medium hover:text-lime transition">{CONTACT.email}</a></li>
+              <li><a href={`tel:${CONTACT.phone}`} className="font-medium hover:text-lime transition">606 576 517</a></li>
             </ul>
             <div className="flex gap-2">
               <a
@@ -95,16 +95,16 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 pt-8 border-t border-ink/10 flex flex-wrap items-center justify-between gap-4 text-sm text-ink/50">
+        <div className="mt-16 pt-8 border-t border-cream/10 flex flex-wrap items-center justify-between gap-4 text-sm text-cream/50">
           <div>© {new Date().getFullYear()} KSIGN. Wszelkie prawa zastrzeżone.</div>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
-            <Link to="/polityka-prywatnosci" className="hover:text-violet transition">Polityka prywatności</Link>
-            <Link to="/polityka-cookies" className="hover:text-violet transition">Polityka cookies</Link>
-            <Link to="/sitemap" className="hover:text-violet transition">Mapa witryny</Link>
+            <Link to="/polityka-prywatnosci" className="hover:text-lime transition">Polityka prywatności</Link>
+            <Link to="/polityka-cookies" className="hover:text-lime transition">Polityka cookies</Link>
+            <Link to="/sitemap" className="hover:text-lime transition">Mapa witryny</Link>
             <button
               type="button"
               onClick={() => openConsentSettings()}
-              className="hover:text-violet transition underline-offset-2 hover:underline"
+              className="hover:text-lime transition underline-offset-2 hover:underline"
             >
               Ustawienia cookies
             </button>
