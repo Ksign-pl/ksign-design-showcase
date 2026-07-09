@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import imgSeo from "@/assets/addon-seo.jpg";
 import imgBlog from "@/assets/addon-blog.jpg";
