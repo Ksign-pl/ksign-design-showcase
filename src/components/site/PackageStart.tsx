@@ -1,6 +1,8 @@
 import { Check } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { LazyVideo } from "./LazyVideo";
+import { trackCta } from "@/lib/analytics";
+
 
 
 const FEATURES = [
