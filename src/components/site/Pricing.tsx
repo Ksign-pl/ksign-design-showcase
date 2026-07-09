@@ -64,7 +64,7 @@ export function Pricing() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-[1400px] px-5 md:px-8">
-        <div className="text-xs md:text-sm font-mono uppercase tracking-widest text-cream/50 mb-8">
+        <div className="text-xs md:text-sm font-mono uppercase tracking-widest text-cream/70 mb-8">
           [ 08 / Pakiety ]
         </div>
         <h2 className="text-display-tight text-[10vw] md:text-[6vw] lg:text-[5.5rem] mb-14 md:mb-20">
@@ -79,8 +79,9 @@ export function Pricing() {
               className={`${
                 p.featured
                   ? "lg:col-span-6 bg-ink text-cream glow-lime md:row-span-2"
-                  : "lg:col-span-3 bg-white border border-ink/10"
+                  : "lg:col-span-3 bg-white text-ink border border-ink/10"
               } rounded-3xl p-7 md:p-9 flex flex-col justify-between relative hover:scale-[1.01] transition-transform`}
+
             >
               {p.featured && (
                 <div className="absolute -top-3 left-7 pill bg-lime text-ink font-bold">
@@ -88,14 +89,14 @@ export function Pricing() {
                 </div>
               )}
               <div>
-                <div className={`text-xs font-mono uppercase tracking-widest mb-4 ${p.featured ? "text-cream/50" : "text-ink/40"}`}>
+                <div className={`text-xs font-mono uppercase tracking-widest mb-4 ${p.featured ? "text-cream/70" : "text-ink/60"}`}>
                   {p.name}
                 </div>
                 <div className="flex items-baseline gap-2 mb-3">
                   <span className={`font-black tracking-tighter ${p.featured ? "text-7xl md:text-8xl" : "text-4xl md:text-5xl"}`}>
                     {p.price}
                   </span>
-                  <span className={`text-sm ${p.featured ? "text-cream/60" : "text-ink/50"}`}>
+                  <span className={`text-sm ${p.featured ? "text-cream/75" : "text-ink/70"}`}>
                     {p.unit}
                   </span>
                 </div>
@@ -123,7 +124,6 @@ export function Pricing() {
           <a
             href="#rozbudowa"
             title="Zobacz dodatkowe usługi i rozbudowę strony"
-            aria-label="Zobacz dodatkowe usługi i rozbudowę strony"
             className="lg:col-span-3 group relative rounded-3xl p-7 md:p-9 bg-violet text-ink overflow-hidden flex flex-col justify-between hover:scale-[1.01] transition-transform"
           >
             <div className="absolute -right-8 -bottom-8 w-44 h-44 rounded-full bg-ink/10 group-hover:scale-125 transition-transform duration-700" aria-hidden="true" />
@@ -131,13 +131,13 @@ export function Pricing() {
               →
             </div>
             <div className="relative">
-              <div className="text-xs font-mono uppercase tracking-widest text-ink/50 mb-4">
+              <div className="text-xs font-mono uppercase tracking-widest text-ink mb-4">
                 EXTRA
               </div>
               <div className="text-3xl md:text-4xl font-black tracking-tighter leading-[0.9] mb-3">
                 ZOBACZ<br/>POZOSTAŁE<br/>USŁUGI
               </div>
-              <p className="text-sm text-ink/70 leading-snug">
+              <p className="text-sm text-ink leading-snug">
                 SEO, blog, branding, automatyzacje, chatbot AI i więcej.
               </p>
             </div>

@@ -62,7 +62,7 @@ export function Manifest() {
               <span className="text-lime">imperia<span className="text-violet">.</span></span>
             </h2>
           </div>
-          <div className="hidden md:flex flex-col items-end gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-cream/40 pt-4">
+          <div className="hidden md:flex flex-col items-end gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-cream/85 pt-4">
             <span>KSIGN / MANIFEST</span>
             <span>03 zasady</span>
           </div>
@@ -86,7 +86,7 @@ export function Manifest() {
               >
                 <div className="flex items-baseline justify-between mb-6">
                   <span
-                    className={`font-heading font-light italic text-6xl md:text-7xl opacity-40 group-hover:opacity-100 transition-opacity ${accentText}`}
+                    className={`font-heading font-light italic text-6xl md:text-7xl opacity-60 group-hover:opacity-100 transition-opacity ${accentText}`}
                   >
                     {c.n}
                   </span>
@@ -108,7 +108,7 @@ export function Manifest() {
                       } as React.CSSProperties}
                     />
                   </div>
-                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-cream/40">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-cream/85">
                     Filar
                   </span>
                 </div>
@@ -147,7 +147,7 @@ export function Manifest() {
                           "linear-gradient(180deg, transparent 40%, rgba(10,10,12,0.9) 100%)",
                       }}
                     />
-                    <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.25em] text-cream/70">
+                    <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.25em] text-cream/85">
                       <span>Reel · {c.n}</span>
                       <span
                         className={`w-1.5 h-1.5 rounded-full ${

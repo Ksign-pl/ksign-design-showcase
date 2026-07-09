@@ -53,7 +53,6 @@ export function Footer() {
                 { href: "#kontakt", label: "Kontakt", title: "Skontaktuj się z KSIGN" },
               ].map((l) => (
                 <li key={l.href}>
-                  <a href={l.href} title={l.title} aria-label={l.title} className="font-medium hover:text-lime transition">{l.label}</a>
                 </li>
               ))}
             </ul>
