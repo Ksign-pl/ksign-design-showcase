@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import imgSeo from "@/assets/addon-seo.jpg";
 import imgBlog from "@/assets/addon-blog.jpg";
@@ -28,6 +28,7 @@ export function AddonsSlider() {
   const [active, setActive] = useState(0);
   const [dragX, setDragX] = useState(0); // live pointer drag offset
   const [pointer, setPointer] = useState({ x: 0, y: 0 }); // -0.5..0.5 for parallax
+  const [paused, setPaused] = useState(false);
   const trackRef = useRef<HTMLDivElement>(null);
   const dragging = useRef<{ startX: number; startY: number; captured: boolean } | null>(null);
   const trackId = "addons-slider-track";
@@ -36,6 +37,16 @@ export function AddonsSlider() {
   const clamp = useCallback((i: number) => Math.max(0, Math.min(ADDONS.length - 1, i)), []);
   const go = useCallback((delta: number) => setActive((i) => clamp(i + delta)), [clamp]);
   const goTo = useCallback((i: number) => setActive(clamp(i)), [clamp]);
+
+  // Autoplay — advance every 3.5s, loop, pause on hover/focus/drag or reduced motion
+  useEffect(() => {
+    if (paused) return;
+    if (typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return;
+    const id = window.setInterval(() => {
+      setActive((i) => (i + 1) % ADDONS.length);
+    }, 3500);
+    return () => window.clearInterval(id);
+  }, [paused]);
 
   // Keyboard nav on the track (Left/Right/Home/End/PageUp/PageDown)
   const onTrackKeyDown = (e: React.KeyboardEvent) => {
@@ -166,7 +177,10 @@ export function AddonsSlider() {
       <div
         className="relative select-none"
         onPointerMove={onStageMove}
-        onPointerLeave={onStageLeave}
+        onPointerLeave={() => { onStageLeave(); setPaused(false); }}
+        onPointerEnter={() => setPaused(true)}
+        onFocus={() => setPaused(true)}
+        onBlur={() => setPaused(false)}
         style={{ perspective: "1600px" }}
       >
         <div
