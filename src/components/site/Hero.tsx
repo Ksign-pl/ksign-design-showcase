@@ -78,11 +78,12 @@ export function Hero() {
             </span>
             <span
               aria-hidden="true"
-              className="block italic font-light text-cream/25"
+              className="block italic font-light text-cream/25 text-[14vw] md:text-[15vw]"
               style={{ fontStyle: "italic" }}
             >
               sprzedają
             </span>
+
           </h1>
 
           <p className="mt-8 md:mt-10 max-w-2xl text-lg md:text-2xl leading-snug text-cream/80">
