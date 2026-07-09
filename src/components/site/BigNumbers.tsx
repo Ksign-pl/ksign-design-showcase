@@ -1,9 +1,3 @@
-import { LazyVideo } from "./LazyVideo";
-
-const BG_VIDEO = "https://cdn.pixabay.com/video/2023/10/16/185338-877842799_large.mp4";
-const BG_POSTER =
-  "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=50";
-
 const STATS = [
   { num: "999 zł", desc: "startowy pakiet strony" },
   { num: "3–7 dni", desc: "standardowy czas realizacji" },
@@ -16,13 +10,6 @@ export function BigNumbers() {
     <section className="relative py-24 md:py-32 bg-ink text-cream overflow-hidden">
       {/* Ambient video background */}
       <div className="absolute inset-0 z-0">
-        <LazyVideo
-          src={BG_VIDEO}
-          poster={BG_POSTER}
-          className="hidden md:block absolute inset-0 w-full h-full opacity-25"
-          filter="hue-rotate(220deg) saturate(1.4) blur(2px)"
-          rootMargin="600px"
-        />
         <div className="absolute inset-0 bg-gradient-to-b from-ink via-ink/70 to-ink" />
         <div
           className="absolute inset-0 opacity-40"

@@ -58,21 +58,6 @@ export function FinalCTA() {
 
   return (
     <section id="kontakt" className="relative py-24 md:py-32 bg-ink text-cream grid-bg-dark overflow-hidden">
-      {/* Ambient video loop */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        aria-hidden
-        className="absolute inset-0 w-full h-full object-cover opacity-[0.18] pointer-events-none"
-      >
-        <source
-          src="https://cdn.pixabay.com/video/2022/12/11/142348-780429796_large.mp4"
-          type="video/mp4"
-        />
-      </video>
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"

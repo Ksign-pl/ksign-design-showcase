@@ -1,6 +1,5 @@
 import { Check } from "lucide-react";
 import { Link } from "@tanstack/react-router";
-import { LazyVideo } from "./LazyVideo";
 import { trackCta } from "@/lib/analytics";
 
 
@@ -42,11 +41,15 @@ export function PackageStart() {
 
               {/* Floating video reel — desktop only */}
               <div className="hidden md:block absolute -left-8 top-[8%] w-[38%] max-w-[280px] aspect-[3/4] rounded-2xl overflow-hidden border border-ink/10 shadow-2xl rotate-[-4deg] bg-ink">
-                <LazyVideo
-                  src="https://cdn.pixabay.com/video/2022/12/11/142348-780429796_large.mp4"
-                  poster="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=60"
-                  className="absolute inset-0 w-full h-full"
+                <div
+                  aria-hidden
+                  className="absolute inset-0"
+                  style={{
+                    background:
+                      "radial-gradient(70% 58% at 78% 20%, color-mix(in oklab, var(--violet) 58%, transparent), transparent 64%), radial-gradient(56% 48% at 18% 84%, color-mix(in oklab, var(--lime) 24%, transparent), transparent 70%), linear-gradient(135deg, color-mix(in oklab, var(--ink) 82%, var(--cream)), var(--ink))",
+                  }}
                 />
+                <div aria-hidden className="absolute inset-0 grid-bg-dark opacity-35" />
 
                 <div
                   aria-hidden
@@ -69,20 +72,14 @@ export function PackageStart() {
                 aria-hidden
                 className="relative w-[62%] max-w-[240px] aspect-[3/4] rounded-2xl overflow-hidden border border-ink/10 bg-ink shadow-2xl rotate-[-4deg]"
               >
-                <img
-                  src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=55"
-                  alt=""
-                  loading="lazy"
-                  decoding="async"
-                  className="absolute inset-0 w-full h-full object-cover opacity-55"
-                />
                 <div
                   className="absolute inset-0"
                   style={{
                     background:
-                      "radial-gradient(70% 60% at 80% 20%, oklch(0.74 0.16 300 / 0.55), transparent 60%), linear-gradient(180deg, rgba(10,10,12,0.25) 0%, rgba(10,10,12,0.9) 100%)",
+                      "radial-gradient(70% 60% at 80% 20%, oklch(0.74 0.16 300 / 0.55), transparent 60%), radial-gradient(60% 55% at 12% 86%, color-mix(in oklab, var(--lime) 22%, transparent), transparent 68%), linear-gradient(180deg, rgba(10,10,12,0.25) 0%, rgba(10,10,12,0.9) 100%)",
                   }}
                 />
+                <div aria-hidden className="absolute inset-0 grid-bg-dark opacity-30" />
                 <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.25em] text-cream/80">
                   <span className="inline-flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-lime animate-pulse" />
