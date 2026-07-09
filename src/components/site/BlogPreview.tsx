@@ -2,6 +2,12 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { getLatestPosts, formatDate } from "@/lib/blog-posts";
 
+const HOVER_VIDEOS = [
+  "https://cdn.pixabay.com/video/2023/10/07/183021-872881864_large.mp4",
+  "https://cdn.pixabay.com/video/2021/10/12/91744-635195953_large.mp4",
+  "https://cdn.pixabay.com/video/2023/06/26/168269-841127723_large.mp4",
+];
+
 export function BlogPreview() {
   const posts = getLatestPosts(3);
 
