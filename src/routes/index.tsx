@@ -145,7 +145,7 @@ function Index() {
         style={{ backgroundImage: `url("${GRAIN_SVG}")`, opacity: 0.04 }}
       />
       <Header />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <Hero />
         <Manifest />
         <PackageStart />
