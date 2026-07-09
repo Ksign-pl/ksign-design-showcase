@@ -36,16 +36,41 @@ const PLANS = [
 
 import { Link } from "@tanstack/react-router";
 
+const BG_VIDEO = "https://cdn.pixabay.com/video/2022/11/12/139245-770920825_large.mp4";
+
 export function Pricing() {
   return (
-    <section id="realizacje" className="py-24 md:py-32 bg-cream grid-bg">
-      <div className="mx-auto max-w-[1400px] px-5 md:px-8">
-        <div className="text-xs md:text-sm font-mono uppercase tracking-widest text-ink/50 mb-8">
+    <section id="realizacje" className="relative py-24 md:py-32 bg-ink text-cream overflow-hidden">
+      {/* Ambient video + violet glow */}
+      <div className="absolute inset-0 z-0" aria-hidden="true">
+        <video
+          src={BG_VIDEO}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className="w-full h-full object-cover opacity-30"
+          style={{ filter: "hue-rotate(230deg) saturate(1.6) blur(3px)" }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-ink via-ink/80 to-ink" />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(50% 40% at 30% 25%, color-mix(in oklab, var(--violet) 55%, transparent), transparent 65%), radial-gradient(45% 40% at 85% 80%, color-mix(in oklab, var(--lime) 25%, transparent), transparent 65%)",
+          }}
+        />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-[1400px] px-5 md:px-8">
+        <div className="text-xs md:text-sm font-mono uppercase tracking-widest text-cream/50 mb-8">
           [ 08 / Pakiety ]
         </div>
         <h2 className="text-display-tight text-[10vw] md:text-[6vw] lg:text-[5.5rem] mb-14 md:mb-20">
-          WYBIERZ POZIOM<br/><span className="bg-violet px-3 rounded-2xl">STARTU.</span>
+          WYBIERZ POZIOM<br/><span className="bg-violet text-ink px-3 rounded-2xl">STARTU.</span>
         </h2>
+
 
         <div className="grid md:grid-cols-2 lg:grid-cols-12 gap-5">
           {PLANS.map((p) => (
