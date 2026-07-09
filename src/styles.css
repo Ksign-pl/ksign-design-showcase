@@ -239,10 +239,8 @@
     [style*="animation:"] {
       animation: none !important;
     }
-    /* Nie odtwarzaj wideo autoplay przy reduced-motion */
-    video[autoplay] {
-      display: none !important;
-    }
+
+
 
     .pill-light,
     .phone-mockup,
