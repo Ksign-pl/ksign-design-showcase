@@ -64,8 +64,8 @@ export function PackageStart() {
                   <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.25em] text-cream/80">
                     <span>● Live preview</span>
                     <span className="text-lime">3–7 dni</span>
-                  </div>
                 </div>
+
               </div>
             </div>
 
