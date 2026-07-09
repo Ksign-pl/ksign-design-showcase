@@ -10,14 +10,14 @@ import imgAds from "@/assets/addon-ads.jpg";
 import imgLanding from "@/assets/addon-landing.jpg";
 
 const ADDONS = [
-  { num: "01", title: "SEO", desc: "Pozycjonowanie i optymalizacja techniczna.", img: imgSeo, alt: "Audyt SEO i optymalizacja Core Web Vitals", caption: "Audyt + Core Web Vitals" },
-  { num: "02", title: "Blog", desc: "Sekcja artykułów z systemem CMS.", img: imgBlog, alt: "System blogowy CMS z edytorem treści", caption: "CMS + edytor treści" },
-  { num: "03", title: "Branding", desc: "Logo, kolory, identyfikacja wizualna.", img: imgBranding, alt: "Branding — logo, kolory, identyfikacja", caption: "Logo + brandbook" },
-  { num: "04", title: "Sklep", desc: "WooCommerce, Shoper lub Shopify.", img: imgShop, alt: "Sklep internetowy z płatnościami online", caption: "Płatności + wysyłki" },
-  { num: "05", title: "Automatyzacje", desc: "Make, Zapier, n8n, integracje API.", img: imgAutomation, alt: "Automatyzacje no-code — Make, Zapier", caption: "Integracje no-code" },
-  { num: "06", title: "Chatbot AI", desc: "Asystent AI dopasowany do firmy.", img: imgChatbot, alt: "Chatbot AI trenowany na danych firmy", caption: "Trenowany na Twoich danych" },
-  { num: "07", title: "Reklamy", desc: "Kampanie Google i Meta Ads.", img: imgAds, alt: "Kampanie reklamowe Google i Meta Ads", caption: "Google + Meta Ads" },
-  { num: "08", title: "Landing", desc: "Strony sprzedażowe pod kampanie.", img: imgLanding, alt: "Landing page z testami A/B", caption: "A/B testy konwersji" },
+  { num: "01", title: "SEO", desc: "Pozycjonowanie i optymalizacja techniczna.", img: imgSeo, video: "https://cdn.pixabay.com/video/2024/03/15/203479-923133247_large.mp4", alt: "Audyt SEO i optymalizacja Core Web Vitals", caption: "Audyt + Core Web Vitals" },
+  { num: "02", title: "Blog", desc: "Sekcja artykułów z systemem CMS.", img: imgBlog, video: "https://cdn.pixabay.com/video/2020/03/24/34098-401228630_large.mp4", alt: "System blogowy CMS z edytorem treści", caption: "CMS + edytor treści" },
+  { num: "03", title: "Branding", desc: "Logo, kolory, identyfikacja wizualna.", img: imgBranding, video: "https://cdn.pixabay.com/video/2023/09/24/181691-869963073_large.mp4", alt: "Branding — logo, kolory, identyfikacja", caption: "Logo + brandbook" },
+  { num: "04", title: "Sklep", desc: "WooCommerce, Shoper lub Shopify.", img: imgShop, video: "https://cdn.pixabay.com/video/2022/12/12/142093-780986480_large.mp4", alt: "Sklep internetowy z płatnościami online", caption: "Płatności + wysyłki" },
+  { num: "05", title: "Automatyzacje", desc: "Make, Zapier, n8n, integracje API.", img: imgAutomation, video: "https://cdn.pixabay.com/video/2020/09/08/49375-458321610_large.mp4", alt: "Automatyzacje no-code — Make, Zapier", caption: "Integracje no-code" },
+  { num: "06", title: "Chatbot AI", desc: "Asystent AI dopasowany do firmy.", img: imgChatbot, video: "https://cdn.pixabay.com/video/2023/11/19/189813-886177881_large.mp4", alt: "Chatbot AI trenowany na danych firmy", caption: "Trenowany na Twoich danych" },
+  { num: "07", title: "Reklamy", desc: "Kampanie Google i Meta Ads.", img: imgAds, video: "https://cdn.pixabay.com/video/2022/03/24/111593-692231340_large.mp4", alt: "Kampanie reklamowe Google i Meta Ads", caption: "Google + Meta Ads" },
+  { num: "08", title: "Landing", desc: "Strony sprzedażowe pod kampanie.", img: imgLanding, video: "https://cdn.pixabay.com/video/2022/10/13/135255-761335918_large.mp4", alt: "Landing page z testami A/B", caption: "A/B testy konwersji" },
 ];
 
 const CARD_W = 340; // px
