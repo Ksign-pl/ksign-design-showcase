@@ -30,20 +30,36 @@ export function AddonsSlider() {
   const [pointer, setPointer] = useState({ x: 0, y: 0 }); // -0.5..0.5 for parallax
   const trackRef = useRef<HTMLDivElement>(null);
   const dragging = useRef<{ startX: number; startY: number; captured: boolean } | null>(null);
+  const trackId = "addons-slider-track";
+  const liveMessage = `Slajd ${active + 1} z ${ADDONS.length}: ${ADDONS[active].title}`;
 
   const clamp = useCallback((i: number) => Math.max(0, Math.min(ADDONS.length - 1, i)), []);
   const go = useCallback((delta: number) => setActive((i) => clamp(i + delta)), [clamp]);
+  const goTo = useCallback((i: number) => setActive(clamp(i)), [clamp]);
 
-  // Keyboard
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (!trackRef.current?.matches(":focus-within")) return;
-      if (e.key === "ArrowLeft") { e.preventDefault(); go(-1); }
-      if (e.key === "ArrowRight") { e.preventDefault(); go(1); }
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [go]);
+  // Keyboard nav on the track (Left/Right/Home/End/PageUp/PageDown)
+  const onTrackKeyDown = (e: React.KeyboardEvent) => {
+    switch (e.key) {
+      case "ArrowLeft":
+      case "PageUp":
+        e.preventDefault();
+        go(-1);
+        break;
+      case "ArrowRight":
+      case "PageDown":
+        e.preventDefault();
+        go(1);
+        break;
+      case "Home":
+        e.preventDefault();
+        goTo(0);
+        break;
+      case "End":
+        e.preventDefault();
+        goTo(ADDONS.length - 1);
+        break;
+    }
+  };
 
   // Pointer parallax over the whole stage
   const onStageMove = (e: React.PointerEvent) => {
