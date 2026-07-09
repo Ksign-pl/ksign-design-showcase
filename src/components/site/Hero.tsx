@@ -64,8 +64,9 @@ export function Hero() {
       {/* MAIN GRID */}
       <div className="relative z-10 w-full max-w-[1400px] mx-auto grid md:grid-cols-12 gap-y-10 md:gap-x-8 items-end">
         {/* Left: mega wordmark + tagline */}
-        <div className="md:col-span-8">
-          <h1 className="font-heading font-bold uppercase leading-[0.82] tracking-tighter text-[22vw] md:text-[15vw]">
+        <div className="md:col-span-8 min-w-0">
+          <h1 className="font-heading font-bold uppercase leading-[0.82] tracking-tighter text-[18vw] md:text-[15vw] break-words [overflow-wrap:anywhere]">
+
             <span className="sr-only">
               KSIGN — premium strony internetowe za 999 zł netto w 7 dni
             </span>
@@ -77,11 +78,13 @@ export function Hero() {
             </span>
             <span
               aria-hidden="true"
-              className="block italic font-light text-cream/25"
+              className="block italic font-light text-cream/25 text-[12vw] md:text-[15vw] whitespace-nowrap"
               style={{ fontStyle: "italic" }}
             >
               sprzedają
             </span>
+
+
           </h1>
 
           <p className="mt-8 md:mt-10 max-w-2xl text-lg md:text-2xl leading-snug text-cream/80">
@@ -95,7 +98,7 @@ export function Hero() {
         </div>
 
         {/* Right: price card */}
-        <div className="md:col-span-4 relative min-h-[300px] md:min-h-[420px] flex items-end">
+        <div className="md:col-span-4 min-w-0 relative min-h-[300px] md:min-h-[420px] flex items-end">
           <div className="w-full bg-cream text-ink p-6 md:p-8 relative z-20 shadow-[0_40px_80px_-20px_oklch(0.74_0.16_300_/_0.5)] border border-cream/10">
             <div className="flex items-start justify-between mb-4">
               <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-ink/60">
