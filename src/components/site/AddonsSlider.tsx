@@ -31,7 +31,6 @@ export function AddonsSlider() {
   const [paused, setPaused] = useState(false);
   const trackRef = useRef<HTMLDivElement>(null);
   const dragging = useRef<{ startX: number; startY: number; captured: boolean } | null>(null);
-  const dragging = useRef<{ startX: number; startY: number; captured: boolean } | null>(null);
   const trackId = "addons-slider-track";
   const liveMessage = `Slajd ${active + 1} z ${ADDONS.length}: ${ADDONS[active].title}`;
 
