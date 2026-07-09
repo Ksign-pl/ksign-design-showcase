@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from "react";
+import { trackCta } from "@/lib/analytics";
+
 
 const HERO_VIDEO =
   "https://cdn.pixabay.com/video/2023/10/07/183021-872881864_large.mp4";
@@ -148,8 +150,10 @@ export function Hero() {
               href="#kontakt"
               title="Zamów stronę za 999 zł — przejdź do formularza"
               aria-label="Zamów stronę za 999 zł — przejdź do formularza kontaktowego"
+              onClick={() => trackCta({ location: "hero", label: "Zamów stronę", href: "#kontakt", variant: "primary" })}
               className="group mt-6 md:mt-8 flex items-center justify-between gap-3 bg-ink text-cream px-5 py-4 font-heading font-bold uppercase tracking-tight text-sm md:text-base transition-colors hover:bg-violet hover:text-ink"
             >
+
               <span>Zamów stronę</span>
               <span
                 aria-hidden="true"

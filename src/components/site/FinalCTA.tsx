@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { trackMetaEvent } from "@/lib/meta-capi";
+import { trackFormSubmit, trackFormError } from "@/lib/analytics";
 import { CONTACT } from "@/lib/contact";
+
 
 export function FinalCTA() {
   const [sent, setSent] = useState(false);
@@ -12,7 +14,14 @@ export function FinalCTA() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!rodo) {
-      setError("Aby wysłać zapytanie, musisz wyrazić zgodę na przetwarzanie danych (RODO).");
+      const msg = "Aby wysłać zapytanie, musisz wyrazić zgodę na przetwarzanie danych (RODO).";
+      setError(msg);
+      trackFormError({
+        form: "kontakt_final_cta",
+        field: "rodo",
+        reason: "rodo_required",
+        message: msg,
+      });
       return;
     }
     setError(null);
@@ -23,6 +32,7 @@ export function FinalCTA() {
     const fullName = (fd.get("name")?.toString() ?? "").trim();
     const [firstName, ...rest] = fullName.split(/\s+/);
     const lastName = rest.join(" ");
+    const pkg = fd.get("package")?.toString() || "";
     void trackMetaEvent("Lead", {
       userData: {
         email: fd.get("email")?.toString() || undefined,
@@ -33,13 +43,19 @@ export function FinalCTA() {
       },
       customData: {
         content_name: "Kontakt KSIGN",
-        package: fd.get("package")?.toString() || "",
+        package: pkg,
         marketing_consent: marketing,
       },
+    });
+    trackFormSubmit({
+      form: "kontakt_final_cta",
+      package: pkg,
+      marketingConsent: marketing,
     });
 
     setSent(true);
   };
+
   return (
     <section id="kontakt" className="relative py-24 md:py-32 bg-ink text-cream grid-bg-dark overflow-hidden">
       {/* Ambient video loop */}
