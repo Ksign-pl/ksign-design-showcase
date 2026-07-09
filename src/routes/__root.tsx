@@ -7,12 +7,15 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
+import { useEffect } from "react";
 
 import appCss from "../styles.css?url";
 import { CookieBanner } from "@/components/site/CookieBanner";
 import { ConsentScripts } from "@/components/site/ConsentScripts";
 import { ConsentDebugPanel } from "@/components/site/ConsentDebugPanel";
 import { CONTACT } from "@/lib/contact";
+import { initMotionFallbacks } from "@/lib/motion";
+
 
 function NotFoundComponent() {
   return (
