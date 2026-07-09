@@ -23,7 +23,7 @@ export function PackageStart() {
         </div>
 
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-          {/* Big number */}
+          {/* Big number + video reel */}
           <div className="lg:col-span-7 relative">
             <div className="relative">
               <div className="text-[40vw] md:text-[28vw] lg:text-[22rem] leading-[0.8] font-black tracking-tighter text-ink">
@@ -34,6 +34,36 @@ export function PackageStart() {
               </div>
               <div className="absolute bottom-6 right-0 md:right-12 text-xl md:text-3xl font-bold text-ink/60">
                 zł
+              </div>
+
+              {/* Floating video reel — "strona w akcji" */}
+              <div className="hidden md:block absolute -left-4 md:-left-8 top-[8%] w-[38%] max-w-[280px] aspect-[3/4] rounded-2xl overflow-hidden border border-ink/10 shadow-2xl rotate-[-4deg] bg-ink">
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  aria-hidden
+                  className="absolute inset-0 w-full h-full object-cover"
+                >
+                  <source
+                    src="https://cdn.pixabay.com/video/2022/12/11/142348-780429796_large.mp4"
+                    type="video/mp4"
+                  />
+                </video>
+                <div
+                  aria-hidden
+                  className="absolute inset-0"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, transparent 55%, rgba(10,10,12,0.85) 100%)",
+                  }}
+                />
+                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.25em] text-cream/80">
+                  <span>● Live preview</span>
+                  <span className="text-lime">3–7 dni</span>
+                </div>
               </div>
             </div>
 

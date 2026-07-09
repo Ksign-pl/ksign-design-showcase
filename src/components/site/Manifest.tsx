@@ -4,18 +4,24 @@ const PILLARS = [
     h: "Estetyka brutalna",
     p: "Nie robimy ładnych obrazków. Tworzymy cyfrowe rzeźby, które wymuszają uwagę. Jeśli Twoja strona nie wywołuje emocji — jest niewidzialna.",
     accent: "cream",
+    video:
+      "https://cdn.pixabay.com/video/2021/10/12/91744-635195953_large.mp4",
   },
   {
     n: "02",
     h: "Prędkość to waluta",
     p: "3–7 dni roboczych. To nie obietnica, to proces. Optymalizujemy każdy ruch myszki, żebyś Ty mógł optymalizować swój biznes.",
     accent: "violet",
+    video:
+      "https://cdn.pixabay.com/video/2023/06/26/168269-841127723_large.mp4",
   },
   {
     n: "03",
     h: "Zero kompromisów",
     p: "999 zł netto to cena wejścia do świata designu premium. Usuwamy zbędne spotkania, zostawiamy czystą esencję Twojej marki.",
     accent: "lime",
+    video:
+      "https://cdn.pixabay.com/video/2020/09/08/49375-459823152_large.mp4",
   },
 ] as const;
 
@@ -71,7 +77,6 @@ export function Manifest() {
                 : c.accent === "lime"
                 ? "text-lime"
                 : "text-cream";
-            // Broken-grid indentation
             const indent =
               i === 0 ? "md:pl-0" : i === 1 ? "md:pl-[16%]" : "md:pl-[8%]";
             return (
@@ -108,7 +113,7 @@ export function Manifest() {
                   </span>
                 </div>
 
-                <div className="grid md:grid-cols-12 gap-6 items-start">
+                <div className="grid md:grid-cols-12 gap-6 md:gap-8 items-start">
                   <h3
                     className={`md:col-span-5 font-heading font-bold text-3xl md:text-5xl uppercase tracking-tighter leading-[0.9] ${
                       c.accent === "violet" ? "text-violet" : ""
@@ -116,9 +121,45 @@ export function Manifest() {
                   >
                     {c.h}
                   </h3>
-                  <p className="md:col-span-6 md:col-start-7 text-base md:text-lg leading-relaxed text-cream/75 max-w-xl">
+
+                  <p className="md:col-span-4 text-base md:text-lg leading-relaxed text-cream/75 max-w-xl">
                     {c.p}
                   </p>
+
+                  {/* Video reel — visual anchor per pillar */}
+                  <div className="md:col-span-3 relative aspect-[4/5] rounded-2xl overflow-hidden border border-cream/10 bg-cream/[0.03]">
+                    <video
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      aria-hidden
+                      className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-90 transition-opacity duration-700"
+                    >
+                      <source src={c.video} type="video/mp4" />
+                    </video>
+                    <div
+                      aria-hidden
+                      className="absolute inset-0 pointer-events-none"
+                      style={{
+                        background:
+                          "linear-gradient(180deg, transparent 40%, rgba(10,10,12,0.9) 100%)",
+                      }}
+                    />
+                    <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.25em] text-cream/70">
+                      <span>Reel · {c.n}</span>
+                      <span
+                        className={`w-1.5 h-1.5 rounded-full ${
+                          c.accent === "violet"
+                            ? "bg-violet"
+                            : c.accent === "lime"
+                            ? "bg-lime"
+                            : "bg-cream"
+                        } animate-pulse`}
+                      />
+                    </div>
+                  </div>
                 </div>
               </article>
             );
@@ -126,7 +167,6 @@ export function Manifest() {
         </div>
       </div>
 
-      {/* keyframe for progress line */}
       <style>{`
         @keyframes manifestGrow {
           from { width: 0%; }
