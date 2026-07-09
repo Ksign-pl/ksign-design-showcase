@@ -24,54 +24,73 @@ export function Header() {
   }, []);
 
   return (
-    <header
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-cream/80 backdrop-blur-xl border-b border-ink/5"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="mx-auto max-w-[1400px] px-5 md:px-8 h-16 md:h-20 flex items-center justify-between">
-        <Link to="/" className="text-xl md:text-2xl font-black tracking-tighter">
+    <header className="fixed top-3 md:top-5 inset-x-0 z-50 pointer-events-none">
+      <div className="mx-auto max-w-[1400px] px-4 md:px-6 flex items-center justify-between gap-3">
+        {/* Wordmark pill */}
+        <Link
+          to="/"
+          className={`pointer-events-auto inline-flex items-center gap-2 rounded-full border border-cream/15 backdrop-blur-xl px-4 py-2 text-base md:text-lg font-black tracking-tighter text-cream transition-colors ${
+            scrolled ? "bg-ink/80" : "bg-ink/50"
+          }`}
+          aria-label="KSIGN — strona główna"
+        >
+          <span
+            aria-hidden
+            className="w-1.5 h-1.5 rounded-full bg-lime animate-pulse"
+          />
           KSIGN<span className="text-violet">.</span>
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-8" aria-label="Główna nawigacja">
+        {/* Center nav pill */}
+        <nav
+          className={`pointer-events-auto hidden lg:flex items-center gap-1 rounded-full border border-cream/15 backdrop-blur-xl px-2 py-2 transition-colors ${
+            scrolled ? "bg-ink/80" : "bg-ink/50"
+          }`}
+          aria-label="Główna nawigacja"
+        >
           {NAV.map((n) => (
             <a
               key={n.href}
               href={n.href}
               title={n.title}
               aria-label={n.title}
-              className="text-sm font-medium text-ink/70 hover:text-ink transition-colors"
+              className="rounded-full px-3.5 py-1.5 text-sm font-medium text-cream/70 hover:text-cream hover:bg-cream/10 transition-colors"
             >
               {n.label}
             </a>
           ))}
         </nav>
 
+        {/* CTA pill */}
         <a
           href="#kontakt"
           aria-label="Zamów stronę — przejdź do formularza kontaktowego"
           title="Przejdź do formularza kontaktowego"
-          className="hidden lg:inline-flex items-center gap-2 bg-ink text-cream px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-violet hover:text-ink transition-all"
+          className="pointer-events-auto hidden lg:inline-flex items-center gap-2 bg-lime text-ink px-5 py-2.5 rounded-full text-sm font-bold hover:bg-cream transition-colors"
         >
-          Zamów stronę
-          <span className="inline-block" aria-hidden="true">→</span>
+          Zamów
+          <span aria-hidden="true">→</span>
         </a>
 
+        {/* Mobile toggle */}
         <button
           onClick={() => setOpen(!open)}
-          className="lg:hidden p-2 -mr-2"
-          aria-label="Menu"
+          className={`pointer-events-auto lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-full border border-cream/15 backdrop-blur-xl text-cream ${
+            scrolled ? "bg-ink/80" : "bg-ink/50"
+          }`}
+          aria-label={open ? "Zamknij menu" : "Otwórz menu"}
+          aria-expanded={open}
         >
-          {open ? <X size={24} /> : <Menu size={24} />}
+          {open ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
 
       {open && (
-        <div className="lg:hidden bg-cream border-t border-ink/10 animate-fade-in">
-          <nav className="px-5 py-6 flex flex-col gap-4" aria-label="Menu mobilne">
+        <div className="pointer-events-auto lg:hidden mx-4 mt-3 rounded-3xl border border-cream/15 bg-ink/95 backdrop-blur-xl text-cream animate-fade-in overflow-hidden">
+          <nav
+            className="px-5 py-6 flex flex-col gap-3"
+            aria-label="Menu mobilne"
+          >
             {NAV.map((n) => (
               <a
                 key={n.href}
@@ -79,7 +98,7 @@ export function Header() {
                 title={n.title}
                 aria-label={n.title}
                 onClick={() => setOpen(false)}
-                className="text-2xl font-bold tracking-tight"
+                className="text-xl font-bold tracking-tight text-cream/90 hover:text-lime transition-colors"
               >
                 {n.label}
               </a>
@@ -88,7 +107,7 @@ export function Header() {
               href="#kontakt"
               aria-label="Zamów stronę — przejdź do formularza kontaktowego"
               onClick={() => setOpen(false)}
-              className="mt-2 inline-flex items-center justify-center bg-ink text-cream px-5 py-3 rounded-full font-semibold"
+              className="mt-3 inline-flex items-center justify-center gap-2 bg-lime text-ink px-5 py-3 rounded-full font-bold"
             >
               Zamów stronę <span aria-hidden="true">→</span>
             </a>
