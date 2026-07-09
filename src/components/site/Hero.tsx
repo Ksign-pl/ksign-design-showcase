@@ -64,8 +64,9 @@ export function Hero() {
       {/* MAIN GRID */}
       <div className="relative z-10 w-full max-w-[1400px] mx-auto grid md:grid-cols-12 gap-y-10 md:gap-x-8 items-end">
         {/* Left: mega wordmark + tagline */}
-        <div className="md:col-span-8">
-          <h1 className="font-heading font-bold uppercase leading-[0.82] tracking-tighter text-[22vw] md:text-[15vw]">
+        <div className="md:col-span-8 min-w-0">
+          <h1 className="font-heading font-bold uppercase leading-[0.82] tracking-tighter text-[18vw] md:text-[15vw] break-words [overflow-wrap:anywhere]">
+
             <span className="sr-only">
               KSIGN — premium strony internetowe za 999 zł netto w 7 dni
             </span>
