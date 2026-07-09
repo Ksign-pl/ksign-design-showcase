@@ -38,7 +38,7 @@ export function PackageStart() {
 
               {/* Floating video reel — desktop only */}
               <div className="hidden md:block absolute -left-8 top-[8%] w-[38%] max-w-[280px] aspect-[3/4] rounded-2xl overflow-hidden border border-ink/10 shadow-2xl rotate-[-4deg] bg-ink">
-                <div className="contents">
+                
                   <video
                     autoPlay
                     muted
