@@ -29,22 +29,34 @@ export function FAQ() {
           </div>
 
           <div className="lg:col-span-8">
+            <h3 id="faq-list-heading" className="sr-only">Lista pytań i odpowiedzi</h3>
+            <ul aria-labelledby="faq-list-heading" className="list-none p-0 m-0">
             {QA.map((item, i) => {
               const isOpen = open === i;
+              const btnId = `faq-trigger-${i}`;
+              const panelId = `faq-panel-${i}`;
               return (
-                <div key={i} className="border-t border-ink/10 last:border-b">
+                <li key={i} className="border-t border-ink/10 last:border-b">
                   <button
+                    id={btnId}
+                    type="button"
                     onClick={() => setOpen(isOpen ? null : i)}
-                    className="w-full flex items-center justify-between gap-6 py-6 md:py-8 text-left group"
+                    aria-expanded={isOpen}
+                    aria-controls={panelId}
+                    className="w-full flex items-center justify-between gap-6 py-6 md:py-8 text-left group rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-4 focus-visible:ring-offset-cream"
                   >
                     <span className="text-lg md:text-2xl font-bold tracking-tight group-hover:text-violet transition-colors">
                       {item.q}
                     </span>
-                    <span className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all ${isOpen ? "bg-lime rotate-180" : "bg-ink text-cream"}`}>
+                    <span aria-hidden="true" className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all ${isOpen ? "bg-lime rotate-180" : "bg-ink text-cream"}`}>
                       {isOpen ? <Minus size={16} className="text-ink" /> : <Plus size={16} />}
                     </span>
                   </button>
                   <div
+                    id={panelId}
+                    role="region"
+                    aria-labelledby={btnId}
+                    hidden={!isOpen}
                     className={`grid transition-all duration-300 ${isOpen ? "grid-rows-[1fr] opacity-100 pb-6 md:pb-8" : "grid-rows-[0fr] opacity-0"}`}
                   >
                     <div className="overflow-hidden">
@@ -53,9 +65,11 @@ export function FAQ() {
                       </p>
                     </div>
                   </div>
-                </div>
+                </li>
               );
             })}
+            </ul>
+
 
             <p className="mt-10 text-base md:text-lg text-ink/70">
               Nie znalazłeś odpowiedzi?{" "}
