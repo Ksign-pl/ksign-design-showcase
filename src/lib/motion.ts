@@ -63,23 +63,27 @@ export function initMotionFallbacks() {
 
   if (flags.marquee === "off") return;
 
-  // Runtime performance guard: jeżeli main thread jest zablokowany
-  // (long tasks) tuż po hydracji, wyłącz marquee — na WebKit szczególnie
-  // często oznacza to jankujące animacje.
+  // Runtime performance guard — TYLKO w WebKit, bo tam scroll-driven
+  // efekty i długie animacje historycznie jankują. W Chromium/Firefox
+  // long tasks mogą wynikać z devowego bundle lub 404 zewnętrznych
+  // zasobów i nie oznaczają problemu z samym marquee.
+  const ua = navigator.userAgent || "";
+  if (!isWebKit(ua)) return;
+
   try {
     const obs = new PerformanceObserver((list) => {
       const longest = list
         .getEntries()
         .reduce((m, e) => Math.max(m, e.duration), 0);
-      if (longest > 200) {
+      if (longest > 250) {
         root.setAttribute("data-marquee", "off");
         obs.disconnect();
       }
     });
     obs.observe({ type: "longtask", buffered: true });
-    // Po 3s przestajemy nasłuchiwać — dalej i tak nikt nie widzi jankowania.
     window.setTimeout(() => obs.disconnect(), 3000);
   } catch {
     /* PerformanceObserver longtask może nie być wspierany */
   }
 }
+
