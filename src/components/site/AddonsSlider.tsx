@@ -131,25 +131,29 @@ export function AddonsSlider() {
           </div>
 
           <div className="flex items-center gap-4">
-            <span className="font-mono text-sm tabular-nums text-ink/60">
+            <span className="font-mono text-sm tabular-nums text-ink/60" aria-hidden="true">
               <span className="font-bold text-ink">{String(active + 1).padStart(2, "0")}</span>
               <span className="mx-1">/</span>
               {String(ADDONS.length).padStart(2, "0")}
             </span>
-            <div className="flex gap-2" role="group" aria-label="Nawigacja">
+            <div className="flex gap-2" role="group" aria-label="Sterowanie karuzelą dodatków">
               <button
+                type="button"
                 onClick={() => go(-1)}
                 disabled={active === 0}
-                aria-label="Poprzedni"
-                className="w-12 h-12 rounded-full bg-white border border-ink/15 flex items-center justify-center hover:bg-ink hover:text-cream disabled:opacity-40 disabled:cursor-not-allowed transition"
+                aria-label="Poprzedni dodatek"
+                aria-controls={trackId}
+                className="w-12 h-12 rounded-full bg-white border border-ink/15 flex items-center justify-center hover:bg-ink hover:text-cream disabled:opacity-40 disabled:cursor-not-allowed transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-cream"
               >
                 <ArrowLeft size={18} aria-hidden="true" />
               </button>
               <button
+                type="button"
                 onClick={() => go(1)}
                 disabled={active === ADDONS.length - 1}
-                aria-label="Następny"
-                className="w-12 h-12 rounded-full bg-ink text-cream flex items-center justify-center hover:bg-violet hover:text-ink disabled:opacity-40 disabled:cursor-not-allowed transition"
+                aria-label="Następny dodatek"
+                aria-controls={trackId}
+                className="w-12 h-12 rounded-full bg-ink text-cream flex items-center justify-center hover:bg-violet hover:text-ink disabled:opacity-40 disabled:cursor-not-allowed transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-cream"
               >
                 <ArrowRight size={18} aria-hidden="true" />
               </button>
