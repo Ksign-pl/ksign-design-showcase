@@ -134,12 +134,8 @@ export function Process() {
         </div>
       </div>
 
-      <style>{`
-        @keyframes processRailGrow {
-          from { transform: scaleY(0); }
-          to   { transform: scaleY(1); }
-        }
-      `}</style>
+
+
     </section>
   );
 }
