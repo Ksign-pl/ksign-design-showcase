@@ -38,36 +38,72 @@ export function PackageStart() {
 
               {/* Floating video reel — desktop only */}
               <div className="hidden md:block absolute -left-8 top-[8%] w-[38%] max-w-[280px] aspect-[3/4] rounded-2xl overflow-hidden border border-ink/10 shadow-2xl rotate-[-4deg] bg-ink">
-                
-                  <video
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
-                    aria-hidden
-                    className="absolute inset-0 w-full h-full object-cover"
-                  >
-                    <source
-                      src="https://cdn.pixabay.com/video/2022/12/11/142348-780429796_large.mp4"
-                      type="video/mp4"
-                    />
-                  </video>
-                  <div
-                    aria-hidden
-                    className="absolute inset-0"
-                    style={{
-                      background:
-                        "linear-gradient(180deg, transparent 55%, rgba(10,10,12,0.85) 100%)",
-                    }}
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  poster="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=60"
+                  aria-hidden
+                  className="absolute inset-0 w-full h-full object-cover"
+                >
+                  <source
+                    src="https://cdn.pixabay.com/video/2022/12/11/142348-780429796_large.mp4"
+                    type="video/mp4"
                   />
-                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.25em] text-cream/80">
-                    <span>● Live preview</span>
-                    <span className="text-lime">3–7 dni</span>
+                </video>
+                <div
+                  aria-hidden
+                  className="absolute inset-0"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, transparent 55%, rgba(10,10,12,0.85) 100%)",
+                  }}
+                />
+                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.25em] text-cream/80">
+                  <span>● Live preview</span>
+                  <span className="text-lime">3–7 dni</span>
                 </div>
-
               </div>
             </div>
+
+            {/* Mobile poster/gradient fallback for the reel */}
+            <div
+              aria-hidden
+              className="md:hidden mt-6 relative aspect-[16/9] w-full rounded-2xl overflow-hidden border border-ink/10 bg-ink shadow-xl"
+            >
+              <div
+                className="absolute inset-0"
+                style={{
+                  backgroundImage:
+                    "url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=60')",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  opacity: 0.5,
+                }}
+              />
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "radial-gradient(70% 60% at 80% 20%, oklch(0.74 0.16 300 / 0.55), transparent 60%), linear-gradient(180deg, rgba(10,10,12,0.35) 0%, rgba(10,10,12,0.9) 100%)",
+                }}
+              />
+              <div className="absolute inset-0 p-4 flex flex-col justify-between text-cream">
+                <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.25em]">
+                  <span className="inline-flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-lime animate-pulse" />
+                    Live preview
+                  </span>
+                  <span className="text-lime">3–7 dni</span>
+                </div>
+                <div className="font-heading font-black uppercase tracking-tight text-2xl leading-none">
+                  Pakiet <span className="text-lime">Start</span>
+                </div>
+              </div>
+            </div>
+
 
 
             <div className="mt-6 max-w-md">
