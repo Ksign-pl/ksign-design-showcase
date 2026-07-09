@@ -38,6 +38,16 @@ export function AddonsSlider() {
   const go = useCallback((delta: number) => setActive((i) => clamp(i + delta)), [clamp]);
   const goTo = useCallback((i: number) => setActive(clamp(i)), [clamp]);
 
+  // Autoplay — advance every 3.5s, loop, pause on hover/focus/drag or reduced motion
+  useEffect(() => {
+    if (paused) return;
+    if (typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return;
+    const id = window.setInterval(() => {
+      setActive((i) => (i + 1) % ADDONS.length);
+    }, 3500);
+    return () => window.clearInterval(id);
+  }, [paused]);
+
   // Keyboard nav on the track (Left/Right/Home/End/PageUp/PageDown)
   const onTrackKeyDown = (e: React.KeyboardEvent) => {
     switch (e.key) {
