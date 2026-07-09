@@ -388,4 +388,52 @@
     from { opacity: 0; transform: translateY(120px) rotate(6deg) scale(0.94); }
     to   { opacity: 1; transform: translateY(0) rotate(0) scale(1); }
   }
+
+  /* ===== Process rail — scroll-driven z bezpiecznym fallbackiem =====
+     Bez wsparcia scroll-timeline (Firefox, starsze WebKit/Safari < 26)
+     rail zostaje w pełni widoczny (scaleY(1)) zamiast być niewidocznym.
+     Runtime detector (patrz src/lib/motion.ts) ustawia
+     [data-scroll-anim="off"] na <html>, co dodatkowo wymusza fallback
+     nawet gdy @supports skłamie (np. WebKit z buggy implementacją). */
+  .process-rail-fill {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  @keyframes processRailGrow {
+    from { transform: scaleY(0); }
+    to   { transform: scaleY(1); }
+  }
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      html:not([data-scroll-anim="off"]) .process-rail-fill {
+        animation: processRailGrow linear both;
+        animation-timeline: view();
+        animation-range: entry 5% cover 90%;
+        transform: scaleY(0);
+      }
+    }
+  }
+
+  /* ===== Marquee fallback ===== 
+     Gdy runtime wykryje problem (WebKit z niską wydajnością animacji lub
+     brakiem obsługi scroll-timeline dla powiązanych efektów), upraszczamy
+     marquee: statyczna warstwa bez ruchu — treść nadal czytelna. */
+  html[data-scroll-anim="off"] .addons-marquee .addons-track,
+  html[data-marquee="off"] .addons-marquee .addons-track {
+    animation: none !important;
+    transform: none !important;
+  }
+  html[data-marquee="off"] [style*="animation: marquee"],
+  html[data-marquee="off"] [style*="animation:marquee"] {
+    animation: none !important;
+    transform: none !important;
+  }
+  /* Reveal-up/tilt również wyłączane przez runtime detector */
+  html[data-scroll-anim="off"] .reveal-up,
+  html[data-scroll-anim="off"] .reveal-tilt {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
+
