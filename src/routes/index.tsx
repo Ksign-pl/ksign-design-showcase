@@ -131,9 +131,19 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+const GRAIN_SVG = `data:image/svg+xml;utf8,${encodeURIComponent(
+  `<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>`,
+)}`;
+
 function Index() {
   return (
-    <div className="bg-cream text-ink min-h-screen overflow-x-clip">
+    <div className="bg-cream text-ink min-h-screen overflow-x-clip relative">
+      {/* Global film grain overlay */}
+      <div
+        aria-hidden
+        className="pointer-events-none fixed inset-0 z-[60] mix-blend-overlay"
+        style={{ backgroundImage: `url("${GRAIN_SVG}")`, opacity: 0.04 }}
+      />
       <Header />
       <main>
         <Hero />
@@ -147,7 +157,6 @@ function Index() {
         <FAQ />
         <BlogPreview />
         <FinalCTA />
-        
       </main>
       <Footer />
       <StickyBar />
