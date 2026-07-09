@@ -106,6 +106,7 @@ export function AddonsSlider() {
       id="rozbudowa"
       className="relative py-24 md:py-32 bg-cream overflow-hidden scroll-mt-24"
       aria-labelledby="addons-heading"
+      aria-roledescription="karuzela"
     >
       {/* huge watermark */}
       <div
