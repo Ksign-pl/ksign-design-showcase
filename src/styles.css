@@ -80,12 +80,13 @@ section[id] { scroll-margin-top: 88px; }
 :root {
   --radius: 1rem;
 
-  --ink: oklch(0.13 0.01 270);
-  --cream: oklch(0.965 0.012 90);
-  --surface: oklch(0.965 0.012 90);
-  --surface-dark: oklch(0.13 0.01 270);
-  --lime: oklch(0.93 0.21 122);
-  --violet: oklch(0.74 0.16 300);
+  /* SM identity palette — Turkus + kość + fiolet */
+  --ink: #0A0A0C;
+  --cream: #EDE4D3;
+  --surface: #EDE4D3;
+  --surface-dark: #0A0A0C;
+  --lime: #1F8F87;   /* turkus — accent (keeps token name for compatibility) */
+  --violet: #5A3AA8; /* fiolet SM */
 
   --background: var(--cream);
   --foreground: var(--ink);
