@@ -17,7 +17,7 @@ export function Hero() {
       {/* ── COLOR BLOCK ─────────────────────────────────────── */}
       <div
         aria-hidden
-        className="absolute right-0 top-0 h-full w-[46%] md:w-[42%] bg-violet"
+        className="absolute right-0 top-0 h-[38%] w-full md:h-full md:w-[42%] bg-violet"
       >
         {/* motyw — pojedynczy łuk/arch w kadrze */}
         <svg
