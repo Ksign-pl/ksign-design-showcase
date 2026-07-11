@@ -45,8 +45,8 @@ section[id] { scroll-margin-top: 88px; }
   --color-surface: var(--surface);
   --color-surface-dark: var(--surface-dark);
 
-  --font-display: "DM Sans", "Helvetica Neue", system-ui, sans-serif;
-  --font-heading: "Space Grotesk", "DM Sans", system-ui, sans-serif;
+  --font-display: "Work Sans", "Helvetica Neue", system-ui, sans-serif;
+  --font-heading: "Instrument Serif", "Work Sans", Georgia, serif;
 
   --animate-float: float 6s ease-in-out infinite;
   --animate-float-slow: float 9s ease-in-out infinite;
@@ -80,12 +80,13 @@ section[id] { scroll-margin-top: 88px; }
 :root {
   --radius: 1rem;
 
-  --ink: oklch(0.13 0.01 270);
-  --cream: oklch(0.965 0.012 90);
-  --surface: oklch(0.965 0.012 90);
-  --surface-dark: oklch(0.13 0.01 270);
-  --lime: oklch(0.93 0.21 122);
-  --violet: oklch(0.74 0.16 300);
+  /* SM identity palette — Turkus + kość + fiolet */
+  --ink: #0A0A0C;
+  --cream: #EDE4D3;
+  --surface: #EDE4D3;
+  --surface-dark: #0A0A0C;
+  --lime: #1F8F87;   /* turkus — accent (keeps token name for compatibility) */
+  --violet: #5A3AA8; /* fiolet SM */
 
   --background: var(--cream);
   --foreground: var(--ink);
@@ -100,7 +101,7 @@ section[id] { scroll-margin-top: 88px; }
   --muted: oklch(0.92 0.01 90);
   --muted-foreground: oklch(0.45 0.02 270);
   --accent: var(--lime);
-  --accent-foreground: var(--ink);
+  --accent-foreground: var(--cream);
   --destructive: oklch(0.6 0.22 27);
   --destructive-foreground: oklch(0.99 0 0);
   --border: oklch(0.88 0.01 90);
@@ -123,7 +124,7 @@ section[id] { scroll-margin-top: 88px; }
     -webkit-font-smoothing: antialiased;
     font-feature-settings: "ss01", "cv11";
   }
-  ::selection { background: var(--lime); color: var(--ink); }
+  ::selection { background: var(--violet); color: var(--cream); }
 
   /* WCAG 2.4.7 — widoczny wskaźnik focusu dla klawiatury.
      Dotyczy wszystkich interaktywnych elementów, które nie mają
