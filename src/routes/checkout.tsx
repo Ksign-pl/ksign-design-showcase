@@ -46,7 +46,7 @@ function CheckoutPage() {
       <main className="mx-auto max-w-[1100px] px-5 md:px-8 py-10 md:py-16">
         <h1 className="text-4xl md:text-5xl font-black tracking-tight mb-2">
           {item.name} — {item.amountPln.toLocaleString("pl-PL")} zł
-          {item.recurring && <span className="text-2xl text-ink/50"> / mies.</span>}
+          {item.recurring && <span className="text-2xl text-ink/70"> / mies.</span>}
         </h1>
         <p className="text-ink/60 mb-8">{item.blurb}</p>
         <div className="rounded-3xl overflow-hidden border border-ink/10 bg-white">
@@ -55,7 +55,7 @@ function CheckoutPage() {
             returnUrl={`${typeof window !== "undefined" ? window.location.origin : ""}/checkout/return?session_id={CHECKOUT_SESSION_ID}&price=${encodeURIComponent(priceId)}`}
           />
         </div>
-        <p className="mt-6 text-xs text-ink/50">
+        <p className="mt-6 text-xs text-ink/70">
           Zwrot możliwy do momentu rozpoczęcia prac. Po starcie realizacji opłata jest bezzwrotna.
         </p>
       </main>

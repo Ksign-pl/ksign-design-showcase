@@ -22,7 +22,7 @@ export function BigNumbers() {
 
 
       <div className="mx-auto max-w-[1400px] px-5 md:px-8 relative z-10">
-        <div className="text-xs md:text-sm font-mono uppercase tracking-widest text-cream/50 mb-8">
+        <div className="text-xs md:text-sm font-mono uppercase tracking-widest text-cream/70 mb-8">
           [ 05 / Liczby ]
         </div>
         <h2 className="text-display-tight text-[12vw] md:text-[7vw] lg:text-[6rem] mb-16 md:mb-24 max-w-5xl">
@@ -36,7 +36,7 @@ export function BigNumbers() {
               key={s.num}
               className="group border-t border-cream/20 pt-6 md:pt-8 transition-colors hover:border-lime"
             >
-              <div className="text-xs font-mono text-cream/40 mb-3">0{i + 1}</div>
+              <div className="text-xs font-mono text-cream/70 mb-3">0{i + 1}</div>
               <div className="text-display text-5xl md:text-6xl lg:text-7xl mb-3 transition-colors group-hover:text-lime">
                 {s.num}
               </div>

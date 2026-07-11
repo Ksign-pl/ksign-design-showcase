@@ -21,7 +21,7 @@ export function PackageStart() {
   return (
     <section id="pakiet" className="relative py-24 md:py-32 grid-bg overflow-hidden">
       <div className="mx-auto max-w-[1400px] px-5 md:px-8">
-        <div className="flex items-center gap-3 mb-8 text-xs md:text-sm font-mono uppercase tracking-widest text-ink/50">
+        <div className="flex items-center gap-3 mb-8 text-xs md:text-sm font-mono uppercase tracking-widest text-ink/70">
           <span>[ 03 / Pakiet ]</span>
         </div>
 
@@ -106,7 +106,7 @@ export function PackageStart() {
           <div className="lg:col-span-5">
             <div className="bg-ink text-cream rounded-3xl p-7 md:p-9 shadow-2xl glow-violet">
               <div className="flex items-center justify-between mb-6">
-                <span className="text-xs font-mono uppercase tracking-widest text-cream/50">
+                <span className="text-xs font-mono uppercase tracking-widest text-cream/70">
                   W pakiecie
                 </span>
                 <span className="text-xs font-bold uppercase tracking-widest bg-lime text-ink px-2.5 py-1 rounded-full">
@@ -141,7 +141,7 @@ export function PackageStart() {
                 Wolę najpierw porozmawiać
               </a>
 
-              <p className="mt-4 text-xs text-cream/50 text-center">
+              <p className="mt-4 text-xs text-cream/70 text-center">
                 Cena finalna. Bez VAT, bez ukrytych kosztów.
               </p>
             </div>

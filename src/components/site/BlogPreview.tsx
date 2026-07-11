@@ -15,7 +15,7 @@ export function BlogPreview() {
       <div className="mx-auto max-w-[1400px] px-5 md:px-8">
         <div className="flex items-end justify-between gap-6 mb-12 md:mb-16 flex-wrap">
           <div>
-            <div className="text-xs md:text-sm font-mono uppercase tracking-widest text-cream/50 mb-4">
+            <div className="text-xs md:text-sm font-mono uppercase tracking-widest text-cream/70 mb-4">
               [ 10 / Blog ]
             </div>
             <h2
@@ -82,7 +82,7 @@ export function BlogPreview() {
                   {post.excerpt}
                 </p>
 
-                <div className="relative mt-auto pt-6 border-t border-cream/10 flex items-center justify-between text-xs font-mono uppercase tracking-wider text-cream/50">
+                <div className="relative mt-auto pt-6 border-t border-cream/10 flex items-center justify-between text-xs font-mono uppercase tracking-wider text-cream/70">
                   <time dateTime={post.date}>{formatDate(post.date)}</time>
                   <span>{post.readingTime}</span>
                 </div>
