@@ -16,13 +16,13 @@ export const Route = createFileRoute("/sitemap.xml")({
     handlers: {
       GET: async () => {
         const today = new Date().toISOString().split("T")[0];
+        // Note: /brief, /checkout, /login, /reset-password, /og-debug are
+        // intentionally excluded — they are marked noindex,nofollow at the
+        // route level (transactional, auth, and debug pages) and must not
+        // appear in the public sitemap.
         const entries: SitemapEntry[] = [
           { path: "/", changefreq: "weekly", priority: "1.0" },
           { path: "/pakiety", changefreq: "weekly", priority: "0.9" },
-          { path: "/brief", changefreq: "monthly", priority: "0.4" },
-          { path: "/checkout", changefreq: "monthly", priority: "0.3" },
-          { path: "/login", changefreq: "yearly", priority: "0.2" },
-          { path: "/reset-password", changefreq: "yearly", priority: "0.2" },
           { path: "/polityka-prywatnosci", changefreq: "yearly", priority: "0.3" },
           { path: "/polityka-cookies", changefreq: "yearly", priority: "0.3" },
           { path: "/blog", changefreq: "weekly", priority: "0.8" },
