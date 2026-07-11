@@ -149,6 +149,7 @@ function Index() {
       <main id="main-content" tabIndex={-1}>
         <Hero />
         <Manifest />
+        <Moodboard />
         <PackageStart />
         <BeforeAfter />
         <BigNumbers />
