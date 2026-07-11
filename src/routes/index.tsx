@@ -3,6 +3,7 @@ import { Header } from "@/components/site/Header";
 import { Hero } from "@/components/site/Hero";
 import { StickyBar } from "@/components/site/StickyBar";
 import { Manifest } from "@/components/site/Manifest";
+import { Moodboard } from "@/components/site/Moodboard";
 import { PackageStart } from "@/components/site/PackageStart";
 import { BeforeAfter } from "@/components/site/BeforeAfter";
 import { BigNumbers } from "@/components/site/BigNumbers";
@@ -148,6 +149,7 @@ function Index() {
       <main id="main-content" tabIndex={-1}>
         <Hero />
         <Manifest />
+        <Moodboard />
         <PackageStart />
         <BeforeAfter />
         <BigNumbers />
