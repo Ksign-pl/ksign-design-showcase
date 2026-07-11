@@ -5,6 +5,7 @@ import { StickyBar } from "@/components/site/StickyBar";
 import { Manifest } from "@/components/site/Manifest";
 import { Moodboard } from "@/components/site/Moodboard";
 import { PackageStart } from "@/components/site/PackageStart";
+import { StartSlider } from "@/components/site/StartSlider";
 import { BeforeAfter } from "@/components/site/BeforeAfter";
 import { BigNumbers } from "@/components/site/BigNumbers";
 import { AddonsSlider } from "@/components/site/AddonsSlider";
@@ -151,6 +152,7 @@ function Index() {
         <Manifest />
         <Moodboard />
         <PackageStart />
+        <StartSlider />
         <BeforeAfter />
         <BigNumbers />
         <AddonsSlider />
