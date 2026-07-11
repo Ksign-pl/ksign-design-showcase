@@ -249,7 +249,7 @@ export function StartSlider() {
                       </ul>
 
                       <div>
-                        {c.external ? (
+                        {c.cta.external ? (
                           <a
                             href={c.cta.href}
                             onClick={() => trackCta({ location: "start_slider", label: c.cta.label, href: c.cta.href, variant: "secondary" })}
