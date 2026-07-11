@@ -101,7 +101,7 @@ section[id] { scroll-margin-top: 88px; }
   --muted: oklch(0.92 0.01 90);
   --muted-foreground: oklch(0.45 0.02 270);
   --accent: var(--lime);
-  --accent-foreground: var(--ink);
+  --accent-foreground: var(--cream);
   --destructive: oklch(0.6 0.22 27);
   --destructive-foreground: oklch(0.99 0 0);
   --border: oklch(0.88 0.01 90);
