@@ -30,7 +30,7 @@ export function Footer() {
 
 
           <div className="md:col-span-3">
-            <div className="text-xs font-mono uppercase tracking-widest text-cream/40 mb-4">Nawigacja</div>
+            <div className="text-xs font-mono uppercase tracking-widest text-cream/70 mb-4">Nawigacja</div>
             <ul className="space-y-2">
               {[
                 { href: "#oferta", label: "Oferta", title: "Zobacz ofertę KSIGN" },
@@ -47,7 +47,7 @@ export function Footer() {
           </div>
 
           <div className="md:col-span-4">
-            <div className="text-xs font-mono uppercase tracking-widest text-cream/40 mb-4">Kontakt</div>
+            <div className="text-xs font-mono uppercase tracking-widest text-cream/70 mb-4">Kontakt</div>
             <ul className="space-y-2 mb-6">
               <li><a href={`mailto:${CONTACT.email}`} className="font-medium hover:text-lime transition">{CONTACT.email}</a></li>
               <li><a href={`tel:${CONTACT.phone}`} className="font-medium hover:text-lime transition">606 576 517</a></li>
@@ -82,7 +82,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 pt-8 border-t border-cream/10 flex flex-wrap items-center justify-between gap-4 text-sm text-cream/50">
+        <div className="mt-16 pt-8 border-t border-cream/10 flex flex-wrap items-center justify-between gap-4 text-sm text-cream/70">
           <div>© {new Date().getFullYear()} KSIGN. Wszelkie prawa zastrzeżone.</div>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
             <Link to="/polityka-prywatnosci" className="hover:text-lime transition">Polityka prywatności</Link>

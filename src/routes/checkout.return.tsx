@@ -168,7 +168,7 @@ function LoadingView({
 
       <div className="bg-white/60 border border-ink/10 rounded-2xl p-6">
         <ProgressBar value={pollCount} max={max} />
-        <div className="flex justify-between mt-3 text-xs text-ink/50 font-mono">
+        <div className="flex justify-between mt-3 text-xs text-ink/70 font-mono">
           <span>
             Próba {Math.min(pollCount + 1, max)}/{max}
           </span>
@@ -216,13 +216,13 @@ function SuccessView({
       {/* Status + ETA bar */}
       <div className="grid grid-cols-2 gap-3 mb-8 text-left">
         <div className="bg-white border border-ink/10 rounded-2xl p-4">
-          <div className="text-xs text-ink/50 uppercase tracking-wide mb-1">Status briefu</div>
+          <div className="text-xs text-ink/70 uppercase tracking-wide mb-1">Status briefu</div>
           <div className="font-bold">
             {briefDone ? "✓ wypełniony" : "○ oczekuje"}
           </div>
         </div>
         <div className="bg-white border border-ink/10 rounded-2xl p-4">
-          <div className="text-xs text-ink/50 uppercase tracking-wide mb-1">
+          <div className="text-xs text-ink/70 uppercase tracking-wide mb-1">
             {briefDone ? "Pierwsza wersja do" : "Realizacja"}
           </div>
           <div className="font-bold">
@@ -268,7 +268,7 @@ function SuccessView({
           >
             Wypełnij brief →
           </button>
-          <p className="text-xs text-ink/50">
+          <p className="text-xs text-ink/70">
             Im szybciej wypełnisz brief, tym szybciej zaczynam — zwykle ten sam dzień.
           </p>
         </div>
@@ -289,7 +289,7 @@ function SuccessView({
                   {cta.label}
                 </a>
                 {cta.note && (
-                  <p className="text-xs text-ink/50">{cta.note}</p>
+                  <p className="text-xs text-ink/70">{cta.note}</p>
                 )}
               </>
             );
@@ -310,11 +310,11 @@ function SuccessView({
       <ContactSection />
 
       <div className="mt-10">
-        <Link to="/" className="text-sm text-ink/50 underline">
+        <Link to="/" className="text-sm text-ink/70 underline">
           ← Wróć na stronę
         </Link>
       </div>
-      <p className="text-xs text-ink/30 mt-6 font-mono break-all">ID: {sessionId}</p>
+      <p className="text-xs text-ink/70 mt-6 font-mono break-all">ID: {sessionId}</p>
     </Shell>
   );
 }
@@ -440,8 +440,8 @@ function PreparationChecklist({ orderId, sessionId, items }: { orderId: string; 
     <div className="text-left bg-white border border-ink/10 rounded-2xl p-6 mb-8">
       <div className="flex items-baseline justify-between mb-3 gap-3">
         <h2 className="font-black text-lg">Przygotuj przed startem</h2>
-        <span className="text-xs text-ink/50 font-mono flex items-center gap-2">
-          {saveState === "saving" && <span className="text-ink/40">zapisywanie…</span>}
+        <span className="text-xs text-ink/70 font-mono flex items-center gap-2">
+          {saveState === "saving" && <span className="text-ink/70">zapisywanie…</span>}
           {saveState === "saved" && <span className="text-emerald-600">zapisano ✓</span>}
           {saveState === "error" && <span className="text-red-600">błąd zapisu</span>}
           <span>{done}/{total}</span>
@@ -482,14 +482,14 @@ function PreparationChecklist({ orderId, sessionId, items }: { orderId: string; 
                 />
                 <label
                   htmlFor={`prep-${i}`}
-                  className={`flex-1 text-sm leading-snug cursor-pointer ${isChecked ? "text-ink/40 line-through" : "text-ink/80"}`}
+                  className={`flex-1 text-sm leading-snug cursor-pointer ${isChecked ? "text-ink/70 line-through" : "text-ink/80"}`}
                 >
                   {item}
                 </label>
                 <button
                   type="button"
                   onClick={() => setOpenNote((cur) => (cur === i ? null : i))}
-                  className="text-[11px] font-mono uppercase tracking-wide text-ink/50 hover:text-ink underline-offset-2 hover:underline flex-none"
+                  className="text-[11px] font-mono uppercase tracking-wide text-ink/70 hover:text-ink underline-offset-2 hover:underline flex-none"
                   aria-expanded={isOpen}
                   aria-controls={`note-${i}`}
                 >
@@ -507,12 +507,12 @@ function PreparationChecklist({ orderId, sessionId, items }: { orderId: string; 
                     className="w-full text-sm rounded-md border border-ink/15 bg-ink/5 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ink/20 resize-y min-h-[60px]"
                   />
                   <div className="flex justify-between mt-1">
-                    <span className="text-[10px] text-ink/40 font-mono">{note.length}/2000</span>
+                    <span className="text-[10px] text-ink/70 font-mono">{note.length}/2000</span>
                     {note && (
                       <button
                         type="button"
                         onClick={() => updateNote(i, "")}
-                        className="text-[10px] text-ink/50 hover:text-red-600 font-mono uppercase"
+                        className="text-[10px] text-ink/70 hover:text-red-600 font-mono uppercase"
                       >
                         Usuń notatkę
                       </button>
@@ -620,11 +620,11 @@ function BriefAssetUploader({ orderId, sessionId }: { orderId: string; sessionId
     <div className="mt-6 pt-6 border-t border-ink/10">
       <div className="flex items-baseline justify-between mb-2">
         <h3 className="font-bold text-sm">Załączniki (logo, zdjęcia, teksty)</h3>
-        <span className="text-xs text-ink/40 font-mono">
+        <span className="text-xs text-ink/70 font-mono">
           {items.length} {items.length === 1 ? "plik" : "plików"}
         </span>
       </div>
-      <p className="text-xs text-ink/50 mb-3">
+      <p className="text-xs text-ink/70 mb-3">
         Wgraj pliki, które przygotowałeś z checklisty. Limit 10 MB na plik. Obrazy, PDF, DOC, XLS, ZIP.
       </p>
 
@@ -649,7 +649,7 @@ function BriefAssetUploader({ orderId, sessionId }: { orderId: string; sessionId
       )}
 
       {list.isLoading && (
-        <p className="text-xs text-ink/40 mt-3">Ładowanie listy plików…</p>
+        <p className="text-xs text-ink/70 mt-3">Ładowanie listy plików…</p>
       )}
 
       {items.length > 0 && (
@@ -672,12 +672,12 @@ function BriefAssetUploader({ orderId, sessionId }: { orderId: string; sessionId
                 ) : (
                   <span className="font-medium truncate block">{f.name}</span>
                 )}
-                <span className="text-xs text-ink/40">{formatBytes(f.size)}</span>
+                <span className="text-xs text-ink/70">{formatBytes(f.size)}</span>
               </div>
               <button
                 type="button"
                 onClick={() => handleDelete(f.path)}
-                className="text-xs text-ink/50 hover:text-red-600 transition flex-none"
+                className="text-xs text-ink/70 hover:text-red-600 transition flex-none"
                 aria-label={`Usuń ${f.name}`}
               >
                 Usuń
@@ -799,7 +799,7 @@ function DownloadSummary({
           >
             Pobierz PDF z serwera
           </a>
-          <span className="text-ink/50">
+          <span className="text-ink/70">
             · link ważny ok. {minutesLeft} min
           </span>
         </div>
@@ -845,7 +845,7 @@ function ResendConfirmation({ orderId, sessionId }: { orderId: string; sessionId
   const disabled = mutation.isPending || inCooldown;
 
   const statusStyles: Record<typeof status, string> = {
-    idle: "text-ink/50",
+    idle: "text-ink/70",
     sending: "text-ink/70",
     sent: "text-emerald-700",
     error: "text-red-700",
@@ -930,7 +930,7 @@ function ContactSection() {
           </div>
         </a>
       </div>
-      <p className="text-xs text-ink/40 mt-4 text-center">
+      <p className="text-xs text-ink/70 mt-4 text-center">
         {CONTACT.hours}
       </p>
     </div>
@@ -970,7 +970,7 @@ function PendingView({
           <span className="font-mono text-amber-700">oczekiwanie ⏱</span>
         </div>
         {retryCycle > 0 && (
-          <div className="mt-2 text-xs text-ink/40 text-right">
+          <div className="mt-2 text-xs text-ink/70 text-right">
             Ponowna weryfikacja: {retryCycle}×
           </div>
         )}
@@ -995,9 +995,9 @@ function PendingView({
       </div>
 
       <div className="mt-10">
-        <Link to="/" className="text-sm text-ink/50 underline">← Wróć na stronę</Link>
+        <Link to="/" className="text-sm text-ink/70 underline">← Wróć na stronę</Link>
       </div>
-      <p className="text-xs text-ink/30 mt-6 font-mono break-all">ID: {sessionId}</p>
+      <p className="text-xs text-ink/70 mt-6 font-mono break-all">ID: {sessionId}</p>
     </Shell>
   );
 }

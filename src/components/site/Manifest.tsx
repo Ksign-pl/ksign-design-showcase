@@ -52,7 +52,7 @@ export function Manifest() {
             <h2 className="font-heading font-bold text-5xl md:text-7xl lg:text-8xl leading-[0.88] tracking-tighter">
               Nie robimy stron.<br />
               Budujemy{" "}
-              <span className="italic font-light text-cream/50">cyfrowe</span>{" "}
+              <span className="italic font-light text-cream/70">cyfrowe</span>{" "}
               <span className="text-lime">imperia<span className="text-violet">.</span></span>
             </h2>
           </div>

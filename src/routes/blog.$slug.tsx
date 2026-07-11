@@ -126,7 +126,7 @@ function ShareButtons({ url, title }: { url: string; title: string }) {
     "inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cream/15 text-xs font-mono uppercase tracking-wider text-cream/70 hover:text-lime hover:border-lime/40 transition-colors";
   return (
     <div className="flex flex-wrap items-center gap-2">
-      <span className="text-xs font-mono uppercase tracking-widest text-cream/40 mr-2">
+      <span className="text-xs font-mono uppercase tracking-widest text-cream/70 mr-2">
         Udostępnij:
       </span>
       <a
@@ -197,7 +197,7 @@ function BlogPost() {
           {/* Breadcrumbs */}
           <nav
             aria-label="Ścieżka nawigacji"
-            className="text-xs font-mono uppercase tracking-widest text-cream/50 flex items-center gap-2 flex-wrap"
+            className="text-xs font-mono uppercase tracking-widest text-cream/70 flex items-center gap-2 flex-wrap"
           >
             <Link to="/" className="hover:text-lime transition-colors">
               Strona główna
@@ -207,13 +207,13 @@ function BlogPost() {
               Blog
             </Link>
             <span aria-hidden="true">/</span>
-            <span className="text-cream/30 truncate max-w-[60vw]">{post.title}</span>
+            <span className="text-cream/70 truncate max-w-[60vw]">{post.title}</span>
           </nav>
 
           <div className="mt-8 grid gap-12 lg:grid-cols-[1fr_280px]">
             <article className="max-w-3xl">
               <header>
-                <div className="flex items-center gap-3 text-xs font-mono uppercase tracking-widest text-cream/50 mb-6 flex-wrap">
+                <div className="flex items-center gap-3 text-xs font-mono uppercase tracking-widest text-cream/70 mb-6 flex-wrap">
                   <span className="inline-flex items-center gap-1.5 text-lime">
                     <Tag size={12} aria-hidden="true" /> {post.category}
                   </span>
@@ -297,7 +297,7 @@ function BlogPost() {
                       params={{ slug: prev.slug }}
                       className="group p-6 rounded-2xl border border-cream/10 hover:border-lime/40 hover:bg-cream/[0.05] transition-all"
                     >
-                      <span className="inline-flex items-center gap-2 text-[10px] font-mono uppercase tracking-widest text-cream/50 mb-2">
+                      <span className="inline-flex items-center gap-2 text-[10px] font-mono uppercase tracking-widest text-cream/70 mb-2">
                         <ArrowLeft size={12} aria-hidden="true" /> Nowszy wpis
                       </span>
                       <span className="block text-base font-bold tracking-tight leading-snug group-hover:text-lime transition-colors">
@@ -313,7 +313,7 @@ function BlogPost() {
                       params={{ slug: next.slug }}
                       className="group p-6 rounded-2xl border border-cream/10 hover:border-lime/40 hover:bg-cream/[0.05] transition-all md:text-right"
                     >
-                      <span className="inline-flex items-center gap-2 text-[10px] font-mono uppercase tracking-widest text-cream/50 mb-2 md:justify-end md:w-full">
+                      <span className="inline-flex items-center gap-2 text-[10px] font-mono uppercase tracking-widest text-cream/70 mb-2 md:justify-end md:w-full">
                         Starszy wpis <ArrowRight size={12} aria-hidden="true" />
                       </span>
                       <span className="block text-base font-bold tracking-tight leading-snug group-hover:text-lime transition-colors">
@@ -331,28 +331,28 @@ function BlogPost() {
             <aside className="hidden lg:block">
               <div className="sticky top-32 space-y-6">
                 <div className="p-6 rounded-2xl border border-cream/10 bg-cream/[0.03]">
-                  <div className="text-[10px] font-mono uppercase tracking-widest text-cream/50 mb-3">
+                  <div className="text-[10px] font-mono uppercase tracking-widest text-cream/70 mb-3">
                     O wpisie
                   </div>
                   <dl className="space-y-2 text-sm">
                     <div className="flex justify-between gap-3">
-                      <dt className="text-cream/50">Kategoria</dt>
+                      <dt className="text-cream/70">Kategoria</dt>
                       <dd className="text-lime font-medium">{post.category}</dd>
                     </div>
                     <div className="flex justify-between gap-3">
-                      <dt className="text-cream/50">Data</dt>
+                      <dt className="text-cream/70">Data</dt>
                       <dd className="text-cream/80">{formatDate(post.date)}</dd>
                     </div>
                     <div className="flex justify-between gap-3">
-                      <dt className="text-cream/50">Czas czytania</dt>
+                      <dt className="text-cream/70">Czas czytania</dt>
                       <dd className="text-cream/80">{post.readingTime}</dd>
                     </div>
                     <div className="flex justify-between gap-3">
-                      <dt className="text-cream/50">Słów</dt>
+                      <dt className="text-cream/70">Słów</dt>
                       <dd className="text-cream/80">{wordCount}</dd>
                     </div>
                     <div className="flex justify-between gap-3">
-                      <dt className="text-cream/50">Autor</dt>
+                      <dt className="text-cream/70">Autor</dt>
                       <dd className="text-cream/80">{post.author}</dd>
                     </div>
                   </dl>
@@ -386,7 +386,7 @@ function BlogPost() {
                 </h2>
                 <Link
                   to="/blog"
-                  className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-cream/50 hover:text-lime transition-colors"
+                  className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-cream/70 hover:text-lime transition-colors"
                 >
                   Wszystkie wpisy <ArrowRight size={12} aria-hidden="true" />
                 </Link>
@@ -403,7 +403,7 @@ function BlogPost() {
                         <span className="text-[10px] font-mono uppercase tracking-widest text-lime">
                           {p.category}
                         </span>
-                        <span className="text-[10px] font-mono uppercase tracking-widest text-cream/40">
+                        <span className="text-[10px] font-mono uppercase tracking-widest text-cream/70">
                           {p.readingTime}
                         </span>
                       </div>
@@ -415,7 +415,7 @@ function BlogPost() {
                       </p>
                       <time
                         dateTime={p.date}
-                        className="mt-4 text-[10px] font-mono uppercase tracking-widest text-cream/40"
+                        className="mt-4 text-[10px] font-mono uppercase tracking-widest text-cream/70"
                       >
                         {formatDate(p.date)}
                       </time>

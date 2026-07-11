@@ -25,7 +25,7 @@ export function Process() {
   return (
     <section id="proces" className="relative py-24 md:py-32 bg-ink text-cream grid-bg-dark overflow-hidden">
       <div className="relative mx-auto max-w-[1400px] px-5 md:px-8">
-        <div className="text-xs md:text-sm font-mono uppercase tracking-widest text-cream/50 mb-8">
+        <div className="text-xs md:text-sm font-mono uppercase tracking-widest text-cream/70 mb-8">
           [ 07 / Proces ]
         </div>
         <h2 className="text-display-tight text-[10vw] md:text-[6vw] lg:text-[5.5rem] max-w-5xl mb-16 md:mb-24">

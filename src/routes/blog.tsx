@@ -46,13 +46,13 @@ function BlogIndex() {
         <div className="mx-auto max-w-[1400px] px-5 md:px-8">
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-cream/50 hover:text-lime transition-colors"
+            className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-cream/70 hover:text-lime transition-colors"
           >
             <ArrowLeft size={14} aria-hidden="true" /> Powrót do strony głównej
           </Link>
 
           <header className="mt-8 max-w-3xl">
-            <div className="text-xs md:text-sm font-mono uppercase tracking-widest text-cream/50 mb-4">
+            <div className="text-xs md:text-sm font-mono uppercase tracking-widest text-cream/70 mb-4">
               [ Blog KSIGN ]
             </div>
             <h1 className="text-display-tight text-[12vw] md:text-[7vw] lg:text-[6rem]">
@@ -86,7 +86,7 @@ function BlogIndex() {
                   <p className="text-sm text-cream/60 leading-relaxed mb-6 line-clamp-3">
                     {post.excerpt}
                   </p>
-                  <div className="mt-auto pt-6 border-t border-cream/10 flex items-center justify-between text-xs font-mono uppercase tracking-wider text-cream/50">
+                  <div className="mt-auto pt-6 border-t border-cream/10 flex items-center justify-between text-xs font-mono uppercase tracking-wider text-cream/70">
                     <time dateTime={post.date}>{formatDate(post.date)}</time>
                     <span>{post.readingTime}</span>
                   </div>

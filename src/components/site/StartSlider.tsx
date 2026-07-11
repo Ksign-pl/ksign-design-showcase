@@ -300,7 +300,7 @@ export function StartSlider() {
           })}
         </div>
 
-        <p className="mt-6 text-center text-xs font-mono uppercase tracking-widest text-ink/50">
+        <p className="mt-6 text-center text-xs font-mono uppercase tracking-widest text-ink/70">
           ← → nawigacja klawiaturą · swipe na mobile
         </p>
       </div>

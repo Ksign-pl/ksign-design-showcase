@@ -79,7 +79,7 @@ function CheckoutCanceled() {
         <div className="mt-8">
           <a
             href={mailto("Inna forma płatności")}
-            className="text-sm text-ink/50 underline"
+            className="text-sm text-ink/70 underline"
           >
             Napisz do nas o inną formę płatności
           </a>

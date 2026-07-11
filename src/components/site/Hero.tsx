@@ -69,7 +69,7 @@ export function Hero() {
 
         {/* headline — dużo negatywnej przestrzeni */}
         <div className="mt-16 md:mt-0 md:absolute md:left-10 lg:left-16 md:top-1/2 md:-translate-y-1/2 md:max-w-[58%]">
-          <div className="font-mono text-[10px] md:text-xs uppercase tracking-[0.4em] text-ink/50 mb-6 md:mb-10">
+          <div className="font-mono text-[10px] md:text-xs uppercase tracking-[0.4em] text-ink/70 mb-6 md:mb-10">
             № 01 / Manifest
           </div>
           <h1 className="font-heading font-normal leading-[0.9] tracking-tight text-[13vw] md:text-[8.5vw] lg:text-[7.5vw]">
@@ -77,7 +77,7 @@ export function Hero() {
               KSIGN — premium strony internetowe za 999 zł netto w 7 dni
             </span>
             <span aria-hidden className="block">Strony</span>
-            <span aria-hidden className="block italic font-light text-ink/40">które</span>
+            <span aria-hidden className="block italic font-light text-ink/70">które</span>
             <span aria-hidden className="block">
               sprzedają<span className="text-violet">.</span>
             </span>
