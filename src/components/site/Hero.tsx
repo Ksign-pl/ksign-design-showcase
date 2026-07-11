@@ -1,207 +1,148 @@
 import { trackCta } from "@/lib/analytics";
 
-
 export function Hero() {
   return (
-    <section
-      className="relative min-h-[100svh] flex flex-col justify-between px-5 md:px-10 pt-24 md:pt-28 pb-10 md:pb-16 overflow-hidden bg-ink text-cream"
-    >
-      {/* Stable visual background — no failing third-party video requests */}
+    <section className="relative min-h-[100svh] w-full overflow-hidden bg-cream text-ink">
+      {/* subtle grid ticks */}
       <div
         aria-hidden
-        className="absolute inset-0 opacity-80"
-        style={{
-          background:
-            "radial-gradient(80% 60% at 78% 28%, color-mix(in oklab, var(--violet) 36%, transparent), transparent 68%), radial-gradient(72% 52% at 18% 88%, color-mix(in oklab, var(--lime) 15%, transparent), transparent 72%), linear-gradient(180deg, color-mix(in oklab, var(--ink) 88%, black), var(--ink))",
-        }}
-      />
-      <div aria-hidden className="absolute inset-0 grid-bg-dark opacity-35" />
-
-      {/* Dark gradient overlay for legibility */}
-      <div
-        aria-hidden
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "linear-gradient(180deg, rgba(10,10,12,0.55) 0%, rgba(10,10,12,0.35) 40%, rgba(10,10,12,0.85) 100%)",
-        }}
-      />
-
-      {/* Violet radial glow */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -top-40 -right-40 md:top-1/3 md:-right-40 w-[80vw] md:w-[55vw] h-[80vw] md:h-[55vw] rounded-full"
-        style={{
-          background:
-            "radial-gradient(circle, oklch(0.74 0.16 300 / 0.55) 0%, oklch(0.74 0.16 300 / 0.15) 40%, transparent 70%)",
-          filter: "blur(80px)",
-        }}
-      />
-
-      {/* editorial grid ticks */}
-      <div
-        aria-hidden
-        className="absolute inset-0 pointer-events-none opacity-[0.04]"
+        className="absolute inset-0 pointer-events-none opacity-[0.06]"
         style={{
           backgroundImage:
-            "linear-gradient(to right, var(--cream) 1px, transparent 1px)",
+            "linear-gradient(to right, var(--ink) 1px, transparent 1px)",
           backgroundSize: "8.333% 100%",
         }}
       />
 
-      {/* TOP: status row */}
-      <div className="relative z-10 flex items-start justify-between gap-4 mb-8 md:mb-0">
-        <span className="inline-flex items-center gap-2 px-3 py-1 border border-cream/20 bg-cream/5 backdrop-blur text-[10px] md:text-xs font-bold tracking-[0.25em] uppercase">
-          <span className="w-1.5 h-1.5 rounded-full bg-lime animate-pulse" />
-          Premium Studio · 2026
-        </span>
-        <div className="hidden md:flex flex-col items-end gap-1 font-mono text-[10px] uppercase tracking-[0.3em] text-cream/50">
-          <span>[ 01 / Hero ]</span>
-          <span>PL · Web · Motion</span>
+      {/* ── COLOR BLOCK ─────────────────────────────────────── */}
+      <div
+        aria-hidden
+        className="absolute right-0 top-0 h-[38%] w-full md:h-full md:w-[42%] bg-violet"
+      >
+        {/* motyw — pojedynczy łuk/arch w kadrze */}
+        <svg
+          viewBox="0 0 400 700"
+          preserveAspectRatio="xMidYMax meet"
+          className="absolute inset-0 h-full w-full"
+          aria-hidden="true"
+        >
+          <defs>
+            <linearGradient id="archG" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="oklch(0.965 0.012 90)" stopOpacity="0.14" />
+              <stop offset="100%" stopColor="oklch(0.965 0.012 90)" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+          {/* archway */}
+          <path
+            d="M 90 700 L 90 260 A 110 110 0 0 1 310 260 L 310 700 Z"
+            fill="url(#archG)"
+            stroke="oklch(0.965 0.012 90 / 0.35)"
+            strokeWidth="1.5"
+          />
+          {/* inner line */}
+          <path
+            d="M 130 700 L 130 275 A 70 70 0 0 1 270 275 L 270 700"
+            fill="none"
+            stroke="oklch(0.965 0.012 90 / 0.22)"
+            strokeWidth="1"
+          />
+        </svg>
+
+        {/* vertical caption */}
+        <div className="absolute top-8 right-6 md:right-8 rotate-180 font-mono text-[10px] md:text-xs uppercase tracking-[0.4em] text-cream/70" style={{ writingMode: "vertical-rl" }}>
+          KSIGN · MMXXVI · Studio
         </div>
       </div>
 
-      {/* MAIN GRID */}
-      <div className="relative z-10 w-full max-w-[1400px] mx-auto grid md:grid-cols-12 gap-y-10 md:gap-x-8 items-end">
-        {/* Left: mega wordmark + tagline */}
-        <div className="md:col-span-8 min-w-0">
-          <h1 className="font-heading font-bold uppercase leading-[0.88] tracking-tighter text-[14vw] md:text-[10.5vw]">
+      {/* ── CONTENT ─────────────────────────────────────────── */}
+      <div className="relative z-10 min-h-[100svh] px-5 md:px-10 lg:px-16 pt-28 md:pt-32 pb-16 flex flex-col justify-between max-w-[1500px] mx-auto">
+        {/* top row */}
+        <div className="flex items-start justify-between gap-4">
+          <span className="inline-flex items-center gap-2 text-[10px] md:text-xs font-mono uppercase tracking-[0.35em] text-ink/70">
+            <span className="w-1.5 h-1.5 rounded-full bg-ink" />
+            Premium web · Kraków / PL
+          </span>
+          <span className="hidden md:block font-mono text-[10px] uppercase tracking-[0.35em] text-cream/70">
+            [ 01 — Hero ]
+          </span>
+        </div>
 
+        {/* headline — dużo negatywnej przestrzeni */}
+        <div className="mt-16 md:mt-0 md:absolute md:left-10 lg:left-16 md:top-1/2 md:-translate-y-1/2 md:max-w-[58%]">
+          <div className="font-mono text-[10px] md:text-xs uppercase tracking-[0.4em] text-ink/50 mb-6 md:mb-10">
+            № 01 / Manifest
+          </div>
+          <h1 className="font-heading font-normal leading-[0.9] tracking-tight text-[13vw] md:text-[8.5vw] lg:text-[7.5vw]">
             <span className="sr-only">
               KSIGN — premium strony internetowe za 999 zł netto w 7 dni
             </span>
-            <span aria-hidden="true" className="block">
-              Strony
+            <span aria-hidden className="block">Strony</span>
+            <span aria-hidden className="block italic font-light text-ink/40">które</span>
+            <span aria-hidden className="block">
+              sprzedają<span className="text-violet">.</span>
             </span>
-            <span aria-hidden="true" className="block">
-              które<span className="text-violet">.</span>
-            </span>
-            <span
-              aria-hidden="true"
-              className="block italic font-light text-cream/25 text-[10vw] md:text-[10.5vw] whitespace-nowrap"
-              style={{ fontStyle: "italic" }}
-            >
-              sprzedają
-            </span>
-
-
           </h1>
 
-          <p className="mt-8 md:mt-10 max-w-2xl text-lg md:text-2xl leading-snug text-cream/80">
-            One-page, który{" "}
-            <span className="bg-lime px-2 py-0.5 font-semibold text-ink">
-              sprzedaje designem
-            </span>
-            , nie tylko kodem. Nowy standard web 2026 — dla firm, które nie
-            wyglądają jak wszyscy.
+          <p className="mt-8 md:mt-10 max-w-md text-base md:text-lg leading-snug text-ink/70">
+            One-page w klasie premium.{" "}
+            <span className="bg-ink text-cream px-2 py-0.5 font-medium">3–7 dni</span>{" "}
+            realizacji. Bez szablonów.
           </p>
-        </div>
 
-        {/* Right: price card */}
-        <div className="md:col-span-4 min-w-0 relative min-h-[300px] md:min-h-[420px] flex items-end">
-          <div className="w-full bg-cream text-ink p-6 md:p-8 relative z-20 shadow-[0_40px_80px_-20px_oklch(0.74_0.16_300_/_0.5)] border border-cream/10">
-            <div className="flex items-start justify-between mb-4">
-              <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-ink/60">
-                / Inwestycja
-              </span>
-              <span className="w-2 h-2 rounded-full bg-violet animate-pulse" />
-            </div>
-            <div className="font-heading font-bold text-6xl md:text-7xl leading-none tracking-tighter">
-              999<span className="text-violet">.</span>
-            </div>
-            <div className="mt-2 flex items-baseline gap-2 text-ink/70">
-              <span className="font-mono text-xs uppercase tracking-widest">
-                PLN netto
-              </span>
-              <span className="text-xs">·</span>
-              <span className="font-mono text-xs uppercase tracking-widest">
-                one-page
-              </span>
-            </div>
-
-            <div className="mt-4 pt-4 border-t border-ink/10 flex items-center justify-between text-xs font-mono uppercase tracking-widest text-ink/70">
-              <span>Dostawa</span>
-              <span className="font-bold text-ink">3–7 dni</span>
-            </div>
-
+          <div className="mt-10 flex items-center gap-6">
             <a
               href="#kontakt"
-              title="Zamów stronę za 999 zł — przejdź do formularza"
-              aria-label="Zamów stronę za 999 zł — przejdź do formularza kontaktowego"
               onClick={() => trackCta({ location: "hero", label: "Zamów stronę", href: "#kontakt", variant: "primary" })}
-              className="group mt-6 md:mt-8 flex items-center justify-between gap-3 bg-ink text-cream px-5 py-4 font-heading font-bold uppercase tracking-tight text-sm md:text-base transition-colors hover:bg-violet hover:text-ink"
+              className="group inline-flex items-center gap-3 bg-ink text-cream px-6 py-4 font-heading uppercase tracking-tight text-sm md:text-base transition-colors hover:bg-violet hover:text-cream"
             >
-
               <span>Zamów stronę</span>
-              <span
-                aria-hidden="true"
-                className="w-8 h-8 rounded-full bg-lime text-ink flex items-center justify-center transition-transform group-hover:translate-x-1"
-              >
-                →
-              </span>
+              <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
+            </a>
+            <a
+              href="#pakiet"
+              className="font-mono text-xs uppercase tracking-[0.3em] border-b border-ink/40 pb-1 hover:border-ink"
+            >
+              Zobacz pakiet
             </a>
           </div>
         </div>
-      </div>
 
-      {/* Ticker */}
-      <div
-        aria-hidden
-        className="relative z-10 mt-10 md:mt-16 border-y border-cream/15 py-3 md:py-4 overflow-hidden backdrop-blur-sm"
-      >
-        <div
-          className="whitespace-nowrap flex gap-10"
-          style={{ animation: "marquee 40s linear infinite" }}
-        >
-          {Array.from({ length: 2 }).map((_, dup) => (
-            <div key={dup} className="flex items-center gap-10 shrink-0">
-              {[
-                "Motion-first",
-                "Video design",
-                "Awwwards-level",
-                "3–7 dni roboczych",
-                "999 PLN netto",
-                "Bez szablonów",
-                "Core Web Vitals 2026",
-              ].map((t) => (
-                <span
-                  key={`${dup}-${t}`}
-                  className="flex items-center gap-10 shrink-0"
-                >
-                  <span className="font-heading font-bold text-2xl md:text-3xl uppercase tracking-tight text-cream/90">
-                    {t}
-                  </span>
-                  <span className="text-violet text-xl">✦</span>
-                </span>
-              ))}
-            </div>
-          ))}
+        {/* price — pojedynczy motyw w bloku koloru */}
+        <div className="hidden md:flex absolute right-10 lg:right-16 top-1/2 -translate-y-1/2 flex-col items-end text-cream">
+          <div className="font-mono text-[10px] uppercase tracking-[0.4em] text-cream/70">
+            / Inwestycja
+          </div>
+          <div className="font-heading font-normal text-[11vw] lg:text-[10vw] leading-none tracking-tighter mt-3">
+            999<span className="text-lime">.</span>
+          </div>
+          <div className="font-mono text-[10px] uppercase tracking-[0.4em] text-cream/70 mt-3">
+            PLN netto · one-page
+          </div>
         </div>
-      </div>
 
-      {/* BOTTOM: scroll cue + secondary link */}
-      <div className="relative z-10 mt-8 md:mt-10 flex items-center justify-between gap-4 max-w-[1400px] mx-auto w-full">
-        <div className="flex items-center gap-3">
-          <span className="w-10 h-10 rounded-full border border-cream/40 flex items-center justify-center">
-            <span className="block w-2 h-2 rounded-full bg-cream animate-bounce" />
-          </span>
-          <span className="font-mono text-[10px] md:text-xs uppercase tracking-[0.3em] text-cream/60">
-            Scroll — Manifest
+        {/* mobile price */}
+        <div className="md:hidden mt-12 pt-6 border-t border-ink/15 flex items-baseline justify-between">
+          <span className="font-mono text-[10px] uppercase tracking-[0.35em] text-ink/60">/ Inwestycja</span>
+          <span className="font-heading text-5xl tracking-tighter">
+            999<span className="text-violet">.</span>
+            <span className="ml-2 font-mono text-[10px] uppercase tracking-[0.3em] text-ink/60 align-top">PLN</span>
           </span>
         </div>
-        <a
-          href="#pakiet"
-          title="Zobacz, co zawiera pakiet Start"
-          className="group inline-flex items-center gap-2 border-b border-cream/60 pb-1 font-heading font-bold uppercase text-xs md:text-sm tracking-tight"
-        >
-          Zobacz pakiet Start
-          <span
-            aria-hidden="true"
-            className="transition-transform group-hover:translate-x-1"
-          >
-            →
-          </span>
-        </a>
+
+        {/* bottom row */}
+        <div className="mt-12 md:mt-0 flex items-end justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <span className="w-9 h-9 rounded-full border border-ink/40 flex items-center justify-center">
+              <span className="block w-1.5 h-1.5 rounded-full bg-ink animate-bounce" />
+            </span>
+            <span className="font-mono text-[10px] uppercase tracking-[0.35em] text-ink/60">
+              Scroll
+            </span>
+          </div>
+          <div className="hidden md:block font-mono text-[10px] uppercase tracking-[0.35em] text-cream/70">
+            Motion · Editorial · 2026
+          </div>
+        </div>
       </div>
     </section>
   );
