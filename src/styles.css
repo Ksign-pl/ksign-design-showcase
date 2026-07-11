@@ -45,8 +45,8 @@ section[id] { scroll-margin-top: 88px; }
   --color-surface: var(--surface);
   --color-surface-dark: var(--surface-dark);
 
-  --font-display: "DM Sans", "Helvetica Neue", system-ui, sans-serif;
-  --font-heading: "Space Grotesk", "DM Sans", system-ui, sans-serif;
+  --font-display: "Work Sans", "Helvetica Neue", system-ui, sans-serif;
+  --font-heading: "Instrument Serif", "Work Sans", Georgia, serif;
 
   --animate-float: float 6s ease-in-out infinite;
   --animate-float-slow: float 9s ease-in-out infinite;
