@@ -40,7 +40,7 @@ export function PackageStart() {
               </div>
 
               {/* Floating video reel — desktop only */}
-              <div className="hidden md:block absolute -left-4 lg:-left-16 top-[8%] w-[28%] max-w-[220px] aspect-[3/4] rounded-2xl overflow-hidden border border-ink/10 shadow-2xl rotate-[-4deg] bg-ink pointer-events-none">
+              <div className="hidden xl:block absolute -left-24 2xl:-left-32 top-[10%] w-[22%] max-w-[200px] aspect-[3/4] rounded-2xl overflow-hidden border border-ink/10 shadow-2xl rotate-[-4deg] bg-ink pointer-events-none">
                 <div
                   aria-hidden
                   className="absolute inset-0"
