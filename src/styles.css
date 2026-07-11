@@ -124,7 +124,7 @@ section[id] { scroll-margin-top: 88px; }
     -webkit-font-smoothing: antialiased;
     font-feature-settings: "ss01", "cv11";
   }
-  ::selection { background: var(--lime); color: var(--ink); }
+  ::selection { background: var(--violet); color: var(--cream); }
 
   /* WCAG 2.4.7 — widoczny wskaźnik focusu dla klawiatury.
      Dotyczy wszystkich interaktywnych elementów, które nie mają
