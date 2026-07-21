@@ -4,7 +4,6 @@
 
 import { createServerFn } from "@tanstack/react-start";
 import Anthropic from "@anthropic-ai/sdk";
-import { zodOutputFormat } from "@anthropic-ai/sdk/helpers/zod";
 import { z } from "zod";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import {
@@ -27,7 +26,7 @@ export type GenerateResult =
       error?: string;
     };
 
-// Luźniejszy schemat dla structured outputs (API nie wspiera min/max/length),
+// Luźniejszy schemat odpowiedzi modelu (structured outputs nie wspiera min/max/length) —
 // po odpowiedzi normalizujemy i walidujemy ściśle przez DemoContentSchema.
 const AiContentSchema = z.object({
   heroTitle: z.string(),
@@ -39,6 +38,48 @@ const AiContentSchema = z.object({
   offerIntro: z.string(),
   contactHeading: z.string(),
 });
+
+// JSON Schema przekazywany do output_config.format — API wymusza kształt odpowiedzi.
+const AI_OUTPUT_JSON_SCHEMA = {
+  type: "object",
+  additionalProperties: false,
+  required: [
+    "heroTitle",
+    "heroSubtitle",
+    "cta",
+    "aboutText",
+    "services",
+    "trustPoints",
+    "offerIntro",
+    "contactHeading",
+  ],
+  properties: {
+    heroTitle: { type: "string", description: "Krótki, mocny nagłówek hero (max 8 słów)" },
+    heroSubtitle: { type: "string", description: "1–2 zdania o realnej korzyści" },
+    cta: { type: "string", description: "2–4 słowa, tryb rozkazujący" },
+    aboutText: { type: "string", description: "3–5 zdań o firmie" },
+    services: {
+      type: "array",
+      description: "Dokładnie 3 usługi",
+      items: {
+        type: "object",
+        additionalProperties: false,
+        required: ["title", "description"],
+        properties: {
+          title: { type: "string" },
+          description: { type: "string" },
+        },
+      },
+    },
+    trustPoints: {
+      type: "array",
+      description: "Dokładnie 3 krótkie powody zaufania",
+      items: { type: "string" },
+    },
+    offerIntro: { type: "string", description: "2–3 zdania wprowadzenia do oferty" },
+    contactHeading: { type: "string", description: "Nagłówek sekcji kontaktu" },
+  },
+};
 
 const clamp = (value: string, max: number) => {
   const trimmed = value.trim();
@@ -69,10 +110,10 @@ function buildPrompt(brief: Brief): { system: string; user: string } {
       "Jesteś doświadczonym polskim copywriterem tworzącym treści na strony internetowe małych firm.",
       "Piszesz WYŁĄCZNIE po polsku, poprawną polszczyzną.",
       "Zasady:",
-      "- Konkretnie i rzeczowo. Zero pustych obietnic, frazesów („najlepsi na rynku", „lider branży") i wykrzykników.",
+      "- Konkretnie i rzeczowo. Zero pustych obietnic, frazesów („najlepsi na rynku”, „lider branży”) i wykrzykników.",
       "- Nie wymyślaj danych, których nie ma w briefie (liczb klientów, lat doświadczenia, certyfikatów, adresów, cen).",
       "- heroTitle: krótki, mocny nagłówek (max 8 słów). heroSubtitle: 1–2 zdania o realnej korzyści.",
-      "- cta: 2–4 słowa, tryb rozkazujący (np. „Zamów wycenę").",
+      "- cta: 2–4 słowa, tryb rozkazujący (np. „Zamów wycenę”).",
       "- aboutText: 3–5 zdań o firmie, pisane naturalnie, w pierwszej osobie liczby mnogiej.",
       "- services: dokładnie 3 usługi wynikające z briefu — tytuł + opis 1–2 zdania.",
       "- trustPoints: dokładnie 3 krótkie, weryfikowalne powody zaufania (proces, gwarancja, komunikacja — nie superlatywy).",
@@ -112,24 +153,38 @@ export const generateDemoContent = createServerFn({ method: "POST" })
     const prompt = buildPrompt(data);
 
     try {
-      const response = await client.messages.parse({
+      const response = await client.messages.create({
         model,
         max_tokens: 4096,
         system: prompt.system,
         messages: [{ role: "user", content: prompt.user }],
-        output_config: { format: zodOutputFormat(AiContentSchema) },
+        output_config: {
+          format: {
+            type: "json_schema",
+            schema: AI_OUTPUT_JSON_SCHEMA,
+          },
+        },
       });
 
-      if (response.stop_reason === "refusal" || !response.parsed_output) {
+      if (response.stop_reason === "refusal") {
         return {
           ok: false,
-          error: "Model nie zwrócił poprawnych treści. Spróbuj ponownie.",
+          error:
+            "Model odmówił wygenerowania treści dla tego briefu. Zmień opis i spróbuj ponownie.",
         };
       }
 
-      return { ok: true, content: normalizeAiContent(response.parsed_output), model };
+      const textBlock = response.content.find(
+        (block): block is Anthropic.TextBlock => block.type === "text",
+      );
+      if (!textBlock?.text) {
+        return { ok: false, error: "Model nie zwrócił treści. Spróbuj ponownie." };
+      }
+
+      const raw = AiContentSchema.parse(JSON.parse(textBlock.text));
+      return { ok: true, content: normalizeAiContent(raw), model };
     } catch (err) {
-      if (err instanceof z.ZodError) {
+      if (err instanceof z.ZodError || err instanceof SyntaxError) {
         return {
           ok: false,
           error: "Model zwrócił niekompletne treści (walidacja nie przeszła). Spróbuj ponownie.",
@@ -154,7 +209,10 @@ export const generateDemoContent = createServerFn({ method: "POST" })
         };
       }
       if (err instanceof Anthropic.RateLimitError) {
-        return { ok: false, error: "Limit zapytań do Anthropic API przekroczony. Odczekaj chwilę i spróbuj ponownie." };
+        return {
+          ok: false,
+          error: "Limit zapytań do Anthropic API przekroczony. Odczekaj chwilę i spróbuj ponownie.",
+        };
       }
       if (err instanceof Anthropic.APIError) {
         console.error("[demo:generate] Anthropic API error:", err.status, err.message);

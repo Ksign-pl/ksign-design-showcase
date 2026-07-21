@@ -6,7 +6,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import { supabaseAdmin } from "@/integrations/supabase/client.server";
-import type { Tables } from "@/integrations/supabase/types";
+import type { Json, Tables } from "@/integrations/supabase/types";
 import {
   BriefSchema,
   DemoContentSchema,
@@ -29,7 +29,7 @@ const DEMO_PURGE_MS = 30 * 24 * 60 * 60 * 1000; // po 30 dniach link nie prezent
 async function logDemoEvent(
   demoId: string,
   eventType: "generated" | "sent" | "visited" | "paid" | "expired" | "sheets_error" | "email_error",
-  metadata: Record<string, unknown> = {},
+  metadata: Json = {},
 ) {
   const { error } = await supabaseAdmin.from("demo_events").insert({
     demo_id: demoId,
@@ -102,7 +102,7 @@ async function sendDemoToClient(demo: DemoRow): Promise<SendOutcome> {
     } catch (err) {
       outcome.sheetsError = err instanceof Error ? err.message : String(err);
       console.error("[demo:sheets] append failed:", outcome.sheetsError);
-      await logDemoEvent(demo.id, "sheets_error", { message: outcome.sheetsError });
+      await logDemoEvent(demo.id, "sheets_error", { message: outcome.sheetsError ?? "unknown" });
     }
   } else {
     outcome.sheetsError = `Brak konfiguracji: ${sheetsMissingEnv().join(", ")}`;
@@ -125,7 +125,7 @@ async function sendDemoToClient(demo: DemoRow): Promise<SendOutcome> {
 
   if (!emailResult.ok) {
     outcome.emailError = emailResult.error;
-    await logDemoEvent(demo.id, "email_error", { message: emailResult.error });
+    await logDemoEvent(demo.id, "email_error", { message: emailResult.error ?? "unknown" });
     return outcome;
   }
 
@@ -135,7 +135,7 @@ async function sendDemoToClient(demo: DemoRow): Promise<SendOutcome> {
     .update({ status: "sent", sent_at: new Date().toISOString() })
     .eq("id", demo.id);
   if (error) console.error("[demo:send] status update failed:", error.message);
-  await logDemoEvent(demo.id, "sent", { to: demo.client_email, resendId: emailResult.id });
+  await logDemoEvent(demo.id, "sent", { to: demo.client_email, resendId: emailResult.id ?? null });
   return outcome;
 }
 

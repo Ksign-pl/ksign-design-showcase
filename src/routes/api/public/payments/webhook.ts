@@ -4,7 +4,10 @@ import { supabaseAdmin } from "@/integrations/supabase/client.server";
 import { getCatalogItem } from "@/lib/catalog";
 
 // Verify Stripe webhook signature using HMAC-SHA256 (no SDK dependency, works in Worker).
-async function verifyWebhook(req: Request, env: StripeEnv): Promise<{ type: string; data: { object: any } }> {
+async function verifyWebhook(
+  req: Request,
+  env: StripeEnv,
+): Promise<{ type: string; data: { object: any } }> {
   const signature = req.headers.get("stripe-signature");
   const body = await req.text();
   const secret =
@@ -31,12 +34,12 @@ async function verifyWebhook(req: Request, env: StripeEnv): Promise<{ type: stri
     new TextEncoder().encode(secret),
     { name: "HMAC", hash: "SHA-256" },
     false,
-    ["sign"]
+    ["sign"],
   );
   const signed = await crypto.subtle.sign(
     "HMAC",
     key,
-    new TextEncoder().encode(`${timestamp}.${body}`)
+    new TextEncoder().encode(`${timestamp}.${body}`),
   );
   const expected = Buffer.from(new Uint8Array(signed)).toString("hex");
   if (!v1.includes(expected)) throw new Error("Invalid webhook signature");
@@ -90,8 +93,7 @@ async function handleCheckoutCompleted(session: any, env: StripeEnv) {
       stripe_session_id: full.id,
       stripe_payment_intent_id:
         typeof full.payment_intent === "string" ? full.payment_intent : null,
-      stripe_customer_id:
-        typeof full.customer === "string" ? full.customer : null,
+      stripe_customer_id: typeof full.customer === "string" ? full.customer : null,
       customer_email: full.customer_details?.email || full.customer_email || null,
       customer_name: full.customer_details?.name || null,
       price_id: priceLookup || priceObj?.id || "unknown",
@@ -101,11 +103,11 @@ async function handleCheckoutCompleted(session: any, env: StripeEnv) {
       status: "paid",
       environment: env,
     },
-    { onConflict: "stripe_session_id" }
+    { onConflict: "stripe_session_id" },
   );
 
   console.log(
-    `[order] paid env=${env} session=${full.id} price=${priceLookup} amount=${full.amount_total}`
+    `[order] paid env=${env} session=${full.id} price=${priceLookup} amount=${full.amount_total}`,
   );
 }
 
@@ -126,7 +128,11 @@ async function updateOrderStatusBySession(sessionId: string, status: string, env
 }
 
 // Update order status by stripe_payment_intent_id. Used for charge/payment_intent events.
-async function updateOrderStatusByPaymentIntent(paymentIntentId: string, status: string, env: StripeEnv) {
+async function updateOrderStatusByPaymentIntent(
+  paymentIntentId: string,
+  status: string,
+  env: StripeEnv,
+) {
   const { error } = await supabaseAdmin
     .from("orders")
     .update({ status, updated_at: new Date().toISOString() })

@@ -14,9 +14,8 @@ import {
 } from "@/lib/demo/public.functions";
 
 export const Route = createFileRoute("/d/$slug_/aktywuj")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    payment: search.payment === "canceled" ? ("canceled" as const) : undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>): { payment?: "canceled" } =>
+    search.payment === "canceled" ? { payment: "canceled" } : {},
   loader: async ({ params }): Promise<ActivateInfo> => {
     try {
       return await getActivateInfo({ data: { slug: params.slug } });

@@ -6,9 +6,8 @@ import { createFileRoute, Link, Outlet } from "@tanstack/react-router";
 import { getPublicDemo, type PublicDemoState } from "@/lib/demo/public.functions";
 
 export const Route = createFileRoute("/d/$slug")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    payment: search.payment === "success" ? ("success" as const) : undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>): { payment?: "success" } =>
+    search.payment === "success" ? { payment: "success" } : {},
   loader: async ({ params }): Promise<PublicDemoState> => {
     try {
       return await getPublicDemo({ data: { slug: params.slug } });
