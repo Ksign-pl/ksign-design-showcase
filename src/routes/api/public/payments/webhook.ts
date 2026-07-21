@@ -44,7 +44,37 @@ async function verifyWebhook(req: Request, env: StripeEnv): Promise<{ type: stri
   return JSON.parse(body);
 }
 
+// Demo Generator: sesje checkout tworzone dla dem niosą metadata.demo_id —
+// po opłaceniu przestawiamy status dema na `paid` i logujemy zdarzenie.
+async function handleDemoPaid(session: { id: string; metadata?: Record<string, string> | null }) {
+  const demoId = session.metadata?.demo_id;
+  if (!demoId) return;
+  const { error } = await supabaseAdmin
+    .from("demos")
+    .update({
+      status: "paid",
+      paid_at: new Date().toISOString(),
+      stripe_session_id: session.id,
+    })
+    .eq("id", demoId);
+  if (error) {
+    console.error(`[demo:webhook] paid update failed demo=${demoId}:`, error.message);
+    return;
+  }
+  await supabaseAdmin.from("demo_events").insert({
+    demo_id: demoId,
+    event_type: "paid",
+    metadata: { stripe_session_id: session.id },
+  });
+  console.log(`[demo:webhook] demo=${demoId} status=paid session=${session.id}`);
+}
+
 async function handleCheckoutCompleted(session: any, env: StripeEnv) {
+  // Metadata dema jest już w payloadzie webhooka — obsługujemy je przed
+  // re-fetchem, który wymaga kluczy gateway Lovable i może być niedostępny
+  // w deploymentach używających wyłącznie STRIPE_SECRET_KEY.
+  await handleDemoPaid({ id: session.id, metadata: session.metadata });
+
   // Re-fetch session with line items expanded to get the price id (Stripe ID, then translated to lookup_key).
   const stripe = createStripeClient(env);
   const full = await stripe.checkout.sessions.retrieve(session.id, {

@@ -64,6 +64,119 @@ export type Database = {
           },
         ]
       }
+      demo_events: {
+        Row: {
+          created_at: string
+          demo_id: string
+          event_type: string
+          id: string
+          metadata: Json
+        }
+        Insert: {
+          created_at?: string
+          demo_id: string
+          event_type: string
+          id?: string
+          metadata?: Json
+        }
+        Update: {
+          created_at?: string
+          demo_id?: string
+          event_type?: string
+          id?: string
+          metadata?: Json
+        }
+        Relationships: [
+          {
+            foreignKeyName: "demo_events_demo_id_fkey"
+            columns: ["demo_id"]
+            isOneToOne: false
+            referencedRelation: "demos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      demos: {
+        Row: {
+          advisor_id: string
+          advisor_name: string | null
+          brand_color: string | null
+          city: string
+          client_email: string
+          company_name: string
+          content: Json | null
+          created_at: string
+          expired_at: string | null
+          expires_at: string | null
+          generated_at: string | null
+          id: string
+          logo_url: string | null
+          main_service: string
+          package_id: string
+          paid_at: string | null
+          purge_after: string | null
+          sent_at: string | null
+          site_type: string
+          slug: string
+          status: Database["public"]["Enums"]["demo_status"]
+          stripe_session_id: string | null
+          target_audience: string
+          updated_at: string
+        }
+        Insert: {
+          advisor_id: string
+          advisor_name?: string | null
+          brand_color?: string | null
+          city: string
+          client_email: string
+          company_name: string
+          content?: Json | null
+          created_at?: string
+          expired_at?: string | null
+          expires_at?: string | null
+          generated_at?: string | null
+          id?: string
+          logo_url?: string | null
+          main_service: string
+          package_id: string
+          paid_at?: string | null
+          purge_after?: string | null
+          sent_at?: string | null
+          site_type: string
+          slug: string
+          status?: Database["public"]["Enums"]["demo_status"]
+          stripe_session_id?: string | null
+          target_audience: string
+          updated_at?: string
+        }
+        Update: {
+          advisor_id?: string
+          advisor_name?: string | null
+          brand_color?: string | null
+          city?: string
+          client_email?: string
+          company_name?: string
+          content?: Json | null
+          created_at?: string
+          expired_at?: string | null
+          expires_at?: string | null
+          generated_at?: string | null
+          id?: string
+          logo_url?: string | null
+          main_service?: string
+          package_id?: string
+          paid_at?: string | null
+          purge_after?: string | null
+          sent_at?: string | null
+          site_type?: string
+          slug?: string
+          status?: Database["public"]["Enums"]["demo_status"]
+          stripe_session_id?: string | null
+          target_audience?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       email_resend_attempts: {
         Row: {
           created_at: string
@@ -348,6 +461,7 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "user"
+      demo_status: "draft" | "sent" | "paid" | "expired"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -476,6 +590,7 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "user"],
+      demo_status: ["draft", "sent", "paid", "expired"],
     },
   },
 } as const
