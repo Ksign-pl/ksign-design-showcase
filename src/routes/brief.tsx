@@ -127,6 +127,7 @@ function BriefPage() {
         <Link to="/" className="text-sm text-ink/50 hover:text-ink">
           ← Strona główna
         </Link>
+        <Link to="/" className="text-sm text-ink/70 hover:text-ink">← Strona główna</Link>
         <h1 className="text-4xl md:text-5xl font-black tracking-tight mt-4 mb-2">Brief projektu</h1>
         <p className="text-ink/60 mb-8">
           {order.product_name} — opłacone. Wypełnij krótki brief, żebyśmy mogli zacząć prace.
@@ -224,6 +225,8 @@ function Field({
         placeholder={placeholder}
         className="w-full bg-white border border-ink/15 rounded-2xl px-4 py-3.5 font-medium focus:outline-none focus:border-ink"
       />
+      <label htmlFor={id} className="block text-xs font-mono uppercase tracking-widest text-ink/70 mb-2">{label}</label>
+      <input id={id} name={name} type={type} required={required} placeholder={placeholder} className="w-full bg-white border border-ink/15 rounded-2xl px-4 py-3.5 font-medium focus:outline-none focus:border-ink" />
     </div>
   );
 }
@@ -256,6 +259,8 @@ function TextArea({
         rows={4}
         className="w-full bg-white border border-ink/15 rounded-2xl px-4 py-3.5 font-medium focus:outline-none focus:border-ink resize-none"
       />
+      <label htmlFor={id} className="block text-xs font-mono uppercase tracking-widest text-ink/70 mb-2">{label}</label>
+      <textarea id={id} name={name} required={required} placeholder={placeholder} rows={4} className="w-full bg-white border border-ink/15 rounded-2xl px-4 py-3.5 font-medium focus:outline-none focus:border-ink resize-none" />
     </div>
   );
 }

@@ -4,22 +4,36 @@ import { CONTACT } from "@/lib/contact";
 
 export function Footer() {
   return (
-    <footer className="bg-cream text-ink border-t border-ink/10 pt-16 pb-28 md:pb-16">
-      <div className="mx-auto max-w-[1400px] px-5 md:px-8">
+    <footer className="relative bg-ink text-cream border-t border-cream/10 pt-16 pb-28 md:pb-16 overflow-hidden">
+      {/* Ambient video */}
+      <div className="absolute inset-0 z-0" aria-hidden="true">
+        <div className="absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/85 to-ink" />
+        <div
+          className="absolute inset-0 opacity-60"
+          style={{
+            background:
+              "radial-gradient(50% 60% at 15% 0%, color-mix(in oklab, var(--violet) 45%, transparent), transparent 65%), radial-gradient(40% 50% at 95% 100%, color-mix(in oklab, var(--lime) 20%, transparent), transparent 65%)",
+          }}
+        />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-[1400px] px-5 md:px-8">
         <div className="grid md:grid-cols-12 gap-10">
           <div className="md:col-span-5">
             <div className="text-4xl md:text-5xl font-black tracking-tighter mb-4">
-              KSIGN<span className="text-violet">.</span>
+              KSIGN<span className="text-lime">.</span>
             </div>
-            <p className="text-ink/60 max-w-sm leading-snug">
+            <p className="text-cream/60 max-w-sm leading-snug">
               Premium web design dla firm, które chcą wyglądać lepiej od konkurencji.
             </p>
           </div>
+
 
           <div className="md:col-span-3">
             <div className="text-xs font-mono uppercase tracking-widest text-ink/40 mb-4">
               Nawigacja
             </div>
+            <div className="text-xs font-mono uppercase tracking-widest text-cream/70 mb-4">Nawigacja</div>
             <ul className="space-y-2">
               {[
                 { href: "#oferta", label: "Oferta", title: "Zobacz ofertę KSIGN" },
@@ -76,6 +90,10 @@ export function Footer() {
                   606 576 517
                 </a>
               </li>
+            <div className="text-xs font-mono uppercase tracking-widest text-cream/70 mb-4">Kontakt</div>
+            <ul className="space-y-2 mb-6">
+              <li><a href={`mailto:${CONTACT.email}`} className="font-medium hover:text-lime transition">{CONTACT.email}</a></li>
+              <li><a href={`tel:${CONTACT.phone}`} className="font-medium hover:text-lime transition">606 576 517</a></li>
             </ul>
             <div className="flex gap-2">
               <a
@@ -110,7 +128,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 pt-8 border-t border-ink/10 flex flex-wrap items-center justify-between gap-4 text-sm text-ink/50">
+        <div className="mt-16 pt-8 border-t border-cream/10 flex flex-wrap items-center justify-between gap-4 text-sm text-cream/70">
           <div>© {new Date().getFullYear()} KSIGN. Wszelkie prawa zastrzeżone.</div>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
             <Link to="/polityka-prywatnosci" className="hover:text-violet transition">
@@ -122,10 +140,13 @@ export function Footer() {
             <Link to="/sitemap" className="hover:text-violet transition">
               Mapa witryny
             </Link>
+            <Link to="/polityka-prywatnosci" className="hover:text-lime transition">Polityka prywatności</Link>
+            <Link to="/polityka-cookies" className="hover:text-lime transition">Polityka cookies</Link>
+            <Link to="/sitemap" className="hover:text-lime transition">Mapa witryny</Link>
             <button
               type="button"
               onClick={() => openConsentSettings()}
-              className="hover:text-violet transition underline-offset-2 hover:underline"
+              className="hover:text-lime transition underline-offset-2 hover:underline"
             >
               Ustawienia cookies
             </button>

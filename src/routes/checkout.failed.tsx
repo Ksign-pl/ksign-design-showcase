@@ -53,6 +53,9 @@ function CheckoutFailed() {
           )}
         </p>
         {reason && <p className="text-sm text-ink/50 mb-2">Powód: {reason}</p>}
+        {reason && (
+          <p className="text-sm text-ink/70 mb-2">Powód: {reason}</p>
+        )}
         <p className="text-ink/60 mb-8">
           Możesz spróbować ponownie lub wrócić do wyboru pakietu. Jeśli problem się powtarza —
           napisz, ustalimy inny sposób płatności.
@@ -76,6 +79,10 @@ function CheckoutFailed() {
 
         <div className="mt-8">
           <a href={mailto("Problem z płatnością")} className="text-sm text-ink/50 underline">
+          <a
+            href={mailto("Problem z płatnością")}
+            className="text-sm text-ink/70 underline"
+          >
             Napisz do nas
           </a>
         </div>

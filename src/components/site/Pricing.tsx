@@ -38,16 +38,30 @@ import { Link } from "@tanstack/react-router";
 
 export function Pricing() {
   return (
-    <section id="realizacje" className="py-24 md:py-32 bg-cream grid-bg">
-      <div className="mx-auto max-w-[1400px] px-5 md:px-8">
-        <div className="text-xs md:text-sm font-mono uppercase tracking-widest text-ink/50 mb-8">
+    <section id="realizacje" className="relative py-24 md:py-32 bg-ink text-cream overflow-hidden">
+      {/* Ambient video + violet glow */}
+      <div className="absolute inset-0 z-0" aria-hidden="true">
+        <div className="absolute inset-0 bg-gradient-to-b from-ink via-ink/80 to-ink" />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(50% 40% at 30% 25%, color-mix(in oklab, var(--violet) 55%, transparent), transparent 65%), radial-gradient(45% 40% at 85% 80%, color-mix(in oklab, var(--lime) 25%, transparent), transparent 65%)",
+          }}
+        />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-[1400px] px-5 md:px-8">
+        <div className="text-xs md:text-sm font-mono uppercase tracking-widest text-cream/70 mb-8">
           [ 08 / Pakiety ]
         </div>
         <h2 className="text-display-tight text-[10vw] md:text-[6vw] lg:text-[5.5rem] mb-14 md:mb-20">
           WYBIERZ POZIOM
           <br />
           <span className="bg-violet px-3 rounded-2xl">STARTU.</span>
+          WYBIERZ POZIOM<br/><span className="bg-violet text-ink px-3 rounded-2xl">STARTU.</span>
         </h2>
+
 
         <div className="grid md:grid-cols-2 lg:grid-cols-12 gap-5">
           {PLANS.map((p) => (
@@ -56,8 +70,9 @@ export function Pricing() {
               className={`${
                 p.featured
                   ? "lg:col-span-6 bg-ink text-cream glow-lime md:row-span-2"
-                  : "lg:col-span-3 bg-white border border-ink/10"
+                  : "lg:col-span-3 bg-white text-ink border border-ink/10"
               } rounded-3xl p-7 md:p-9 flex flex-col justify-between relative hover:scale-[1.01] transition-transform`}
+
             >
               {p.featured && (
                 <div className="absolute -top-3 left-7 pill bg-lime text-ink font-bold">
@@ -68,6 +83,7 @@ export function Pricing() {
                 <div
                   className={`text-xs font-mono uppercase tracking-widest mb-4 ${p.featured ? "text-cream/50" : "text-ink/40"}`}
                 >
+                <div className={`text-xs font-mono uppercase tracking-widest mb-4 ${p.featured ? "text-cream/70" : "text-ink/60"}`}>
                   {p.name}
                 </div>
                 <div className="flex items-baseline gap-2 mb-3">
@@ -76,7 +92,7 @@ export function Pricing() {
                   >
                     {p.price}
                   </span>
-                  <span className={`text-sm ${p.featured ? "text-cream/60" : "text-ink/50"}`}>
+                  <span className={`text-sm ${p.featured ? "text-cream/75" : "text-ink/70"}`}>
                     {p.unit}
                   </span>
                 </div>
@@ -106,7 +122,6 @@ export function Pricing() {
           <a
             href="#rozbudowa"
             title="Zobacz dodatkowe usługi i rozbudowę strony"
-            aria-label="Zobacz dodatkowe usługi i rozbudowę strony"
             className="lg:col-span-3 group relative rounded-3xl p-7 md:p-9 bg-violet text-ink overflow-hidden flex flex-col justify-between hover:scale-[1.01] transition-transform"
           >
             <div
@@ -120,7 +135,7 @@ export function Pricing() {
               →
             </div>
             <div className="relative">
-              <div className="text-xs font-mono uppercase tracking-widest text-ink/50 mb-4">
+              <div className="text-xs font-mono uppercase tracking-widest text-ink mb-4">
                 EXTRA
               </div>
               <div className="text-3xl md:text-4xl font-black tracking-tighter leading-[0.9] mb-3">
@@ -130,7 +145,7 @@ export function Pricing() {
                 <br />
                 USŁUGI
               </div>
-              <p className="text-sm text-ink/70 leading-snug">
+              <p className="text-sm text-ink leading-snug">
                 SEO, blog, branding, automatyzacje, chatbot AI i więcej.
               </p>
             </div>

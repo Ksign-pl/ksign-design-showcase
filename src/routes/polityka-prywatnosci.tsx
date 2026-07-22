@@ -66,6 +66,9 @@ function PrivacyPage() {
         <p className="mt-4 text-ink/60">
           Ostatnia aktualizacja: {new Date().toLocaleDateString("pl-PL")}
         </p>
+        <Link to="/" className="text-xs font-mono uppercase tracking-widest text-ink/70 hover:text-violet">← Powrót</Link>
+        <h1 className="mt-6 text-4xl md:text-6xl font-black tracking-tighter">Polityka prywatności</h1>
+        <p className="mt-4 text-ink/60">Ostatnia aktualizacja: {new Date().toLocaleDateString("pl-PL")}</p>
 
         <div className="prose-content mt-10 space-y-8 text-ink/80 leading-relaxed">
           <Section title="1. Administrator danych">

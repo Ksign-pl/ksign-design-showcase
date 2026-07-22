@@ -7,12 +7,15 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
+import { useEffect } from "react";
 
 import appCss from "../styles.css?url";
 import { CookieBanner } from "@/components/site/CookieBanner";
 import { ConsentScripts } from "@/components/site/ConsentScripts";
 import { ConsentDebugPanel } from "@/components/site/ConsentDebugPanel";
 import { CONTACT } from "@/lib/contact";
+import { initMotionFallbacks } from "@/lib/motion";
+
 
 function NotFoundComponent() {
   return (
@@ -111,10 +114,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
     ],
     links: [
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: appCss,
+        href: "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Work+Sans:ital,wght@0,300..700;1,300..700&display=swap",
       },
+      { rel: "stylesheet", href: appCss },
     ],
     scripts: [
       {
@@ -168,11 +174,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="pl">
       <head>
         <HeadContent />
       </head>
       <body>
+        <a href="#main-content" className="skip-link">
+          Przejdź do treści
+        </a>
         {children}
         <Scripts />
       </body>
@@ -180,8 +189,13 @@ function RootShell({ children }: { children: React.ReactNode }) {
   );
 }
 
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+
+  useEffect(() => {
+    initMotionFallbacks();
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -192,3 +206,4 @@ function RootComponent() {
     </QueryClientProvider>
   );
 }
+

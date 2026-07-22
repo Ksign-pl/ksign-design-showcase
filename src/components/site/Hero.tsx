@@ -177,8 +177,15 @@ export function Hero() {
       className="relative min-h-screen pt-24 md:pt-28 pb-32 overflow-hidden grid-bg"
     >
       {/* radial wash — pure gradient (no blur filter) for cheap GPU compositing */}
+import { trackCta } from "@/lib/analytics";
+
+export function Hero() {
+  return (
+    <section className="relative min-h-[100svh] w-full overflow-hidden bg-cream text-ink">
+      {/* subtle grid ticks */}
       <div
-        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[90vw] h-[90vw] rounded-full opacity-50 pointer-events-none"
+        aria-hidden
+        className="absolute inset-0 pointer-events-none opacity-[0.06]"
         style={{
           background:
             "radial-gradient(closest-side, var(--lime) 0%, color-mix(in oklab, var(--lime) 0%, transparent) 70%)",
@@ -228,17 +235,63 @@ export function Hero() {
               <PhoneMockup />
             </div>
           </div>
-        </div>
+          backgroundImage:
+            "linear-gradient(to right, var(--ink) 1px, transparent 1px)",
+          backgroundSize: "8.333% 100%",
+        }}
+      />
 
-        {/* Bottom huge text with inline 999 */}
-        <div className="flex items-end justify-between gap-6 flex-wrap animate-fade-up">
-          <h2 className="text-display-tight text-[18vw] md:text-[12vw] lg:text-[11rem]">
-            ZA{" "}
-            <span className="inline-block px-4 md:px-6 bg-lime rounded-2xl md:rounded-3xl">
-              999
-            </span>{" "}
-            ZŁ
-          </h2>
+      {/* ── COLOR BLOCK ─────────────────────────────────────── */}
+      <div
+        aria-hidden
+        className="absolute right-0 top-0 h-[38%] w-full md:h-full md:w-[42%] bg-violet"
+      >
+        {/* motyw — pojedynczy łuk/arch w kadrze */}
+        <svg
+          viewBox="0 0 400 700"
+          preserveAspectRatio="xMidYMax meet"
+          className="absolute inset-0 h-full w-full"
+          aria-hidden="true"
+        >
+          <defs>
+            <linearGradient id="archG" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="oklch(0.965 0.012 90)" stopOpacity="0.14" />
+              <stop offset="100%" stopColor="oklch(0.965 0.012 90)" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+          {/* archway */}
+          <path
+            d="M 90 700 L 90 260 A 110 110 0 0 1 310 260 L 310 700 Z"
+            fill="url(#archG)"
+            stroke="oklch(0.965 0.012 90 / 0.35)"
+            strokeWidth="1.5"
+          />
+          {/* inner line */}
+          <path
+            d="M 130 700 L 130 275 A 70 70 0 0 1 270 275 L 270 700"
+            fill="none"
+            stroke="oklch(0.965 0.012 90 / 0.22)"
+            strokeWidth="1"
+          />
+        </svg>
+
+        {/* vertical caption */}
+        <div className="absolute top-8 right-6 md:right-8 rotate-180 font-mono text-[10px] md:text-xs uppercase tracking-[0.4em] text-cream/70" style={{ writingMode: "vertical-rl" }}>
+          KSIGN · MMXXVI · Studio
+        </div>
+      </div>
+
+      {/* ── CONTENT ─────────────────────────────────────────── */}
+      <div className="relative z-10 min-h-[100svh] px-5 md:px-10 lg:px-16 pt-28 md:pt-32 pb-16 flex flex-col justify-between max-w-[1500px] mx-auto">
+        {/* top row */}
+        <div className="flex items-start justify-between gap-4">
+          <span className="inline-flex items-center gap-2 text-[10px] md:text-xs font-mono uppercase tracking-[0.35em] text-ink/70">
+            <span className="w-1.5 h-1.5 rounded-full bg-ink" />
+            Premium web · Kraków / PL
+          </span>
+          <span className="hidden md:block font-mono text-[10px] uppercase tracking-[0.35em] text-cream/70">
+            [ 01 — Hero ]
+          </span>
         </div>
 
         {/* Subhead + CTAs */}
@@ -246,30 +299,45 @@ export function Hero() {
           <p className="text-lg md:text-xl text-ink/70 max-w-xl leading-snug">
             Projektujemy nowoczesne strony internetowe dla firm, które chcą wyglądać profesjonalnie
             od pierwszego kliknięcia.
+        {/* headline — dużo negatywnej przestrzeni */}
+        <div className="mt-16 md:mt-0 md:absolute md:left-10 lg:left-16 md:top-1/2 md:-translate-y-1/2 md:max-w-[58%]">
+          <div className="font-mono text-[10px] md:text-xs uppercase tracking-[0.4em] text-ink/70 mb-6 md:mb-10">
+            № 01 / Manifest
+          </div>
+          <h1 className="font-heading font-normal leading-[0.9] tracking-tight text-[13vw] md:text-[8.5vw] lg:text-[7.5vw]">
+            <span className="sr-only">
+              KSIGN — premium strony internetowe za 999 zł netto w 7 dni
+            </span>
+            <span aria-hidden className="block">Strony</span>
+            <span aria-hidden className="block italic font-light text-ink/70">które</span>
+            <span aria-hidden className="block">
+              sprzedają<span className="text-violet">.</span>
+            </span>
+          </h1>
+
+          <p className="mt-8 md:mt-10 max-w-md text-base md:text-lg leading-snug text-ink/70">
+            One-page w klasie premium.{" "}
+            <span className="bg-ink text-cream px-2 py-0.5 font-medium">3–7 dni</span>{" "}
+            realizacji. Bez szablonów.
           </p>
-          <div className="flex flex-wrap gap-3 md:justify-end">
+
+          <div className="mt-10 flex items-center gap-6">
             <a
               href="#kontakt"
-              title="Zamów stronę za 999 zł — przejdź do formularza"
-              aria-label="Zamów stronę za 999 zł — przejdź do formularza kontaktowego"
-              className="inline-flex items-center gap-2 bg-ink text-cream px-6 py-4 rounded-full font-semibold hover:bg-violet hover:text-ink transition-all"
+              onClick={() => trackCta({ location: "hero", label: "Zamów stronę", href: "#kontakt", variant: "primary" })}
+              className="group inline-flex items-center gap-3 bg-ink text-cream px-6 py-4 font-heading uppercase tracking-tight text-sm md:text-base transition-colors hover:bg-violet hover:text-cream"
             >
-              Zamów stronę za 999 zł <span aria-hidden="true">→</span>
+              <span>Zamów stronę</span>
+              <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
             </a>
             <a
               href="#pakiet"
-              title="Zobacz, co zawiera pakiet Start"
-              aria-label="Zobacz, co zawiera pakiet Start za 999 zł"
-              className="inline-flex items-center gap-2 bg-white border border-ink/15 px-6 py-4 rounded-full font-semibold hover:border-ink transition-all"
+              className="font-mono text-xs uppercase tracking-[0.3em] border-b border-ink/40 pb-1 hover:border-ink"
             >
-              Zobacz pakiet Start
+              Zobacz pakiet
             </a>
           </div>
         </div>
-      </div>
-    </section>
-  );
-}
 
 function FloatingCard({
   label,
@@ -311,23 +379,37 @@ function PhoneMockup() {
       {/* Side button hints */}
       <div className="absolute left-[-2px] top-[120px] w-[2px] h-10 bg-ink/80 rounded-l" />
       <div className="absolute right-[-2px] top-[150px] w-[2px] h-14 bg-ink/80 rounded-r" />
+        {/* price — pojedynczy motyw w bloku koloru */}
+        <div className="hidden md:flex absolute right-10 lg:right-16 top-1/2 -translate-y-1/2 flex-col items-end text-cream">
+          <div className="font-mono text-[10px] uppercase tracking-[0.4em] text-cream/70">
+            / Inwestycja
+          </div>
+          <div className="font-heading font-normal text-[11vw] lg:text-[10vw] leading-none tracking-tighter mt-3">
+            999<span className="text-lime">.</span>
+          </div>
+          <div className="font-mono text-[10px] uppercase tracking-[0.4em] text-cream/70 mt-3">
+            PLN netto · one-page
+          </div>
+        </div>
 
-      <div className="w-full h-full rounded-[32px] bg-cream overflow-hidden relative">
-        {/* Status bar */}
-        <div className="absolute top-0 inset-x-0 flex items-center justify-between px-5 pt-1.5 text-[7px] font-bold z-10">
-          <span>9:41</span>
-          <span className="flex items-center gap-[3px]">
-            <span className="w-[6px] h-[6px] rounded-full bg-ink/80" />
-            <span className="w-3 h-1.5 border border-ink/80 rounded-[2px]" />
+        {/* mobile price */}
+        <div className="md:hidden mt-12 pt-6 border-t border-ink/15 flex items-baseline justify-between">
+          <span className="font-mono text-[10px] uppercase tracking-[0.35em] text-ink/60">/ Inwestycja</span>
+          <span className="font-heading text-5xl tracking-tighter">
+            999<span className="text-violet">.</span>
+            <span className="ml-2 font-mono text-[10px] uppercase tracking-[0.3em] text-ink/60 align-top">PLN</span>
           </span>
         </div>
 
-        {/* Sticky header */}
-        <div className="absolute top-5 inset-x-0 px-4 py-2 flex items-center justify-between bg-cream/90 backdrop-blur-sm z-10 border-b border-ink/5">
-          <div className="text-[10px] font-black tracking-tighter">KSIGN.</div>
-          <div className="flex flex-col gap-[2px]">
-            <span className="w-3 h-[1.5px] bg-ink" />
-            <span className="w-3 h-[1.5px] bg-ink" />
+        {/* bottom row */}
+        <div className="mt-12 md:mt-0 flex items-end justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <span className="w-9 h-9 rounded-full border border-ink/40 flex items-center justify-center">
+              <span className="block w-1.5 h-1.5 rounded-full bg-ink animate-bounce" />
+            </span>
+            <span className="font-mono text-[10px] uppercase tracking-[0.35em] text-ink/60">
+              Scroll
+            </span>
           </div>
         </div>
 
@@ -462,16 +544,11 @@ function PhoneMockup() {
               <span className="font-black">KSIGN.</span>
               <span className="opacity-60">© 2026</span>
             </div>
+          <div className="hidden md:block font-mono text-[10px] uppercase tracking-[0.35em] text-cream/70">
+            Motion · Editorial · 2026
           </div>
         </div>
-
-        {/* Fades */}
-        <div className="absolute top-[44px] inset-x-0 h-3 bg-gradient-to-b from-cream to-transparent pointer-events-none z-[5]" />
-        <div className="absolute bottom-0 inset-x-0 h-6 bg-gradient-to-t from-ink/15 to-transparent pointer-events-none" />
-
-        {/* Home indicator */}
-        <div className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-16 h-[3px] rounded-full bg-ink/70 z-10" />
       </div>
-    </div>
+    </section>
   );
 }

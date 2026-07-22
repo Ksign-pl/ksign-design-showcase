@@ -15,7 +15,7 @@ export function BlogPreview() {
       <div className="mx-auto max-w-[1400px] px-5 md:px-8">
         <div className="flex items-end justify-between gap-6 mb-12 md:mb-16 flex-wrap">
           <div>
-            <div className="text-xs md:text-sm font-mono uppercase tracking-widest text-cream/50 mb-4">
+            <div className="text-xs md:text-sm font-mono uppercase tracking-widest text-cream/70 mb-4">
               [ 10 / Blog ]
             </div>
             <h2
@@ -40,14 +40,34 @@ export function BlogPreview() {
         </div>
 
         <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {posts.map((post) => (
+          {posts.map((post, i) => (
             <li key={post.slug}>
               <Link
                 to="/blog/$slug"
                 params={{ slug: post.slug }}
-                className="group flex flex-col h-full p-7 md:p-8 rounded-3xl border border-cream/10 bg-cream/[0.03] hover:bg-cream/[0.07] hover:border-lime/40 transition-all"
+                className="group relative flex flex-col h-full p-7 md:p-8 rounded-3xl border border-cream/10 bg-cream/[0.03] hover:border-lime/40 transition-all overflow-hidden"
               >
-                <div className="flex items-center justify-between gap-3 mb-6">
+                {/* Hover visual — stable fallback without third-party video */}
+                <div
+                  aria-hidden
+                  className="absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-35"
+                  style={{
+                    background:
+                      i % 2 === 0
+                        ? "radial-gradient(70% 60% at 80% 20%, color-mix(in oklab, var(--violet) 58%, transparent), transparent 65%), linear-gradient(135deg, var(--ink), color-mix(in oklab, var(--ink) 72%, var(--lime)))"
+                        : "radial-gradient(60% 55% at 20% 80%, color-mix(in oklab, var(--lime) 35%, transparent), transparent 68%), linear-gradient(135deg, var(--ink), color-mix(in oklab, var(--ink) 72%, var(--violet)))",
+                  }}
+                />
+                <div
+                  aria-hidden
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, rgba(10,10,12,0.4) 0%, rgba(10,10,12,0.85) 100%)",
+                  }}
+                />
+
+                <div className="relative flex items-center justify-between gap-3 mb-6">
                   <span className="text-[10px] font-mono uppercase tracking-widest text-lime">
                     {post.category}
                   </span>
@@ -56,14 +76,14 @@ export function BlogPreview() {
                   </span>
                 </div>
 
-                <h3 className="text-xl md:text-2xl font-black tracking-tight leading-snug mb-3 group-hover:text-lime transition-colors">
+                <h3 className="relative text-xl md:text-2xl font-black tracking-tight leading-snug mb-3 group-hover:text-lime transition-colors">
                   {post.title}
                 </h3>
-                <p className="text-sm text-cream/60 leading-relaxed mb-6 line-clamp-3">
+                <p className="relative text-sm text-cream/60 leading-relaxed mb-6 line-clamp-3 group-hover:text-cream/80 transition-colors">
                   {post.excerpt}
                 </p>
 
-                <div className="mt-auto pt-6 border-t border-cream/10 flex items-center justify-between text-xs font-mono uppercase tracking-wider text-cream/50">
+                <div className="relative mt-auto pt-6 border-t border-cream/10 flex items-center justify-between text-xs font-mono uppercase tracking-wider text-cream/70">
                   <time dateTime={post.date}>{formatDate(post.date)}</time>
                   <span>{post.readingTime}</span>
                 </div>

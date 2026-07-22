@@ -22,18 +22,27 @@ import { Route as BriefRouteImport } from './routes/brief'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DSlugRouteImport } from './routes/d.$slug'
 import { Route as CheckoutReturnRouteImport } from './routes/checkout.return'
 import { Route as CheckoutFailedRouteImport } from './routes/checkout.failed'
 import { Route as CheckoutCanceledRouteImport } from './routes/checkout.canceled'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as DSlugIndexRouteImport } from './routes/d.$slug.index'
+import { Route as AuthenticatedDoradcaIndexRouteImport } from './routes/_authenticated/doradca/index'
+import { Route as DSlugAktywujRouteImport } from './routes/d.$slug_.aktywuj'
+import { Route as DSlugOfertaRouteImport } from './routes/d.$slug.oferta'
+import { Route as DSlugKontaktRouteImport } from './routes/d.$slug.kontakt'
 import { Route as ApiPublicOgDebugRouteImport } from './routes/api/public/og-debug'
 import { Route as ApiPublicMetaCapiRouteImport } from './routes/api/public/meta-capi'
+import { Route as AuthenticatedDoradcaNoweRouteImport } from './routes/_authenticated/doradca/nowe'
 import { Route as AuthenticatedAdminZamowieniaRouteImport } from './routes/_authenticated/admin/zamowienia'
 import { Route as AuthenticatedAdminGscStatusRouteImport } from './routes/_authenticated/admin/gsc-status'
 import { Route as LovableEmailQueueProcessRouteImport } from './routes/lovable/email/queue/process'
 import { Route as LovableEmailAuthWebhookRouteImport } from './routes/lovable/email/auth/webhook'
 import { Route as LovableEmailAuthPreviewRouteImport } from './routes/lovable/email/auth/preview'
 import { Route as ApiPublicPaymentsWebhookRouteImport } from './routes/api/public/payments/webhook'
+import { Route as ApiPublicDemosExpireRouteImport } from './routes/api/public/demos/expire'
+import { Route as AuthenticatedDoradcaDemoDemoIdRouteImport } from './routes/_authenticated/doradca/demo.$demoId'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -99,6 +108,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DSlugRoute = DSlugRouteImport.update({
+  id: '/d/$slug',
+  path: '/d/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CheckoutReturnRoute = CheckoutReturnRouteImport.update({
   id: '/return',
   path: '/return',
@@ -119,6 +133,32 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => BlogRoute,
 } as any)
+const DSlugIndexRoute = DSlugIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DSlugRoute,
+} as any)
+const AuthenticatedDoradcaIndexRoute =
+  AuthenticatedDoradcaIndexRouteImport.update({
+    id: '/doradca/',
+    path: '/doradca/',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const DSlugAktywujRoute = DSlugAktywujRouteImport.update({
+  id: '/d/$slug_/aktywuj',
+  path: '/d/$slug/aktywuj',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DSlugOfertaRoute = DSlugOfertaRouteImport.update({
+  id: '/oferta',
+  path: '/oferta',
+  getParentRoute: () => DSlugRoute,
+} as any)
+const DSlugKontaktRoute = DSlugKontaktRouteImport.update({
+  id: '/kontakt',
+  path: '/kontakt',
+  getParentRoute: () => DSlugRoute,
+} as any)
 const ApiPublicOgDebugRoute = ApiPublicOgDebugRouteImport.update({
   id: '/api/public/og-debug',
   path: '/api/public/og-debug',
@@ -129,6 +169,12 @@ const ApiPublicMetaCapiRoute = ApiPublicMetaCapiRouteImport.update({
   path: '/api/public/meta-capi',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedDoradcaNoweRoute =
+  AuthenticatedDoradcaNoweRouteImport.update({
+    id: '/doradca/nowe',
+    path: '/doradca/nowe',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 const AuthenticatedAdminZamowieniaRoute =
   AuthenticatedAdminZamowieniaRouteImport.update({
     id: '/admin/zamowienia',
@@ -163,6 +209,17 @@ const ApiPublicPaymentsWebhookRoute =
     path: '/api/public/payments/webhook',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ApiPublicDemosExpireRoute = ApiPublicDemosExpireRouteImport.update({
+  id: '/api/public/demos/expire',
+  path: '/api/public/demos/expire',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedDoradcaDemoDemoIdRoute =
+  AuthenticatedDoradcaDemoDemoIdRouteImport.update({
+    id: '/doradca/demo/$demoId',
+    path: '/doradca/demo/$demoId',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -181,10 +238,19 @@ export interface FileRoutesByFullPath {
   '/checkout/canceled': typeof CheckoutCanceledRoute
   '/checkout/failed': typeof CheckoutFailedRoute
   '/checkout/return': typeof CheckoutReturnRoute
+  '/d/$slug': typeof DSlugRouteWithChildren
   '/admin/gsc-status': typeof AuthenticatedAdminGscStatusRoute
   '/admin/zamowienia': typeof AuthenticatedAdminZamowieniaRoute
+  '/doradca/nowe': typeof AuthenticatedDoradcaNoweRoute
   '/api/public/meta-capi': typeof ApiPublicMetaCapiRoute
   '/api/public/og-debug': typeof ApiPublicOgDebugRoute
+  '/d/$slug/kontakt': typeof DSlugKontaktRoute
+  '/d/$slug/oferta': typeof DSlugOfertaRoute
+  '/d/$slug/aktywuj': typeof DSlugAktywujRoute
+  '/doradca/': typeof AuthenticatedDoradcaIndexRoute
+  '/d/$slug/': typeof DSlugIndexRoute
+  '/doradca/demo/$demoId': typeof AuthenticatedDoradcaDemoDemoIdRoute
+  '/api/public/demos/expire': typeof ApiPublicDemosExpireRoute
   '/api/public/payments/webhook': typeof ApiPublicPaymentsWebhookRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
@@ -209,8 +275,16 @@ export interface FileRoutesByTo {
   '/checkout/return': typeof CheckoutReturnRoute
   '/admin/gsc-status': typeof AuthenticatedAdminGscStatusRoute
   '/admin/zamowienia': typeof AuthenticatedAdminZamowieniaRoute
+  '/doradca/nowe': typeof AuthenticatedDoradcaNoweRoute
   '/api/public/meta-capi': typeof ApiPublicMetaCapiRoute
   '/api/public/og-debug': typeof ApiPublicOgDebugRoute
+  '/d/$slug/kontakt': typeof DSlugKontaktRoute
+  '/d/$slug/oferta': typeof DSlugOfertaRoute
+  '/d/$slug/aktywuj': typeof DSlugAktywujRoute
+  '/doradca': typeof AuthenticatedDoradcaIndexRoute
+  '/d/$slug': typeof DSlugIndexRoute
+  '/doradca/demo/$demoId': typeof AuthenticatedDoradcaDemoDemoIdRoute
+  '/api/public/demos/expire': typeof ApiPublicDemosExpireRoute
   '/api/public/payments/webhook': typeof ApiPublicPaymentsWebhookRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
@@ -235,10 +309,19 @@ export interface FileRoutesById {
   '/checkout/canceled': typeof CheckoutCanceledRoute
   '/checkout/failed': typeof CheckoutFailedRoute
   '/checkout/return': typeof CheckoutReturnRoute
+  '/d/$slug': typeof DSlugRouteWithChildren
   '/_authenticated/admin/gsc-status': typeof AuthenticatedAdminGscStatusRoute
   '/_authenticated/admin/zamowienia': typeof AuthenticatedAdminZamowieniaRoute
+  '/_authenticated/doradca/nowe': typeof AuthenticatedDoradcaNoweRoute
   '/api/public/meta-capi': typeof ApiPublicMetaCapiRoute
   '/api/public/og-debug': typeof ApiPublicOgDebugRoute
+  '/d/$slug/kontakt': typeof DSlugKontaktRoute
+  '/d/$slug/oferta': typeof DSlugOfertaRoute
+  '/d/$slug_/aktywuj': typeof DSlugAktywujRoute
+  '/_authenticated/doradca/': typeof AuthenticatedDoradcaIndexRoute
+  '/d/$slug/': typeof DSlugIndexRoute
+  '/_authenticated/doradca/demo/$demoId': typeof AuthenticatedDoradcaDemoDemoIdRoute
+  '/api/public/demos/expire': typeof ApiPublicDemosExpireRoute
   '/api/public/payments/webhook': typeof ApiPublicPaymentsWebhookRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
@@ -263,10 +346,19 @@ export interface FileRouteTypes {
     | '/checkout/canceled'
     | '/checkout/failed'
     | '/checkout/return'
+    | '/d/$slug'
     | '/admin/gsc-status'
     | '/admin/zamowienia'
+    | '/doradca/nowe'
     | '/api/public/meta-capi'
     | '/api/public/og-debug'
+    | '/d/$slug/kontakt'
+    | '/d/$slug/oferta'
+    | '/d/$slug/aktywuj'
+    | '/doradca/'
+    | '/d/$slug/'
+    | '/doradca/demo/$demoId'
+    | '/api/public/demos/expire'
     | '/api/public/payments/webhook'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
@@ -291,8 +383,16 @@ export interface FileRouteTypes {
     | '/checkout/return'
     | '/admin/gsc-status'
     | '/admin/zamowienia'
+    | '/doradca/nowe'
     | '/api/public/meta-capi'
     | '/api/public/og-debug'
+    | '/d/$slug/kontakt'
+    | '/d/$slug/oferta'
+    | '/d/$slug/aktywuj'
+    | '/doradca'
+    | '/d/$slug'
+    | '/doradca/demo/$demoId'
+    | '/api/public/demos/expire'
     | '/api/public/payments/webhook'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
@@ -316,10 +416,19 @@ export interface FileRouteTypes {
     | '/checkout/canceled'
     | '/checkout/failed'
     | '/checkout/return'
+    | '/d/$slug'
     | '/_authenticated/admin/gsc-status'
     | '/_authenticated/admin/zamowienia'
+    | '/_authenticated/doradca/nowe'
     | '/api/public/meta-capi'
     | '/api/public/og-debug'
+    | '/d/$slug/kontakt'
+    | '/d/$slug/oferta'
+    | '/d/$slug_/aktywuj'
+    | '/_authenticated/doradca/'
+    | '/d/$slug/'
+    | '/_authenticated/doradca/demo/$demoId'
+    | '/api/public/demos/expire'
     | '/api/public/payments/webhook'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
@@ -340,8 +449,11 @@ export interface RootRouteChildren {
   ResetPasswordRoute: typeof ResetPasswordRoute
   SitemapRoute: typeof SitemapRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  DSlugRoute: typeof DSlugRouteWithChildren
   ApiPublicMetaCapiRoute: typeof ApiPublicMetaCapiRoute
   ApiPublicOgDebugRoute: typeof ApiPublicOgDebugRoute
+  DSlugAktywujRoute: typeof DSlugAktywujRoute
+  ApiPublicDemosExpireRoute: typeof ApiPublicDemosExpireRoute
   ApiPublicPaymentsWebhookRoute: typeof ApiPublicPaymentsWebhookRoute
   LovableEmailAuthPreviewRoute: typeof LovableEmailAuthPreviewRoute
   LovableEmailAuthWebhookRoute: typeof LovableEmailAuthWebhookRoute
@@ -441,6 +553,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/d/$slug': {
+      id: '/d/$slug'
+      path: '/d/$slug'
+      fullPath: '/d/$slug'
+      preLoaderRoute: typeof DSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/checkout/return': {
       id: '/checkout/return'
       path: '/return'
@@ -469,6 +588,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof BlogRoute
     }
+    '/d/$slug/': {
+      id: '/d/$slug/'
+      path: '/'
+      fullPath: '/d/$slug/'
+      preLoaderRoute: typeof DSlugIndexRouteImport
+      parentRoute: typeof DSlugRoute
+    }
+    '/_authenticated/doradca/': {
+      id: '/_authenticated/doradca/'
+      path: '/doradca'
+      fullPath: '/doradca/'
+      preLoaderRoute: typeof AuthenticatedDoradcaIndexRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/d/$slug_/aktywuj': {
+      id: '/d/$slug_/aktywuj'
+      path: '/d/$slug/aktywuj'
+      fullPath: '/d/$slug/aktywuj'
+      preLoaderRoute: typeof DSlugAktywujRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/d/$slug/oferta': {
+      id: '/d/$slug/oferta'
+      path: '/oferta'
+      fullPath: '/d/$slug/oferta'
+      preLoaderRoute: typeof DSlugOfertaRouteImport
+      parentRoute: typeof DSlugRoute
+    }
+    '/d/$slug/kontakt': {
+      id: '/d/$slug/kontakt'
+      path: '/kontakt'
+      fullPath: '/d/$slug/kontakt'
+      preLoaderRoute: typeof DSlugKontaktRouteImport
+      parentRoute: typeof DSlugRoute
+    }
     '/api/public/og-debug': {
       id: '/api/public/og-debug'
       path: '/api/public/og-debug'
@@ -482,6 +636,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/api/public/meta-capi'
       preLoaderRoute: typeof ApiPublicMetaCapiRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/doradca/nowe': {
+      id: '/_authenticated/doradca/nowe'
+      path: '/doradca/nowe'
+      fullPath: '/doradca/nowe'
+      preLoaderRoute: typeof AuthenticatedDoradcaNoweRouteImport
+      parentRoute: typeof AuthenticatedRoute
     }
     '/_authenticated/admin/zamowienia': {
       id: '/_authenticated/admin/zamowienia'
@@ -525,17 +686,37 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicPaymentsWebhookRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/demos/expire': {
+      id: '/api/public/demos/expire'
+      path: '/api/public/demos/expire'
+      fullPath: '/api/public/demos/expire'
+      preLoaderRoute: typeof ApiPublicDemosExpireRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/doradca/demo/$demoId': {
+      id: '/_authenticated/doradca/demo/$demoId'
+      path: '/doradca/demo/$demoId'
+      fullPath: '/doradca/demo/$demoId'
+      preLoaderRoute: typeof AuthenticatedDoradcaDemoDemoIdRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
   }
 }
 
 interface AuthenticatedRouteChildren {
   AuthenticatedAdminGscStatusRoute: typeof AuthenticatedAdminGscStatusRoute
   AuthenticatedAdminZamowieniaRoute: typeof AuthenticatedAdminZamowieniaRoute
+  AuthenticatedDoradcaNoweRoute: typeof AuthenticatedDoradcaNoweRoute
+  AuthenticatedDoradcaIndexRoute: typeof AuthenticatedDoradcaIndexRoute
+  AuthenticatedDoradcaDemoDemoIdRoute: typeof AuthenticatedDoradcaDemoDemoIdRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedAdminGscStatusRoute: AuthenticatedAdminGscStatusRoute,
   AuthenticatedAdminZamowieniaRoute: AuthenticatedAdminZamowieniaRoute,
+  AuthenticatedDoradcaNoweRoute: AuthenticatedDoradcaNoweRoute,
+  AuthenticatedDoradcaIndexRoute: AuthenticatedDoradcaIndexRoute,
+  AuthenticatedDoradcaDemoDemoIdRoute: AuthenticatedDoradcaDemoDemoIdRoute,
 }
 
 const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
@@ -568,6 +749,20 @@ const CheckoutRouteWithChildren = CheckoutRoute._addFileChildren(
   CheckoutRouteChildren,
 )
 
+interface DSlugRouteChildren {
+  DSlugKontaktRoute: typeof DSlugKontaktRoute
+  DSlugOfertaRoute: typeof DSlugOfertaRoute
+  DSlugIndexRoute: typeof DSlugIndexRoute
+}
+
+const DSlugRouteChildren: DSlugRouteChildren = {
+  DSlugKontaktRoute: DSlugKontaktRoute,
+  DSlugOfertaRoute: DSlugOfertaRoute,
+  DSlugIndexRoute: DSlugIndexRoute,
+}
+
+const DSlugRouteWithChildren = DSlugRoute._addFileChildren(DSlugRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRoute: AuthenticatedRouteWithChildren,
@@ -582,8 +777,11 @@ const rootRouteChildren: RootRouteChildren = {
   ResetPasswordRoute: ResetPasswordRoute,
   SitemapRoute: SitemapRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  DSlugRoute: DSlugRouteWithChildren,
   ApiPublicMetaCapiRoute: ApiPublicMetaCapiRoute,
   ApiPublicOgDebugRoute: ApiPublicOgDebugRoute,
+  DSlugAktywujRoute: DSlugAktywujRoute,
+  ApiPublicDemosExpireRoute: ApiPublicDemosExpireRoute,
   ApiPublicPaymentsWebhookRoute: ApiPublicPaymentsWebhookRoute,
   LovableEmailAuthPreviewRoute: LovableEmailAuthPreviewRoute,
   LovableEmailAuthWebhookRoute: LovableEmailAuthWebhookRoute,
@@ -592,3 +790,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

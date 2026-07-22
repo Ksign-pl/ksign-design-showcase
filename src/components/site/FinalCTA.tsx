@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { trackMetaEvent } from "@/lib/meta-capi";
+import { trackFormSubmit, trackFormError } from "@/lib/analytics";
 import { CONTACT } from "@/lib/contact";
+
 
 export function FinalCTA() {
   const [sent, setSent] = useState(false);
@@ -12,7 +14,14 @@ export function FinalCTA() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!rodo) {
-      setError("Aby wysłać zapytanie, musisz wyrazić zgodę na przetwarzanie danych (RODO).");
+      const msg = "Aby wysłać zapytanie, musisz wyrazić zgodę na przetwarzanie danych (RODO).";
+      setError(msg);
+      trackFormError({
+        form: "kontakt_final_cta",
+        field: "rodo",
+        reason: "rodo_required",
+        message: msg,
+      });
       return;
     }
     setError(null);
@@ -23,6 +32,7 @@ export function FinalCTA() {
     const fullName = (fd.get("name")?.toString() ?? "").trim();
     const [firstName, ...rest] = fullName.split(/\s+/);
     const lastName = rest.join(" ");
+    const pkg = fd.get("package")?.toString() || "";
     void trackMetaEvent("Lead", {
       userData: {
         email: fd.get("email")?.toString() || undefined,
@@ -33,17 +43,37 @@ export function FinalCTA() {
       },
       customData: {
         content_name: "Kontakt KSIGN",
-        package: fd.get("package")?.toString() || "",
+        package: pkg,
         marketing_consent: marketing,
       },
+    });
+    trackFormSubmit({
+      form: "kontakt_final_cta",
+      package: pkg,
+      marketingConsent: marketing,
     });
 
     setSent(true);
   };
+
   return (
-    <section id="kontakt" className="py-24 md:py-32 bg-ink text-cream grid-bg-dark">
-      <div className="mx-auto max-w-[1400px] px-5 md:px-8">
-        <div className="text-xs md:text-sm font-mono uppercase tracking-widest text-cream/50 mb-8">
+    <section id="kontakt" className="relative py-24 md:py-32 bg-ink text-cream grid-bg-dark overflow-hidden">
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse at 80% 20%, oklch(0.74 0.16 300 / 0.35) 0%, transparent 55%), linear-gradient(180deg, rgba(10,10,12,0.4), rgba(10,10,12,0.85))",
+        }}
+      />
+      <div
+        aria-hidden
+        className="absolute -left-10 bottom-10 font-heading font-bold text-[25vw] opacity-[0.04] pointer-events-none select-none uppercase whitespace-nowrap"
+      >
+        999 ZŁ
+      </div>
+      <div className="relative mx-auto max-w-[1400px] px-5 md:px-8">
+        <div className="text-xs md:text-sm font-mono uppercase tracking-[0.3em] text-cream/70 mb-8">
           [ 10 / Zamów ]
         </div>
         <h2 className="text-display-tight text-[11vw] md:text-[6.5vw] lg:text-[6.5rem] max-w-6xl">
@@ -52,6 +82,10 @@ export function FinalCTA() {
           KTÓRA <span className="text-lime">NIE WYGLĄDA</span>
           <br />
           NA 999 ZŁ.
+        <h2 className="font-heading font-bold text-5xl md:text-7xl lg:text-8xl uppercase leading-[0.85] max-w-6xl">
+          Przestań być<br />
+          <span className="text-violet">standardowy.</span><br />
+          Zamów za <span className="bg-lime text-ink px-3 -rotate-1 inline-block">999 zł</span>
         </h2>
         <p className="mt-8 text-lg md:text-xl text-cream/70 max-w-2xl leading-snug">
           Pakiet Start KSIGN to szybki sposób, żeby Twoja firma wyglądała nowocześnie,
@@ -99,6 +133,19 @@ export function FinalCTA() {
               <div className="text-xs font-mono uppercase tracking-widest text-ink/50 mb-2">
                 odpowiadamy
               </div>
+              <div className="text-xs font-mono uppercase tracking-widest text-cream/70 mb-2">e-mail</div>
+              <a href={`mailto:${CONTACT.email}`} className="text-2xl font-bold hover:text-lime transition">{CONTACT.email}</a>
+            </div>
+            <div className="bg-white/5 border border-white/10 rounded-3xl p-7">
+              <div className="text-xs font-mono uppercase tracking-widest text-cream/70 mb-2">telefon</div>
+              <a href={`tel:${CONTACT.phone}`} className="text-2xl font-bold hover:text-lime transition">606 576 517</a>
+            </div>
+            <div className="bg-white/5 border border-white/10 rounded-3xl p-7">
+              <div className="text-xs font-mono uppercase tracking-widest text-cream/70 mb-2">facebook</div>
+              <a href="https://www.facebook.com/ksign2026" target="_blank" rel="noopener noreferrer" className="text-2xl font-bold hover:text-lime transition">/ksign2026</a>
+            </div>
+            <div className="bg-lime text-ink rounded-3xl p-7">
+              <div className="text-xs font-mono uppercase tracking-widest text-ink/70 mb-2">odpowiadamy</div>
               <div className="text-2xl font-bold">w 24h</div>
             </div>
           </div>
@@ -126,6 +173,7 @@ export function FinalCTA() {
                     htmlFor="field-package"
                     className="block text-xs font-mono uppercase tracking-widest text-ink/50 mb-2"
                   >
+                  <label htmlFor="field-package" className="block text-xs font-mono uppercase tracking-widest text-ink/70 mb-2">
                     Wybór pakietu
                   </label>
                   <select
@@ -145,6 +193,7 @@ export function FinalCTA() {
                     htmlFor="field-message"
                     className="block text-xs font-mono uppercase tracking-widest text-ink/50 mb-2"
                   >
+                  <label htmlFor="field-message" className="block text-xs font-mono uppercase tracking-widest text-ink/70 mb-2">
                     Wiadomość
                   </label>
                   <textarea
@@ -201,6 +250,11 @@ export function FinalCTA() {
                     Polityce prywatności
                   </Link>
                   .
+                <p className="mt-4 text-xs text-ink/70 leading-relaxed">
+                  Administratorem danych jest KSIGN. Masz prawo dostępu do danych, ich sprostowania, usunięcia,
+                  ograniczenia przetwarzania, przenoszenia, sprzeciwu oraz wniesienia skargi do Prezesa UODO.
+                  Szczegóły w{" "}
+                  <Link to="/polityka-prywatnosci" className="underline hover:text-violet">Polityce prywatności</Link>.
                 </p>
                 <button
                   type="submit"
@@ -225,6 +279,7 @@ function Field({ label, name, type = "text" }: { label: string; name: string; ty
         htmlFor={id}
         className="block text-xs font-mono uppercase tracking-widest text-ink/50 mb-2"
       >
+      <label htmlFor={id} className="block text-xs font-mono uppercase tracking-widest text-ink/70 mb-2">
         {label}
       </label>
       <input

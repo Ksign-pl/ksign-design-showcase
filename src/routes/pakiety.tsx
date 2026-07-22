@@ -92,6 +92,7 @@ function PaczkiPage() {
                 <div
                   className={`text-xs font-mono uppercase tracking-widest mb-3 ${highlight ? "text-cream/50" : "text-ink/40"}`}
                 >
+                <div className={`text-xs font-mono uppercase tracking-widest mb-3 ${highlight ? "text-cream/70" : "text-ink/70"}`}>
                   {p.name}
                 </div>
                 <div className="flex items-baseline gap-2 mb-3">
@@ -101,6 +102,7 @@ function PaczkiPage() {
                   <span className={`text-sm ${highlight ? "text-cream/60" : "text-ink/50"}`}>
                     zł
                   </span>
+                  <span className={`text-sm ${highlight ? "text-cream/60" : "text-ink/70"}`}>zł</span>
                 </div>
                 <p className={`text-sm mb-5 ${highlight ? "text-cream/70" : "text-ink/60"}`}>
                   {p.blurb}
@@ -110,7 +112,7 @@ function PaczkiPage() {
                 >
                   {p.features.map((f) => (
                     <li key={f} className="flex gap-2">
-                      <span className={highlight ? "text-lime" : "text-ink/40"}>✓</span>
+                      <span className={highlight ? "text-lime" : "text-ink/70"}>✓</span>
                       <span>{f}</span>
                     </li>
                   ))}
@@ -133,7 +135,7 @@ function PaczkiPage() {
 
         <div className="mt-10 rounded-3xl bg-violet/40 border border-ink/10 p-7 md:p-9 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div>
-            <div className="text-xs font-mono uppercase tracking-widest text-ink/50 mb-2">
+            <div className="text-xs font-mono uppercase tracking-widest text-ink/70 mb-2">
               Opcjonalnie — abonament
             </div>
             <h2 className="text-2xl md:text-3xl font-black tracking-tight">
@@ -153,6 +155,9 @@ function PaczkiPage() {
         <p className="mt-10 text-xs text-ink/50 max-w-2xl">
           Wszystkie ceny są cenami finalnymi. KSIGN korzysta ze zwolnienia podmiotowego z VAT (art.
           113 ust. 1 ustawy o VAT) — faktura wystawiana jest bez VAT.
+        <p className="mt-10 text-xs text-ink/70 max-w-2xl">
+          Wszystkie ceny są cenami finalnymi. KSIGN korzysta ze zwolnienia podmiotowego z VAT
+          (art. 113 ust. 1 ustawy o VAT) — faktura wystawiana jest bez VAT.
         </p>
       </main>
     </div>
