@@ -1,22 +1,18 @@
-import * as React from 'react'
-import { Button, Heading, Link, Text } from '@react-email/components'
-import { EmailShell, styles } from './_brand'
+import * as React from "react";
+import { Button, Heading, Link, Text } from "@react-email/components";
+import { EmailShell, styles } from "./_brand";
 
 interface InviteEmailProps {
-  siteName: string
-  siteUrl: string
-  confirmationUrl: string
+  siteName: string;
+  siteUrl: string;
+  confirmationUrl: string;
 }
 
-export const InviteEmail = ({
-  siteName,
-  siteUrl,
-  confirmationUrl,
-}: InviteEmailProps) => (
+export const InviteEmail = ({ siteName, siteUrl, confirmationUrl }: InviteEmailProps) => (
   <EmailShell preview="Zaproszenie — KSIGN">
     <Heading style={styles.h1}>Masz zaproszenie</Heading>
     <Text style={styles.text}>
-      Zaproszono Cię do{' '}
+      Zaproszono Cię do{" "}
       <Link href={siteUrl} style={styles.link}>
         <strong>{siteName}</strong>
       </Link>
@@ -25,10 +21,10 @@ export const InviteEmail = ({
     <Button style={styles.button} href={confirmationUrl}>
       Przyjmij zaproszenie
     </Button>
-    <Text style={{ ...styles.footer, marginTop: '28px' }}>
+    <Text style={{ ...styles.footer, marginTop: "28px" }}>
       Jeśli nie spodziewałeś/aś się tego zaproszenia, możesz je zignorować.
     </Text>
   </EmailShell>
-)
+);
 
-export default InviteEmail
+export default InviteEmail;

@@ -3,8 +3,10 @@ import { CONSENT_EVENT, getConsent, consentLog, isConsentDebug } from "@/lib/con
 
 // Tracking IDs. Override per-environment via VITE_GA4_ID / VITE_META_PIXEL_ID.
 const GA4_ID = (import.meta.env.VITE_GA4_ID as string | undefined) || "G-GQT4Y20Z0B";
-const META_PIXEL_ID = (import.meta.env.VITE_META_PIXEL_ID as string | undefined) || "1466352945238692";
-const GOOGLE_ADS_ID = (import.meta.env.VITE_GOOGLE_ADS_ID as string | undefined) || "AW-18158941733";
+const META_PIXEL_ID =
+  (import.meta.env.VITE_META_PIXEL_ID as string | undefined) || "1466352945238692";
+const GOOGLE_ADS_ID =
+  (import.meta.env.VITE_GOOGLE_ADS_ID as string | undefined) || "AW-18158941733";
 const GTM_ID = (import.meta.env.VITE_GTM_ID as string | undefined) || "GTM-MHKNMPZ3";
 const CLARITY_ID = (import.meta.env.VITE_CLARITY_ID as string | undefined) || "wq5q06lx8l";
 
@@ -12,7 +14,13 @@ declare global {
   interface Window {
     dataLayer: unknown[];
     gtag: (...args: unknown[]) => void;
-    fbq: ((...args: unknown[]) => void) & { callMethod?: (...args: unknown[]) => void; queue?: unknown[]; loaded?: boolean; version?: string; push?: (...args: unknown[]) => void };
+    fbq: ((...args: unknown[]) => void) & {
+      callMethod?: (...args: unknown[]) => void;
+      queue?: unknown[];
+      loaded?: boolean;
+      version?: string;
+      push?: (...args: unknown[]) => void;
+    };
     _fbq: unknown;
     clarity?: ((...args: unknown[]) => void) & { q?: unknown[] };
   }
@@ -87,7 +95,11 @@ function loadClarity() {
   if (!CLARITY_ID || document.getElementById("clarity-script")) return;
   /* eslint-disable */
   (function (c: any, l: Document, a: string, r: string, i: string) {
-    c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+    c[a] =
+      c[a] ||
+      function () {
+        (c[a].q = c[a].q || []).push(arguments);
+      };
     const t = l.createElement(r) as HTMLScriptElement;
     t.id = "clarity-script";
     t.async = true;
@@ -96,7 +108,11 @@ function loadClarity() {
     y.parentNode?.insertBefore(t, y);
   })(window, document, "clarity", "script", CLARITY_ID);
   /* eslint-enable */
-  try { window.clarity?.("consent"); } catch { /* noop */ }
+  try {
+    window.clarity?.("consent");
+  } catch {
+    /* noop */
+  }
 }
 
 function deactivateClarity() {
@@ -137,7 +153,17 @@ function loadMetaPixel() {
 }
 
 // Cookies set by GA4 / Google Ads / Meta Pixel that should be removed when consent is withdrawn.
-const ANALYTICS_COOKIE_PATTERNS = [/^_ga(_.*)?$/, /^_gid$/, /^_gat(_.*)?$/, /^_clck$/, /^_clsk$/, /^CLID$/, /^MUID$/, /^ANONCHK$/, /^SM$/];
+const ANALYTICS_COOKIE_PATTERNS = [
+  /^_ga(_.*)?$/,
+  /^_gid$/,
+  /^_gat(_.*)?$/,
+  /^_clck$/,
+  /^_clsk$/,
+  /^CLID$/,
+  /^MUID$/,
+  /^ANONCHK$/,
+  /^SM$/,
+];
 const MARKETING_COOKIE_PATTERNS = [/^_gcl_(au|aw|dc|gb|gf|ha)$/, /^_fbp$/, /^_fbc$/, /^fr$/];
 
 function listCookieNames(): string[] {
@@ -175,10 +201,7 @@ type ClearReport = {
   stillPresent: string[];
 };
 
-function clearCategory(
-  category: "analytics" | "marketing",
-  patterns: RegExp[],
-): ClearReport {
+function clearCategory(category: "analytics" | "marketing", patterns: RegExp[]): ClearReport {
   const beforeAll = listCookieNames();
   const matched = matchByPatterns(beforeAll, patterns);
   for (const name of matched) deleteCookie(name);
@@ -196,17 +219,14 @@ function logClearReport(r: ClearReport) {
     );
     return;
   }
-  consentLog(
-    `[${r.category}] cleared ${r.removed.length}/${r.matched.length} cookies`,
-    {
-      matched: r.matched,
-      removed: r.removed,
-      stillPresent: r.stillPresent,
-      host: window.location.hostname,
-      cookiesBefore: r.before.length,
-      cookiesAfter: r.after.length,
-    },
-  );
+  consentLog(`[${r.category}] cleared ${r.removed.length}/${r.matched.length} cookies`, {
+    matched: r.matched,
+    removed: r.removed,
+    stillPresent: r.stillPresent,
+    host: window.location.hostname,
+    cookiesBefore: r.before.length,
+    cookiesAfter: r.after.length,
+  });
   if (r.stillPresent.length) {
     consentLog(
       `[${r.category}] ⚠ still present (likely httpOnly or wrong domain/path):`,
@@ -269,7 +289,11 @@ function applyConsent() {
     consentLog("GA4 loaded:", GA4_ID);
     loadClarity();
     if (typeof window.clarity === "function") {
-      try { window.clarity("consent"); } catch { /* noop */ }
+      try {
+        window.clarity("consent");
+      } catch {
+        /* noop */
+      }
     }
     if (CLARITY_ID) consentLog("Clarity loaded:", CLARITY_ID);
   } else {
@@ -278,12 +302,17 @@ function applyConsent() {
   }
 
   if (c?.marketing) {
-    if (GOOGLE_ADS_ID) (window as unknown as Record<string, boolean>)[`ga-disable-${GOOGLE_ADS_ID}`] = false;
+    if (GOOGLE_ADS_ID)
+      (window as unknown as Record<string, boolean>)[`ga-disable-${GOOGLE_ADS_ID}`] = false;
     loadGoogleAds();
     consentLog("Google Ads loaded:", GOOGLE_ADS_ID);
     loadMetaPixel();
     if (typeof window.fbq === "function") {
-      try { window.fbq("consent", "grant"); } catch { /* noop */ }
+      try {
+        window.fbq("consent", "grant");
+      } catch {
+        /* noop */
+      }
     }
     if (META_PIXEL_ID) consentLog("Meta Pixel loaded:", META_PIXEL_ID);
   } else {
@@ -291,7 +320,6 @@ function applyConsent() {
     deactivateMetaPixel();
   }
 }
-
 
 // ───────── Debug-only instrumentation: log every gtag/fbq event sample ─────────
 
@@ -334,15 +362,12 @@ function summarizeBlockers(api: "gtag" | "fbq", command: string, args: unknown[]
 
 function logEventSample(s: EventSample) {
   const tag = s.blockedBy.length ? "🚫 BLOCKED" : "✓ SENT";
-  consentLog(
-    `[event-sample] ${tag} ${s.api}('${s.command}', …)`,
-    {
-      args: s.args,
-      consent: s.consent,
-      blockedBy: s.blockedBy,
-      time: new Date(s.ts).toISOString(),
-    },
-  );
+  consentLog(`[event-sample] ${tag} ${s.api}('${s.command}', …)`, {
+    args: s.args,
+    consent: s.consent,
+    blockedBy: s.blockedBy,
+    time: new Date(s.ts).toISOString(),
+  });
 }
 
 function instrumentGtag() {
@@ -363,7 +388,9 @@ function instrumentGtag() {
           blockedBy: summarizeBlockers("gtag", command, args.slice(1)),
         });
       }
-    } catch { /* noop */ }
+    } catch {
+      /* noop */
+    }
     return (original as (...a: unknown[]) => unknown)(...args);
   } as typeof window.gtag;
   (wrapped as unknown as { __ksignWrapped: boolean }).__ksignWrapped = true;
@@ -389,7 +416,9 @@ function instrumentFbq() {
           blockedBy: summarizeBlockers("fbq", command, args.slice(1)),
         });
       }
-    } catch { /* noop */ }
+    } catch {
+      /* noop */
+    }
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return (original as any).apply(window, args);
   } as typeof window.fbq;
@@ -429,16 +458,25 @@ export function ConsentScripts() {
 
     // Defer third-party scripts off the critical path: idle, first interaction,
     // or 4s fallback — whichever comes first. Massively reduces TBT / main-thread time on mobile.
-    const ric = (window as unknown as { requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number }).requestIdleCallback;
-    const idleTimer = ric
-      ? ric(() => boot(), { timeout: 4000 })
-      : window.setTimeout(boot, 2500);
-    const interactionEvents: Array<keyof WindowEventMap> = ["pointerdown", "touchstart", "keydown", "scroll"];
+    const ric = (
+      window as unknown as {
+        requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
+      }
+    ).requestIdleCallback;
+    const idleTimer = ric ? ric(() => boot(), { timeout: 4000 }) : window.setTimeout(boot, 2500);
+    const interactionEvents: Array<keyof WindowEventMap> = [
+      "pointerdown",
+      "touchstart",
+      "keydown",
+      "scroll",
+    ];
     const onInteract = () => {
       boot();
       interactionEvents.forEach((ev) => window.removeEventListener(ev, onInteract));
     };
-    interactionEvents.forEach((ev) => window.addEventListener(ev, onInteract, { passive: true, once: false }));
+    interactionEvents.forEach((ev) =>
+      window.addEventListener(ev, onInteract, { passive: true, once: false }),
+    );
 
     const handler = (e: Event) => {
       consentLog("CONSENT_EVENT received", (e as CustomEvent).detail);

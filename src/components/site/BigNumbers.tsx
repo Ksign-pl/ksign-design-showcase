@@ -26,12 +26,19 @@ export function BigNumbers() {
           [ 05 / Liczby ]
         </div>
         <h2 className="text-display-tight text-[12vw] md:text-[7vw] lg:text-[6rem] mb-16 md:mb-24 max-w-5xl">
+          MAŁA CENA.
+          <br />
+          DUŻY EFEKT.
           MAŁA CENA.<br/>
           <span className="text-lime">DUŻY EFEKT.</span>
         </h2>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-6">
           {STATS.map((s, i) => (
+            <div key={s.num} className="border-t border-ink/20 pt-6 md:pt-8">
+              <div className="text-xs font-mono text-ink/50 mb-3">0{i + 1}</div>
+              <div className="text-display text-5xl md:text-6xl lg:text-7xl mb-3">{s.num}</div>
+              <div className="text-base md:text-lg text-ink/70 leading-tight">{s.desc}</div>
             <div
               key={s.num}
               className="group border-t border-cream/20 pt-6 md:pt-8 transition-colors hover:border-lime"

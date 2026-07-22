@@ -29,6 +29,11 @@ export function Process() {
           [ 07 / Proces ]
         </div>
         <h2 className="text-display-tight text-[10vw] md:text-[6vw] lg:text-[5.5rem] max-w-5xl mb-16 md:mb-24">
+          OD POMYSŁU
+          <br />
+          DO GOTOWEJ
+          <br />
+          <span className="text-lime">STRONY.</span>
           OD POMYSŁU<br />DO GOTOWEJ<br /><span className="text-lime">STRONY.</span>
         </h2>
 

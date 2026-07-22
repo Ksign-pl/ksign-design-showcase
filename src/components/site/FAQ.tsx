@@ -2,11 +2,23 @@ import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
 
 const QA = [
-  { q: "Czy za 999 zł dostanę sklep internetowy?", a: "Nie. Pakiet Start obejmuje prostą stronę one-page. Sklep internetowy wyceniamy osobno." },
-  { q: "Czy strona będzie responsywna?", a: "Tak. Strona będzie dopasowana do telefonu, tabletu i komputera." },
+  {
+    q: "Czy za 999 zł dostanę sklep internetowy?",
+    a: "Nie. Pakiet Start obejmuje prostą stronę one-page. Sklep internetowy wyceniamy osobno.",
+  },
+  {
+    q: "Czy strona będzie responsywna?",
+    a: "Tak. Strona będzie dopasowana do telefonu, tabletu i komputera.",
+  },
   { q: "Ile trwa realizacja?", a: "Standardowo od 3 do 7 dni roboczych po otrzymaniu materiałów." },
-  { q: "Czy pomagacie z tekstami?", a: "Tak. Pomagamy uporządkować podstawowe treści i ułożyć je sprzedażowo." },
-  { q: "Czy mogę później rozbudować stronę?", a: "Tak. Pakiet Start może być bazą do większej strony, SEO, bloga, sklepu lub automatyzacji." },
+  {
+    q: "Czy pomagacie z tekstami?",
+    a: "Tak. Pomagamy uporządkować podstawowe treści i ułożyć je sprzedażowo.",
+  },
+  {
+    q: "Czy mogę później rozbudować stronę?",
+    a: "Tak. Pakiet Start może być bazą do większej strony, SEO, bloga, sklepu lub automatyzacji.",
+  },
   { q: "Czy cena 999 zł jest netto?", a: "Tak. Cena pakietu Start to 999 zł netto." },
 ];
 
@@ -21,7 +33,9 @@ export function FAQ() {
               [ 09 / FAQ ]
             </div>
             <h2 className="text-display-tight text-[10vw] md:text-[5vw] lg:text-[5rem]">
-              MASZ<br/>PYTANIA?
+              MASZ
+              <br />
+              PYTANIA?
             </h2>
             <p className="mt-6 text-ink/60 max-w-xs">
               Najczęściej zadawane pytania o pakiet Start i współpracę.
@@ -48,6 +62,9 @@ export function FAQ() {
                     <span className="text-lg md:text-2xl font-bold tracking-tight group-hover:text-violet transition-colors">
                       {item.q}
                     </span>
+                    <span
+                      className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all ${isOpen ? "bg-lime rotate-180" : "bg-ink text-cream"}`}
+                    >
                     <span aria-hidden="true" className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all ${isOpen ? "bg-lime rotate-180" : "bg-ink text-cream"}`}>
                       {isOpen ? <Minus size={16} className="text-ink" /> : <Plus size={16} />}
                     </span>

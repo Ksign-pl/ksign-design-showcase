@@ -7,10 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/og-debug")({
   head: () => ({
-    meta: [
-      { title: "OG Debug — KSIGN" },
-      { name: "robots", content: "noindex, nofollow" },
-    ],
+    meta: [{ title: "OG Debug — KSIGN" }, { name: "robots", content: "noindex, nofollow" }],
   }),
   beforeLoad: async ({ location }) => {
     const { data } = await supabase.auth.getUser();
@@ -68,8 +65,8 @@ function OgDebugPage() {
       <div className="mx-auto max-w-3xl px-6 py-12">
         <h1 className="text-3xl font-bold mb-2">Meta OG Debug</h1>
         <p className="text-muted-foreground mb-8">
-          Sprawdza, jak Meta widzi tagi Open Graph dla podanego URL (Sharing Debugger API).
-          Z opcją <code>scrape=true</code> wymusza odświeżenie cache Meta.
+          Sprawdza, jak Meta widzi tagi Open Graph dla podanego URL (Sharing Debugger API). Z opcją{" "}
+          <code>scrape=true</code> wymusza odświeżenie cache Meta.
         </p>
 
         <form onSubmit={run} className="space-y-4 mb-8">
@@ -85,11 +82,7 @@ function OgDebugPage() {
             />
           </div>
           <label className="flex items-center gap-2 text-sm">
-            <input
-              type="checkbox"
-              checked={scrape}
-              onChange={(e) => setScrape(e.target.checked)}
-            />
+            <input type="checkbox" checked={scrape} onChange={(e) => setScrape(e.target.checked)} />
             Wymuś re-scrape (odśwież cache Meta)
           </label>
           <Button type="submit" disabled={loading}>
@@ -100,10 +93,28 @@ function OgDebugPage() {
         {og && (
           <div className="grid grid-cols-1 sm:grid-cols-[160px_1fr] gap-2 text-sm border border-border rounded-lg p-4 mb-6">
             {[
-              ["og:title", og["og_object"] && (og["og_object"] as Record<string, unknown>)["title"], og["title"]],
-              ["og:description", og["og_object"] && (og["og_object"] as Record<string, unknown>)["description"], og["description"]],
-              ["og:type", og["og_object"] && (og["og_object"] as Record<string, unknown>)["type"], og["type"]],
-              ["og:image", og["image"] && Array.isArray(og["image"]) ? (og["image"] as Array<Record<string, unknown>>)[0]?.["url"] : undefined, undefined],
+              [
+                "og:title",
+                og["og_object"] && (og["og_object"] as Record<string, unknown>)["title"],
+                og["title"],
+              ],
+              [
+                "og:description",
+                og["og_object"] && (og["og_object"] as Record<string, unknown>)["description"],
+                og["description"],
+              ],
+              [
+                "og:type",
+                og["og_object"] && (og["og_object"] as Record<string, unknown>)["type"],
+                og["type"],
+              ],
+              [
+                "og:image",
+                og["image"] && Array.isArray(og["image"])
+                  ? (og["image"] as Array<Record<string, unknown>>)[0]?.["url"]
+                  : undefined,
+                undefined,
+              ],
               ["url", og["url"], undefined],
               ["updated_time", og["updated_time"], undefined],
             ].map(([k, a, b]) => {

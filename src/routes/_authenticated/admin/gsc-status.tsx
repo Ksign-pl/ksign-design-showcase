@@ -8,7 +8,9 @@ import { CheckCircle2, XCircle, Loader2, RefreshCw } from "lucide-react";
 
 export const Route = createFileRoute("/_authenticated/admin/gsc-status")({
   component: GscStatusPage,
-  head: () => ({ meta: [{ title: "Status weryfikacji GSC — KSIGN" }, { name: "robots", content: "noindex" }] }),
+  head: () => ({
+    meta: [{ title: "Status weryfikacji GSC — KSIGN" }, { name: "robots", content: "noindex" }],
+  }),
 });
 
 function GscStatusPage() {
@@ -46,11 +48,16 @@ function GscStatusPage() {
         <div>
           <h1 className="text-2xl font-semibold">Google Search Console — status weryfikacji</h1>
           <p className="text-sm text-muted-foreground mt-1">
-            Weryfikacja META i rejestracja właściwości <code>https://www.ksign.pl/</code> z automatycznym ponawianiem (3 próby).
+            Weryfikacja META i rejestracja właściwości <code>https://www.ksign.pl/</code> z
+            automatycznym ponawianiem (3 próby).
           </p>
         </div>
         <Button onClick={execute} disabled={loading} variant="outline">
-          {loading ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <RefreshCw className="w-4 h-4 mr-2" />}
+          {loading ? (
+            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+          ) : (
+            <RefreshCw className="w-4 h-4 mr-2" />
+          )}
           Uruchom ponownie
         </Button>
       </div>
@@ -89,7 +96,9 @@ function GscStatusPage() {
                   <span className="text-xs text-muted-foreground">próby: {s.attempts}/3</span>
                 )}
               </div>
-              {s.detail && <p className="text-sm text-muted-foreground mt-1 break-words">{s.detail}</p>}
+              {s.detail && (
+                <p className="text-sm text-muted-foreground mt-1 break-words">{s.detail}</p>
+              )}
             </div>
           </Card>
         ))}
@@ -105,8 +114,9 @@ function GscStatusPage() {
       {success === false && (
         <Card className="p-4 mt-6 bg-amber-50 border-amber-200 dark:bg-amber-950 dark:border-amber-900">
           <p className="text-sm font-medium text-amber-900 dark:text-amber-100">
-            ⚠️ Weryfikacja nieudana. Najczęstsza przyczyna: meta tag w opublikowanej wersji jest nieaktualny po rotacji tokenu.
-            Kliknij <strong>Publish → Update</strong>, poczekaj 30 sekund, a panel automatycznie sprawdzi ponownie.
+            ⚠️ Weryfikacja nieudana. Najczęstsza przyczyna: meta tag w opublikowanej wersji jest
+            nieaktualny po rotacji tokenu. Kliknij <strong>Publish → Update</strong>, poczekaj 30
+            sekund, a panel automatycznie sprawdzi ponownie.
           </p>
         </Card>
       )}

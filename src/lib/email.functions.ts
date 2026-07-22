@@ -12,13 +12,9 @@ const attemptLog = new Map<string, number[]>();
 
 function checkRateLimit(orderId: string): { ok: boolean; retryAfterSec?: number } {
   const now = Date.now();
-  const recent = (attemptLog.get(orderId) ?? []).filter(
-    (t) => now - t < RATE_LIMIT_WINDOW_MS,
-  );
+  const recent = (attemptLog.get(orderId) ?? []).filter((t) => now - t < RATE_LIMIT_WINDOW_MS);
   if (recent.length >= RATE_LIMIT_MAX) {
-    const retryAfterSec = Math.ceil(
-      (RATE_LIMIT_WINDOW_MS - (now - recent[0])) / 1000,
-    );
+    const retryAfterSec = Math.ceil((RATE_LIMIT_WINDOW_MS - (now - recent[0])) / 1000);
     return { ok: false, retryAfterSec };
   }
   recent.push(now);
@@ -54,7 +50,9 @@ export const resendOrderConfirmation = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     const { data: order, error } = await supabaseAdmin
       .from("orders")
-      .select("id, stripe_session_id, customer_email, customer_name, product_name, amount_cents, currency, status")
+      .select(
+        "id, stripe_session_id, customer_email, customer_name, product_name, amount_cents, currency, status",
+      )
       .eq("id", data.orderId)
       .maybeSingle();
 
@@ -75,9 +73,7 @@ export const resendOrderConfirmation = createServerFn({ method: "POST" })
     const rate = checkRateLimit(order.id);
     if (!rate.ok) {
       const mins = Math.ceil((rate.retryAfterSec ?? 60) / 60);
-      throw new Error(
-        `Zbyt wiele prób. Spróbuj ponownie za ok. ${mins} min.`,
-      );
+      throw new Error(`Zbyt wiele prób. Spróbuj ponownie za ok. ${mins} min.`);
     }
 
     // Bucket idempotency key by minute so a manual click does not silently

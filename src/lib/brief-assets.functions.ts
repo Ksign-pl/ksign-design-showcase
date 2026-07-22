@@ -55,7 +55,10 @@ const UploadSchema = SessionSchema.extend({
     .max(100)
     .refine((v) => ALLOWED_MIME.has(v), "Niedozwolony typ pliku."),
   /** base64-encoded file content (no data URL prefix) */
-  contentBase64: z.string().min(1).max(Math.ceil((MAX_BYTES * 4) / 3) + 1024),
+  contentBase64: z
+    .string()
+    .min(1)
+    .max(Math.ceil((MAX_BYTES * 4) / 3) + 1024),
 });
 
 export const uploadBriefAsset = createServerFn({ method: "POST" })

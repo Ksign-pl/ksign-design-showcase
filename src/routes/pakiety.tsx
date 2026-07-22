@@ -63,15 +63,19 @@ function PaczkiPage() {
     <div className="min-h-screen bg-cream text-ink">
       <header className="border-b border-ink/10">
         <div className="mx-auto max-w-[1400px] px-5 md:px-8 py-5 flex items-center justify-between">
-          <Link to="/" className="font-black tracking-tight text-xl">KSIGN</Link>
-          <Link to="/" className="text-sm text-ink/60 hover:text-ink">← Strona główna</Link>
+          <Link to="/" className="font-black tracking-tight text-xl">
+            KSIGN
+          </Link>
+          <Link to="/" className="text-sm text-ink/60 hover:text-ink">
+            ← Strona główna
+          </Link>
         </div>
       </header>
       <main className="mx-auto max-w-[1400px] px-5 md:px-8 py-12 md:py-20">
         <h1 className="text-display-tight text-[10vw] md:text-[5.5rem] mb-4">PAKIETY.</h1>
         <p className="text-lg text-ink/60 max-w-2xl mb-12">
-          Stałe ceny, brak ukrytych kosztów. Zapłać online, a my odezwiemy się w 24h, żeby
-          rozpocząć realizację.
+          Stałe ceny, brak ukrytych kosztów. Zapłać online, a my odezwiemy się w 24h, żeby rozpocząć
+          realizację.
         </p>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -85,6 +89,9 @@ function PaczkiPage() {
                   highlight ? "bg-ink text-cream glow-lime" : "bg-white border border-ink/10"
                 }`}
               >
+                <div
+                  className={`text-xs font-mono uppercase tracking-widest mb-3 ${highlight ? "text-cream/50" : "text-ink/40"}`}
+                >
                 <div className={`text-xs font-mono uppercase tracking-widest mb-3 ${highlight ? "text-cream/70" : "text-ink/70"}`}>
                   {p.name}
                 </div>
@@ -92,10 +99,17 @@ function PaczkiPage() {
                   <span className="text-5xl font-black tracking-tighter">
                     {p.amountPln.toLocaleString("pl-PL")}
                   </span>
+                  <span className={`text-sm ${highlight ? "text-cream/60" : "text-ink/50"}`}>
+                    zł
+                  </span>
                   <span className={`text-sm ${highlight ? "text-cream/60" : "text-ink/70"}`}>zł</span>
                 </div>
-                <p className={`text-sm mb-5 ${highlight ? "text-cream/70" : "text-ink/60"}`}>{p.blurb}</p>
-                <ul className={`space-y-2 text-sm mb-7 flex-1 ${highlight ? "text-cream/90" : "text-ink/80"}`}>
+                <p className={`text-sm mb-5 ${highlight ? "text-cream/70" : "text-ink/60"}`}>
+                  {p.blurb}
+                </p>
+                <ul
+                  className={`space-y-2 text-sm mb-7 flex-1 ${highlight ? "text-cream/90" : "text-ink/80"}`}
+                >
                   {p.features.map((f) => (
                     <li key={f} className="flex gap-2">
                       <span className={highlight ? "text-lime" : "text-ink/70"}>✓</span>
@@ -107,7 +121,9 @@ function PaczkiPage() {
                   to="/checkout"
                   search={{ price: id }}
                   className={`inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full font-bold text-sm transition ${
-                    highlight ? "bg-lime text-ink hover:scale-[1.02]" : "bg-ink text-cream hover:bg-violet hover:text-ink"
+                    highlight
+                      ? "bg-lime text-ink hover:scale-[1.02]"
+                      : "bg-ink text-cream hover:bg-violet hover:text-ink"
                   }`}
                 >
                   Zapłać online →
@@ -136,6 +152,9 @@ function PaczkiPage() {
           </Link>
         </div>
 
+        <p className="mt-10 text-xs text-ink/50 max-w-2xl">
+          Wszystkie ceny są cenami finalnymi. KSIGN korzysta ze zwolnienia podmiotowego z VAT (art.
+          113 ust. 1 ustawy o VAT) — faktura wystawiana jest bez VAT.
         <p className="mt-10 text-xs text-ink/70 max-w-2xl">
           Wszystkie ceny są cenami finalnymi. KSIGN korzysta ze zwolnienia podmiotowego z VAT
           (art. 113 ust. 1 ustawy o VAT) — faktura wystawiana jest bez VAT.

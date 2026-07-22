@@ -22,7 +22,8 @@ export function BlogPreview() {
               id="blog-heading"
               className="text-display-tight text-[10vw] md:text-[6vw] lg:text-[5.5rem] max-w-3xl"
             >
-              WIEDZA<br />O <span className="text-lime">WEB&nbsp;DESIGN</span>
+              WIEDZA
+              <br />O <span className="text-lime">WEB&nbsp;DESIGN</span>
             </h2>
             <p className="mt-6 text-cream/60 max-w-md">
               Praktyczne wskazówki o stronach dla małych firm, SEO i marketingu online.

@@ -9,15 +9,8 @@ import { getCatalogItem, getPreparationChecklist, getPostBriefCta } from "@/lib/
 import { CONTACT, mailto } from "@/lib/contact";
 import { generateOrderPdf } from "@/lib/order-pdf";
 import { generateOrderPdfLink } from "@/lib/order-pdf.functions";
-import {
-  uploadBriefAsset,
-  listBriefAssets,
-  deleteBriefAsset,
-} from "@/lib/brief-assets.functions";
-import {
-  getChecklistProgress,
-  saveChecklistProgress,
-} from "@/lib/checklist-progress.functions";
+import { uploadBriefAsset, listBriefAssets, deleteBriefAsset } from "@/lib/brief-assets.functions";
+import { getChecklistProgress, saveChecklistProgress } from "@/lib/checklist-progress.functions";
 
 const SearchSchema = z.object({
   session_id: z.string().optional(),
@@ -29,10 +22,18 @@ export const Route = createFileRoute("/checkout/return")({
   head: () => ({
     meta: [
       { title: "Status płatności | KSIGN" },
-      { name: "description", content: "Potwierdzenie statusu Twojej płatności w KSIGN i dalsze kroki realizacji zamówienia." },
+      {
+        name: "description",
+        content:
+          "Potwierdzenie statusu Twojej płatności w KSIGN i dalsze kroki realizacji zamówienia.",
+      },
       { name: "robots", content: "noindex,nofollow" },
       { property: "og:title", content: "Status płatności | KSIGN" },
-      { property: "og:description", content: "Potwierdzenie statusu Twojej płatności w KSIGN i dalsze kroki realizacji zamówienia." },
+      {
+        property: "og:description",
+        content:
+          "Potwierdzenie statusu Twojej płatności w KSIGN i dalsze kroki realizacji zamówienia.",
+      },
       { property: "og:url", content: "https://ksign.pl/checkout/return" },
     ],
   }),
@@ -64,20 +65,21 @@ function CheckoutReturn() {
     }
   }, [isCanceled, price, navigate]);
 
-  const { data: order, isFetched, isFetching, refetch } = useQuery({
+  const {
+    data: order,
+    isFetched,
+    isFetching,
+    refetch,
+  } = useQuery({
     queryKey: ["order", session_id, retryCycle],
-    queryFn: () =>
-      session_id ? fetchOrder({ data: { sessionId: session_id } }) : null,
+    queryFn: () => (session_id ? fetchOrder({ data: { sessionId: session_id } }) : null),
     enabled: !!session_id && !isCanceled,
     refetchInterval: (q) => (q.state.data ? false : POLL_INTERVAL_MS),
   });
 
   useEffect(() => {
     if (noSession || order) return;
-    const t = setInterval(
-      () => setPollCount((c) => (c < POLL_MAX ? c + 1 : c)),
-      POLL_INTERVAL_MS,
-    );
+    const t = setInterval(() => setPollCount((c) => (c < POLL_MAX ? c + 1 : c)), POLL_INTERVAL_MS);
     return () => clearInterval(t);
   }, [noSession, order, retryCycle]);
 
@@ -102,13 +104,7 @@ function CheckoutReturn() {
         />
       );
     }
-    return (
-      <LoadingView
-        pollCount={pollCount}
-        max={POLL_MAX}
-        retryCycle={retryCycle}
-      />
-    );
+    return <LoadingView pollCount={pollCount} max={POLL_MAX} retryCycle={retryCycle} />;
   }
 
   return <SuccessView order={order} sessionId={session_id!} navigate={navigate} />;
@@ -172,9 +168,7 @@ function LoadingView({
           <span>
             Próba {Math.min(pollCount + 1, max)}/{max}
           </span>
-          <span>
-            {secondsLeft > 0 ? `~${secondsLeft}s pozostało` : "kończymy…"}
-          </span>
+          <span>{secondsLeft > 0 ? `~${secondsLeft}s pozostało` : "kończymy…"}</span>
         </div>
       </div>
     </Shell>
@@ -186,13 +180,22 @@ function SuccessView({
   sessionId,
   navigate,
 }: {
-  order: { id: string; product_name: string; price_id: string; amount_cents: number; currency: string; brief_completed: boolean };
+  order: {
+    id: string;
+    product_name: string;
+    price_id: string;
+    amount_cents: number;
+    currency: string;
+    brief_completed: boolean;
+  };
   sessionId: string;
   navigate: ReturnType<typeof useNavigate>;
 }) {
   const item = getCatalogItem(order.price_id);
   const briefDone = order.brief_completed;
-  const steps = briefDone ? (item?.postBriefSteps ?? item?.nextSteps ?? []) : (item?.nextSteps ?? []);
+  const steps = briefDone
+    ? (item?.postBriefSteps ?? item?.nextSteps ?? [])
+    : (item?.nextSteps ?? []);
   const [minDays, maxDays] = item?.deliveryDays ?? [3, 7];
   const eta = etaRange(minDays, maxDays);
 
@@ -205,17 +208,16 @@ function SuccessView({
         {briefDone ? "Wszystko gotowe — startujemy!" : "Dzięki za zamówienie!"}
       </h1>
       <p className="text-ink/70 mb-2">
-        <strong>{order.product_name}</strong> —{" "}
-        {(order.amount_cents / 100).toLocaleString("pl-PL")}{" "}
+        <strong>{order.product_name}</strong> — {(order.amount_cents / 100).toLocaleString("pl-PL")}{" "}
         {order.currency.toUpperCase()}
       </p>
-      <p className="text-ink/60 mb-8">
-        Potwierdzenie wysłaliśmy na Twój e-mail.
-      </p>
+      <p className="text-ink/60 mb-8">Potwierdzenie wysłaliśmy na Twój e-mail.</p>
 
       {/* Status + ETA bar */}
       <div className="grid grid-cols-2 gap-3 mb-8 text-left">
         <div className="bg-white border border-ink/10 rounded-2xl p-4">
+          <div className="text-xs text-ink/50 uppercase tracking-wide mb-1">Status briefu</div>
+          <div className="font-bold">{briefDone ? "✓ wypełniony" : "○ oczekuje"}</div>
           <div className="text-xs text-ink/70 uppercase tracking-wide mb-1">Status briefu</div>
           <div className="font-bold">
             {briefDone ? "✓ wypełniony" : "○ oczekuje"}
@@ -225,9 +227,7 @@ function SuccessView({
           <div className="text-xs text-ink/70 uppercase tracking-wide mb-1">
             {briefDone ? "Pierwsza wersja do" : "Realizacja"}
           </div>
-          <div className="font-bold">
-            {briefDone ? eta : `${minDays}–${maxDays} dni rob.`}
-          </div>
+          <div className="font-bold">{briefDone ? eta : `${minDays}–${maxDays} dni rob.`}</div>
         </div>
       </div>
 
@@ -257,7 +257,6 @@ function SuccessView({
         />
       )}
 
-
       {/* Dynamic primary CTA */}
       {!briefDone ? (
         <div className="space-y-3">
@@ -281,13 +280,12 @@ function SuccessView({
               <>
                 <a
                   href={cta.href}
-                  {...(isExternal
-                    ? { target: "_blank", rel: "noopener noreferrer" }
-                    : {})}
+                  {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                   className="inline-flex items-center justify-center gap-2 bg-ink text-cream px-7 py-4 rounded-full font-bold hover:bg-violet hover:text-ink transition"
                 >
                   {cta.label}
                 </a>
+                {cta.note && <p className="text-xs text-ink/50">{cta.note}</p>}
                 {cta.note && (
                   <p className="text-xs text-ink/70">{cta.note}</p>
                 )}
@@ -334,7 +332,15 @@ function etaRange(minDays: number, maxDays: number): string {
   return `${fmt.format(add(minDays))} – ${fmt.format(add(maxDays))}`;
 }
 
-function PreparationChecklist({ orderId, sessionId, items }: { orderId: string; sessionId: string; items: string[] }) {
+function PreparationChecklist({
+  orderId,
+  sessionId,
+  items,
+}: {
+  orderId: string;
+  sessionId: string;
+  items: string[];
+}) {
   const fetchProgress = useServerFn(getChecklistProgress);
   const saveProgress = useServerFn(saveChecklistProgress);
   const legacyKey = `ksign:prep-checklist:${orderId}`;
@@ -444,11 +450,14 @@ function PreparationChecklist({ orderId, sessionId, items }: { orderId: string; 
           {saveState === "saving" && <span className="text-ink/70">zapisywanie…</span>}
           {saveState === "saved" && <span className="text-emerald-600">zapisano ✓</span>}
           {saveState === "error" && <span className="text-red-600">błąd zapisu</span>}
-          <span>{done}/{total}</span>
+          <span>
+            {done}/{total}
+          </span>
         </span>
       </div>
       <p className="text-sm text-ink/60 mb-4">
-        Zbierz te rzeczy zanim zaczniemy — dzięki temu ruszamy bez przestojów. Możesz dopisać notatkę z detalami dla KSIGN do każdego punktu.
+        Zbierz te rzeczy zanim zaczniemy — dzięki temu ruszamy bez przestojów. Możesz dopisać
+        notatkę z detalami dla KSIGN do każdego punktu.
       </p>
 
       <div
@@ -624,6 +633,9 @@ function BriefAssetUploader({ orderId, sessionId }: { orderId: string; sessionId
           {items.length} {items.length === 1 ? "plik" : "plików"}
         </span>
       </div>
+      <p className="text-xs text-ink/50 mb-3">
+        Wgraj pliki, które przygotowałeś z checklisty. Limit 10 MB na plik. Obrazy, PDF, DOC, XLS,
+        ZIP.
       <p className="text-xs text-ink/70 mb-3">
         Wgraj pliki, które przygotowałeś z checklisty. Limit 10 MB na plik. Obrazy, PDF, DOC, XLS, ZIP.
       </p>
@@ -648,6 +660,7 @@ function BriefAssetUploader({ orderId, sessionId }: { orderId: string; sessionId
         </p>
       )}
 
+      {list.isLoading && <p className="text-xs text-ink/40 mt-3">Ładowanie listy plików…</p>}
       {list.isLoading && (
         <p className="text-xs text-ink/70 mt-3">Ładowanie listy plików…</p>
       )}
@@ -697,7 +710,13 @@ function DownloadSummary({
   eta,
   sessionId,
 }: {
-  order: { id: string; product_name: string; amount_cents: number; currency: string; brief_completed: boolean };
+  order: {
+    id: string;
+    product_name: string;
+    amount_cents: number;
+    currency: string;
+    brief_completed: boolean;
+  };
   steps: string[];
   deliveryDays: [number, number];
   eta: string;
@@ -752,7 +771,10 @@ function DownloadSummary({
         >
           {isLoading ? (
             <>
-              <span className="inline-block w-3.5 h-3.5 border-2 border-ink/30 border-t-ink rounded-full animate-spin" aria-hidden="true" />
+              <span
+                className="inline-block w-3.5 h-3.5 border-2 border-ink/30 border-t-ink rounded-full animate-spin"
+                aria-hidden="true"
+              />
               Generowanie…
             </>
           ) : (
@@ -763,10 +785,14 @@ function DownloadSummary({
           )}
         </button>
         {status === "done" && (
-          <span className="text-sm text-ink/70" role="status">✓ Gotowe</span>
+          <span className="text-sm text-ink/70" role="status">
+            ✓ Gotowe
+          </span>
         )}
         {status === "error" && (
-          <span className="text-sm text-red-600" role="status">Błąd generowania</span>
+          <span className="text-sm text-red-600" role="status">
+            Błąd generowania
+          </span>
         )}
 
         <button
@@ -777,7 +803,10 @@ function DownloadSummary({
         >
           {linkMutation.isPending ? (
             <>
-              <span className="inline-block w-3.5 h-3.5 border-2 border-ink/30 border-t-ink rounded-full animate-spin" aria-hidden="true" />
+              <span
+                className="inline-block w-3.5 h-3.5 border-2 border-ink/30 border-t-ink rounded-full animate-spin"
+                aria-hidden="true"
+              />
               Tworzenie linku…
             </>
           ) : (
@@ -799,6 +828,7 @@ function DownloadSummary({
           >
             Pobierz PDF z serwera
           </a>
+          <span className="text-ink/50">· link ważny ok. {minutesLeft} min</span>
           <span className="text-ink/70">
             · link ważny ok. {minutesLeft} min
           </span>
@@ -925,11 +955,10 @@ function ContactSection() {
         >
           <div className="text-2xl mb-2">📅</div>
           <div className="font-bold text-sm">Umów rozmowę</div>
-          <div className="text-xs text-ink/60 group-hover:text-ink transition">
-            15 min, online
-          </div>
+          <div className="text-xs text-ink/60 group-hover:text-ink transition">15 min, online</div>
         </a>
       </div>
+      <p className="text-xs text-ink/40 mt-4 text-center">{CONTACT.hours}</p>
       <p className="text-xs text-ink/70 mt-4 text-center">
         {CONTACT.hours}
       </p>
@@ -960,8 +989,8 @@ function PendingView({
         Przyjęliśmy zlecenie, ale potwierdzenie ze Stripe (webhook) jeszcze nie dotarło.
       </p>
       <p className="text-ink/60 mb-6">
-        Jeśli karta została obciążona — wszystko jest w porządku, status zaktualizuje się automatycznie.
-        Możesz odświeżyć teraz albo wrócić tu za kilka minut.
+        Jeśli karta została obciążona — wszystko jest w porządku, status zaktualizuje się
+        automatycznie. Możesz odświeżyć teraz albo wrócić tu za kilka minut.
       </p>
 
       <div className="bg-white/60 border border-ink/10 rounded-2xl p-6 mb-6">
@@ -995,6 +1024,9 @@ function PendingView({
       </div>
 
       <div className="mt-10">
+        <Link to="/" className="text-sm text-ink/50 underline">
+          ← Wróć na stronę
+        </Link>
         <Link to="/" className="text-sm text-ink/70 underline">← Wróć na stronę</Link>
       </div>
       <p className="text-xs text-ink/70 mt-6 font-mono break-all">ID: {sessionId}</p>

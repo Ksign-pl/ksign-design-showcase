@@ -53,8 +53,7 @@ async function requireAdmin(request: Request): Promise<Response | null> {
 export const Route = createFileRoute("/api/public/og-debug")({
   server: {
     handlers: {
-      OPTIONS: async () =>
-        new Response(null, { status: 204, headers: CORS }),
+      OPTIONS: async () => new Response(null, { status: 204, headers: CORS }),
 
       POST: async ({ request }) => {
         const denied = await requireAdmin(request);
@@ -75,10 +74,10 @@ export const Route = createFileRoute("/api/public/og-debug")({
         try {
           payload = PayloadSchema.parse(await request.json());
         } catch (err) {
-          return new Response(
-            JSON.stringify({ error: "Invalid payload", details: String(err) }),
-            { status: 400, headers: { "Content-Type": "application/json", ...CORS } },
-          );
+          return new Response(JSON.stringify({ error: "Invalid payload", details: String(err) }), {
+            status: 400,
+            headers: { "Content-Type": "application/json", ...CORS },
+          });
         }
 
         const params = new URLSearchParams({

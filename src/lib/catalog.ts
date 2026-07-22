@@ -16,7 +16,7 @@ export interface PostBriefCta {
 export interface CatalogItem {
   priceId: string;
   name: string;
-  amountPln: number;        // grosze converted to PLN integer for display
+  amountPln: number; // grosze converted to PLN integer for display
   recurring: boolean;
   blurb: string;
   features: string[];

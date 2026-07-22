@@ -10,10 +10,16 @@ export const Route = createFileRoute("/reset-password")({
   head: () => ({
     meta: [
       { title: "Ustaw nowe hasło — KSIGN" },
-      { name: "description", content: "Ustaw nowe hasło do swojego konta KSIGN, aby odzyskać dostęp do panelu." },
+      {
+        name: "description",
+        content: "Ustaw nowe hasło do swojego konta KSIGN, aby odzyskać dostęp do panelu.",
+      },
       { name: "robots", content: "noindex,nofollow" },
       { property: "og:title", content: "Ustaw nowe hasło — KSIGN" },
-      { property: "og:description", content: "Ustaw nowe hasło do swojego konta KSIGN, aby odzyskać dostęp do panelu." },
+      {
+        property: "og:description",
+        content: "Ustaw nowe hasło do swojego konta KSIGN, aby odzyskać dostęp do panelu.",
+      },
       { property: "og:url", content: "https://ksign.pl/reset-password" },
     ],
   }),

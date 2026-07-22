@@ -20,10 +20,16 @@ export const Route = createFileRoute("/login")({
   head: () => ({
     meta: [
       { title: "Logowanie — KSIGN" },
-      { name: "description", content: "Zaloguj się do panelu KSIGN, aby zarządzać zamówieniami i swoim kontem." },
+      {
+        name: "description",
+        content: "Zaloguj się do panelu KSIGN, aby zarządzać zamówieniami i swoim kontem.",
+      },
       { name: "robots", content: "noindex,nofollow" },
       { property: "og:title", content: "Logowanie — KSIGN" },
-      { property: "og:description", content: "Zaloguj się do panelu KSIGN, aby zarządzać zamówieniami i swoim kontem." },
+      {
+        property: "og:description",
+        content: "Zaloguj się do panelu KSIGN, aby zarządzać zamówieniami i swoim kontem.",
+      },
       { property: "og:url", content: "https://ksign.pl/login" },
     ],
   }),
@@ -177,19 +183,13 @@ function LoginPage() {
             </div>
           )}
           <Button type="submit" className="w-full" disabled={loading}>
-            {mode === "signin"
-              ? "Zaloguj się"
-              : mode === "signup"
-                ? "Zarejestruj"
-                : "Wyślij link"}
+            {mode === "signin" ? "Zaloguj się" : mode === "signup" ? "Zarejestruj" : "Wyślij link"}
           </Button>
         </form>
 
         <button
           type="button"
-          onClick={() =>
-            setMode(mode === "signin" ? "signup" : "signin")
-          }
+          onClick={() => setMode(mode === "signin" ? "signup" : "signin")}
           className="block w-full text-center text-sm text-muted-foreground hover:text-foreground"
         >
           {mode === "signin"

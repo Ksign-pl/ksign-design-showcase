@@ -18,14 +18,21 @@ import { Footer } from "@/components/site/Footer";
 import { BackToTop } from "@/components/site/BackToTop";
 import { CONTACT } from "@/lib/contact";
 
-
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "KSIGN — Premium web design dla małych firm" },
-      { name: "description", content: "Nowoczesna strona one-page w 3–7 dni za 999 zł netto. KSIGN — premium web design dla firm, które chcą wyglądać profesjonalnie online." },
+      {
+        name: "description",
+        content:
+          "Nowoczesna strona one-page w 3–7 dni za 999 zł netto. KSIGN — premium web design dla firm, które chcą wyglądać profesjonalnie online.",
+      },
       { property: "og:title", content: "KSIGN — Premium web design dla małych firm" },
-      { property: "og:description", content: "Nowoczesna strona one-page w 3–7 dni za 999 zł netto. KSIGN — premium web design dla firm, które chcą wyglądać profesjonalnie online." },
+      {
+        property: "og:description",
+        content:
+          "Nowoczesna strona one-page w 3–7 dni za 999 zł netto. KSIGN — premium web design dla firm, które chcą wyglądać profesjonalnie online.",
+      },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://ksign.pl/" },
       { property: "og:image", content: "https://ksign.pl/og-image.jpg" },
@@ -35,12 +42,14 @@ export const Route = createFileRoute("/")({
       { property: "og:image:alt", content: "KSIGN — premium web design, strona za 999 zł netto" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "KSIGN — Premium web design dla małych firm" },
-      { name: "twitter:description", content: "Nowoczesna strona one-page w 3–7 dni za 999 zł netto. KSIGN — premium web design dla firm, które chcą wyglądać profesjonalnie online." },
+      {
+        name: "twitter:description",
+        content:
+          "Nowoczesna strona one-page w 3–7 dni za 999 zł netto. KSIGN — premium web design dla firm, które chcą wyglądać profesjonalnie online.",
+      },
       { name: "twitter:image", content: "https://ksign.pl/og-image.jpg" },
     ],
-    links: [
-      { rel: "canonical", href: "https://ksign.pl/" },
-    ],
+    links: [{ rel: "canonical", href: "https://ksign.pl/" }],
     scripts: [
       {
         type: "application/ld+json",
@@ -51,11 +60,26 @@ export const Route = createFileRoute("/")({
               "@type": "FAQPage",
               "@id": "https://ksign.pl/#faq",
               mainEntity: [
-                { q: "Czy za 999 zł dostanę sklep internetowy?", a: "Nie. Pakiet Start obejmuje prostą stronę one-page. Sklep internetowy wyceniamy osobno." },
-                { q: "Czy strona będzie responsywna?", a: "Tak. Strona będzie dopasowana do telefonu, tabletu i komputera." },
-                { q: "Ile trwa realizacja?", a: "Standardowo od 3 do 7 dni roboczych po otrzymaniu materiałów." },
-                { q: "Czy pomagacie z tekstami?", a: "Tak. Pomagamy uporządkować podstawowe treści i ułożyć je sprzedażowo." },
-                { q: "Czy mogę później rozbudować stronę?", a: "Tak. Pakiet Start może być bazą do większej strony, SEO, bloga, sklepu lub automatyzacji." },
+                {
+                  q: "Czy za 999 zł dostanę sklep internetowy?",
+                  a: "Nie. Pakiet Start obejmuje prostą stronę one-page. Sklep internetowy wyceniamy osobno.",
+                },
+                {
+                  q: "Czy strona będzie responsywna?",
+                  a: "Tak. Strona będzie dopasowana do telefonu, tabletu i komputera.",
+                },
+                {
+                  q: "Ile trwa realizacja?",
+                  a: "Standardowo od 3 do 7 dni roboczych po otrzymaniu materiałów.",
+                },
+                {
+                  q: "Czy pomagacie z tekstami?",
+                  a: "Tak. Pomagamy uporządkować podstawowe treści i ułożyć je sprzedażowo.",
+                },
+                {
+                  q: "Czy mogę później rozbudować stronę?",
+                  a: "Tak. Pakiet Start może być bazą do większej strony, SEO, bloga, sklepu lub automatyzacji.",
+                },
                 { q: "Czy cena 999 zł jest netto?", a: "Tak. Cena pakietu Start to 999 zł netto." },
               ].map((x) => ({
                 "@type": "Question",
@@ -67,7 +91,8 @@ export const Route = createFileRoute("/")({
               "@type": ["LocalBusiness", "ProfessionalService"],
               "@id": "https://ksign.pl/#business",
               name: "KSIGN",
-              description: "Premium strony internetowe dla małych firm. Pakiet Start — one-page za 999 zł netto, realizacja 3–7 dni roboczych.",
+              description:
+                "Premium strony internetowe dla małych firm. Pakiet Start — one-page za 999 zł netto, realizacja 3–7 dni roboczych.",
               url: "https://ksign.pl/",
               image: "https://ksign.pl/og-image.jpg",
               email: CONTACT.email,
@@ -99,7 +124,8 @@ export const Route = createFileRoute("/")({
               serviceType: "Web design",
               provider: { "@id": "https://ksign.pl/#business" },
               areaServed: { "@type": "Country", name: "Poland" },
-              description: "Nowoczesna, responsywna strona one-page w premium designie. Realizacja 3–7 dni roboczych.",
+              description:
+                "Nowoczesna, responsywna strona one-page w premium designie. Realizacja 3–7 dni roboczych.",
               offers: {
                 "@type": "Offer",
                 price: "999",

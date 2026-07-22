@@ -12,7 +12,11 @@ type SitemapLink = {
 };
 
 const PRIMARY_LINKS: SitemapLink[] = [
-  { to: "/", label: "Strona główna", description: "Premium web design dla małych firm — pakiet startowy 999 zł netto." },
+  {
+    to: "/",
+    label: "Strona główna",
+    description: "Premium web design dla małych firm — pakiet startowy 999 zł netto.",
+  },
   { to: "/blog", label: "Blog", description: "Artykuły o web design, SEO i marketingu online." },
 ];
 
@@ -23,35 +27,78 @@ const BLOG_LINKS: SitemapLink[] = BLOG_POSTS.map((p) => ({
 }));
 
 const HOME_SECTIONS: SitemapLink[] = [
-  { to: "/", hash: "oferta", label: "Oferta / Manifest", description: "Nasze podejście do projektowania stron." },
-  { to: "/", hash: "pakiet", label: "Pakiet startowy", description: "Co wchodzi w skład strony za 999 zł netto." },
-  { to: "/", hash: "rozbudowa", label: "Dodatki i rozbudowa", description: "Rozszerzenia i opcje dodatkowe." },
-  { to: "/", hash: "proces", label: "Proces", description: "Jak wygląda współpraca krok po kroku." },
-  { to: "/", hash: "realizacje", label: "Realizacje / Cennik", description: "Przykłady wdrożeń i przejrzyste ceny." },
+  {
+    to: "/",
+    hash: "oferta",
+    label: "Oferta / Manifest",
+    description: "Nasze podejście do projektowania stron.",
+  },
+  {
+    to: "/",
+    hash: "pakiet",
+    label: "Pakiet startowy",
+    description: "Co wchodzi w skład strony za 999 zł netto.",
+  },
+  {
+    to: "/",
+    hash: "rozbudowa",
+    label: "Dodatki i rozbudowa",
+    description: "Rozszerzenia i opcje dodatkowe.",
+  },
+  {
+    to: "/",
+    hash: "proces",
+    label: "Proces",
+    description: "Jak wygląda współpraca krok po kroku.",
+  },
+  {
+    to: "/",
+    hash: "realizacje",
+    label: "Realizacje / Cennik",
+    description: "Przykłady wdrożeń i przejrzyste ceny.",
+  },
   { to: "/", hash: "faq", label: "FAQ", description: "Najczęściej zadawane pytania." },
   { to: "/", hash: "kontakt", label: "Kontakt", description: `Napisz do nas: ${CONTACT.email}` },
 ];
 
 const LEGAL_LINKS: SitemapLink[] = [
-  { to: "/polityka-prywatnosci", label: "Polityka prywatności", description: "Jak przetwarzamy Twoje dane osobowe (RODO)." },
-  { to: "/polityka-cookies", label: "Polityka cookies", description: "Informacje o plikach cookies i zgodach." },
+  {
+    to: "/polityka-prywatnosci",
+    label: "Polityka prywatności",
+    description: "Jak przetwarzamy Twoje dane osobowe (RODO).",
+  },
+  {
+    to: "/polityka-cookies",
+    label: "Polityka cookies",
+    description: "Informacje o plikach cookies i zgodach.",
+  },
 ];
 
 export const Route = createFileRoute("/sitemap")({
   head: () => ({
     meta: [
       { title: "Mapa witryny — KSIGN" },
-      { name: "description", content: "Pełna mapa witryny KSIGN: strona główna, sekcje oferty, cennik i dokumenty prawne." },
+      {
+        name: "description",
+        content:
+          "Pełna mapa witryny KSIGN: strona główna, sekcje oferty, cennik i dokumenty prawne.",
+      },
       { name: "robots", content: "noindex, follow" },
       { property: "og:title", content: "Mapa witryny — KSIGN" },
-      { property: "og:description", content: "Wszystkie strony i sekcje serwisu KSIGN w jednym miejscu." },
+      {
+        property: "og:description",
+        content: "Wszystkie strony i sekcje serwisu KSIGN w jednym miejscu.",
+      },
       { property: "og:image", content: "https://ksign.pl/og-image.jpg" },
       { property: "og:url", content: "https://ksign.pl/sitemap" },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "KSIGN" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Mapa witryny — KSIGN" },
-      { name: "twitter:description", content: "Wszystkie strony i sekcje serwisu KSIGN w jednym miejscu." },
+      {
+        name: "twitter:description",
+        content: "Wszystkie strony i sekcje serwisu KSIGN w jednym miejscu.",
+      },
       { name: "twitter:image", content: "https://ksign.pl/og-image.jpg" },
     ],
     links: [{ rel: "canonical", href: "https://ksign.pl/sitemap" }],
@@ -63,7 +110,12 @@ export const Route = createFileRoute("/sitemap")({
           "@type": "BreadcrumbList",
           itemListElement: [
             { "@type": "ListItem", position: 1, name: "Strona główna", item: "https://ksign.pl/" },
-            { "@type": "ListItem", position: 2, name: "Mapa witryny", item: "https://ksign.pl/sitemap" },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: "Mapa witryny",
+              item: "https://ksign.pl/sitemap",
+            },
           ],
         }),
       },
@@ -116,12 +168,9 @@ function SitemapPage() {
             Mapa witryny
           </h1>
           <p className="mt-3 text-muted-foreground max-w-2xl">
-            Wszystkie strony i sekcje serwisu KSIGN w jednym miejscu. Wersja XML dla
-            wyszukiwarek dostępna jest pod adresem{" "}
-            <a
-              href="/sitemap.xml"
-              className="underline underline-offset-4 hover:text-foreground"
-            >
+            Wszystkie strony i sekcje serwisu KSIGN w jednym miejscu. Wersja XML dla wyszukiwarek
+            dostępna jest pod adresem{" "}
+            <a href="/sitemap.xml" className="underline underline-offset-4 hover:text-foreground">
               /sitemap.xml
             </a>
             .
