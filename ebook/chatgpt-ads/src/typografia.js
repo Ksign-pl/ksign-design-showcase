@@ -3,7 +3,8 @@
 (function () {
   const NBSP = " ";
   const rules = [
-    [/(^|[\s(„])([aiouwzAIOUWZ])\s+/g, `$1$2${NBSP}`],
+    // Lookbehind, żeby wiązać też ciągi jednoliterowych słów („a w EOG”).
+    [/(?<=^|[\s(„])([aiouwzAIOUWZ])\s+/g, `$1${NBSP}`],
     [/\s+([–—])\s/g, `${NBSP}$1 `],
     [/(\d)\s+(zł|mln|mld|tys\.|dni|dzień|min|minut|stron|znaków|lat)/g, `$1${NBSP}$2`],
     [/(\b(?:str|ok|np|nr)\.)\s+/g, `$1${NBSP}`],

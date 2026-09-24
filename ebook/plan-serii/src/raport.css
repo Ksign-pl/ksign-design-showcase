@@ -1,0 +1,1088 @@
+/* Raport „100 tematów na e-booki” – A4, styl strony ksign.pl:
+   krem #EDE4D3, atrament #0A0A0C, turkus #1F8F87, Instrument Serif + Work Sans. */
+
+@import url("../fonts/fonts.css");
+
+:root {
+  --ink: #0a0a0c;
+  --ink-2: #2b2925;
+  --muted: #5e5a52;
+  --cream: #ede4d3;
+  --papier: #f7f3ea;
+  --karta: #fffdf8;
+  --linia: #e2d8c6;
+  --linia-mocna: #cbbfa9;
+  --turkus: #1f8f87;
+  /* ciemniejszy turkus do drobnego tekstu (kontrast ≥ 4,5:1 na jasnym tle) */
+  --turkus-ciemny: #14655f;
+  --turkus-jasny: #dceeeb;
+  --serif: "Instrument Serif", Georgia, serif;
+  --sans: "Work Sans", system-ui, sans-serif;
+  --margines: 16mm;
+}
+
+@page {
+  size: A4;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--sans);
+  font-size: 9.5pt;
+  line-height: 1.45;
+  color: var(--ink);
+  font-kerning: normal;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media screen {
+  body {
+    background: #8c877e;
+  }
+
+  .page {
+    margin: 10mm auto;
+    box-shadow: 0 2mm 8mm rgb(0 0 0 / 0.25);
+  }
+}
+
+.page {
+  position: relative;
+  width: 210mm;
+  height: 297mm;
+  overflow: hidden;
+  background: var(--papier);
+  break-after: page;
+}
+
+.page:last-child {
+  break-after: auto;
+}
+
+h1,
+h2,
+h3,
+p,
+ol,
+ul,
+dl,
+dd,
+figure {
+  margin: 0;
+}
+
+p,
+dd,
+li {
+  text-wrap: pretty;
+}
+
+em {
+  font-style: italic;
+}
+
+.nw {
+  white-space: nowrap;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ---------- elementy wspólne ---------- */
+
+.glowka {
+  position: absolute;
+  top: 11mm;
+  left: var(--margines);
+  right: var(--margines);
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 2.4mm;
+  border-bottom: 0.3mm solid var(--linia);
+  font-size: 6.8pt;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.stopka {
+  position: absolute;
+  bottom: 9mm;
+  left: var(--margines);
+  right: var(--margines);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 7pt;
+  color: var(--muted);
+}
+
+.stopka__nr {
+  font-family: var(--serif);
+  font-size: 12pt;
+  color: var(--ink);
+}
+
+.tresc {
+  position: absolute;
+  top: 23mm;
+  left: var(--margines);
+  right: var(--margines);
+  bottom: 19mm;
+  overflow: hidden;
+}
+
+.etykieta {
+  font-family: var(--sans);
+  font-size: 7pt;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--turkus-ciemny);
+}
+
+.tytul-strony {
+  font-family: var(--serif);
+  font-size: 30pt;
+  line-height: 1.02;
+  letter-spacing: -0.005em;
+  margin-top: 2.5mm;
+  text-wrap: balance;
+}
+
+.lead {
+  font-size: 10.5pt;
+  line-height: 1.5;
+  color: var(--ink-2);
+  margin-top: 4.5mm;
+  max-width: 160mm;
+}
+
+.zrodlo {
+  font-size: 6.6pt;
+  line-height: 1.35;
+  color: var(--muted);
+}
+
+.sekcja {
+  font-family: var(--serif);
+  font-size: 15pt;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.chip {
+  display: inline-block;
+  font-size: 6pt;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--ink-2);
+  border: 0.25mm solid var(--linia-mocna);
+  border-radius: 99px;
+  padding: 1.1mm 2.2mm;
+}
+
+.chip--top {
+  background: var(--turkus-ciemny);
+  border-color: var(--turkus-ciemny);
+  color: #fff;
+}
+
+/* ---------- okładka ---------- */
+
+.okladka {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.okladka__gora,
+.okladka__dol {
+  position: absolute;
+  left: 18mm;
+  right: 18mm;
+  display: flex;
+  justify-content: space-between;
+  font-size: 7pt;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgb(237 228 211 / 0.72);
+}
+
+.okladka__gora {
+  top: 16mm;
+}
+
+.okladka__dol {
+  bottom: 14mm;
+}
+
+.okladka__tytul {
+  position: absolute;
+  top: 34mm;
+  left: 16mm;
+  right: 18mm;
+  font-family: var(--serif);
+  font-weight: 400;
+}
+
+.okladka__liczba {
+  display: block;
+  font-size: 200pt;
+  line-height: 0.82;
+  letter-spacing: -0.02em;
+  color: var(--turkus);
+}
+
+.okladka__linia {
+  display: block;
+  font-size: 44pt;
+  line-height: 1.02;
+  margin-top: 6mm;
+  padding-left: 2mm;
+}
+
+.okladka__linia + .okladka__linia {
+  margin-top: 0;
+}
+
+.okladka__linia em {
+  color: #8fd1c9;
+}
+
+.okladka__lead {
+  position: absolute;
+  top: 158mm;
+  left: 18mm;
+  width: 118mm;
+  font-size: 10.5pt;
+  line-height: 1.5;
+  color: rgb(237 228 211 / 0.86);
+}
+
+.okladka__filary {
+  position: absolute;
+  left: 18mm;
+  right: 18mm;
+  bottom: 30mm;
+  list-style: none;
+  padding: 0;
+  border-top: 0.3mm solid rgb(237 228 211 / 0.25);
+}
+
+.okladka__filary li {
+  display: grid;
+  grid-template-columns: 16mm 1fr auto;
+  align-items: baseline;
+  padding: 3mm 0;
+  border-bottom: 0.3mm solid rgb(237 228 211 / 0.25);
+}
+
+.okladka__fnr {
+  font-family: var(--serif);
+  font-size: 15pt;
+  color: var(--turkus);
+}
+
+.okladka__fnazwa {
+  font-family: var(--serif);
+  font-size: 17pt;
+}
+
+.okladka__fzakres {
+  font-size: 7.5pt;
+  letter-spacing: 0.08em;
+  color: rgb(237 228 211 / 0.72);
+}
+
+/* ---------- spis treści ---------- */
+
+.spis {
+  list-style: none;
+  padding: 0;
+  margin-top: 12mm;
+  border-top: 0.3mm solid var(--linia-mocna);
+}
+
+.spis li {
+  display: grid;
+  grid-template-columns: 15mm 1fr auto;
+  align-items: baseline;
+  column-gap: 2mm;
+  padding: 3.4mm 0;
+  border-bottom: 0.3mm solid var(--linia);
+}
+
+.spis__nr {
+  font-family: var(--serif);
+  font-size: 13pt;
+  color: var(--turkus);
+}
+
+.spis__tytul {
+  font-family: var(--serif);
+  font-size: 15.5pt;
+  line-height: 1.1;
+}
+
+.spis__opis {
+  display: block;
+  font-family: var(--sans);
+  font-size: 8pt;
+  color: var(--muted);
+  margin-top: 1mm;
+}
+
+.spis__str {
+  font-family: var(--serif);
+  font-size: 15pt;
+}
+
+/* ---------- podsumowanie ---------- */
+
+.wnioski {
+  list-style: none;
+  padding: 0;
+  margin-top: 6mm;
+  display: grid;
+  gap: 2.8mm;
+}
+
+.wnioski li {
+  display: grid;
+  grid-template-columns: 12mm 1fr 34mm;
+  column-gap: 3mm;
+  padding: 3.3mm 5mm 3.5mm;
+  background: var(--karta);
+  border: 0.3mm solid var(--linia);
+  border-radius: 3mm;
+}
+
+.wnioski__nr {
+  font-family: var(--serif);
+  font-size: 26pt;
+  line-height: 0.9;
+  color: var(--turkus);
+}
+
+.wnioski__tytul {
+  font-weight: 600;
+  font-size: 10.5pt;
+  line-height: 1.3;
+}
+
+.wnioski__tekst {
+  font-size: 8.8pt;
+  line-height: 1.45;
+  margin-top: 1.2mm;
+  color: var(--ink-2);
+}
+
+.wnioski__zrodlo {
+  margin-top: 1.6mm;
+}
+
+.wnioski__filar {
+  align-self: start;
+  justify-self: end;
+}
+
+.cytat {
+  margin-top: 5mm;
+  padding: 5mm 6mm;
+  background: var(--ink);
+  color: var(--cream);
+  border-radius: 3mm;
+}
+
+.cytat blockquote {
+  margin: 0;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 13.5pt;
+  line-height: 1.22;
+}
+
+.cytat figcaption {
+  margin-top: 2.4mm;
+  font-size: 6.8pt;
+  letter-spacing: 0.04em;
+  color: rgb(237 228 211 / 0.72);
+}
+
+/* ---------- metoda i mapa ---------- */
+
+.kryteria {
+  margin-top: 6mm;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.5mm;
+}
+
+.kryterium {
+  padding: 3.6mm 5mm;
+  background: var(--karta);
+  border: 0.3mm solid var(--linia);
+  border-radius: 3mm;
+}
+
+.kryterium__nr {
+  font-family: var(--serif);
+  font-size: 18pt;
+  line-height: 1;
+  color: var(--turkus);
+}
+
+.kryterium__tytul {
+  font-weight: 600;
+  font-size: 9.8pt;
+  margin-top: 1.5mm;
+}
+
+.kryterium p {
+  font-size: 8.5pt;
+  line-height: 1.45;
+  color: var(--ink-2);
+  margin-top: 1mm;
+}
+
+.naglowek-sekcji {
+  margin-top: 6.5mm;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4mm;
+}
+
+.tabela {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 3mm;
+  font-size: 8.3pt;
+  line-height: 1.35;
+}
+
+.tabela th {
+  font-size: 6.3pt;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--turkus-ciemny);
+  text-align: left;
+  padding: 2mm 2mm 2mm 0;
+  border-bottom: 0.4mm solid var(--ink);
+  vertical-align: bottom;
+}
+
+.tabela td {
+  padding: 2.3mm 2mm 2.3mm 0;
+  border-bottom: 0.3mm solid var(--linia);
+  vertical-align: top;
+}
+
+.tabela .liczba {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  padding-right: 0;
+}
+
+.mapa td.liczba {
+  font-family: var(--serif);
+  font-size: 13pt;
+  line-height: 1;
+}
+
+.mapa td.zero {
+  color: var(--linia-mocna);
+}
+
+.mapa tr.suma td {
+  border-bottom: 0;
+  border-top: 0.4mm solid var(--ink);
+  font-weight: 600;
+}
+
+/* Instrument Serif ma tylko krój 400 – bez sztucznego pogrubienia liczb. */
+.mapa tr.suma td.liczba {
+  font-weight: 400;
+}
+
+.mapa th.liczba,
+.mapa td.liczba {
+  text-align: right;
+  padding-right: 2.5mm;
+}
+
+.mapa th:last-child,
+.mapa td:last-child {
+  padding-right: 0;
+}
+
+.mapa th {
+  line-height: 1.3;
+  letter-spacing: 0.06em;
+}
+
+.komentarz {
+  margin-top: 3.5mm;
+  font-size: 8.6pt;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+
+.legenda {
+  margin-top: 4.5mm;
+  padding: 4mm 5mm;
+  border: 0.3mm dashed var(--linia-mocna);
+  border-radius: 3mm;
+  font-size: 8.3pt;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+.legenda strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* ---------- TOP 10 ---------- */
+
+.top10 td {
+  padding-top: 2.6mm;
+  padding-bottom: 2.6mm;
+}
+
+.top10__miesiac {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.top10__nr {
+  font-family: var(--serif);
+  font-size: 13pt;
+  line-height: 1;
+  color: var(--turkus);
+}
+
+.top10__tytul {
+  font-family: var(--serif);
+  font-size: 12.5pt;
+  line-height: 1.08;
+}
+
+.top10__pod {
+  display: block;
+  font-size: 7.4pt;
+  color: var(--muted);
+  margin-top: 0.8mm;
+}
+
+.top10 tr.pauza td {
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* Work Sans ma kursywę tylko w kroju 400 – miesiąc zostaje prosty. */
+.top10 tr.pauza td.top10__miesiac {
+  font-style: normal;
+}
+
+.przypis {
+  margin-top: 4mm;
+  font-size: 7.6pt;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+/* ---------- otwarcie filaru ---------- */
+
+.filar {
+  background: var(--cream);
+}
+
+.filar .glowka {
+  border-bottom-color: var(--linia-mocna);
+}
+
+.filar__gora {
+  display: grid;
+  grid-template-columns: 52mm 1fr;
+  align-items: end;
+  column-gap: 4mm;
+  margin-top: 2mm;
+}
+
+.filar__nr {
+  font-family: var(--serif);
+  font-size: 150pt;
+  line-height: 0.78;
+  letter-spacing: -0.03em;
+  color: var(--turkus);
+}
+
+.filar__nazwa {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 34pt;
+  line-height: 1;
+  margin-top: 2mm;
+  text-wrap: balance;
+}
+
+.filar__lead {
+  margin-top: 7mm;
+  font-size: 10.5pt;
+  line-height: 1.52;
+  color: var(--ink-2);
+}
+
+.filar__dane {
+  margin-top: 6mm;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3.5mm;
+}
+
+.filar__dane--2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.dana {
+  padding: 3.8mm 4.2mm;
+  border: 0.3mm solid var(--linia-mocna);
+  border-radius: 3mm;
+  background: rgb(255 253 248 / 0.55);
+}
+
+.dana__liczba {
+  font-family: var(--serif);
+  font-size: 24pt;
+  line-height: 1;
+  color: var(--turkus-ciemny);
+  white-space: nowrap;
+}
+
+.dana__opis {
+  font-size: 8.1pt;
+  line-height: 1.4;
+  margin-top: 1.8mm;
+}
+
+.dana .zrodlo {
+  margin-top: 1.6mm;
+}
+
+.filar .cytat {
+  margin-top: 4mm;
+}
+
+.filar__spis {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.filar__spis ol {
+  list-style: none;
+  padding: 0;
+  margin-top: 2.5mm;
+  columns: 2;
+  column-gap: 8mm;
+  border-top: 0.3mm solid var(--linia-mocna);
+}
+
+.filar__spis li {
+  break-inside: avoid;
+  display: grid;
+  grid-template-columns: 10mm 1fr auto;
+  align-items: baseline;
+  column-gap: 1.5mm;
+  padding: 2.3mm 0;
+  border-bottom: 0.3mm solid var(--linia);
+  font-size: 8.8pt;
+  line-height: 1.25;
+}
+
+.filar__spis-nr {
+  font-family: var(--serif);
+  font-size: 11pt;
+  color: var(--turkus-ciemny);
+}
+
+.filar__spis-top {
+  font-size: 5.8pt;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--turkus-ciemny);
+  white-space: nowrap;
+}
+
+/* ---------- karty tematów ---------- */
+
+.siatka {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 5mm;
+  height: 100%;
+}
+
+.karta {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 5.6mm 5.8mm 5mm;
+  background: var(--karta);
+  border: 0.3mm solid var(--linia);
+  border-radius: 3.5mm;
+}
+
+.karta__gora {
+  display: flex;
+  align-items: center;
+  gap: 1.6mm;
+  margin-bottom: 3.2mm;
+}
+
+.karta__nr {
+  font-family: var(--serif);
+  font-size: 24pt;
+  line-height: 0.9;
+  color: var(--turkus);
+  margin-right: auto;
+}
+
+.karta__tytul {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 19.5pt;
+  line-height: 1.04;
+  text-wrap: balance;
+}
+
+.karta__pod {
+  margin-top: 1.8mm;
+  font-size: 8.7pt;
+  line-height: 1.35;
+  color: var(--muted);
+}
+
+.karta__pola {
+  margin-top: 4mm;
+  padding-top: 3.5mm;
+  border-top: 0.3mm solid var(--linia);
+  display: grid;
+  gap: 3.1mm;
+}
+
+.karta dt {
+  font-size: 6.3pt;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--turkus-ciemny);
+  margin-bottom: 0.8mm;
+}
+
+.karta dd {
+  font-size: 8.8pt;
+  line-height: 1.44;
+}
+
+.karta__problem {
+  font-style: italic;
+  color: var(--ink-2);
+}
+
+.rozdzialy {
+  list-style: none;
+  padding: 0;
+  counter-reset: rozdzial;
+  display: grid;
+  gap: 1.1mm;
+}
+
+.rozdzialy li {
+  counter-increment: rozdzial;
+  display: grid;
+  grid-template-columns: 4.6mm 1fr;
+  align-items: baseline;
+}
+
+.rozdzialy li::before {
+  content: counter(rozdzial);
+  font-family: var(--serif);
+  font-size: 11pt;
+  line-height: 1;
+  color: var(--turkus);
+}
+
+/* ---------- szablony ---------- */
+
+.plan td,
+.plan th {
+  font-size: 7.4pt;
+}
+
+.plan td {
+  padding-top: 2mm;
+  padding-bottom: 2mm;
+  height: 14.6mm;
+}
+
+.plan .propozycja {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.plan .puste {
+  background-image: linear-gradient(var(--linia-mocna), var(--linia-mocna));
+  background-size: calc(100% - 3mm) 0.25mm;
+  background-repeat: no-repeat;
+  background-position: 0 calc(100% - 3mm);
+}
+
+.formularz {
+  margin-top: 6mm;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 3mm;
+}
+
+.pole {
+  grid-column: span var(--s, 6);
+  display: flex;
+  flex-direction: column;
+  border: 0.3mm solid var(--linia-mocna);
+  border-radius: 2.4mm;
+  background: var(--karta);
+  padding: 2.6mm 3.4mm 2.4mm;
+}
+
+/* Linie do pisania – zwykłe obramowania, żeby w PDF były równe i ostre. */
+.pole__linie {
+  margin-top: auto;
+  padding-top: 1mm;
+}
+
+.pole__linie i {
+  display: block;
+  height: 6mm;
+  border-bottom: 0.25mm solid var(--linia-mocna);
+}
+
+.pole__etykieta {
+  font-size: 6.2pt;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--turkus-ciemny);
+}
+
+.pole__podpowiedz {
+  display: block;
+  font-size: 6.8pt;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--muted);
+  margin-top: 0.6mm;
+}
+
+.harmonogram td:first-child {
+  font-weight: 600;
+  white-space: nowrap;
+  width: 24mm;
+}
+
+.harmonogram td.kratka {
+  width: 12mm;
+}
+
+.harmonogram td.kratka::before {
+  content: "";
+  display: inline-block;
+  width: 3.4mm;
+  height: 3.4mm;
+  border: 0.3mm solid var(--linia-mocna);
+  border-radius: 0.8mm;
+  background: var(--karta);
+}
+
+.kpi td.puste {
+  width: 26mm;
+  background-image: linear-gradient(var(--linia-mocna), var(--linia-mocna));
+  background-size: calc(100% - 3mm) 0.25mm;
+  background-repeat: no-repeat;
+  background-position: 0 calc(100% - 2.4mm);
+}
+
+.silnik {
+  margin-top: 3mm;
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 2.2mm;
+}
+
+.silnik li {
+  position: relative;
+  padding: 3mm 3mm 3.2mm;
+  background: var(--karta);
+  border: 0.3mm solid var(--linia);
+  border-radius: 2.4mm;
+  font-size: 7.6pt;
+  line-height: 1.35;
+}
+
+.silnik strong {
+  display: block;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 15pt;
+  line-height: 1;
+  color: var(--turkus);
+  margin-bottom: 1.4mm;
+}
+
+.cta-linia {
+  margin-top: 3mm;
+  font-size: 8.4pt;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+
+/* ---------- metodologia ---------- */
+
+.akapity p {
+  font-size: 9pt;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+.akapity p + p {
+  margin-top: 2.6mm;
+}
+
+.zrodla {
+  margin-top: 3mm;
+  padding-left: 5mm;
+  font-size: 8.4pt;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+
+.zrodla li + li {
+  margin-top: 1.8mm;
+}
+
+.zrodla a {
+  color: var(--turkus-ciemny);
+  word-break: break-all;
+}
+
+.zastrzezenia {
+  margin-top: 3mm;
+  padding-left: 5mm;
+  font-size: 8.4pt;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+
+.zastrzezenia li + li {
+  margin-top: 1.6mm;
+}
+
+/* ---------- ostatnia strona ---------- */
+
+.koniec {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.koniec .etykieta {
+  color: #8fd1c9;
+}
+
+.koniec__tresc {
+  position: absolute;
+  top: 40mm;
+  left: 18mm;
+  right: 18mm;
+}
+
+.koniec__tytul {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 40pt;
+  line-height: 1.02;
+  margin-top: 4mm;
+  text-wrap: balance;
+}
+
+.kroki {
+  list-style: none;
+  padding: 0;
+  margin-top: 14mm;
+  border-top: 0.3mm solid rgb(237 228 211 / 0.25);
+}
+
+.kroki li {
+  display: grid;
+  grid-template-columns: 16mm 1fr;
+  padding: 5mm 0;
+  border-bottom: 0.3mm solid rgb(237 228 211 / 0.25);
+  font-size: 10.5pt;
+  line-height: 1.5;
+  color: rgb(237 228 211 / 0.9);
+}
+
+.kroki__nr {
+  font-family: var(--serif);
+  font-size: 22pt;
+  line-height: 1;
+  color: var(--turkus);
+}
+
+.koniec__dol {
+  position: absolute;
+  left: 18mm;
+  right: 18mm;
+  bottom: 14mm;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.koniec__marka {
+  font-family: var(--serif);
+  font-size: 30pt;
+  line-height: 1;
+}
+
+.koniec__www {
+  font-size: 8pt;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgb(237 228 211 / 0.72);
+}

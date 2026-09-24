@@ -1,0 +1,1434 @@
+{
+  "raport": {
+    "tytul": "100 tematów na e-booki o marketingu e-commerce",
+    "wydawca": "KSIGN",
+    "stan": "24.09.2026"
+  },
+  "segmenty": {
+    "male": "Małe sklepy",
+    "srednie": "Średnie i duże sklepy",
+    "d2c": "Marki D2C",
+    "marketplace": "Sprzedawcy marketplace",
+    "b2b": "E-commerce B2B",
+    "omni": "Sieci i sklepy z salonami"
+  },
+  "filary": [
+    {
+      "id": "ai",
+      "nazwa": "AI i automatyzacja",
+      "lead": "AI zmienia trzy rzeczy naraz: jak klienci szukają produktów, jak sklep tworzy treści i jak pracuje zespół. Wygrają sklepy, które użyją AI tam, gdzie oszczędza czas i pieniądze, a rozmowę z klientem zostawią ludziom tam, gdzie klient tego chce.",
+      "dane": [
+        {
+          "liczba": "53%",
+          "opis": "internautów w Polsce korzysta z narzędzi AI",
+          "zrodlo": "Gemius, E-commerce w Polsce 2025, s. 4"
+        },
+        {
+          "liczba": "51%",
+          "opis": "osób po kontakcie z wirtualnym asystentem ocenia go dobrze, 20% źle",
+          "zrodlo": "Gemius, E-commerce w Polsce 2025, s. 4"
+        },
+        {
+          "liczba": "8%",
+          "opis": "internautów woli kontakt ze sklepem przez chatbota; e-mail wybiera 31%, telefon 26%",
+          "zrodlo": "Gemius, komunikat do raportu 2025"
+        }
+      ],
+      "tematy": [
+        {
+          "tytul": "AI poleca konkurencję.",
+          "podtytul": "Jak trafić do odpowiedzi ChatGPT, Gemini i Google AI",
+          "dla": "Sklepy z ruchem z Google i szeroką ofertą (Shoper, IdoSell, WooCommerce)",
+          "segment": "srednie",
+          "problem": "Klienci pytają asystentów AI, gdzie kupić, a w odpowiedziach pojawia się konkurencja. Nie wiem, co zrobić, żeby AI polecało mój sklep.",
+          "rozdzialy": [
+            "Test: 50 pytań zakupowych w 4 asystentach AI",
+            "Dane produktów, opinie i wzmianki, które czyta AI",
+            "Jak mierzyć ruch i sprzedaż z asystentów AI"
+          ]
+        },
+        {
+          "tytul": "Sklep na autopilocie.",
+          "podtytul": "Automatyzacje i AI, które oddają właścicielowi godziny",
+          "dla": "Małe sklepy, w których właściciel robi prawie wszystko sam",
+          "segment": "male",
+          "problem": "Opisy, zdjęcia, maile i raporty zajmują cały dzień. Na marketing nie zostaje czasu, a na kolejnego pracownika nie ma budżetu.",
+          "rozdzialy": [
+            "Mapa zadań: co automatyzować najpierw",
+            "Make, Zapier i n8n: 10 gotowych scenariuszy",
+            "Czego nie automatyzować, żeby nie stracić klientów"
+          ]
+        },
+        {
+          "tytul": "500 opisów w jeden dzień.",
+          "podtytul": "Opisy produktów z AI, które sprzedają i nie szkodzą w Google",
+          "dla": "Sklepy z dużym katalogiem (1000+ produktów), hurtownie, dropshipping",
+          "segment": "srednie",
+          "problem": "Tysiące produktów mają opisy od producenta albo nie mają ich wcale. Ręcznie tego nie napiszę, a obawiam się, że teksty z AI zaszkodzą w Google.",
+          "rozdzialy": [
+            "Szablon opisu: dane, korzyści, pytania klientów",
+            "Kontrola jakości: fakty, ton, powtórzenia",
+            "Treści z AI a zasady Google: gdzie jest granica"
+          ]
+        },
+        {
+          "tytul": "Sesja zdjęciowa bez studia.",
+          "podtytul": "Packshoty i zdjęcia aranżacyjne produktów z AI",
+          "dla": "Marki D2C i sklepy z modą, wyposażeniem wnętrz i dekoracjami",
+          "segment": "d2c",
+          "problem": "Profesjonalna sesja kosztuje tysiące złotych przy każdej kolekcji, a zdjęcia z telefonu wyglądają tanio i nie budzą zaufania.",
+          "rozdzialy": [
+            "Packshot, aranżacja, model: co już da się zrobić z AI",
+            "Wierność produktu: kolor, faktura, proporcje",
+            "Prawa do obrazów i oznaczanie treści z AI"
+          ]
+        },
+        {
+          "tytul": "Reklama wideo w godzinę.",
+          "podtytul": "Kreacje wideo z AI dla Meta, TikToka i YouTube",
+          "dla": "Sklepy prowadzące kampanie w Meta Ads i TikTok Ads",
+          "segment": "srednie",
+          "problem": "Algorytmy reklamowe potrzebują ciągle nowych kreacji wideo, a nie ma ekipy ani budżetu na produkcję co tydzień.",
+          "rozdzialy": [
+            "Od zdjęcia produktu do 15-sekundowego wideo",
+            "Lektor AI, awatary i napisy: co działa, a co odstrasza",
+            "Test 20 wariantów bez przepalania budżetu"
+          ]
+        },
+        {
+          "tytul": "Obsługa 24/7 bez nocnej zmiany.",
+          "podtytul": "Chatbot, który wie, kiedy oddać rozmowę człowiekowi",
+          "dla": "Sklepy, które dostają dziesiątki podobnych pytań dziennie",
+          "segment": "srednie",
+          "problem": "Klienci pytają ciągle o to samo: dostawa, zwroty, rozmiary. Odpowiedzi przychodzą z opóźnieniem i część osób kupuje gdzie indziej.",
+          "rozdzialy": [
+            "Baza wiedzy, na której AI nie zmyśla",
+            "Pierwsza linia z AI, trudne sprawy do człowieka",
+            "Mierniki: czas odpowiedzi, rozwiązane sprawy, sprzedaż"
+          ]
+        },
+        {
+          "tytul": "Agent kupuje za klienta.",
+          "podtytul": "Jak przygotować sklep na zakupy przez agentów AI",
+          "dla": "Średnie i duże sklepy oraz marki D2C z własnym sklepem",
+          "segment": "srednie",
+          "problem": "Asystenci AI zaczynają sami wyszukiwać i kupować produkty. Nie wiem, czy mój sklep jest dla nich czytelny i od czego zacząć.",
+          "rozdzialy": [
+            "Zakupy przez agentów AI: co działa dziś, a co to zapowiedź",
+            "Feed, dane i checkout czytelne dla maszyn",
+            "Zwroty i zaufanie, gdy kupuje agent, a nie człowiek"
+          ]
+        },
+        {
+          "tytul": "Personalizacja, która nie straszy.",
+          "podtytul": "Rekomendacje produktów z AI na stronie i w mailach",
+          "dla": "Sklepy z szerokim katalogiem i dużym ruchem",
+          "segment": "srednie",
+          "problem": "Każdy klient widzi tę samą stronę główną i te same polecane produkty. Nie wiem, czy personalizacja opłaci się w sklepie mojej wielkości.",
+          "rozdzialy": [
+            "Rekomendacje: reguły czy AI i kiedy które",
+            "Personalizacja karty produktu, koszyka i maili",
+            "Jak policzyć, czy personalizacja zarabia"
+          ]
+        },
+        {
+          "tytul": "Ceny, które same się ustawiają.",
+          "podtytul": "Dynamiczne ceny z AI zgodnie z Omnibusem",
+          "dla": "Sklepy z elektroniką, AGD i produktami porównywanymi w Ceneo",
+          "segment": "srednie",
+          "problem": "Konkurencja zmienia ceny kilka razy dziennie, a ja robię to ręcznie w arkuszu. Tracę albo marżę, albo pozycję w porównywarkach.",
+          "rozdzialy": [
+            "Monitoring cen konkurencji i porównywarek",
+            "Reguły cenowe z AI: marża, stan, popyt",
+            "Omnibus: obniżki i ceny personalizowane"
+          ]
+        },
+        {
+          "tytul": "Nie reklamuj pustej półki.",
+          "podtytul": "Stany magazynowe i marża połączone z kampaniami",
+          "dla": "Sklepy z kampaniami produktowymi w Google i katalogiem w Meta",
+          "segment": "srednie",
+          "problem": "Płacę za kliknięcia w produkty, których nie ma na stanie, a bestsellery dostają za mało budżetu, bo kampanie nie widzą magazynu ani marży.",
+          "rozdzialy": [
+            "Stan i marża w feedzie reklamowym",
+            "Automatyczne wyłączanie i wzmacnianie produktów",
+            "Prognoza popytu przed sezonem"
+          ]
+        },
+        {
+          "tytul": "Pracuj z AI jak z seniorem.",
+          "podtytul": "Biblioteka poleceń AI dla marketerów e-commerce",
+          "dla": "Marketerzy i e-commerce managerowie w małych zespołach",
+          "segment": "male",
+          "problem": "Korzystam z ChatGPT przy pojedynczych zadaniach, ale wyniki są przeciętne, a każdy w zespole pisze polecenia po swojemu.",
+          "rozdzialy": [
+            "50 poleceń: opisy, maile, reklamy, analizy",
+            "Jak dać AI kontekst marki i klienta",
+            "Wspólna biblioteka i kontrola jakości w zespole"
+          ]
+        },
+        {
+          "tytul": "Raport sam się napisze.",
+          "podtytul": "Automatyczne raporty sprzedaży, reklam i marży",
+          "dla": "Właściciele sklepów, którzy sami zbierają liczby do arkusza",
+          "segment": "male",
+          "problem": "W poniedziałek pół dnia schodzi na zbieraniu liczb z panelu sklepu, GA4, Meta i Google do jednego arkusza.",
+          "rozdzialy": [
+            "Jeden panel: sprzedaż, reklamy, marża",
+            "Alerty, gdy coś spada albo rośnie za szybko",
+            "AI, które komentuje liczby, a nie tylko je zbiera"
+          ]
+        },
+        {
+          "tytul": "Opinie mówią więcej niż ankieta.",
+          "podtytul": "AI do analizy recenzji, maili i powodów zwrotów",
+          "dla": "Marki D2C i sklepy z setkami opinii i zapytań miesięcznie",
+          "segment": "d2c",
+          "problem": "Mam tysiące opinii, maili i wiadomości od klientów, ale nikt nie czyta ich w całości. Wiedza o tym, co poprawić, przepada.",
+          "rozdzialy": [
+            "Opinie z wielu źródeł w jednym miejscu",
+            "Tematy, emocje i powody zwrotów wyciągnięte przez AI",
+            "Od wniosków do zmian w produkcie i komunikacji"
+          ]
+        },
+        {
+          "tytul": "Sklep po czesku i niemiecku.",
+          "podtytul": "Tłumaczenia z AI przy sprzedaży za granicę",
+          "dla": "Polskie sklepy i marki D2C wchodzące na rynki UE",
+          "segment": "d2c",
+          "problem": "Chcę sprzedawać w Czechach i Niemczech, ale tłumaczenie tysięcy produktów w biurze tłumaczeń jest drogie i trwa miesiącami.",
+          "rozdzialy": [
+            "Podział pracy: AI tłumaczy, człowiek sprawdza",
+            "Lokalne słowa kluczowe zamiast tłumaczenia 1:1",
+            "Obsługa klienta w obcym języku z pomocą AI"
+          ]
+        },
+        {
+          "tytul": "AI mówi głosem twojej marki.",
+          "podtytul": "Księga marki dla treści tworzonych z AI",
+          "dla": "Marki D2C, które publikują dużo treści z AI",
+          "segment": "d2c",
+          "problem": "Treści z AI są poprawne, ale każda brzmi inaczej i żadna nie przypomina naszej marki. Klienci zaczynają to zauważać.",
+          "rozdzialy": [
+            "Księga marki dla AI: ton, słowa, zakazy",
+            "Szablony i przykłady, z których AI się uczy",
+            "Kontrola jakości przed publikacją"
+          ]
+        },
+        {
+          "tytul": "AI Act w sklepie internetowym.",
+          "podtytul": "Co trzeba oznaczać i czego nie wolno robić z AI",
+          "dla": "Sklepy, które używają chatbotów i treści tworzonych przez AI",
+          "segment": "male",
+          "problem": "AI działa w obsłudze klienta, w zdjęciach i w reklamach. Nie wiem, które obowiązki z AI Act dotyczą mojego sklepu i od kiedy.",
+          "rozdzialy": [
+            "Chatbot, deepfake, treść z AI: obowiązki informacyjne",
+            "Zakazane praktyki: manipulacja i wykorzystywanie słabości",
+            "Prosta procedura dla małego zespołu"
+          ]
+        },
+        {
+          "tytul": "Wyszukiwarka, która rozumie klienta.",
+          "podtytul": "Wyszukiwanie w sklepie oparte na AI",
+          "dla": "Sklepy z szerokim katalogiem: elektronika, moda, części, narzędzia",
+          "segment": "srednie",
+          "problem": "Klienci wpisują w wyszukiwarkę słowa, których nie ma w nazwach produktów, i widzą zero wyników. Wychodzą do konkurencji.",
+          "rozdzialy": [
+            "Analiza zapytań bez wyników",
+            "Synonimy, literówki i wyszukiwanie po opisie",
+            "Wyszukiwarka jako źródło danych o popycie"
+          ]
+        },
+        {
+          "tytul": "Mniej zwrotów dzięki danym.",
+          "podtytul": "AI w dopasowaniu rozmiaru i analizie powodów zwrotów",
+          "dla": "Marki i sklepy z modą, obuwiem i odzieżą sportową",
+          "segment": "d2c",
+          "problem": "Duża część paczek wraca, bo rozmiar nie pasuje. Zwroty zjadają marżę, a klienci i tak zamawiają kilka rozmiarów naraz.",
+          "rozdzialy": [
+            "Tabele rozmiarów i rekomendacje dopasowania",
+            "Powody zwrotów z AI: produkt, opis czy zdjęcie",
+            "Automatyczna obsługa zwrotu, która ratuje sprzedaż"
+          ]
+        },
+        {
+          "tytul": "Doradca, który zna cały katalog.",
+          "podtytul": "Quiz i asystent zakupowy AI zamiast samych filtrów",
+          "dla": "Sklepy z produktami, które wymagają porady: meble, kosmetyki, sport",
+          "segment": "srednie",
+          "problem": "Klienci nie wiedzą, który produkt wybrać, i opuszczają stronę. W salonie doradziłby im sprzedawca, online nikt tego nie robi.",
+          "rozdzialy": [
+            "Quiz produktowy czy czat z doradcą AI",
+            "Pytania, które prowadzą do zakupu",
+            "Dane z doradcy w reklamach i mailach"
+          ]
+        },
+        {
+          "tytul": "Ile naprawdę zarabia twoje AI?",
+          "podtytul": "Koszty, zwrot z inwestycji i wybór narzędzi AI",
+          "dla": "Właściciele sklepów planujący budżet na narzędzia AI",
+          "segment": "male",
+          "problem": "Każde narzędzie obiecuje wzrost sprzedaży, abonamenty się sumują, a nie wiem, które naprawdę na siebie zarabiają.",
+          "rozdzialy": [
+            "Koszt całkowity: abonamenty, wdrożenie, czas zespołu",
+            "Pomiar efektu: test z grupą kontrolną",
+            "Mapa narzędzi AI dla sklepów i jak je wybierać"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "retencja",
+      "nazwa": "Marketing relacyjny i retention",
+      "lead": "Nowych kupujących w polskim internecie prawie nie przybywa. Rośnie ten sklep, do którego klienci wracają: dzięki mailom, lojalności, obsłudze i dobremu doświadczeniu po zakupie. Ten filar to tematy o drugim, trzecim i dziesiątym zamówieniu.",
+      "cytat": {
+        "tekst": "Pole do wzrostów to dziś praca nad częstotliwością zakupów, wartością koszyka i retencją, a nie walka o «nowych kupujących» na rynku.",
+        "autor": "Bartosz Wójcik, Gemius, E-commerce w Polsce 2025, s. 4"
+      },
+      "dane": [
+        {
+          "liczba": "78%",
+          "opis": "internautów kupuje online; to tylko niewielki wzrost rok do roku – efekt sufitu",
+          "zrodlo": "Gemius, E-commerce w Polsce 2025, s. 4"
+        },
+        {
+          "liczba": "31%",
+          "opis": "internautów woli kontakt ze sklepem przez e-mail – to najczęstszy wybór",
+          "zrodlo": "Gemius, komunikat do raportu 2025"
+        }
+      ],
+      "tematy": [
+        {
+          "tytul": "Drugi zakup jest najtańszy.",
+          "podtytul": "E-mail, SMS i automaty po pierwszym zamówieniu",
+          "dla": "Sklepy ze stałą sprzedażą, w których większość klientów kupuje raz",
+          "segment": "srednie",
+          "problem": "Pozyskuję klientów drogimi reklamami, a większość kupuje tylko raz. Nie wiem, jak sprowadzić ich z powrotem bez ciągłych rabatów.",
+          "rozdzialy": [
+            "5 automatów, które sprowadzają klienta drugi raz",
+            "Kiedy wysłać: cykl zakupowy z twoich danych",
+            "Test: porzucony koszyk w 50 polskich sklepach"
+          ]
+        },
+        {
+          "tytul": "Klient z Black Friday nie musi zniknąć.",
+          "podtytul": "Plan na 90 dni po największej promocji roku",
+          "dla": "Sklepy, dla których Q4 to największa część rocznej sprzedaży",
+          "segment": "srednie",
+          "problem": "W listopadzie przychodzą setki nowych klientów skuszonych rabatem, a w styczniu prawie nikt z nich nie wraca.",
+          "rozdzialy": [
+            "Powitanie klienta z promocji",
+            "Sekwencja styczeń–marzec bez kolejnych rabatów",
+            "Łowcy okazji a przyszli stali klienci: kogo odpuścić"
+          ]
+        },
+        {
+          "tytul": "Lista mailowa bez rabatu -10%.",
+          "podtytul": "Jak zbierać zapisy, które kupują w pełnej cenie",
+          "dla": "Marki D2C i sklepy lifestyle budujące bazę mailingową",
+          "segment": "d2c",
+          "problem": "Adresy zbieram za kod rabatowy, więc lista rośnie, ale zapisani czekają tylko na kolejną zniżkę i rzadko kupują w pełnej cenie.",
+          "rozdzialy": [
+            "Zachęty inne niż rabat: wiedza, dostęp, prezent",
+            "Formularze i pop-upy zgodne z RODO",
+            "Seria powitalna, która buduje relację"
+          ]
+        },
+        {
+          "tytul": "RFM w arkuszu.",
+          "podtytul": "Segmentacja klientów, którą zrobisz w jeden dzień",
+          "dla": "Sklepy bez CRM, z danymi w panelu (Shoper, WooCommerce, Shopify)",
+          "segment": "male",
+          "problem": "Wysyłam te same maile do wszystkich klientów, bo nie wiem, jak podzielić bazę bez drogiego systemu CRM.",
+          "rozdzialy": [
+            "RFM krok po kroku: kiedy, jak często, za ile",
+            "8 segmentów i komunikat dla każdego",
+            "Automatyczna aktualizacja segmentów"
+          ]
+        },
+        {
+          "tytul": "Uśpieni klienci to najtańszy kanał.",
+          "podtytul": "Kampanie win-back, które odzyskują nieaktywnych klientów",
+          "dla": "Sklepy działające od lat, z dużą bazą nieaktywnych klientów",
+          "segment": "srednie",
+          "problem": "W bazie są tysiące klientów, którzy nie kupili od roku. Nie wiem, czy da się ich odzyskać, czy wysyłki tylko psują dostarczalność.",
+          "rozdzialy": [
+            "Kiedy klient jest uśpiony: próg dla twojej branży",
+            "Sekwencja win-back: 3 maile i 1 SMS",
+            "Czyszczenie bazy i dostarczalność"
+          ]
+        },
+        {
+          "tytul": "SMS, który nie irytuje.",
+          "podtytul": "SMS marketing w e-commerce zgodny z prawem",
+          "dla": "Sklepy z kosmetykami, modą i produktami codziennego użytku",
+          "segment": "srednie",
+          "problem": "Chcę wysyłać SMS-y, ale obawiam się wypisów i tego, że zgody zbierane przez lata nie spełniają przepisów.",
+          "rozdzialy": [
+            "Zgody na SMS według Prawa komunikacji elektronicznej",
+            "Kiedy SMS, kiedy e-mail, kiedy push",
+            "Częstotliwość i treści, które nie irytują"
+          ]
+        },
+        {
+          "tytul": "Klub, do którego chce się należeć.",
+          "podtytul": "Program lojalnościowy bez aplikacji i punktów",
+          "dla": "Małe i średnie sklepy oraz marki D2C",
+          "segment": "d2c",
+          "problem": "Duże sieci mają aplikacje i punkty, a mnie na taki program nie stać. Klienci nie mają powodu, żeby wracać właśnie do mnie.",
+          "rozdzialy": [
+            "Lojalność bez punktów: dostęp, status, niespodzianki",
+            "Klub VIP dla najlepszych 10% klientów",
+            "Jak policzyć, czy program się opłaca"
+          ]
+        },
+        {
+          "tytul": "Subskrypcja zamiast jednorazowego zakupu.",
+          "podtytul": "Model subskrypcyjny w sklepie internetowym",
+          "dla": "Sklepy z produktami kupowanymi cyklicznie: kawa, kosmetyki, karma",
+          "segment": "d2c",
+          "problem": "Klienci kupują ten sam produkt co miesiąc, a za każdym razem trzeba ich pozyskać od nowa reklamą.",
+          "rozdzialy": [
+            "Które produkty nadają się na subskrypcję",
+            "Płatności cykliczne i technologia w Polsce",
+            "Rezygnacje: jak zatrzymać subskrybenta"
+          ]
+        },
+        {
+          "tytul": "Przypomnij, zanim się skończy.",
+          "podtytul": "Automaty ponownego zakupu dla produktów, które się zużywają",
+          "dla": "Sklepy z kosmetykami, suplementami, karmą i chemią",
+          "segment": "srednie",
+          "problem": "Klient kończy krem po sześciu tygodniach i kupuje nowy tam, gdzie akurat zobaczy reklamę. Sklep nie przypomina o sobie na czas.",
+          "rozdzialy": [
+            "Cykl zużycia produktu z danych o zamówieniach",
+            "Przypomnienie mailem, SMS-em i reklamą",
+            "Ponowny zakup jednym kliknięciem"
+          ]
+        },
+        {
+          "tytul": "Po zakupie zaczyna się marketing.",
+          "podtytul": "Doświadczenie od zamówienia do rozpakowania paczki",
+          "dla": "Marki D2C i sklepy premium",
+          "segment": "d2c",
+          "problem": "Dbam o reklamy i stronę, ale po kliknięciu „kupuję” klient dostaje tylko automatyczne maile i szary karton.",
+          "rozdzialy": [
+            "Maile transakcyjne, które budują markę",
+            "Rozpakowanie: karton, wkładka, pierwszy kontakt",
+            "Pierwsze 14 dni: porady, pytania, prośba o opinię"
+          ]
+        },
+        {
+          "tytul": "Opinie, które sprzedają za ciebie.",
+          "podtytul": "Jak zbierać recenzje i odpowiadać na nie",
+          "dla": "Sklepy, które mają mało opinii przy produktach",
+          "segment": "male",
+          "problem": "Zadowoleni klienci rzadko wystawiają opinie, niezadowoleni prawie zawsze. Karty produktów wyglądają przez to gorzej niż u konkurencji.",
+          "rozdzialy": [
+            "Kiedy i jak prosić o opinię",
+            "Weryfikacja opinii: obowiązki z Omnibusa",
+            "Jak odpowiadać na negatywne opinie"
+          ]
+        },
+        {
+          "tytul": "Polecenia, które się niosą.",
+          "podtytul": "Program poleceń dla sklepu internetowego",
+          "dla": "Marki D2C z produktem, który klienci chętnie polecają",
+          "segment": "d2c",
+          "problem": "Klienci mówią, że polecają nas znajomym, ale nie ma jak tego zmierzyć ani wzmocnić.",
+          "rozdzialy": [
+            "Nagroda dla polecającego i poleconego",
+            "Kody, linki i zapobieganie nadużyciom",
+            "Kiedy prosić o polecenie"
+          ]
+        },
+        {
+          "tytul": "Obsługa klienta jako dział sprzedaży.",
+          "podtytul": "Jak kontakt z klientem zwiększa powroty",
+          "dla": "Sklepy z własnym zespołem obsługi klienta",
+          "segment": "srednie",
+          "problem": "Obsługa klienta to u nas koszt i gaszenie pożarów. Rozmów z klientami nie wykorzystujemy do kolejnej sprzedaży.",
+          "rozdzialy": [
+            "Standardy odpowiedzi, które budują zaufanie",
+            "Cross-sell w rozmowie bez nachalności",
+            "Mierniki: czas odpowiedzi, ocena obsługi, powroty"
+          ]
+        },
+        {
+          "tytul": "Ile jest wart twój klient?",
+          "podtytul": "Wartość klienta w czasie (CLV) w praktyce",
+          "dla": "Właściciele sklepów i marketerzy rozliczający reklamy",
+          "segment": "srednie",
+          "problem": "Kampanie oceniam po pierwszym zamówieniu, więc wyłączam reklamy, które przyprowadzają klientów wracających przez lata.",
+          "rozdzialy": [
+            "CLV w arkuszu: prosty model dla sklepu",
+            "Kohorty: którzy klienci wracają",
+            "Ile możesz zapłacić za pozyskanie klienta"
+          ]
+        },
+        {
+          "tytul": "Newsletter, na który się czeka.",
+          "podtytul": "Treści mailowe, które ludzie otwierają i czytają",
+          "dla": "Marki D2C i sklepy z bazą kilku tysięcy adresów",
+          "segment": "d2c",
+          "problem": "Newslettery to same promocje i nowości. Z każdą wysyłką czyta je mniej osób, a wypisów przybywa.",
+          "rozdzialy": [
+            "Treść zamiast katalogu: formaty, które się czyta",
+            "Kalendarz wysyłek bez przepalania bazy",
+            "Dostarczalność: Gmail, Onet, WP, Interia"
+          ]
+        },
+        {
+          "tytul": "Hurtownia, do której się wraca.",
+          "podtytul": "Retencja w e-commerce B2B: panel, opiekun, ponowne zamówienia",
+          "dla": "Hurtownie i producenci sprzedający firmom online",
+          "segment": "b2b",
+          "problem": "Klienci firmowi wolą zamawiać mailem i telefonem, a sklep B2B stoi pusty. Część z nich odchodzi do tańszych hurtowni.",
+          "rozdzialy": [
+            "Panel klienta: historia i szybkie ponowne zamówienie",
+            "Opiekun handlowy i automaty w jednym procesie",
+            "Warunki i rabaty progowe dla stałych klientów"
+          ]
+        },
+        {
+          "tytul": "Urodziny, rocznica, pora roku.",
+          "podtytul": "Kampanie okazjonalne, które klienci pamiętają",
+          "dla": "Sklepy z modą, biżuterią, kosmetykami i prezentami",
+          "segment": "srednie",
+          "problem": "Kampanie wychodzą tylko w dni promocji, jak u wszystkich. Nie wykorzystuję dat ważnych dla klienta, bo nie wiem, jak je zbierać.",
+          "rozdzialy": [
+            "Jak zbierać daty i preferencje bez nachalności",
+            "Kalendarz okazji: urodziny, rocznica zakupu, sezon",
+            "Automaty okazjonalne krok po kroku"
+          ]
+        },
+        {
+          "tytul": "Rabat dla stałych, nie dla wszystkich.",
+          "podtytul": "Promocje, które nagradzają lojalność zamiast ją psuć",
+          "dla": "Sklepy, które często robią promocje dla całej bazy",
+          "segment": "srednie",
+          "problem": "Każda promocja trafia do wszystkich, więc stali klienci czekają na obniżki, a nowi kupują tylko w promocji.",
+          "rozdzialy": [
+            "Oferty zamknięte dla wybranych segmentów",
+            "Omnibus a promocje dla wybranych klientów",
+            "Koszt rabatu w marży: jak go policzyć"
+          ]
+        },
+        {
+          "tytul": "Klient powie ci, dlaczego odchodzi.",
+          "podtytul": "Ankiety po zakupie, NPS i rozmowy z klientami",
+          "dla": "Marki D2C i sklepy subskrypcyjne",
+          "segment": "d2c",
+          "problem": "Nie wiem, dlaczego klienci nie wracają. Nikt ich o to nie pyta, a dane z panelu pokazują tylko, że odeszli.",
+          "rozdzialy": [
+            "NPS, ocena obsługi i jedno pytanie po zakupie",
+            "Rozmowy z klientami, którzy odeszli",
+            "Od odpowiedzi do zmian i kampanii"
+          ]
+        },
+        {
+          "tytul": "Push, który ktoś kliknie.",
+          "podtytul": "Powiadomienia web push i w aplikacji mobilnej",
+          "dla": "Sklepy z aplikacją albo dużym ruchem z telefonów",
+          "segment": "srednie",
+          "problem": "Mamy tysiące zgód na powiadomienia, ale wysyłamy je rzadko i bez planu, bo boimy się, że ludzie je wyłączą.",
+          "rozdzialy": [
+            "Web push, aplikacja, przeglądarka: różnice",
+            "Scenariusze: dostępność, cena, porzucony koszyk",
+            "Częstotliwość i wyłączenia powiadomień"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "social",
+      "nazwa": "Social commerce i livestreaming",
+      "lead": "Od 15 czerwca 2026 roku TikTok Shop działa w Polsce, a zakupy z filmów i transmisji na żywo przestały być ciekawostką z Azji. Social commerce to wciąż mniejsza część sprzedaży, ale właśnie tu klienci odkrywają nowe produkty. Ten filar pokazuje, jak sprzedawać w aplikacjach, z twórcami i na żywo.",
+      "dane": [
+        {
+          "liczba": "15.06.2026",
+          "opis": "start TikTok Shop w Polsce: zakupy z filmów, transmisji LIVE i zakładki Shop, program afiliacyjny dla twórców",
+          "zrodlo": "TikTok Newsroom, 28.05.2026"
+        },
+        {
+          "liczba": "19%",
+          "opis": "internautów kupuje w mediach społecznościowych – na razie okazjonalnie",
+          "zrodlo": "Gemius, E-commerce w Polsce 2025, s. 4 i 33"
+        },
+        {
+          "liczba": "55%",
+          "opis": "użytkowników TikToka szukało na platformie marki, produktu lub usługi w ostatnich 30 dniach",
+          "zrodlo": "TikTok Marketing Science, za: TikTok Newsroom"
+        }
+      ],
+      "tematy": [
+        {
+          "tytul": "Kreacja to nowe targetowanie.",
+          "podtytul": "Reklamy Meta, które algorytm dowozi do klientów",
+          "dla": "Sklepy, które co miesiąc wydają kilka tysięcy złotych na Meta Ads",
+          "segment": "srednie",
+          "problem": "Wyniki kampanii spadają, a Meta każe testować więcej kreacji. Brakuje pomysłów i czasu, żeby co tydzień dostarczać nowe reklamy.",
+          "rozdzialy": [
+            "Andromeda: jak kreacja dobiera odbiorców",
+            "6 formatów, które nagrasz telefonem w jeden dzień",
+            "Testy kreacji bez przepalania budżetu"
+          ]
+        },
+        {
+          "tytul": "Sklep, który się ogląda.",
+          "podtytul": "Organiczne wideo dla marek e-commerce",
+          "dla": "Marki D2C i sklepy niszowe z ciekawym produktem",
+          "segment": "d2c",
+          "problem": "Publikuję zdjęcia produktów, a zasięgi są bliskie zera. Konkurencja rośnie na krótkich filmach, a ja nie wiem, co pokazywać.",
+          "rozdzialy": [
+            "10 formatów wideo dla sklepu: kulisy, test, porównanie",
+            "Jeden dzień nagrań, miesiąc treści",
+            "Od wyświetleń do sprzedaży: link, kod, katalog"
+          ]
+        },
+        {
+          "tytul": "UGC bez proszenia się.",
+          "podtytul": "Jak zdobywać treści od klientów i twórców UGC",
+          "dla": "Marki D2C z modą, kosmetykami i wyposażeniem wnętrz",
+          "segment": "d2c",
+          "problem": "Reklamy z prawdziwymi ludźmi działają lepiej niż packshoty, ale nie wiem, skąd brać takie nagrania i ile za nie płacić.",
+          "rozdzialy": [
+            "UGC od klientów: prośba, nagroda, zgoda",
+            "Twórcy UGC: stawki, brief, licencja",
+            "UGC w reklamach i na karcie produktu"
+          ]
+        },
+        {
+          "tytul": "Influencer, który sprzedaje.",
+          "podtytul": "Współpraca z twórcami rozliczana wynikiem",
+          "dla": "Sklepy i marki z budżetem na współprace z twórcami",
+          "segment": "d2c",
+          "problem": "Płacę twórcom za posty, są polubienia, ale sprzedaży prawie nie widać. Nie wiem, jak wybierać twórców i rozliczać współpracę.",
+          "rozdzialy": [
+            "Wybór twórców: zasięg to nie wszystko",
+            "Kody, linki i rozliczenie za sprzedaż",
+            "Oznaczanie reklam według rekomendacji UOKiK"
+          ]
+        },
+        {
+          "tytul": "Live, który sprzedaje.",
+          "podtytul": "Live shopping dla polskich sklepów internetowych",
+          "dla": "Sklepy z modą, kosmetykami, biżuterią i rękodziełem",
+          "segment": "srednie",
+          "problem": "Sprzedaż na żywo rośnie w Azji i USA, a od czerwca TikTok Shop działa w Polsce. Nie wiem, jak zrobić pierwszą transmisję, która sprzeda.",
+          "rozdzialy": [
+            "Scenariusz transmisji: 45 minut, które sprzedają",
+            "TikTok LIVE, Instagram, Facebook, YouTube czy własna strona",
+            "Po transmisji: nagranie, klipy, kody"
+          ]
+        },
+        {
+          "tytul": "Wideo na karcie produktu.",
+          "podtytul": "Shoppable video i nagrania z transmisji na stronie sklepu",
+          "dla": "Sklepy z modą, kosmetykami i wyposażeniem wnętrz",
+          "segment": "srednie",
+          "problem": "Mamy mnóstwo wideo z social mediów, ale na stronie sklepu klient widzi tylko zdjęcia. Wideo nie pracuje tam, gdzie zapada decyzja.",
+          "rozdzialy": [
+            "Wideo na karcie produktu a szybkość strony",
+            "Narzędzia shoppable video: przegląd",
+            "Wpływ wideo na konwersję: jak to zmierzyć"
+          ]
+        },
+        {
+          "tytul": "Twórca prowadzi, ty sprzedajesz.",
+          "podtytul": "Transmisje na żywo z influencerami",
+          "dla": "Marki D2C współpracujące z twórcami",
+          "segment": "d2c",
+          "problem": "Chcę zrobić transmisję z twórcą, ale nie wiem, jak podzielić role, ustalić wynagrodzenie i zmierzyć sprzedaż z transmisji.",
+          "rozdzialy": [
+            "Formaty: pokaz, rozmowa, test na żywo",
+            "Umowa: stawka, prowizja, prawa do nagrania",
+            "Kody i linki do mierzenia sprzedaży"
+          ]
+        },
+        {
+          "tytul": "Premiera, na którą się czeka.",
+          "podtytul": "Dropy i premiery produktów w social mediach",
+          "dla": "Marki modowe, streetwear, kosmetyki i kolekcje limitowane",
+          "segment": "d2c",
+          "problem": "Nowe kolekcje trafiają po prostu do sklepu z nadzieją, że ktoś je zauważy. Premiera przechodzi bez echa.",
+          "rozdzialy": [
+            "Plan premiery: zapowiedź, odliczanie, lista oczekujących",
+            "Limitowane serie bez frustracji klientów",
+            "Sklep i serwer gotowe na szczyt ruchu"
+          ]
+        },
+        {
+          "tytul": "Pokaz produktu na żywo.",
+          "podtytul": "Demo live dla produktów technicznych i sprzedaży B2B",
+          "dla": "Sklepy z elektroniką, narzędziami i maszynami oraz sprzedawcy B2B",
+          "segment": "b2b",
+          "problem": "Nasze produkty trzeba pokazać i wyjaśnić. Zdjęcia i opisy nie wystarczają, a handlowcy nie zrobią prezentacji każdemu klientowi.",
+          "rozdzialy": [
+            "Demo na żywo z pytaniami od widzów",
+            "LinkedIn, YouTube czy webinar: gdzie nadawać",
+            "Od widza do zapytania ofertowego"
+          ]
+        },
+        {
+          "tytul": "Instagram jako witryna sklepu.",
+          "podtytul": "Profil, który zamienia obserwujących w klientów",
+          "dla": "Małe sklepy i marki, które sprzedają głównie przez Instagram",
+          "segment": "male",
+          "problem": "Profil ma kilka tysięcy obserwujących, ale sprzedaż z Instagrama jest przypadkowa. Ludzie pytają o cenę w wiadomościach i znikają.",
+          "rozdzialy": [
+            "Profil, bio i wyróżnione relacje, które prowadzą do zakupu",
+            "Oznaczanie produktów i katalog w Menedżerze sprzedaży",
+            "Wiadomości: szybkie odpowiedzi i automaty"
+          ]
+        },
+        {
+          "tytul": "TikTok Shop od pierwszego dnia.",
+          "podtytul": "Sprzedaż w aplikacji: katalog, filmy, LIVE i afiliacja",
+          "dla": "Marki D2C i sklepy z produktami dla klientów w wieku 18–34 lata",
+          "segment": "d2c",
+          "problem": "TikTok Shop działa w Polsce od czerwca 2026. Nie wiem, czy mój produkt się tam sprzeda, ile to kosztuje i jak zacząć, żeby nie stracić marży.",
+          "rozdzialy": [
+            "Rejestracja, katalog i koszty sprzedaży w TikTok Shop",
+            "Filmy z produktem i transmisje LIVE",
+            "Program afiliacyjny: twórcy sprzedają za prowizję"
+          ]
+        },
+        {
+          "tytul": "YouTube sprzedaje latami.",
+          "podtytul": "Długie filmy i Shorts dla sklepów internetowych",
+          "dla": "Sklepy z produktami, które się porównuje: elektronika, sport, narzędzia",
+          "segment": "srednie",
+          "problem": "Krótkie filmy żyją dzień, a potrzebuję treści, które sprzedają miesiącami. Nie wiem, czy YouTube nie jest za dużym wysiłkiem dla sklepu.",
+          "rozdzialy": [
+            "Filmy, których ludzie szukają: testy, porównania, poradniki",
+            "Shorts jako zwiastun długich filmów",
+            "Od filmu do koszyka: opis, linki, karty"
+          ]
+        },
+        {
+          "tytul": "Pinterest to wyszukiwarka inspiracji.",
+          "podtytul": "Pinterest dla sklepów z wnętrzami, modą i DIY",
+          "dla": "Sklepy z meblami, dekoracjami, modą i rękodziełem",
+          "segment": "srednie",
+          "problem": "Produkty są bardzo wizualne, a jedynym kanałem jest Instagram. Nie wiem, czy Pinterest ma sens w Polsce.",
+          "rozdzialy": [
+            "Kiedy Pinterest ma sens dla polskiego sklepu",
+            "Piny produktowe z katalogu",
+            "Treści, które pracują miesiącami"
+          ]
+        },
+        {
+          "tytul": "Społeczność zamiast zasięgów.",
+          "podtytul": "Grupa, kanał i wydarzenia dla fanów marki",
+          "dla": "Marki D2C związane z hobby, sportem albo rodzicielstwem",
+          "segment": "d2c",
+          "problem": "Zasięgi organiczne spadają, a marka zależy od algorytmów. Brakuje miejsca, w którym klienci rozmawiają z marką i ze sobą.",
+          "rozdzialy": [
+            "Grupa na Facebooku, kanał WhatsApp czy Discord",
+            "Moderacja i rytm treści",
+            "Jak społeczność przekłada się na sprzedaż"
+          ]
+        },
+        {
+          "tytul": "Wiadomość prywatna to nowy koszyk.",
+          "podtytul": "Sprzedaż przez DM, Messengera i WhatsAppa",
+          "dla": "Sklepy, które dostają dużo pytań przez Instagram i Messengera",
+          "segment": "male",
+          "problem": "Klienci piszą w wiadomościach, zamiast kupować w sklepie. Odpowiedzi zajmują godziny, a część rozmów kończy się bez zakupu.",
+          "rozdzialy": [
+            "Automaty w DM: słowo kluczowe, katalog, link",
+            "Szablony odpowiedzi i przekazanie do człowieka",
+            "Jak mierzyć sprzedaż z rozmów"
+          ]
+        },
+        {
+          "tytul": "TikTok Ads od pierwszej złotówki.",
+          "podtytul": "Kampanie reklamowe na TikToku dla sklepów",
+          "dla": "Sklepy z produktami dla klientów w wieku 18–34 lata",
+          "segment": "srednie",
+          "problem": "Meta Ads drożeje, TikTok kusi niższymi kosztami, ale pierwsze kampanie nie przyniosły sprzedaży. Nie wiem, co poszło nie tak.",
+          "rozdzialy": [
+            "Struktura konta i piksel TikToka",
+            "Kreacje w stylu TikToka: hak w 2 sekundy",
+            "Spark Ads: reklamy z treści twórców"
+          ]
+        },
+        {
+          "tytul": "Afiliacja z twórcami.",
+          "podtytul": "Programy partnerskie: własny, w sieci i w TikTok Shop",
+          "dla": "Marki D2C i sklepy z marżą, która pozwala płacić prowizję",
+          "segment": "d2c",
+          "problem": "Twórcy polecają produkty jednorazowo, a zależy mi na stałych partnerach. Nie wiem, jak zbudować program i rozliczać prowizje.",
+          "rozdzialy": [
+            "Sieć afiliacyjna, własny program czy TikTok Shop",
+            "Prowizje, okno atrybucji i nadużycia",
+            "Rekrutacja i aktywizacja partnerów"
+          ]
+        },
+        {
+          "tytul": "Szukają na TikToku, nie tylko w Google.",
+          "podtytul": "Optymalizacja treści pod wyszukiwanie w social mediach",
+          "dla": "Marki D2C i sklepy z produktami dla młodszych klientów",
+          "segment": "d2c",
+          "problem": "Młodsi klienci szukają produktów na TikToku i Instagramie, a nasze treści w ogóle się tam nie wyświetlają.",
+          "rozdzialy": [
+            "Jak działa wyszukiwanie w TikToku, Instagramie i YouTube",
+            "Słowa kluczowe w wideo, napisach i opisach",
+            "Pomiar widoczności w wyszukiwaniu social"
+          ]
+        },
+        {
+          "tytul": "Kryzys w komentarzach.",
+          "podtytul": "Zarządzanie reputacją marki w social mediach",
+          "dla": "Sklepy i marki z aktywnymi profilami społecznościowymi",
+          "segment": "srednie",
+          "problem": "Jeden negatywny film o produkcie potrafi mieć więcej wyświetleń niż wszystkie nasze posty. Nie wiem, jak reagować, żeby nie pogorszyć sprawy.",
+          "rozdzialy": [
+            "Monitoring wzmianek i szybka ocena sytuacji",
+            "Odpowiedź publiczna i rozmowa prywatna",
+            "Procedura kryzysowa dla małego zespołu"
+          ]
+        },
+        {
+          "tytul": "Studio live w pokoju obok.",
+          "podtytul": "Sprzęt, światło i zespół do transmisji sprzedażowych",
+          "dla": "Sklepy planujące regularne transmisje na żywo",
+          "segment": "male",
+          "problem": "Transmisje z telefonu wyglądają amatorsko: słaby dźwięk, ciemny obraz, jedna osoba robi wszystko naraz.",
+          "rozdzialy": [
+            "Zestaw startowy: kamera, światło, dźwięk",
+            "Role: prowadzący, moderator, obsługa zamówień",
+            "Plansze i nakładki z ofertą na ekranie"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dane",
+      "nazwa": "First-party data i prywatność",
+      "lead": "Reklamy działają tak dobrze, jak dane, które dostają. Odmowy zgód, blokery i ochrona prywatności w przeglądarkach sprawiają, że platformy widzą coraz mniej. Przewagę mają sklepy, które zbierają własne dane zgodnie z prawem i umieją je wykorzystać w pomiarze, reklamach i komunikacji.",
+      "dane": [
+        {
+          "liczba": "03.2024",
+          "opis": "od marca 2024 r. Google wymaga trybu zgody (Consent Mode v2) dla ruchu z EOG, żeby korzystać z personalizacji reklam",
+          "zrodlo": "Google, zasady dotyczące zgody użytkownika z UE"
+        },
+        {
+          "liczba": "10.11.2024",
+          "opis": "weszło w życie Prawo komunikacji elektronicznej: zasady cookies i zgód na marketing e-mail i SMS",
+          "zrodlo": "Dz.U. 2024 poz. 1221"
+        },
+        {
+          "liczba": "72 h",
+          "opis": "tyle ma sklep na zgłoszenie naruszenia ochrony danych osobowych do UODO",
+          "zrodlo": "RODO, art. 33"
+        }
+      ],
+      "tematy": [
+        {
+          "tytul": "ROAS kłamie.",
+          "podtytul": "Ile naprawdę zarabia twoja reklama",
+          "dla": "Sklepy, które co miesiąc wydają na reklamy kilkanaście tysięcy złotych i więcej",
+          "segment": "srednie",
+          "problem": "GA4, Meta i Google pokazują różną sprzedaż, a żadna z tych liczb nie mówi, ile naprawdę zostaje po kosztach reklamy.",
+          "rozdzialy": [
+            "Próg rentowności ROAS dla twojej marży",
+            "Dlaczego panele pokazują różne liczby",
+            "MER i zysk po reklamie jako główne mierniki"
+          ]
+        },
+        {
+          "tytul": "Baner cookies, który nie zabija danych.",
+          "podtytul": "Zgody i Consent Mode v2 w praktyce",
+          "dla": "Sklepy korzystające z Google Ads, GA4 i Meta Ads",
+          "segment": "srednie",
+          "problem": "Po wdrożeniu banera cookies z GA4 zniknęła duża część danych, a kampanie gorzej się optymalizują. Nie wiem też, czy baner jest zgodny z prawem.",
+          "rozdzialy": [
+            "Co mówi prawo: RODO i Prawo komunikacji elektronicznej",
+            "Consent Mode v2: tryb podstawowy i zaawansowany",
+            "Projekt banera: zgodność i odsetek zgód"
+          ]
+        },
+        {
+          "tytul": "Dane, które docierają.",
+          "podtytul": "Pomiar po stronie serwera: sGTM, Conversions API, konwersje rozszerzone",
+          "dla": "Sklepy z budżetem reklamowym od kilkudziesięciu tysięcy złotych miesięcznie",
+          "segment": "srednie",
+          "problem": "Blokery, ochrona prywatności w przeglądarkach i odmowy zgód sprawiają, że platformy widzą coraz mniej konwersji. Algorytmy uczą się na niepełnych danych.",
+          "rozdzialy": [
+            "Jak działa tagowanie po stronie serwera",
+            "Meta Conversions API i konwersje rozszerzone Google",
+            "Koszty, hosting i zgodność z RODO"
+          ]
+        },
+        {
+          "tytul": "Twoja baza to twoja przewaga.",
+          "podtytul": "Strategia danych własnych (first-party data) dla sklepu",
+          "dla": "Średnie sklepy i marki D2C z bazą co najmniej 10 000 klientów",
+          "segment": "srednie",
+          "problem": "Dane o klientach leżą w sklepie, systemie mailowym i reklamach, ale nic z nich nie wynika. Kampanie opierają się na tym, co wiedzą platformy.",
+          "rozdzialy": [
+            "Inwentaryzacja danych: co już masz",
+            "Łączenie danych: identyfikator klienta i zgody",
+            "Aktywacja: listy klientów w Google i Meta"
+          ]
+        },
+        {
+          "tytul": "Zapytaj, zamiast śledzić.",
+          "podtytul": "Dane deklaratywne: quizy, ankiety, centrum preferencji",
+          "dla": "Sklepy z kosmetykami, modą, suplementami i karmą",
+          "segment": "d2c",
+          "problem": "Preferencje klienta zgaduję z zachowania na stronie, a wystarczyłoby zapytać. Nie wiem, jak to zrobić, żeby ludzie chcieli odpowiadać.",
+          "rozdzialy": [
+            "Quiz produktowy jako źródło danych",
+            "Centrum preferencji zamiast wypisu",
+            "Personalizacja na podstawie deklaracji"
+          ]
+        },
+        {
+          "tytul": "CDP bez korporacji.",
+          "podtytul": "Platforma danych klientów dla średniego sklepu",
+          "dla": "Sklepy z kilkoma kanałami sprzedaży i obrotem liczonym w milionach",
+          "segment": "srednie",
+          "problem": "Dostawcy CDP obiecują jeden widok klienta, ale wdrożenia są drogie i długie. Nie wiem, czy potrzebuję CDP, czy wystarczy dobrze ustawiony e-mail marketing.",
+          "rozdzialy": [
+            "CDP, CRM, marketing automation: czym się różnią",
+            "Kiedy CDP się opłaca: lista kontrolna",
+            "Wdrożenie w 90 dni bez armii konsultantów"
+          ]
+        },
+        {
+          "tytul": "Atrybucja bez złudzeń.",
+          "podtytul": "Jak sprawdzić, który kanał naprawdę sprzedaje",
+          "dla": "Marketerzy e-commerce z budżetem w kilku kanałach",
+          "segment": "srednie",
+          "problem": "Każdy kanał przypisuje sobie tę samą sprzedaż. Nie wiem, które kampanie wyłączyć, a które zwiększyć.",
+          "rozdzialy": [
+            "Modele atrybucji i ich pułapki",
+            "Testy przyrostowe: grupa kontrolna i wyłączenie regionów",
+            "Prosty model marketing mix dla sklepu"
+          ]
+        },
+        {
+          "tytul": "GA4 bez frustracji.",
+          "podtytul": "Analityka sklepu, której da się używać na co dzień",
+          "dla": "Właściciele i marketerzy sklepów na Shoperze, WooCommerce i Shopify",
+          "segment": "male",
+          "problem": "W GA4 trudno znaleźć podstawowe raporty, a przychody nie zgadzają się z panelem sklepu.",
+          "rozdzialy": [
+            "Zdarzenia e-commerce: wdrożenie i kontrola",
+            "5 raportów do sprawdzania co tydzień",
+            "Dlaczego GA4 różni się od panelu sklepu"
+          ]
+        },
+        {
+          "tytul": "Zgoda, która się broni.",
+          "podtytul": "Zgody na marketing e-mail i SMS według nowych przepisów",
+          "dla": "Sklepy budujące bazy mailingowe i SMS",
+          "segment": "srednie",
+          "problem": "W bazie są adresy zbierane przez lata na różne sposoby. Nie wiem, które zgody są ważne i czy wolno wysyłać do tych osób oferty.",
+          "rozdzialy": [
+            "Zgoda na marketing bezpośredni według PKE",
+            "Dokumentowanie zgód i ich wycofanie",
+            "Odświeżenie starej bazy bez utraty kontaktów"
+          ]
+        },
+        {
+          "tytul": "Nie płać za swoich klientów.",
+          "podtytul": "Listy klientów i wykluczenia w Google i Meta",
+          "dla": "Sklepy z dużym udziałem powracających klientów",
+          "segment": "srednie",
+          "problem": "Płacę za kliknięcia klientów, którzy i tak kupiliby u mnie. Budżet na pozyskanie nowych jest przez to mniejszy, niż się wydaje.",
+          "rozdzialy": [
+            "Listy klientów w Google i Meta: jak je budować",
+            "Nowi czy powracający: cele kampanii",
+            "Wykluczenia marki i klientów bez utraty sprzedaży"
+          ]
+        },
+        {
+          "tytul": "Skąd o nas wiesz?",
+          "podtytul": "Ankieta po zakupie jako źródło danych o kanałach",
+          "dla": "Marki D2C inwestujące w wiele kanałów naraz",
+          "segment": "d2c",
+          "problem": "Klienci poznają markę z podcastu, od twórcy albo od znajomych, a analityka przypisuje sprzedaż ostatniemu kliknięciu w reklamę.",
+          "rozdzialy": [
+            "Jedno pytanie po zakupie: jak je zadać",
+            "Łączenie odpowiedzi z danymi z reklam",
+            "Decyzje budżetowe na podstawie ankiet"
+          ]
+        },
+        {
+          "tytul": "Otwarcia maili to złudzenie.",
+          "podtytul": "Pomiar e-mail marketingu po zmianach prywatności",
+          "dla": "Sklepy oceniające mailingi po odsetku otwarć",
+          "segment": "srednie",
+          "problem": "Odsetek otwarć rośnie, a sprzedaż z maili nie. Nie wiem, którym liczbom w systemie mailowym ufać.",
+          "rozdzialy": [
+            "Dlaczego otwarcia są zawyżone (Apple Mail i inne)",
+            "Mierniki, które mają sens: kliknięcia, przychód, wypisy",
+            "Testy tematów i treści bez otwarć"
+          ]
+        },
+        {
+          "tytul": "Czyste dane zaczynają się od UTM.",
+          "podtytul": "Nazewnictwo kampanii i parametry UTM w całym zespole",
+          "dla": "Zespoły marketingu e-commerce i agencje prowadzące sklep",
+          "segment": "srednie",
+          "problem": "Każdy oznacza kampanie inaczej, więc w raportach jest bałagan: to samo źródło występuje pod pięcioma nazwami.",
+          "rozdzialy": [
+            "Standard nazewnictwa dla wszystkich kanałów",
+            "Generator UTM i kontrola przed publikacją",
+            "Porządkowanie historycznych danych"
+          ]
+        },
+        {
+          "tytul": "Reklama bez śledzenia.",
+          "podtytul": "Targetowanie kontekstowe i dane własne zamiast cookies",
+          "dla": "Sklepy i marki z produktami premium lub niszowymi",
+          "segment": "srednie",
+          "problem": "Coraz mniej użytkowników da się śledzić między stronami, a remarketing przynosi coraz mniej. Nie wiem, czym go uzupełnić.",
+          "rozdzialy": [
+            "Kontekst: gdzie i obok jakich treści reklamować",
+            "Listy klientów i segmenty z własnych danych",
+            "Pomiar kampanii bez cookies stron trzecich"
+          ]
+        },
+        {
+          "tytul": "Prywatność jako przewaga.",
+          "podtytul": "Jak mówić o ochronie danych, żeby budować zaufanie",
+          "dla": "Marki D2C i sklepy z produktami dla dzieci, zdrowia i urody",
+          "segment": "d2c",
+          "problem": "Klienci coraz częściej pytają, co robimy z ich danymi, a polityka prywatności to trudny prawniczy tekst, którego nikt nie czyta.",
+          "rozdzialy": [
+            "Polityka prywatności, którą da się przeczytać",
+            "Zgody i preferencje jako część doświadczenia",
+            "Dane w zamian za realną wartość"
+          ]
+        },
+        {
+          "tytul": "Wyciek danych w sklepie.",
+          "podtytul": "Bezpieczeństwo danych klientów i obowiązki po naruszeniu",
+          "dla": "Wszystkie sklepy przetwarzające dane klientów",
+          "segment": "male",
+          "problem": "Sklep przechowuje adresy, telefony i historię zamówień klientów. Nie wiem, co robić, jeśli dane wyciekną, i jak tego uniknąć.",
+          "rozdzialy": [
+            "Najczęstsze źródła wycieków w e-commerce",
+            "72 godziny: zgłoszenie do UODO i informacja dla klientów",
+            "Procedury i dostęp: kto widzi dane klientów"
+          ]
+        },
+        {
+          "tytul": "Dane, na których AI się uczy.",
+          "podtytul": "Jak przygotować dane sklepu do personalizacji i AI",
+          "dla": "Średnie i duże sklepy planujące wdrożenia AI",
+          "segment": "srednie",
+          "problem": "Dostawcy AI obiecują personalizację, ale dane o produktach i klientach są niepełne, zdublowane i rozrzucone po systemach.",
+          "rozdzialy": [
+            "Audyt jakości danych produktów i klientów",
+            "Porządkowanie, deduplikacja i słowniki",
+            "Zgody i prawo: z jakich danych wolno uczyć AI"
+          ]
+        },
+        {
+          "tytul": "Boty w twoich danych.",
+          "podtytul": "Fałszywy ruch, spam w formularzach i jak go odfiltrować",
+          "dla": "Sklepy z nagłymi skokami ruchu bez wzrostu sprzedaży",
+          "segment": "srednie",
+          "problem": "Ruch rośnie, a sprzedaż stoi. Część wizyt i zapisów to boty, które psują raporty i uczą kampanie złych wzorców.",
+          "rozdzialy": [
+            "Jak rozpoznać ruch botów w GA4 i sklepie",
+            "Ochrona formularzy i list mailowych",
+            "Czyste dane dla kampanii reklamowych"
+          ]
+        },
+        {
+          "tytul": "Telefon też jest konwersją.",
+          "podtytul": "Sprzedaż telefoniczna i offline w danych reklamowych",
+          "dla": "Sklepy z dużą sprzedażą przez telefon, czat i salon",
+          "segment": "omni",
+          "problem": "Część klientów kupuje przez telefon albo w salonie, więc kampanie, które ich przyprowadziły, wyglądają w panelach na nieopłacalne.",
+          "rozdzialy": [
+            "Śledzenie połączeń i zapytań z reklam",
+            "Import konwersji offline do Google i Meta",
+            "Wspólny widok: sklep, telefon, salon"
+          ]
+        },
+        {
+          "tytul": "Analityka na jednej kartce.",
+          "podtytul": "Minimalny zestaw pomiaru dla małego sklepu",
+          "dla": "Małe sklepy bez analityka w zespole",
+          "segment": "male",
+          "problem": "Narzędzi analitycznych jest za dużo, a czasu za mało. Potrzebuję kilku liczb, które naprawdę pokazują, czy sklep rośnie.",
+          "rozdzialy": [
+            "10 liczb, które wystarczą małemu sklepowi",
+            "Skąd je brać: panel sklepu, GA4, reklamy",
+            "Rytm: codziennie, co tydzień, co miesiąc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "omni",
+      "nazwa": "E-commerce omnichannel",
+      "lead": "Polski klient kupuje w wielu miejscach naraz: w sklepie internetowym, na Allegro, w porównywarce, w salonie i coraz częściej w aplikacjach. Ceny sprawdza na telefonie nawet wtedy, gdy stoi przy półce. Wygrywa sprzedawca, który ma jedną ofertę, wspólne stany i tę samą markę w każdym kanale.",
+      "dane": [
+        {
+          "liczba": "65%",
+          "opis": "internautów porównuje ceny na telefonie podczas wizyt w sklepach stacjonarnych",
+          "zrodlo": "Gemius, E-commerce w Polsce 2025, s. 4"
+        },
+        {
+          "liczba": "82%",
+          "opis": "wskazuje smartfon jako podstawowe urządzenie do zakupów (+7 p.p. rok do roku)",
+          "zrodlo": "Gemius, E-commerce w Polsce 2025, s. 4"
+        },
+        {
+          "liczba": "41%",
+          "opis": "internautów kupuje w zagranicznych e-sklepach (rok wcześniej 36%)",
+          "zrodlo": "Gemius, E-commerce w Polsce 2025, s. 4"
+        }
+      ],
+      "tematy": [
+        {
+          "tytul": "Allegro to nie twój sklep.",
+          "podtytul": "Własny kanał sprzedaży bez rezygnacji z Allegro",
+          "dla": "Sprzedawcy, dla których Allegro to ponad połowa sprzedaży",
+          "segment": "marketplace",
+          "problem": "Większość sprzedaży idzie przez Allegro. Każda zmiana prowizji czy regulaminu uderza w marżę, a klienci nie znają mojej marki.",
+          "rozdzialy": [
+            "Marża kanał po kanale: Allegro a własny sklep",
+            "Budowa marki zgodnie z regulaminem Allegro",
+            "Plan na 90 dni: pierwszy stały ruch do sklepu"
+          ]
+        },
+        {
+          "tytul": "Feed to nowe SEO.",
+          "podtytul": "Dane produktowe dla Google, Meta, Ceneo i asystentów AI",
+          "dla": "Sklepy z kampaniami produktowymi i szerokim katalogiem",
+          "segment": "srednie",
+          "problem": "Produkty rzadko wyświetlają się w Google Shopping i katalogu Meta. Tytuły i atrybuty w feedzie są przepisane ze sklepu bez żadnej optymalizacji.",
+          "rozdzialy": [
+            "Wzór tytułu produktu dla każdego kanału",
+            "GTIN, atrybuty i błędy w Merchant Center",
+            "Jeden feed, wiele kanałów: narzędzia i reguły"
+          ]
+        },
+        {
+          "tytul": "Salon i e-sklep w jednej drużynie.",
+          "podtytul": "Omnichannel dla sieci i sklepów z punktami stacjonarnymi",
+          "dla": "Sieci i sklepy stacjonarne z e-sklepem: meble, moda, elektronika",
+          "segment": "omni",
+          "problem": "Sklep internetowy i salony działają jak dwie firmy: osobne ceny, stany i klienci. Sprzedawcy w salonie traktują e-sklep jak konkurencję.",
+          "rozdzialy": [
+            "Wspólne stany magazynowe i ceny",
+            "Premia dla salonu za sprzedaż online",
+            "Jeden klient: karta, historia zakupów, kontakt"
+          ]
+        },
+        {
+          "tytul": "Kup online, odbierz w salonie.",
+          "podtytul": "Click & collect i zwroty zakupów online w sklepie stacjonarnym",
+          "dla": "Sieci sklepów z punktami stacjonarnymi",
+          "segment": "omni",
+          "problem": "Klienci chcą odebrać zamówienie w salonie tego samego dnia, a nie ma procesu ani systemu, który to obsłuży.",
+          "rozdzialy": [
+            "Proces odbioru: od zamówienia do wydania",
+            "Zwroty zakupów online w salonie",
+            "Dodatkowa sprzedaż przy odbiorze"
+          ]
+        },
+        {
+          "tytul": "Ceneo, Google, Allegro: gdzie wygrać cenę.",
+          "podtytul": "Porównywarki i kanały cenowe bez oddawania marży",
+          "dla": "Sklepy z elektroniką, AGD, zabawkami i produktami markowymi",
+          "segment": "srednie",
+          "problem": "Klienci porównują ceny w kilka sekund. Przegrywam o kilka złotych albo sprzedaję bez marży, żeby utrzymać się na pierwszym miejscu.",
+          "rozdzialy": [
+            "Jak działają porównywarki i kampanie produktowe",
+            "Kiedy walczyć ceną, a kiedy dostawą i opiniami",
+            "Reguły cenowe dla każdego kanału"
+          ]
+        },
+        {
+          "tytul": "Temu i Shein obok ciebie.",
+          "podtytul": "Jak lokalny sklep konkuruje z azjatyckimi platformami",
+          "dla": "Polskie sklepy z modą, dekoracjami, gadżetami i akcesoriami",
+          "segment": "srednie",
+          "problem": "Klienci widzą podobne produkty na Temu za ułamek mojej ceny. Ceną nie wygram, a nie wiem, czym innym przekonać klienta.",
+          "rozdzialy": [
+            "Przewagi lokalnego sklepu: dostawa, zwroty, obsługa",
+            "Marka i jakość, które widać na zdjęciach",
+            "Kanały, w których nie konkurujesz ceną"
+          ]
+        },
+        {
+          "tytul": "Sprzedaj za granicę bez nowej firmy.",
+          "podtytul": "Cross-border z Polski: Czechy, Słowacja, Niemcy",
+          "dla": "Sklepy i marki D2C z ofertą sprawdzoną w Polsce",
+          "segment": "d2c",
+          "problem": "Rynek w Polsce jest nasycony, a sprzedaż za granicę wydaje się skomplikowana: VAT, języki, dostawa, zwroty.",
+          "rozdzialy": [
+            "VAT OSS, ceny i płatności w każdym kraju",
+            "Marketplace czy własny sklep na nowym rynku",
+            "Dostawa i zwroty za granicę"
+          ]
+        },
+        {
+          "tytul": "Dostawa sprzedaje.",
+          "podtytul": "Paczkomat, kurier i odbiór osobisty jako argument sprzedażowy",
+          "dla": "Wszystkie sklepy wysyłające paczki w Polsce",
+          "segment": "male",
+          "problem": "Klienci porzucają koszyk, gdy widzą koszt lub czas dostawy. Nie wiem, które opcje dodać i ile za nie brać.",
+          "rozdzialy": [
+            "Opcje dostawy, których oczekują Polacy",
+            "Próg darmowej dostawy: jak go policzyć",
+            "Dostawa w komunikacji: strona, reklamy, maile"
+          ]
+        },
+        {
+          "tytul": "Płatności bez tarcia.",
+          "podtytul": "BLIK, karty, raty i płatności odroczone w sklepie",
+          "dla": "Sklepy, które tracą klientów na etapie płatności",
+          "segment": "male",
+          "problem": "Klienci dochodzą do płatności i rezygnują. Nie wiem, czy brakuje BLIK-a, płatności odroczonej, czy po prostu zaufania.",
+          "rozdzialy": [
+            "Metody płatności, które wybierają Polacy",
+            "Raty i płatności odroczone: kiedy zwiększają koszyk",
+            "Płatność na telefonie: mniej pól, mniej porzuceń"
+          ]
+        },
+        {
+          "tytul": "Retail media: reklama tam, gdzie się kupuje.",
+          "podtytul": "Allegro Ads, porównywarki i reklamy w sklepach sieciowych",
+          "dla": "Producenci i marki sprzedające przez marketplace'y i sieci",
+          "segment": "marketplace",
+          "problem": "Coraz większa część budżetu idzie na reklamy w marketplace'ach, a nie wiem, jak je planować i porównać z Google czy Meta.",
+          "rozdzialy": [
+            "Mapa retail media w Polsce",
+            "Allegro Ads: kampanie produktowe i kampanie marki",
+            "Przyrost sprzedaży zamiast samego ROAS"
+          ]
+        },
+        {
+          "tytul": "Jeden katalog, wiele kanałów.",
+          "podtytul": "PIM i zarządzanie danymi produktów",
+          "dla": "Sklepy i producenci z tysiącami produktów w wielu kanałach",
+          "segment": "srednie",
+          "problem": "Ten sam produkt ma inne nazwy, zdjęcia i parametry w sklepie, na Allegro i w hurtowni. Każda zmiana to godziny ręcznej pracy.",
+          "rozdzialy": [
+            "Czy potrzebujesz PIM: sygnały ostrzegawcze",
+            "Model danych produktu i atrybuty kanałów",
+            "Wdrożenie PIM w średnim sklepie"
+          ]
+        },
+        {
+          "tytul": "Sprzedane dwa razy.",
+          "podtytul": "Wspólne stany magazynowe sklepu i marketplace'ów",
+          "dla": "Sklepy sprzedające w kilku kanałach z jednego magazynu",
+          "segment": "marketplace",
+          "problem": "Ten sam egzemplarz sprzedaje się jednocześnie w sklepie i na Allegro, a potem trzeba anulować zamówienie, bo towaru już nie ma.",
+          "rozdzialy": [
+            "Jedno źródło prawdy o stanach i rezerwacje",
+            "Integratory i systemy OMS: rodzaje i wybór",
+            "Procedury na szczyty sprzedaży"
+          ]
+        },
+        {
+          "tytul": "Marketplace poza Allegro.",
+          "podtytul": "Amazon, Empik, Erli i platformy branżowe w Polsce",
+          "dla": "Sprzedawcy, którzy chcą uniezależnić się od jednego marketplace'u",
+          "segment": "marketplace",
+          "problem": "Cała sprzedaż marketplace to Allegro. Nie wiem, czy inne platformy w Polsce dadzą realną sprzedaż i ile pracy to wymaga.",
+          "rozdzialy": [
+            "Mapa marketplace'ów w Polsce i ich klienci",
+            "Koszty i wymagania wejścia",
+            "Test nowego kanału w 60 dni"
+          ]
+        },
+        {
+          "tytul": "Aplikacja czy strona mobilna?",
+          "podtytul": "Kanał mobilny dla sklepu internetowego",
+          "dla": "Sklepy z dużą grupą powracających klientów na telefonach",
+          "segment": "srednie",
+          "problem": "Konkurencja ma aplikację i klienci o nią pytają. Nie wiem, czy to się opłaci, skoro większość i tak kupuje przez przeglądarkę.",
+          "rozdzialy": [
+            "Aplikacja, PWA czy dobra strona mobilna",
+            "Kiedy aplikacja zwraca koszt",
+            "Powiadomienia, lojalność i oferty tylko w aplikacji"
+          ]
+        },
+        {
+          "tytul": "B2B też chce kupować jak w sklepie.",
+          "podtytul": "E-commerce B2B dla hurtowni i producentów",
+          "dla": "Hurtownie i producenci obsługujący klientów firmowych",
+          "segment": "b2b",
+          "problem": "Klienci firmowi zamawiają mailem, telefonem i przez handlowców. Obsługa zamówień jest droga, a błędy częste.",
+          "rozdzialy": [
+            "Platforma B2B: ceny indywidualne, limity, faktury",
+            "Handlowiec i sklep B2B we współpracy",
+            "Marketing do klientów firmowych"
+          ]
+        },
+        {
+          "tytul": "Wszędzie ta sama marka.",
+          "podtytul": "Spójna komunikacja w sklepie, na marketplace i w social mediach",
+          "dla": "Marki D2C sprzedające w czterech i więcej kanałach",
+          "segment": "d2c",
+          "problem": "Na Instagramie marka wygląda premium, na Allegro jak hurtownia, a w sklepie jeszcze inaczej. Klienci nie łączą tych miejsc w jedną markę.",
+          "rozdzialy": [
+            "Standardy marki dla każdego kanału",
+            "Karty produktów na marketplace z elementami marki",
+            "Kontrola spójności: lista kontrolna"
+          ]
+        },
+        {
+          "tytul": "Jedna rozmowa w każdym kanale.",
+          "podtytul": "Obsługa klienta omnichannel: mail, czat, social, marketplace",
+          "dla": "Sklepy obsługujące pytania z maila, czatu, social mediów i Allegro",
+          "segment": "srednie",
+          "problem": "Pytania klientów przychodzą z pięciu miejsc naraz. Odpowiedzi się gubią, a klient musi powtarzać swoją sprawę każdej osobie z zespołu.",
+          "rozdzialy": [
+            "Jedna skrzynka dla wszystkich kanałów",
+            "Historia klienta widoczna dla całego zespołu",
+            "Czasy odpowiedzi i priorytety kanałów"
+          ]
+        },
+        {
+          "tytul": "Rabat zjada zysk.",
+          "podtytul": "Black Friday w sklepie, na marketplace i w salonie bez utraty marży",
+          "dla": "Sklepy przygotowujące Black Friday w kilku kanałach sprzedaży",
+          "segment": "srednie",
+          "problem": "Na Black Friday rabaty są wszędzie, sprzedaż rośnie, a zysk spada. Każdy kanał ma inne ceny i zasady, a zespół gubi się w wyjątkach.",
+          "rozdzialy": [
+            "Kalkulator: ile musisz sprzedać więcej przy rabacie",
+            "Omnibus: najniższa cena z 30 dni w każdym kanale",
+            "Jedna oferta w wielu kanałach: ceny, stany, obsługa"
+          ]
+        },
+        {
+          "tytul": "Salon w Mapach Google.",
+          "podtytul": "Profil Firmy w Google dla sklepów z salonem i punktem odbioru",
+          "dla": "Sklepy z salonem, showroomem lub punktem odbioru",
+          "segment": "omni",
+          "problem": "Klienci szukają „sklep blisko mnie”, a w Mapach Google salon ma mało opinii i nieaktualne informacje.",
+          "rozdzialy": [
+            "Profil Firmy w Google: kompletny i aktualny",
+            "Opinie, zdjęcia i posty, które przyciągają do salonu",
+            "Z Map Google do e-sklepu i z powrotem"
+          ]
+        },
+        {
+          "tytul": "Omnichannel krok po kroku.",
+          "podtytul": "Mapa dojrzałości wielokanałowej dla polskiego sklepu",
+          "dla": "Właściciele i zarządy sklepów planujący rozwój kanałów",
+          "segment": "omni",
+          "problem": "Wszyscy mówią o omnichannel, a nie wiem, który krok jest dla mojego sklepu następny i czego nie robić za wcześnie.",
+          "rozdzialy": [
+            "5 poziomów dojrzałości omnichannel",
+            "Test: na którym poziomie jest twój sklep",
+            "Plan na 12 miesięcy: kolejność inwestycji"
+          ]
+        }
+      ]
+    }
+  ],
+  "kalendarz": [
+    {
+      "miesiac": "Paź 2026",
+      "okazje": "Planowanie Q4 · Halloween 31.10",
+      "nr": 98,
+      "dlaczego": "Black Friday wypada 27.11.2026, a sklepy ustalają ceny i promocje w październiku.",
+      "oferta": "Kampanie Google i Meta Ads, newsletter na Q4",
+      "badanie": "Ceny ok. 1000 produktów ze 100 sklepów od 1.10"
+    },
+    {
+      "miesiac": "Lis 2026",
+      "okazje": "Black Friday 27.11 · Cyber Monday 30.11",
+      "nr": 21,
+      "dlaczego": "Automaty trzeba włączyć przed ruchem z Black Friday, żeby zatrzymać nowych klientów.",
+      "oferta": "Newsletter i automatyzacje (Make, Zapier)",
+      "badanie": "Porzucone koszyki w 50 polskich sklepach"
+    },
+    {
+      "miesiac": "Gru 2026",
+      "okazje": "Mikołajki 6.12 · święta",
+      "nr": null,
+      "dlaczego": "Szczyt sprzedaży, więc bez premiery. Publikujemy wyniki badania cen z Black Friday.",
+      "oferta": "–",
+      "badanie": "Wyniki badania cen"
+    },
+    {
+      "miesiac": "Sty 2027",
+      "okazje": "Wyprzedaże · budżety na rok",
+      "nr": 51,
+      "dlaczego": "Po pierwszym sezonie świątecznym TikTok Shop w Polsce będą już dane i przykłady.",
+      "oferta": "Kampanie i treści w social mediach",
+      "badanie": "100 polskich sklepów w TikTok Shop"
+    },
+    {
+      "miesiac": "Lut 2027",
+      "okazje": "Walentynki 14.02",
+      "nr": 61,
+      "dlaczego": "Rozliczenie Q4 i budżety na 2027 to najlepszy moment na rozmowę o zysku z reklam.",
+      "oferta": "Kampanie Google i Meta Ads, audyt pomiaru",
+      "badanie": "Ankieta: ROAS a marża w sklepach"
+    },
+    {
+      "miesiac": "Mar 2027",
+      "okazje": "Dzień Kobiet 8.03 · Wielkanoc 28.03",
+      "nr": 81,
+      "dlaczego": "Firmy planują inwestycje na rok, w tym budowę albo przebudowę sklepu.",
+      "oferta": "Pakiet E-commerce (od 6 000 zł)",
+      "badanie": "Ceny 30 sprzedawców: Allegro a własny sklep"
+    },
+    {
+      "miesiac": "Kwi 2027",
+      "okazje": "Wiosna: dom, ogród, sport",
+      "nr": 1,
+      "dlaczego": "Kontynuacja e-booka #01: tam reklamy w ChatGPT, tu bezpłatne polecenia AI.",
+      "oferta": "SEO on-page, audyt SEO",
+      "badanie": "50 pytań zakupowych w 4 asystentach AI"
+    },
+    {
+      "miesiac": "Maj 2027",
+      "okazje": "Majówka · Dzień Matki 26.05",
+      "nr": 23,
+      "dlaczego": "Przed drugą połową roku warto budować bazę, a nie tylko wysyłać promocje.",
+      "oferta": "Newsletter i marketing bezpośredni",
+      "badanie": "Formularze zapisu w 100 sklepach"
+    },
+    {
+      "miesiac": "Cze 2027",
+      "okazje": "Dzień Dziecka 1.06 · Dzień Ojca 23.06",
+      "nr": 41,
+      "dlaczego": "Kreacje na drugą połowę roku i Q4 trzeba zaplanować z wyprzedzeniem.",
+      "oferta": "Kampanie Meta Ads, produkcja kreacji",
+      "badanie": "Biblioteka reklam Meta: 100 sklepów"
+    },
+    {
+      "miesiac": "Lip 2027",
+      "okazje": "Wakacje · wyprzedaże letnie",
+      "nr": 62,
+      "dlaczego": "Spokojniejszy sezon to czas na porządek w danych przed Q4.",
+      "oferta": "Audyt pomiaru i zgód",
+      "badanie": "Banery cookies w 100 sklepach"
+    },
+    {
+      "miesiac": "Sie 2027",
+      "okazje": "Powrót do szkoły",
+      "nr": 2,
+      "dlaczego": "Automatyzacje wdrożone w sierpniu odciążą zespół w szczycie Q4.",
+      "oferta": "Automatyzacje (Make, Zapier), chatbot AI",
+      "badanie": "Czas 10 zadań: ręcznie i z AI"
+    },
+    {
+      "miesiac": "Wrz 2027",
+      "okazje": "Planowanie Q4 · Black Friday 26.11.2027",
+      "nr": null,
+      "dlaczego": "Podsumowanie pierwszego roku serii i aktualizacja „Rabat zjada zysk” na Black Friday 2027.",
+      "oferta": "–",
+      "badanie": "Wyniki 10 e-booków"
+    }
+  ]
+}
