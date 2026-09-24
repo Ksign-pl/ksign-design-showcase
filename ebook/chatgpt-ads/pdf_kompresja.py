@@ -1,10 +1,12 @@
-"""Zmniejsza PDF e-booka bez zmiany układu stron i uzupełnia metadane (autor, temat).
+"""Uzupełnia metadane PDF e-booka (autor, temat) i zmniejsza duże obrazy bezstratne.
 
-Chromium zapisuje posągi z cieniem (CSS `filter: drop-shadow`) jako bezstratne obrazy
-w ok. 3-krotnej rozdzielczości, więc PDF waży kilkanaście MB. Skrypt podmienia w miejscu
-strumienie dużych obrazów: kolor → JPEG, maska przezroczystości → mniejsza maska Flate.
-Obiekty PDF zostają te same, więc odwołania z wzorców (Pattern) działają dalej
-(`Document.rewrite_images` z PyMuPDF je psuje – dlatego robimy to ręcznie).
+W składzie v2 duże obrazy w PDF są już JPEG-ami (sceny 3D Chromium przepisuje bez zmian),
+więc skrypt zwykle tylko uzupełnia metadane. Kompresja przydaje się, gdy w składzie pojawią się
+duże obrazy bezstratne – np. PNG albo cień CSS `filter: drop-shadow`, który Chromium zapisuje
+w ok. 3-krotnej rozdzielczości (tak było z posągami w wersji 1: PDF ważył kilkanaście MB).
+Skrypt podmienia wtedy w miejscu strumienie dużych obrazów RGB: kolor → JPEG, maska
+przezroczystości → mniejsza maska Flate. Obiekty PDF zostają te same, więc odwołania z wzorców
+(Pattern) działają dalej (`Document.rewrite_images` z PyMuPDF je psuje – dlatego robimy to ręcznie).
 
 Użycie:  python ebook/chatgpt-ads/pdf_kompresja.py export/ebook/ebook.pdf [--jakosc 84] [--skala 0.62]
 Wymaga:  pip install pymupdf pillow
