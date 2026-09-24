@@ -17,6 +17,7 @@ każdej strony (pod LinkedIn i Instagram).
 ```
 ebook/chatgpt-ads/
 ├── manuskrypt/      tekst stron (źródło prawdy dla treści)
+├── research/        weryfikacja materiałów i źródeł
 ├── src/             HTML stron, style (ebook.css) i polska typografia (typografia.js)
 ├── assets/          grafiki (posąg na okładkę)
 ├── fonts/           Anton, Inter Tight, JetBrains Mono – lokalnie, z licencjami OFL

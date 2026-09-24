@@ -145,15 +145,15 @@ W nowych kanałach reklamowych konkurencja w aukcji zwykle rośnie z czasem. Nie
 **Marker:** [ 02 / JAK TO DZIAŁA ]
 **Nagłówek:** ANATOMIA REKLAMY
 
-**Lead:** Masz dwa formaty: kartę reklamy i kartę produktu z feedu. Oba wyświetlają się pod odpowiedzią i są oznaczone jako sponsorowane.
+**Lead:** Masz dwa formaty: pojedynczą kartę reklamy i karuzelę produktów z feedu. Oba wyświetlają się pod odpowiedzią i są oznaczone jako sponsorowane. Wideo nie ma.
 
 **Karta reklamy – szkic z opisem elementów** (grafika w stylu e-booka, bez naśladowania wyglądu ChatGPT):
 
 1. **Oznaczenie „sponsorowane”** – dodaje je system.
 2. **Nazwa firmy i favicon** – ikona Twojej strony.
-3. **Obraz** – pokaż produkt albo efekt usługi.
-4. **Tytuł – do 24 znaków.** Efekt, który dostaje klient.
-5. **Opis – do 48 znaków.** Dowód: liczba, termin albo gwarancja.
+3. **Obraz** – kwadratowy, min. 256 × 256 px. Pokaż produkt albo efekt usługi.
+4. **Tytuł – do 50 znaków.** Efekt, który dostaje klient. Najważniejsze słowa na początku.
+5. **Opis – do 100 znaków.** Dowód: liczba, termin albo gwarancja.
 6. **Strona docelowa** – konkretna podstrona z własnymi UTM-ami, nie strona główna.
 
 **Przykład (sklep meblowy):**
@@ -161,16 +161,18 @@ W nowych kanałach reklamowych konkurencja w aukcji zwykle rośnie z czasem. Nie
 - Tytuł: „Sofa, która zniesie psa” (23 znaki)
 - Opis: „Tkanina odporna na pazury. Dostawa w 5 dni.” (43 znaki)
 
-**Karta produktu z feedu:**
+**Karuzela produktów z feedu (e-commerce):**
 
-- Dane karty, m.in. zdjęcie i nazwę produktu, system bierze z Twojego feedu produktowego. **[SPRAWDZIĆ: czy karta pokazuje cenę]**
+- Kilka produktów z jednego sklepu w jednej reklamie. Zdjęcie, nazwę, cenę i atrybuty system bierze z Twojego feedu i sam składa kartę. **[SPRAWDZIĆ: dostępność karuzeli na koncie w PLN]**
 - Feed wgrywasz plikiem, stałym adresem URL albo przez SFTP. Pozycje wgrane plikiem wygasają po 2 tygodniach – wybierz stały URL.
 - Kampanie z feedu kierujesz tylko na cały kraj.
 - OpenAI podaje, że reklamy z feedu należą do najskuteczniejszych w programie.
 
+**Ramka – uwaga na „Text customization”:** W ustawieniach zaawansowanych kampanii personalizacja tekstu jest domyślnie włączona. AI tworzy wtedy spersonalizowane i przetłumaczone wersje Twojego tytułu i opisu – i może je wyświetlać bez Twojej akceptacji. Wyłącz ją, jeśli każde zdanie musi przejść akceptację: marka premium, branża z regulacjami, obietnice cenowe.
+
 **Ramka – czego nie robić:** Reklama nie może naśladować wyglądu ani głosu ChatGPT. Żadnych „dymków” czatu, grafik udających odpowiedź ani zwrotów w stylu „Jako asystent AI polecam…”.
 
-**Przypis o limitach:** Źródła podają różne limity znaków (50/100 albo 16–24 i 32–48). Trzymaj się 24 znaków w tytule i 48 w opisie. To bezpieczne w każdej wersji i nie utnie się na telefonie.
+**Przypis o limitach:** Panel przyjmuje tytuł do 50 i opis do 100 znaków – potwierdza to kilka niezależnych źródeł (stan 24.09.2026). Wcześniej spotykane krótsze limity (16–24 i 32–48 znaków) nie znalazły potwierdzenia.
 
 ---
 
@@ -212,7 +214,7 @@ _Ta strona jest złożona w próbce graficznej (`export/probka/08-kto-widzi.png`
 **Marker:** [ 02 / JAK TO DZIAŁA ]
 **Nagłówek:** JAK PŁACISZ + 3 MITY
 
-**Lead:** Wybierasz cel kampanii i budżet dzienny. Minimum dla konta rozliczanego w złotówkach to 65 zł dziennie.
+**Lead:** Wybierasz cel kampanii i budżet: dzienny albo na całą kampanię. Minimum budżetu dziennego dla konta rozliczanego w złotówkach to 65 zł.
 
 **3 cele kampanii:**
 
@@ -222,11 +224,12 @@ _Ta strona jest złożona w próbce graficznej (`export/probka/08-kto-widzi.png`
 | Kliknięcia (CPC)   | kliknięcie                                            | na start – zbierasz ruch i dane  |
 | Konwersje          | kliknięcie lub wyświetlenie – nigdy za samą konwersję | gdy pixel już zbiera zdarzenia   |
 
-**Budżet dzienny – jak działa:**
+**Budżet – jak działa:**
 
-- To średnia z 7 dni, a nie sztywny limit na każdy dzień.
+- Budżet dzienny to średnia z 7 dni, a nie sztywny limit na każdy dzień.
 - Jednego dnia system może wydać maksymalnie 2× budżet dzienny.
 - W całym tygodniu – maksymalnie 7× budżet dzienny.
+- Typ budżetu wybierz od razu dobrze. Z budżetu na całą kampanię przejdziesz na dzienny, ale z powrotem już nie – zły typ oznacza nową kampanię.
 - Przy minimum 65 zł dziennie miesiąc kosztuje ok. 1950 zł (65 zł × 30 dni).
 
 **3 mity:**
@@ -252,5 +255,9 @@ _Ta strona jest złożona w próbce graficznej (`export/probka/08-kto-widzi.png`
 | Start w 31 krajach Europy 24.08.2026, w tym w Polsce                | OpenAI, „ChatGPT Ads expands across Europe”: https://openai.com/index/chatgpt-ads-expands-across-europe/ · Digiday, 19.08.2026                    | 24.09.2026   |
 | Konta samoobsługowe (Ads Manager) od 31.08.2026                     | Index Lab, „ChatGPT Ads in Europe (2026)”: https://www.indexlab.ai/guides/chatgpt-ads/europe **[SPRAWDZIĆ w dokumentacji OpenAI]**                | 24.09.2026   |
 | Karta pod odpowiedzią: nazwa, favicon, tytuł, opis, obraz, strona   | Mediovsky, „ChatGPT Ads in Poland”, 05.09.2026: https://mediovsky.com/chatgpt-ads-europe/                                                         | 24.09.2026   |
+| Tytuł do 50, opis do 100 znaków, obraz min. 256 × 256 px            | cloro.dev, „How to Advertise on ChatGPT” (akt. 15.09.2026): https://cloro.dev/blog/how-to-advertise-on-chatgpt/                                   | 24.09.2026   |
+| Karuzela produktów z feedu (od 07.08.2026), cena z feedu            | Search Engine Roundtable: https://www.seroundtable.com/openai-chatgpt-ads-updates-41828.html · Digiday (product carousels)                        | 24.09.2026   |
+| „Text customization” domyślnie włączone (tekst pomocy z panelu)     | Sprites, „ChatGPT Ads Manager: Setup Guide” (21.09.2026): https://www.sprites.ai/chatgpt-ads-manager                                              | 24.09.2026   |
+| Zmiana typu budżetu tylko z całej kampanii na dzienny               | OpenAI Help Center, „Daily Budgets”: https://help.openai.com/en/articles/20001413-daily-budgets (strona blokuje pobranie – treść z wyszukiwarki)  | 24.09.2026   |
 | Kto widzi reklamy, tematy wrażliwe, EOG, budżet, cele, feed         | Dokumentacja OpenAI Ads (krok 2, weryfikacja 24.09.2026) **[wstawić dokładne adresy stron z kroku 2]**                                            | 24.09.2026   |
 | 13 mln / 9,2 mln / +71% r/r                                         | Gemius/PBI, marzec 2026 **[wstawić link do komunikatu]**                                                                                          | 24.09.2026   |
