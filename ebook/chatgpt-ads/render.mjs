@@ -1,7 +1,7 @@
 // Renderuje strony e-booka (HTML, strony 1080 × 1350 px) do PNG (każda strona osobno) i PDF.
 // Użycie: node ebook/chatgpt-ads/render.mjs [plik.html] [katalog-wyjściowy]
 //   domyślnie: src/ebook.html → export/ebook (31 × PNG + ebook.pdf)
-// Atrybuty <body> zmieniają tryb: data-pdf="nie" (tylko PNG), data-fonty="nie" (bez kontroli fontów),
+// Atrybuty <body> zmieniają tryb: data-pdf="nie" (tylko PNG), data-fonty="nie" albo lista krojów,
 // data-tlo="przezroczyste" (PNG z kanałem alfa) – używa ich src/mockup.html.
 // Wymaga Playwright: `npm i` w repo (@playwright/test) albo globalnie `playwright`.
 import { createRequire } from "node:module";
@@ -39,22 +39,31 @@ try {
   await page.goto(pathToFileURL(input).href, { waitUntil: "load" });
   await page.evaluate(() => document.fonts.ready);
 
-  const tryb = await page.evaluate(() => ({
-    pdf: document.body.dataset.pdf !== "nie",
-    fonty: document.body.dataset.fonty !== "nie",
-    przezroczyste: document.body.dataset.tlo === "przezroczyste",
-  }));
+  const tryb = await page.evaluate(() => {
+    const fonty = document.body.dataset.fonty;
+    return {
+      pdf: document.body.dataset.pdf !== "nie",
+      // data-fonty="nie" – bez kontroli; lista po przecinku – tylko te kroje; brak – komplet e-booka.
+      fonty:
+        fonty === "nie"
+          ? []
+          : fonty
+            ? fonty.split(",").map((f) => f.trim())
+            : ["Anton", "Inter Tight", "JetBrains Mono"],
+      przezroczyste: document.body.dataset.tlo === "przezroczyste",
+    };
+  });
 
-  const missing = tryb.fonty
-    ? await page.evaluate(() =>
-        ["Anton", "Inter Tight", "JetBrains Mono"].filter(
-          (family) =>
-            ![...document.fonts].some(
-              (f) => f.family.replace(/"/g, "") === family && f.status === "loaded",
-            ),
-        ),
-      )
-    : [];
+  const missing = await page.evaluate(
+    (families) =>
+      families.filter(
+        (family) =>
+          ![...document.fonts].some(
+            (f) => f.family.replace(/"/g, "") === family && f.status === "loaded",
+          ),
+      ),
+    tryb.fonty,
+  );
   if (missing.length) throw new Error(`Nie załadowano fontów: ${missing.join(", ")}`);
   if (offline.length) console.warn(`Zablokowane zasoby sieciowe: ${offline.join(", ")}`);
 

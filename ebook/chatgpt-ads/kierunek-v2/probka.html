@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <title>Kierunek v2 – próbka e-booka KSIGN</title>
+    <link rel="stylesheet" href="../fonts/fonts.css" />
+    <link rel="stylesheet" href="v2.css" />
+    <script src="../src/typografia.js"></script>
+  </head>
+  <body data-fonty="Inter Tight">
+    <main class="stack">
+      <!-- OKŁADKA -->
+      <section class="page cover" data-name="v2-01-okladka" aria-label="Okładka">
+        <img
+          class="bg"
+          src="grafiki/okladka.jpg"
+          alt="Biały dymek rozmowy jak sklep: otwarte drzwi, oświetlone półki z produktami i torby zakupowe przed schodkami"
+        />
+        <div class="top"><span>E-book KSIGN</span><span>31 stron · 15 minut</span></div>
+        <h1 class="title">Nie ma cię<br />w <mark>rozmowie.</mark></h1>
+        <p class="sub">
+          Reklamy w ChatGPT dla polskich firm. Jak działają, czy są dla Ciebie i jak uruchomić
+          pierwszą kampanię w 7 dni.
+        </p>
+        <div class="foot">
+          <span class="logo">KSIGN<i>.</i></span>
+          <span>v1.0 · stan na 28.09.2026</span>
+        </div>
+      </section>
+
+      <!-- OTWARCIE ROZDZIAŁU 06 -->
+      <section class="page opener" data-name="v2-22-rozdzial-06" aria-label="Rozdział 06">
+        <img
+          class="bg"
+          src="grafiki/szachy.jpg"
+          alt="Pomarańczowy hetman stoi pośród przewróconych pionków na szachownicy"
+        />
+        <div class="ghost" aria-hidden="true">06</div>
+        <div class="top"><span>Rozdział 06 / 08</span><span class="pnum">22</span></div>
+        <h2 class="title">Budżet<br />i <mark>pomiar.</mark></h2>
+        <p class="aside">
+          Każdy ruch się liczy. Policz test, zanim wydasz pierwszą złotówkę, i decyduj według
+          kalendarza, nie nastroju.
+        </p>
+        <div class="dark">
+          <div>
+            <small>W tym rozdziale</small>
+            <p>Kalkulator na kartce · Jak czytać raport<br />Reguły 14 i 30 dni</p>
+          </div>
+          <span class="logo">KSIGN<i>.</i></span>
+        </div>
+      </section>
+
+      <!-- STRONA TREŚCI -->
+      <section class="page content" data-name="v2-23-kalkulator" aria-label="Kalkulator na kartce">
+        <div class="top"><span>06 · Budżet i pomiar</span><span class="pnum">23</span></div>
+        <h2 class="h1">Kalkulator na kartce</h2>
+        <p class="lead">
+          Zanim wydasz 910 zł, policz, ile zamówień może to dać i ile możesz za nie zapłacić.
+        </p>
+
+        <div class="card">
+          <div class="row row--hdr">
+            <span></span><span>Wzór</span><span>Twoje liczby</span
+            ><span style="text-align: right">Przykład</span>
+          </div>
+          <div class="row">
+            <span class="k">A</span><span>Budżet testu</span><span class="blank">zł</span
+            ><span class="ex">910 zł</span>
+          </div>
+          <div class="row">
+            <span class="k">B</span><span>Koszt kliknięcia (CPC)</span><span class="blank">zł</span
+            ><span class="ex">2,50 zł</span>
+          </div>
+          <div class="row">
+            <span class="k">C</span><span>Kliknięcia = A ÷ B</span><span class="blank"></span
+            ><span class="ex">364</span>
+          </div>
+          <div class="row">
+            <span class="k">D</span><span>Konwersja strony</span><span class="blank">%</span
+            ><span class="ex">1,5%</span>
+          </div>
+          <div class="row">
+            <span class="k">E</span><span>Zamówienia = C × D</span><span class="blank"></span
+            ><span class="ex">5,5</span>
+          </div>
+          <div class="row row--hot">
+            <span class="k">F</span><span>Koszt pozyskania = A ÷ E</span
+            ><span class="blank">zł</span><span class="ex">ok. 167 zł</span>
+          </div>
+          <div class="row row--hot">
+            <span class="k">G</span><span>Zysk z zamówienia</span><span class="blank">zł</span
+            ><span class="ex">600 zł × 30% = 180 zł</span>
+          </div>
+        </div>
+
+        <p class="callout">
+          <b>F &lt; G:</b> test jest na granicy opłacalności. Lepsza konwersja strony przesuwa go na
+          plus.
+        </p>
+        <p class="src">
+          Przykładowe założenia, nie benchmark. CPC weź z panelu po 7 dniach, konwersję – z GA4 dla
+          podobnego&nbsp;ruchu.
+        </p>
+        <div class="todo">
+          <span class="todo__label">Do zrobienia dziś</span>
+          <p>
+            Wypełnij kolumnę „Twoje liczby” dla swojej oferty. Jeśli F wychodzi wyżej niż G,
+            najpierw popraw stronę.
+          </p>
+        </div>
+
+        <div class="foot">
+          <span class="logo">KSIGN<i>.</i></span>
+          <span>Źródła: str. 31</span>
+          <span>v1.0 · stan na 28.09.2026</span>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

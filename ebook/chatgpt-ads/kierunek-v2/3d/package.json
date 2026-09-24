@@ -1,0 +1,7 @@
+{
+  "private": true,
+  "description": "Sceny 3D do e-booka KSIGN (kierunek v2): three.js renderowany w Chromium przez Playwright",
+  "dependencies": {
+    "three": "0.180.0"
+  }
+}

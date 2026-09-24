@@ -1,0 +1,337 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      html,
+      body {
+        margin: 0;
+        background: #fff;
+      }
+      canvas {
+        display: block;
+      }
+    </style>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "./node_modules/three/build/three.module.js",
+          "three/addons/": "./node_modules/three/examples/jsm/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <script type="module">
+      import * as THREE from "three";
+      import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+      import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
+      import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
+      import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
+      import { GTAOPass } from "three/addons/postprocessing/GTAOPass.js";
+      import { RectAreaLightUniformsLib } from "three/addons/lights/RectAreaLightUniformsLib.js";
+      import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
+      RectAreaLightUniformsLib.init();
+
+      const W = 1080,
+        H = 1350,
+        S = Math.max(2, window.devicePixelRatio * 1.5);
+      const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+      renderer.setPixelRatio(S);
+      renderer.setSize(W, H);
+      renderer.toneMapping = THREE.NeutralToneMapping;
+      renderer.toneMappingExposure = 1.0;
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.VSMShadowMap;
+      document.body.appendChild(renderer.domElement);
+
+      const BG = 0xebe8e3;
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(BG);
+      scene.fog = new THREE.Fog(BG, 14, 30);
+      const pmrem = new THREE.PMREMGenerator(renderer);
+      scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+      scene.environmentIntensity = 0.32;
+
+      const camera = new THREE.PerspectiveCamera(28, W / H, 0.1, 100);
+      camera.position.set(2.6, 2.9, 18.2);
+      camera.lookAt(-0.55, 3.35, 0);
+
+      // podłoga
+      const floor = new THREE.Mesh(
+        new THREE.PlaneGeometry(80, 80),
+        new THREE.MeshStandardMaterial({ color: 0xe4e0d9, roughness: 0.9 }),
+      );
+      floor.rotation.x = -Math.PI / 2;
+      floor.receiveShadow = true;
+      scene.add(floor);
+
+      // kształt dymka: zaokrąglony prostokąt + ogonek w lewym dolnym rogu, skierowany w dół
+      const bw = 3.6,
+        bh = 3.5,
+        r = 0.95,
+        x0 = -bw / 2,
+        y0 = 0.0,
+        lift = 0.62;
+      const shape = new THREE.Shape();
+      shape.moveTo(x0 + r + 0.75, y0);
+      shape.lineTo(x0 + bw - r, y0);
+      shape.quadraticCurveTo(x0 + bw, y0, x0 + bw, y0 + r);
+      shape.lineTo(x0 + bw, y0 + bh - r);
+      shape.quadraticCurveTo(x0 + bw, y0 + bh, x0 + bw - r, y0 + bh);
+      shape.lineTo(x0 + r, y0 + bh);
+      shape.quadraticCurveTo(x0, y0 + bh, x0, y0 + bh - r);
+      shape.lineTo(x0, y0 + r);
+      shape.quadraticCurveTo(x0, y0 + 0.05, x0 + 0.35, y0 + 0.0);
+      // ogonek: z dolnej krawędzi w dół i w lewo, do podłogi
+      shape.lineTo(x0 - 0.05, y0 - lift);
+      shape.lineTo(x0 + r + 0.75, y0);
+      // otwór na drzwi
+      const dw = 1.72,
+        dh = 2.35,
+        dx = 0.35,
+        dy = 0.001;
+      const hole = new THREE.Path();
+      hole.moveTo(dx - dw / 2, dy);
+      hole.lineTo(dx + dw / 2, dy);
+      hole.lineTo(dx + dw / 2, dy + dh);
+      hole.lineTo(dx - dw / 2, dy + dh);
+      hole.lineTo(dx - dw / 2, dy);
+      shape.holes.push(hole);
+      const depth = 1.7;
+      const geo = new THREE.ExtrudeGeometry(shape, {
+        depth,
+        bevelEnabled: true,
+        bevelThickness: 0.14,
+        bevelSize: 0.12,
+        bevelSegments: 10,
+        curveSegments: 48,
+      });
+      geo.translate(0, 0.12 + lift, -depth / 2);
+      const shell = new THREE.Mesh(
+        geo,
+        new THREE.MeshPhysicalMaterial({
+          color: 0xfbfaf8,
+          roughness: 0.28,
+          clearcoat: 0.7,
+          clearcoatRoughness: 0.18,
+        }),
+      );
+      shell.castShadow = true;
+      shell.receiveShadow = true;
+      scene.add(shell);
+
+      // wnętrze sklepu: ściana tylna + podłoga + sufit
+      const zBack = -depth / 2 + 0.2;
+      const inner = new THREE.MeshStandardMaterial({ color: 0xf3d9ae, roughness: 0.7 });
+      const back = new THREE.Mesh(new THREE.PlaneGeometry(dw + 0.02, dh), inner);
+      back.position.set(dx, 0.12 + lift + dh / 2, zBack);
+      scene.add(back);
+      const iflo = new THREE.Mesh(
+        new THREE.PlaneGeometry(dw, depth),
+        new THREE.MeshStandardMaterial({ color: 0xf6ead6, roughness: 0.5 }),
+      );
+      iflo.rotation.x = -Math.PI / 2;
+      iflo.position.set(dx, 0.125 + lift, 0.12);
+      iflo.receiveShadow = true;
+      scene.add(iflo);
+      // listwa LED
+      const led = new THREE.Mesh(
+        new THREE.BoxGeometry(dw - 0.1, 0.03, 0.05),
+        new THREE.MeshStandardMaterial({
+          color: 0xffffff,
+          emissive: 0xffe2b0,
+          emissiveIntensity: 3,
+        }),
+      );
+      led.position.set(dx, 0.12 + lift + dh - 0.05, zBack + 0.25);
+      scene.add(led);
+      const area = new THREE.RectAreaLight(0xffd9a0, 20, dw - 0.1, depth - 0.3);
+      area.position.set(dx, 0.12 + lift + dh - 0.02, 0.05);
+      area.lookAt(dx, lift, 0.05);
+      scene.add(area);
+      const glow = new THREE.PointLight(0xffc27a, 9, 6, 1.5);
+      glow.position.set(dx, 1.7 + lift, 0.3);
+      scene.add(glow);
+
+      // półki i produkty
+      const shelfMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.4 });
+      const prodMats = [
+        new THREE.MeshPhysicalMaterial({
+          color: new THREE.Color("#e8940c"),
+          roughness: 0.3,
+          clearcoat: 0.6,
+        }),
+        new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.5 }),
+        new THREE.MeshStandardMaterial({ color: 0x1b1b1b, roughness: 0.45 }),
+        new THREE.MeshStandardMaterial({ color: 0xd8c3a0, roughness: 0.6 }),
+      ];
+      [0.95, 1.55, 2.05].forEach((y, row) => {
+        const shelf = new THREE.Mesh(new THREE.BoxGeometry(dw - 0.08, 0.035, 0.36), shelfMat);
+        shelf.position.set(dx, 0.12 + lift + y, zBack + 0.19);
+        shelf.castShadow = true;
+        shelf.receiveShadow = true;
+        scene.add(shelf);
+        let x = dx - dw / 2 + 0.16;
+        let i = row;
+        while (x < dx + dw / 2 - 0.2) {
+          const w = 0.12 + ((i * 37) % 5) * 0.03,
+            h = 0.16 + ((i * 53) % 4) * 0.05;
+          const box = new THREE.Mesh(
+            new RoundedBoxGeometry(w, h, 0.18, 3, 0.015),
+            prodMats[i % prodMats.length],
+          );
+          box.position.set(x + w / 2, 0.12 + lift + y + 0.0175 + h / 2, zBack + 0.2);
+          box.castShadow = true;
+          scene.add(box);
+          x += w + 0.05;
+          i++;
+        }
+      });
+      // wieszak z ubraniami na dole
+      const rail = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.012, 0.012, dw - 0.2, 16),
+        new THREE.MeshStandardMaterial({ color: 0xbfbfbf, metalness: 1, roughness: 0.3 }),
+      );
+      rail.rotation.z = Math.PI / 2;
+      rail.position.set(dx, 0.12 + lift + 0.78, zBack + 0.3);
+      scene.add(rail);
+      for (let k = 0; k < 8; k++) {
+        const c = new THREE.Mesh(
+          new RoundedBoxGeometry(0.16, 0.5, 0.06, 3, 0.02),
+          prodMats[(k + 1) % 4],
+        );
+        c.position.set(dx - dw / 2 + 0.2 + k * 0.19, 0.12 + lift + 0.5, zBack + 0.3);
+        c.rotation.y = 1.2;
+        c.castShadow = true;
+        scene.add(c);
+      }
+      // torba zakupowa na podłodze przed drzwiami
+      const bag = new THREE.Mesh(new RoundedBoxGeometry(0.42, 0.5, 0.2, 3, 0.02), prodMats[0]);
+      bag.position.set(dx + 1.45, 0.25, depth / 2 + 0.95);
+      bag.rotation.y = -0.5;
+      bag.castShadow = true;
+      scene.add(bag);
+      const handle = new THREE.Mesh(
+        new THREE.TorusGeometry(0.1, 0.012, 12, 40, Math.PI),
+        new THREE.MeshStandardMaterial({ color: 0x1b1b1b }),
+      );
+      handle.position.set(dx + 1.45, 0.5, depth / 2 + 0.95);
+      handle.rotation.y = -0.5;
+      scene.add(handle);
+
+      const bag2 = new THREE.Mesh(
+        new RoundedBoxGeometry(0.34, 0.42, 0.16, 3, 0.02),
+        new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.5 }),
+      );
+      bag2.position.set(dx + 1.95, 0.21, depth / 2 + 1.2);
+      bag2.rotation.y = 0.35;
+      bag2.castShadow = true;
+      scene.add(bag2);
+      const handle2 = new THREE.Mesh(
+        new THREE.TorusGeometry(0.085, 0.01, 12, 40, Math.PI),
+        new THREE.MeshStandardMaterial({ color: 0xe8940c }),
+      );
+      handle2.position.set(dx + 1.95, 0.42, depth / 2 + 1.2);
+      handle2.rotation.y = 0.35;
+      scene.add(handle2);
+      // schodki do drzwi
+      const stepMat = new THREE.MeshPhysicalMaterial({
+        color: 0xfbfaf8,
+        roughness: 0.3,
+        clearcoat: 0.5,
+      });
+      for (let k = 0; k < 3; k++) {
+        const hgt = lift + 0.12 - (k * (lift + 0.12)) / 3;
+        const st = new THREE.Mesh(new RoundedBoxGeometry(dw + 0.1, hgt, 0.3, 2, 0.02), stepMat);
+        st.position.set(dx, hgt / 2, depth / 2 + 0.28 + k * 0.29);
+        st.castShadow = true;
+        st.receiveShadow = true;
+        scene.add(st);
+      }
+      // drzwi: dwa skrzydła otwarte na zewnątrz
+      const doorMat = new THREE.MeshPhysicalMaterial({
+        color: 0xffffff,
+        roughness: 0.3,
+        clearcoat: 0.5,
+      });
+      const glassMat = new THREE.MeshPhysicalMaterial({
+        color: 0xffffff,
+        roughness: 0.05,
+        transmission: 0.9,
+        thickness: 0.02,
+        ior: 1.5,
+        transparent: true,
+        opacity: 0.35,
+      });
+      function leaf(side) {
+        const g = new THREE.Group();
+        const lw = dw / 2,
+          t = 0.05;
+        const frame = new THREE.Mesh(new RoundedBoxGeometry(lw, dh - 0.02, t, 2, 0.01), doorMat);
+        frame.position.set((side * lw) / 2, dh / 2, 0);
+        frame.castShadow = true;
+        g.add(frame);
+        const pane = new THREE.Mesh(
+          new THREE.BoxGeometry(lw - 0.16, dh * 0.45, t + 0.004),
+          glassMat,
+        );
+        pane.position.set((side * lw) / 2, dh * 0.68, 0);
+        g.add(pane);
+        const knob = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.012, 0.012, 0.22, 12),
+          new THREE.MeshStandardMaterial({ color: 0xc9c9c9, metalness: 1, roughness: 0.25 }),
+        );
+        knob.position.set(side * (lw - 0.08), dh * 0.46, t / 2 + 0.03);
+        g.add(knob);
+        g.position.set(
+          dx - ((side * dw) / 2) * -1 * -1 + (side < 0 ? 0 : 0),
+          0.12,
+          depth / 2 + 0.14,
+        );
+        return g;
+      }
+      const L = leaf(1);
+      L.position.set(dx - dw / 2, 0.125 + lift, depth / 2 + 0.16);
+      L.rotation.y = -1.12;
+      scene.add(L);
+      const R = leaf(-1);
+      R.position.set(dx + dw / 2, 0.125 + lift, depth / 2 + 0.16);
+      R.rotation.y = 1.18;
+      scene.add(R);
+
+      // światło
+      const key = new THREE.DirectionalLight(0xffffff, 2.9);
+      key.position.set(-7, 9, 6);
+      key.castShadow = true;
+      key.shadow.mapSize.set(2048, 2048);
+      key.shadow.radius = 14;
+      key.shadow.blurSamples = 24;
+      key.shadow.camera.left = -8;
+      key.shadow.camera.right = 8;
+      key.shadow.camera.top = 8;
+      key.shadow.camera.bottom = -8;
+      key.shadow.bias = -0.0004;
+      scene.add(key);
+      const fill = new THREE.DirectionalLight(0xffffff, 0.5);
+      fill.position.set(6, 4, 8);
+      scene.add(fill);
+
+      const composer = new EffectComposer(renderer);
+      composer.addPass(new RenderPass(scene, camera));
+      const gtao = new GTAOPass(scene, camera, W, H);
+      gtao.updateGtaoMaterial({
+        radius: 0.5,
+        distanceExponent: 1.4,
+        thickness: 1.0,
+        scale: 1.0,
+        samples: 16,
+      });
+      gtao.blendIntensity = 0.8;
+      composer.addPass(gtao);
+      composer.addPass(new OutputPass());
+      composer.render();
+      window.__done = true;
+    </script>
+  </body>
+</html>

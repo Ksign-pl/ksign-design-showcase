@@ -1,0 +1,410 @@
+/* Kierunek v2: czyste sceny 3D, jasne tło, nowoczesny grotesk, jeden akcent (pomarańcz KSIGN). */
+
+:root {
+  --bg: #f5f3ef;
+  --paper: #fcfbf9;
+  --ink: #111111;
+  --ink-2: #2a2926;
+  --gray: #6d6a64;
+  --line: #dcd7ce;
+  --accent: #e8940c;
+  --accent-soft: rgba(232, 148, 12, 0.14);
+  --f: "Inter Tight", system-ui, sans-serif;
+  --pad: 72px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  background: #d9d6d0;
+}
+
+body {
+  color: var(--ink);
+  font-family: var(--f);
+  -webkit-font-smoothing: antialiased;
+}
+
+.stack {
+  display: grid;
+  gap: 40px;
+  justify-content: center;
+  padding: 40px 0;
+}
+
+.page {
+  position: relative;
+  width: 1080px;
+  height: 1350px;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+@page {
+  size: 1080px 1350px;
+  margin: 0;
+}
+
+@media print {
+  html,
+  body {
+    background: none;
+  }
+
+  .stack {
+    display: block;
+    padding: 0;
+  }
+
+  .page {
+    break-after: page;
+  }
+}
+
+/* ---------- Elementy wspólne ---------- */
+
+.bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.top {
+  position: absolute;
+  z-index: 3;
+  top: 56px;
+  left: var(--pad);
+  right: var(--pad);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  color: var(--gray);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.pnum {
+  color: var(--ink);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.title {
+  position: absolute;
+  z-index: 3;
+  left: var(--pad);
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 1.02;
+}
+
+/* Podświetlenie słowa: prostokąt od linii pisma do wysokości wersalików (+ zapas).
+   Nie sięga w górę do poprzedniego wiersza, więc nie zasłania ogonków „ę”/„ą”. */
+mark {
+  padding: 0 0.08em;
+  background: linear-gradient(var(--accent), var(--accent)) no-repeat 0 100% / 100%
+    calc(100% - 0.19em);
+  color: var(--ink);
+}
+
+.logo {
+  color: var(--ink);
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  text-transform: none;
+}
+
+.logo i {
+  color: var(--accent);
+  font-style: normal;
+}
+
+/* ---------- Okładka ---------- */
+
+.cover .title {
+  top: 116px;
+  font-size: 134px;
+}
+
+.cover .sub {
+  position: absolute;
+  z-index: 3;
+  top: 400px;
+  left: var(--pad);
+  width: 520px;
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 1.36;
+}
+
+.cover .foot {
+  position: absolute;
+  z-index: 3;
+  left: var(--pad);
+  right: var(--pad);
+  bottom: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--gray);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+/* ---------- Otwarcie rozdziału (plakat) ---------- */
+
+.opener .title {
+  top: 140px;
+  font-size: 128px;
+}
+
+.opener .aside {
+  position: absolute;
+  z-index: 3;
+  top: 290px;
+  left: 560px;
+  width: 400px;
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.38;
+}
+
+.ghost {
+  position: absolute;
+  z-index: 1;
+  top: 40px;
+  left: -64px;
+  color: transparent;
+  font-size: 560px;
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  line-height: 1;
+  -webkit-text-stroke: 2px rgba(17, 17, 17, 0.07);
+}
+
+.dark {
+  position: absolute;
+  z-index: 3;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 360px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0 var(--pad) 52px;
+  background: linear-gradient(
+    to top,
+    rgba(12, 12, 12, 0.94) 0%,
+    rgba(12, 12, 12, 0.72) 45%,
+    rgba(12, 12, 12, 0) 100%
+  );
+  color: #fff;
+}
+
+.dark small {
+  display: block;
+  margin-bottom: 10px;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.dark p {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.dark .logo {
+  color: #fff;
+}
+
+/* ---------- Do zrobienia dziś ---------- */
+
+.todo {
+  margin-top: 24px;
+  padding: 24px 28px 26px;
+  border-radius: 20px;
+  background: var(--ink);
+  color: #fff;
+}
+
+.todo__label {
+  display: inline-block;
+  margin-bottom: 14px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.todo p {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* ---------- Strona treści ---------- */
+
+.content {
+  padding: 0 var(--pad);
+}
+
+.content .top {
+  position: static;
+  padding-top: 56px;
+}
+
+.h1 {
+  margin: 40px 0 0;
+  font-size: 84px;
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+}
+
+.lead {
+  max-width: 880px;
+  margin: 24px 0 0;
+  color: var(--ink-2);
+  font-size: 27px;
+  font-weight: 500;
+  line-height: 1.38;
+}
+
+.card {
+  margin-top: 30px;
+  padding: 8px 30px;
+  border-radius: 20px;
+  background: var(--paper);
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.04),
+    0 24px 50px -30px rgba(40, 24, 0, 0.35);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 64px 1fr 190px 230px;
+  align-items: center;
+  min-height: 64px;
+  border-bottom: 1px solid var(--line);
+  font-size: 23px;
+  font-weight: 500;
+}
+
+.row:last-child {
+  border-bottom: 0;
+}
+
+.row--hdr {
+  min-height: 52px;
+  color: var(--gray);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.k {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: #fff;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.row--hot {
+  margin: 0 -30px;
+  padding: 0 30px;
+  background: var(--accent-soft);
+}
+
+.row--hot .k {
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.blank {
+  height: 30px;
+  margin-right: 28px;
+  border-bottom: 2px dashed #b9b3a8;
+  color: var(--gray);
+  font-size: 17px;
+  text-align: right;
+}
+
+.ex {
+  font-weight: 700;
+  text-align: right;
+}
+
+.callout {
+  margin-top: 22px;
+  padding: 22px 28px;
+  border-left: 6px solid var(--accent);
+  border-radius: 0 16px 16px 0;
+  background: var(--paper);
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.callout b {
+  font-weight: 800;
+}
+
+.src {
+  margin: 16px 0 0;
+  color: var(--gray);
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.foot {
+  position: absolute;
+  left: var(--pad);
+  right: var(--pad);
+  bottom: 44px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  color: var(--gray);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.foot .logo {
+  font-size: 26px;
+}
