@@ -1,0 +1,425 @@
+/* E-book „Nie ma cię w rozmowie” – system stron 4:5 (1080 × 1350 px).
+   Okładka i otwarcia rozdziałów: pomarańcz + marmur. Strony treści: jasne tło, czarny tekst, pomarańczowe akcenty. */
+
+@import url("../fonts/fonts.css");
+
+:root {
+  --orange: #e8940c;
+  --ink: #0b0b0b;
+  --paper: #f6f2ea;
+  --paper-2: #ebe4d6;
+  --muted: #57524a;
+  --white: #ffffff;
+
+  --page-w: 1080px;
+  --page-h: 1350px;
+  --pad-x: 72px;
+
+  --f-display: "Anton", "Impact", sans-serif;
+  --f-text: "Inter Tight", "Inter", system-ui, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+@page {
+  size: 1080px 1350px;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #2b2b2b;
+  color: var(--ink);
+  font-family: var(--f-text);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-kerning: normal;
+}
+
+/* Podgląd w przeglądarce: strony jedna pod drugą. W PDF – bez odstępów. */
+.stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  padding: 48px 0;
+}
+
+@media print {
+  body {
+    background: none;
+  }
+  .stack {
+    display: block;
+    padding: 0;
+  }
+}
+
+.page {
+  position: relative;
+  width: var(--page-w);
+  height: var(--page-h);
+  overflow: hidden;
+  break-after: page;
+  page-break-after: always;
+}
+
+.page:last-child {
+  break-after: auto;
+  page-break-after: auto;
+}
+
+/* ---------- Wspólne elementy ---------- */
+
+.logo {
+  font-family: var(--f-text);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.logo i {
+  font-style: normal;
+  color: var(--orange);
+}
+
+.mono {
+  font-family: var(--f-mono);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+/* ---------- Okładka ---------- */
+
+.cover {
+  background:
+    radial-gradient(52% 40% at 70% 50%, rgba(255, 205, 120, 0.5), rgba(255, 205, 120, 0) 72%),
+    var(--orange);
+}
+
+.cover__top {
+  position: absolute;
+  top: 60px;
+  left: var(--pad-x);
+  right: var(--pad-x);
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.cover__title {
+  position: absolute;
+  z-index: 2;
+  top: 112px;
+  left: 66px;
+  margin: 0;
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-size: 170px;
+  /* Anton: ogonek „Ę” schodzi 0,31 em pod linię pisma – 1,22 to minimum, żeby nie dotykał drugiej linii. */
+  line-height: 1.22;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.cover__sub {
+  position: absolute;
+  z-index: 2;
+  top: 566px;
+  left: var(--pad-x);
+  width: 420px;
+  margin: 0;
+  font-size: 33px;
+  font-weight: 600;
+  line-height: 1.22;
+  letter-spacing: -0.01em;
+}
+
+.cover__rule {
+  position: absolute;
+  top: 540px;
+  left: var(--pad-x);
+  width: 64px;
+  height: 6px;
+  background: var(--ink);
+}
+
+.cover__statue {
+  position: absolute;
+  z-index: 1;
+  right: -30px;
+  bottom: 0;
+  height: 830px;
+  width: auto;
+  filter: drop-shadow(-18px 24px 40px rgba(90, 45, 0, 0.28));
+}
+
+.cover__foot {
+  position: absolute;
+  left: var(--pad-x);
+  bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cover__foot .logo {
+  font-size: 56px;
+}
+
+.cover__foot .logo i {
+  color: var(--white);
+}
+
+.cover__foot .mono {
+  font-size: 18px;
+}
+
+/* ---------- Strona treści ---------- */
+
+.content {
+  background: var(--paper);
+  padding: 56px var(--pad-x) 0;
+}
+
+.runhead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.marker {
+  display: inline-block;
+  padding: 10px 14px 9px;
+  background: var(--orange);
+  font-family: var(--f-mono);
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.pnum {
+  font-family: var(--f-display);
+  font-size: 46px;
+  line-height: 1;
+}
+
+.h1 {
+  margin: 34px 0 0;
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-size: 114px;
+  line-height: 0.92;
+  text-transform: uppercase;
+}
+
+.lead {
+  margin: 20px 0 0;
+  max-width: 920px;
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 1.34;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: 0.84fr 1.16fr;
+  gap: 18px;
+  margin-top: 40px;
+}
+
+.card {
+  padding: 24px 26px 26px;
+}
+
+.card--yes {
+  background: var(--orange);
+}
+
+.card--no {
+  background: var(--white);
+  border: 3px solid var(--ink);
+}
+
+.card__title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 16px;
+  font-size: 25px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.card__title svg {
+  flex: none;
+  width: 34px;
+  height: 34px;
+}
+
+.card ul {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.card li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 9px;
+  height: 9px;
+  background: var(--ink);
+}
+
+.card li small {
+  display: block;
+  margin-top: 3px;
+  font-size: 21px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.card--yes li small {
+  color: #3a2a10;
+}
+
+.topics {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 10px;
+  margin-top: 32px;
+}
+
+.topics__label {
+  margin-right: 6px;
+  font-family: var(--f-mono);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.pill {
+  padding: 7px 18px 8px;
+  border: 2.5px solid var(--ink);
+  border-radius: 999px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.fact {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 22px;
+  align-items: start;
+  margin-top: 38px;
+  padding-top: 26px;
+  border-top: 3px solid var(--ink);
+}
+
+.fact__tag {
+  padding: 8px 12px 6px;
+  background: var(--ink);
+  color: var(--orange);
+  font-family: var(--f-display);
+  font-size: 38px;
+  line-height: 1;
+}
+
+.fact h3 {
+  margin: 0 0 6px;
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.15;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+.fact p {
+  margin: 0;
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 1.34;
+}
+
+.takeaway {
+  margin-top: 38px;
+  padding: 26px 30px 28px;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.takeaway__label {
+  display: inline-block;
+  margin-bottom: 14px;
+  padding: 7px 12px 6px;
+  background: var(--orange);
+  color: var(--ink);
+  font-family: var(--f-mono);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.takeaway p {
+  margin: 0;
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 1.36;
+}
+
+.takeaway p + p {
+  margin-top: 10px;
+}
+
+.takeaway b {
+  color: var(--orange);
+  font-weight: 700;
+}
+
+.foot {
+  position: absolute;
+  left: var(--pad-x);
+  right: var(--pad-x);
+  bottom: 34px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 14px;
+  border-top: 2px solid var(--ink);
+}
+
+.foot .logo {
+  font-size: 30px;
+}
+
+.foot .mono {
+  font-size: 16px;
+  color: var(--muted);
+}
