@@ -1,29 +1,25 @@
-<!-- STR. 1 · OKŁADKA -->
-<section class="page cover" data-name="01-okladka" aria-label="Okładka">
-  <div class="cover__top mono">
-    <span>[ E-book KSIGN ]</span>
-    <span>31 stron · 15 minut</span>
-  </div>
-  <h1 class="cover__title">Nie ma cię<br />w rozmowie</h1>
-  <div class="cover__rule"></div>
+<!-- OKŁADKA -->
+<section class="page cover" data-name="okladka" aria-label="Okładka">
+  <img
+    class="bg"
+    src="../assets/3d/okladka.jpg"
+    alt="Biały dymek rozmowy jak sklep: otwarte drzwi, oświetlone półki z produktami i torby zakupowe przed schodkami"
+  />
+  <div class="cover__top"><span>E-book KSIGN</span><span>39 stron · 15 minut</span></div>
+  <h1 class="cover__title">Nie ma cię<br />w <mark>rozmowie.</mark></h1>
   <p class="cover__sub">
     Reklamy w ChatGPT dla polskich firm. Jak działają, czy są dla Ciebie i jak uruchomić pierwszą
     kampanię w 7 dni.
   </p>
-  <img
-    class="cover__statue"
-    src="../assets/posag-okladka.webp"
-    alt="Marmurowe popiersie z głową zwróconą w bok"
-  />
   <div class="cover__foot">
     <span class="logo">KSIGN<i>.</i></span>
-    <span class="mono">v1.0 · stan na 28.09.2026</span>
+    <span>v1.0 · stan na 28.09.2026</span>
   </div>
 </section>
 
-<!-- STR. 2 · DLA KOGO I JAK CZYTAĆ -->
-<section class="page content roomy" data-name="02-dla-kogo">
-  <header class="runhead"><span class="marker">[ Wstęp ]</span><span class="pnum">02</span></header>
+<!-- DLA KOGO I JAK CZYTAĆ -->
+<section class="page content roomy" data-name="dla-kogo">
+  <header class="runhead"><span class="marker">Wstęp</span><span class="pnum"></span></header>
   <h2 class="h1 h1--mid">Dla kogo i jak czytać</h2>
 
   <div class="two">
@@ -53,7 +49,10 @@
       Twojej firmy.
     </li>
     <li><b>10 minut – rozdziały 04–07.</b> Przygotujesz stronę, pomiar i pierwszą kampanię.</li>
-    <li><b>Na koniec – ściąga ze str. 29.</b> Wydrukuj ją i trzymaj przy biurku.</li>
+    <li>
+      <b>Na koniec – ściąga ze str. <span data-str="sciaga"></span>.</b> Wydrukuj ją i trzymaj przy
+      biurku.
+    </li>
   </ol>
 
   <p class="body" style="margin-top: 26px">
@@ -66,8 +65,9 @@
     <div>
       <h3>Stan wiedzy: 28.09.2026</h3>
       <p>
-        Fakty sprawdziliśmy w dokumentacji OpenAI – źródła z datami są na str. 31. Program reklamowy
-        szybko się zmienia, więc przed startem porównaj zasady z panelem.
+        Fakty sprawdziliśmy w dokumentacji OpenAI – źródła z datami są na str.
+        <span data-str="slowniczek-zrodla"></span>. Program reklamowy szybko się zmienia, więc przed
+        startem porównaj zasady z panelem.
       </p>
     </div>
   </div>
@@ -78,72 +78,70 @@
 
   <footer class="foot">
     <span class="logo">KSIGN<i>.</i></span>
-    <span class="mono">Źródła: str. 31</span>
+    <span class="mono">Źródła: str. <span data-str="slowniczek-zrodla"></span></span>
     <span class="mono">v1.0 · stan na 28.09.2026</span>
   </footer>
 </section>
 
-<!-- STR. 3 · SPIS TREŚCI -->
-<section class="page content" data-name="03-spis-tresci">
-  <header class="runhead">
-    <span class="marker">[ Spis treści ]</span><span class="pnum">03</span>
-  </header>
+<!-- SPIS TREŚCI -->
+<section class="page content roomy przestrzen" data-name="spis-tresci">
+  <header class="runhead"><span class="marker">Spis treści</span><span class="pnum"></span></header>
   <h2 class="h1 h1--mid">Spis treści</h2>
   <ol class="toc">
     <li>
       <span class="toc__n">01</span
       ><span class="toc__t"
         >Klient już rozmawia<small>Dlaczego wybór przenosi się do rozmowy z AI</small></span
-      ><span class="toc__p">4</span>
+      ><span class="toc__p" data-str="rozdzial-01"></span>
     </li>
     <li>
       <span class="toc__n">02</span
       ><span class="toc__t"
         >Jak to działa<small>Od pytania do kliknięcia i to, za co płacisz</small></span
-      ><span class="toc__p">6</span>
+      ><span class="toc__p" data-str="rozdzial-02"></span>
     </li>
     <li>
       <span class="toc__n">03</span
       ><span class="toc__t"
         >Czy to dla Ciebie?<small>Test w 60 sekund: branża, klienci, budżet, pomiar</small></span
-      ><span class="toc__p">10</span>
+      ><span class="toc__p" data-str="rozdzial-03"></span>
     </li>
     <li>
       <span class="toc__n">04</span
       ><span class="toc__t"
         >Test drzwi<small>Konto, strona i pomiar przed pierwszą złotówką</small></span
-      ><span class="toc__p">13</span>
+      ><span class="toc__p" data-str="rozdzial-04"></span>
     </li>
     <li>
       <span class="toc__n">05</span
       ><span class="toc__t"
         >Pierwsza kampania w 7 dni<small>Plan dzień po dniu, formuła CKK, wzory reklam</small></span
-      ><span class="toc__p">16</span>
+      ><span class="toc__p" data-str="rozdzial-05"></span>
     </li>
     <li>
       <span class="toc__n">06</span
       ><span class="toc__t"
         >Budżet i pomiar<small>Kalkulator na kartce i reguły 14 i 30 dni</small></span
-      ><span class="toc__p">22</span>
+      ><span class="toc__p" data-str="rozdzial-06"></span>
     </li>
     <li>
       <span class="toc__n">07</span
       ><span class="toc__t">9 błędów<small>Co przepala budżet i co zrobić zamiast tego</small></span
-      ><span class="toc__p">25</span>
+      ><span class="toc__p" data-str="rozdzial-07"></span>
     </li>
     <li>
       <span class="toc__n">08</span
       ><span class="toc__t">Badanie<small>Sprawdziliśmy 100 polskich sklepów</small></span
-      ><span class="toc__p">27</span>
+      ><span class="toc__p" data-str="rozdzial-08"></span>
     </li>
     <li class="toc--end">
       <span class="toc__n">+</span><span class="toc__t">Ściąga · 3 kroki · Słowniczek i źródła</span
-      ><span class="toc__p">29</span>
+      ><span class="toc__p" data-str="sciaga"></span>
     </li>
   </ol>
   <footer class="foot">
     <span class="logo">KSIGN<i>.</i></span>
-    <span class="mono">Źródła: str. 31</span>
+    <span class="mono">Źródła: str. <span data-str="slowniczek-zrodla"></span></span>
     <span class="mono">v1.0 · stan na 28.09.2026</span>
   </footer>
 </section>

@@ -2,6 +2,9 @@
 
 > Wersja v0.1 · fakty sprawdzone 24.09.2026 · badanie: 24.09.2026 (`badanie/`)
 >
+> **Numery „Str. N” w tym pliku to układ roboczy (31 stron).** Skład v2 ma 39 stron (8 plakatów rozdziałów),
+> a numery liczą się automatycznie – aktualne są w `tekst-v1.0.md`.
+>
 > **Tekst finalny 1:1 ze składem:** `tekst-v1.0.md` (generowany z `src/strony/*.html`). W składzie część zdań
 > skrócono lub zmieniono (np. str. 25 „Co przepala budżet”, str. 27 „Sprawdziliśmy 100 sklepów”) i dodano
 > ćwiczenia do wypełnienia (str. 18 i 29). Ten plik zostaje jako źródło notatek, uzasadnień i źródeł.

@@ -6,27 +6,27 @@
 
 ---
 
-## Str. 1 · `01-okladka`
+## Str. 1 · `okladka`
 
-[ E-BOOK KSIGN ]
+E-BOOK KSIGN
 
-31 STRON · 15 MINUT
+39 STRON · 15 MINUT
 
-NIE MA CIĘ
+Nie ma cię
 
-W ROZMOWIE
+w rozmowie.
 
 Reklamy w ChatGPT dla polskich firm. Jak działają, czy są dla Ciebie i jak uruchomić pierwszą kampanię w 7 dni.
 
 ---
 
-## Str. 2 · `02-dla-kogo`
+## Str. 2 · `dla-kogo`
 
-[ WSTĘP ]
+WSTĘP
 
 02
 
-DLA KOGO I JAK CZYTAĆ
+Dla kogo i jak czytać
 
 TEN E-BOOK JEST DLA CIEBIE, JEŚLI
 
@@ -46,27 +46,27 @@ JAK CZYTAĆ – 15 MINUT
 
 10 minut – rozdziały 04–07. Przygotujesz stronę, pomiar i pierwszą kampanię.
 
-Na koniec – ściąga ze str. 29. Wydrukuj ją i trzymaj przy biurku.
+Na koniec – ściąga ze str. 37. Wydrukuj ją i trzymaj przy biurku.
 
 Każdy rozdział kończy się ramką „Do zrobienia dziś” – od 1 do 3 działań, które wykonasz jeszcze tego samego dnia.
 
 i
 
-STAN WIEDZY: 28.09.2026
+Stan wiedzy: 28.09.2026
 
-Fakty sprawdziliśmy w dokumentacji OpenAI – źródła z datami są na str. 31. Program reklamowy szybko się zmienia, więc przed startem porównaj zasady z panelem.
+Fakty sprawdziliśmy w dokumentacji OpenAI – źródła z datami są na str. 39. Program reklamowy szybko się zmienia, więc przed startem porównaj zasady z panelem.
 
 KSIGN nie jest powiązany z OpenAI. Ten e-book nie jest materiałem OpenAI ani przez OpenAI zatwierdzonym. ChatGPT i OpenAI są znakami towarowymi OpenAI.
 
 ---
 
-## Str. 3 · `03-spis-tresci`
+## Str. 3 · `spis-tresci`
 
-[ SPIS TREŚCI ]
+SPIS TREŚCI
 
 03
 
-SPIS TREŚCI
+Spis treści
 
 01
 
@@ -82,7 +82,7 @@ Jak to działa
 
 Od pytania do kliknięcia i to, za co płacisz
 
-6
+7
 
 03
 
@@ -90,7 +90,7 @@ Czy to dla Ciebie?
 
 Test w 60 sekund: branża, klienci, budżet, pomiar
 
-10
+12
 
 04
 
@@ -98,7 +98,7 @@ Test drzwi
 
 Konto, strona i pomiar przed pierwszą złotówką
 
-13
+16
 
 05
 
@@ -106,7 +106,7 @@ Pierwsza kampania w 7 dni
 
 Plan dzień po dniu, formuła CKK, wzory reklam
 
-16
+20
 
 06
 
@@ -114,7 +114,7 @@ Budżet i pomiar
 
 Kalkulator na kartce i reguły 14 i 30 dni
 
-22
+27
 
 07
 
@@ -122,7 +122,7 @@ Kalkulator na kartce i reguły 14 i 30 dni
 
 Co przepala budżet i co zrobić zamiast tego
 
-25
+31
 
 08
 
@@ -130,29 +130,47 @@ Badanie
 
 Sprawdziliśmy 100 polskich sklepów
 
-27
+34
 
 +
 
 Ściąga · 3 kroki · Słowniczek i źródła
 
-29
+37
 
 ---
 
-## Str. 4 · `04-13-mln`
-
-[ ROZDZIAŁ 01 / 08 ]
-
-04
+## Str. 4 · `rozdzial-01`
 
 01
 
-KLIENT JUŻ
+ROZDZIAŁ 01 / 08
 
-ROZMAWIA
+04
 
-13 MLN POLAKÓW PYTA AI
+Klient już
+
+rozmawia.
+
+Wybór coraz częściej zapada w rozmowie z AI, zanim klient trafi na Twoją stronę.
+
+W TYM ROZDZIALE
+
+13 mln Polaków pyta AI
+
+31.08: płatne miejsce w rozmowie
+
+KSIGN.
+
+---
+
+## Str. 5 · `13-mln`
+
+01 · KLIENT JUŻ ROZMAWIA
+
+05
+
+13 mln Polaków pyta AI
 
 13 mln
 
@@ -182,13 +200,13 @@ Nie musisz rezygnować z Google ani Meta. Musisz za to wiedzieć, co dzieje się
 
 ---
 
-## Str. 5 · `05-os-czasu`
+## Str. 6 · `os-czasu`
 
-[ 01 / KLIENT JUŻ ROZMAWIA ]
+01 · KLIENT JUŻ ROZMAWIA
 
-05
+06
 
-31.08: PŁATNE MIEJSCE W ROZMOWIE
+31.08: płatne miejsce w rozmowie
 
 Od 31 sierpnia 2026 r. każda firma w Polsce może sama kupić reklamę w ChatGPT – w panelu Ads Manager, bez pośredników.
 
@@ -224,19 +242,37 @@ Reklamy zobaczysz na koncie Free lub Go albo bez logowania – nie w czacie tymc
 
 ---
 
-## Str. 6 · `06-od-pytania-do-klikniecia`
-
-[ ROZDZIAŁ 02 / 08 ]
-
-06
+## Str. 7 · `rozdzial-02`
 
 02
 
-JAK TO
+ROZDZIAŁ 02 / 08
 
-DZIAŁA
+07
 
-OD PYTANIA DO KLIKNIĘCIA
+Jak to
+
+działa.
+
+Reklama odpowiada na sytuację z rozmowy, nie na słowo kluczowe. Płacisz za kliknięcie albo wyświetlenie.
+
+W TYM ROZDZIALE
+
+Od pytania do kliknięcia · Anatomia reklamy
+
+Kto widzi, a kto nie · Jak płacisz + 3 mity
+
+KSIGN.
+
+---
+
+## Str. 8 · `od-pytania-do-klikniecia`
+
+02 · JAK TO DZIAŁA
+
+08
+
+Od pytania do kliknięcia
 
 Reklama nie reaguje na słowo kluczowe. Reaguje na sytuację, którą klient opisał w rozmowie.
 
@@ -274,13 +310,13 @@ Reklama nie zmienia odpowiedzi. OpenAI deklaruje, że odpowiedzi powstają nieza
 
 ---
 
-## Str. 7 · `07-anatomia-reklamy`
+## Str. 9 · `anatomia-reklamy`
 
-[ 02 / JAK TO DZIAŁA ]
+02 · JAK TO DZIAŁA
 
-07
+09
 
-ANATOMIA REKLAMY
+Anatomia reklamy
 
 Dwa formaty: karta reklamy i karuzela produktów z feedu. Oba pod odpowiedzią, oznaczone jako sponsorowane. Wideo nie ma.
 
@@ -328,13 +364,13 @@ Karuzela: sprawdź dostępność na swoim koncie. Limity 50/100 znaków – stan
 
 ---
 
-## Str. 8 · `08-kto-widzi`
+## Str. 10 · `kto-widzi`
 
-[ 02 / JAK TO DZIAŁA ]
+02 · JAK TO DZIAŁA
 
-08
+10
 
-KTO WIDZI, A KTO NIE
+Kto widzi, a kto nie
 
 Nie każdy użytkownik ChatGPT zobaczy Twoją reklamę. Zanim policzysz budżet, sprawdź, czy Twój klient jest w tej grupie.
 
@@ -370,7 +406,7 @@ polityka
 
 PL
 
-W POLSCE LICZY SIĘ TYLKO BIEŻĄCA ROZMOWA
+W Polsce liczy się tylko bieżąca rozmowa
 
 Jak w całym EOG i Szwajcarii, reklamy nie są personalizowane. System nie korzysta z historii użytkownika.
 
@@ -382,13 +418,13 @@ Nie „namierzysz” konkretnej osoby. Opisz sytuację, w której Twoja oferta p
 
 ---
 
-## Str. 9 · `09-jak-placisz`
+## Str. 11 · `jak-placisz`
 
-[ 02 / JAK TO DZIAŁA ]
+02 · JAK TO DZIAŁA
 
-09
+11
 
-JAK PŁACISZ + 3 MITY
+Jak płacisz + 3 mity
 
 Wybierasz cel i budżet: dzienny albo na całą kampanię.
 
@@ -436,21 +472,37 @@ Wybierz jedną podstronę na pierwszą reklamę.
 
 ---
 
-## Str. 10 · `10-test-60-sekund`
-
-[ ROZDZIAŁ 03 / 08 ]
-
-10
+## Str. 12 · `rozdzial-03`
 
 03
 
-CZY TO DLA
+ROZDZIAŁ 03 / 08
 
-CIEBIE?
+12
 
-?
+Czy to dla
 
-TEST W 60 SEKUND
+Ciebie?
+
+Cztery pytania i 60 sekund: branża, klienci, budżet i pomiar.
+
+W TYM ROZDZIALE
+
+Test w 60 sekund · Tak, ostrożnie, nie
+
+Geografia i budżet
+
+KSIGN.
+
+---
+
+## Str. 13 · `test-60-sekund`
+
+03 · CZY TO DLA CIEBIE?
+
+13
+
+Test w 60 sekund
 
 „Nie” w pierwszych dwóch pytaniach zamyka temat. „Nie” w dwóch ostatnich znaczy tylko „jeszcze nie”.
 
@@ -458,7 +510,7 @@ TEST W 60 SEKUND
 
 Czy Twoja branża jest dozwolona?
 
-Lista na str. 11
+Lista na str. 14
 
 NIE → NIE TERAZ
 
@@ -500,13 +552,13 @@ Testuj. Rozdział 05 prowadzi przez pierwsze 7 dni.
 
 ---
 
-## Str. 11 · `11-branze`
+## Str. 14 · `branze`
 
-[ 03 / CZY TO DLA CIEBIE? ]
+03 · CZY TO DLA CIEBIE?
 
-11
+14
 
-TAK, OSTROŻNIE, NIE
+Tak, ostrożnie, nie
 
 Zasady reklam OpenAI dzielą branże na trzy grupy. Dla firmy z Polski liczy się to, co obowiązuje poza USA.
 
@@ -540,25 +592,25 @@ Poza USA, więc też w Polsce: finanse, zdrowie (w tym suplementy, stomatologia,
 
 12
 
-Z NASZEGO BADANIA
+Z naszego badania
 
 12 na 100 sklepów – apteki i sklepy z suplementami – nie może dziś reklamować się w ChatGPT w ogóle.
 
 !
 
-TO SKRÓT, NIE PEŁNA LISTA
+To skrót, nie pełna lista
 
 Przed startem porównaj swoją ofertę z zasadami reklam OpenAI: openai.com/policies/ad-policies (stan na 24.09.2026).
 
 ---
 
-## Str. 12 · `12-geografia-budzet`
+## Str. 15 · `geografia-budzet`
 
-[ 03 / CZY TO DLA CIEBIE? ]
+03 · CZY TO DLA CIEBIE?
 
-12
+15
 
-GEOGRAFIA I BUDŻET
+Geografia i budżet
 
 W Polsce kierujesz reklamę na kraj i na treść rozmowy. List klientów i retargetingu tu nie ma.
 
@@ -590,27 +642,45 @@ Masz mniej niż 910 zł na test · Najpierw strona i pomiar (rozdz. 04)
 
 DO ZROBIENIA DZIŚ
 
-Przejdź test ze str. 10 i zapisz wynik: testuj, jeszcze nie albo nie teraz.
+Przejdź test ze str. 13 i zapisz wynik: testuj, jeszcze nie albo nie teraz.
 
-Sprawdź swoją branżę na str. 11. Jeśli jest w „ostrożnie”, przeczytaj zasady dla niej.
+Sprawdź swoją branżę na str. 14. Jeśli jest w „ostrożnie”, przeczytaj zasady dla niej.
 
 Zarezerwuj 910 zł i 14 dni w kalendarzu albo zaplanuj przygotowanie strony.
 
 ---
 
-## Str. 13 · `13-konto-i-firma`
-
-[ ROZDZIAŁ 04 / 08 ]
-
-13
+## Str. 16 · `rozdzial-04`
 
 04
 
-TEST
+ROZDZIAŁ 04 / 08
 
-DRZWI
+16
 
-KONTO I FIRMA
+Test
+
+drzwi.
+
+Konto, strona i pomiar, zanim wydasz pierwszą złotówkę. Sprawdź, czy boty OpenAI wejdą na Twoją stronę.
+
+W TYM ROZDZIALE
+
+Konto i firma · Strona i boty
+
+Pomiar i zgody
+
+KSIGN.
+
+---
+
+## Str. 17 · `konto-i-firma`
+
+04 · TEST DRZWI
+
+17
+
+Konto i firma
 
 „Test drzwi” to trzy sprawdzenia przed pierwszą złotówką: konto, strona i pomiar. Zaczynasz od konta.
 
@@ -620,35 +690,35 @@ Rozliczenia w złotówkach – minimum budżetu dziennego to 65 zł (dla porówn
 
 Zapas czasu na weryfikację – konto może wymagać weryfikacji firmy. Nie planuj startu „na jutro rano”.
 
-Zasady przeczytane – branża dozwolona (str. 11), a każdą obietnicę z reklamy pokażesz na stronie docelowej.
+Zasady przeczytane – branża dozwolona (str. 14), a każdą obietnicę z reklamy pokażesz na stronie docelowej.
 
-1 · KONTO
+1 · Konto
 
 ta strona
 
-2 · STRONA
+2 · Strona
 
-boty i firewall – str. 14
+boty i firewall – str. 18
 
-3 · POMIAR
+3 · Pomiar
 
-pixel, zgody, UTM – str. 15
+pixel, zgody, UTM – str. 19
 
 !
 
-DOSTĘP DO KONTA
+Dostęp do konta
 
 Ustal, kto ma dostęp do konta i płatności. Nie przekazuj agencji swojego hasła.
 
 ---
 
-## Str. 14 · `14-strona-i-boty`
+## Str. 18 · `strona-i-boty`
 
-[ 04 / TEST DRZWI ]
+04 · TEST DRZWI
 
-14
+18
 
-STRONA I BOTY
+Strona i boty
 
 Zanim reklama się wyświetli, OpenAI wysyła na stronę bota. Jeśli drzwi są zamknięte, reklama może nie przejść weryfikacji.
 
@@ -684,13 +754,13 @@ ma w robots.txt wpis dla OAI-AdsBot
 
 ---
 
-## Str. 15 · `15-pomiar-i-zgody`
+## Str. 19 · `pomiar-i-zgody`
 
-[ 04 / TEST DRZWI ]
+04 · TEST DRZWI
 
-15
+19
 
-POMIAR I ZGODY
+Pomiar i zgody
 
 Bez pomiaru nie odróżnisz dobrej kampanii od drogiej. Potrzebujesz czterech rzeczy.
 
@@ -724,19 +794,37 @@ Zainstaluj pixel ze zgodą z banera i zdarzenie na stronie podziękowania.
 
 ---
 
-## Str. 16 · `16-plan-7-dni`
-
-[ ROZDZIAŁ 05 / 08 ]
-
-16
+## Str. 20 · `rozdzial-05`
 
 05
 
-PIERWSZA KAMPANIA W 7 DNI
+ROZDZIAŁ 05 / 08
 
-START
+20
 
-7 DNI DO STARTU
+Pierwsza kampania
+
+w 7 dni.
+
+Plan dzień po dniu: struktura, formuła CKK, wzory reklam i stawki na start.
+
+W TYM ROZDZIALE
+
+7 dni do startu · Struktura · Formuła CKK
+
+12 wskazówek · Wzór reklamy · Stawki i start
+
+KSIGN.
+
+---
+
+## Str. 21 · `plan-7-dni`
+
+05 · PIERWSZA KAMPANIA
+
+21
+
+7 dni do startu
 
 Tydzień od konta do pierwszego odczytu. Każdy dzień zamyka jedną rzecz.
 
@@ -750,35 +838,37 @@ DZIEŃ · CO ROBISZ
 
 4 · Struktura: 2–3 grupy reklam = 2–3 sytuacje klienta, wskazówki CKK
 
-5 · Reklamy: 3–4 warianty na grupę według wzoru ze str. 20
+5 · Reklamy: 3–4 warianty na grupę według wzoru ze str. 25
 
-6 · Start: stawki i budżet (str. 21), publikacja, pilnujesz akceptacji
+6 · Start: stawki i budżet (str. 26), publikacja, pilnujesz akceptacji
 
 7 · Pierwszy odczyt: są wyświetlenia? kliknięcia? pomiar zapisuje zdarzenia?
 
-Od dnia 7: tydzień bez zmian. Decyzje po 14 i 30 dniach (str. 24).
+ZASADA
+
+Od dnia 7: tydzień bez zmian. Decyzje podejmujesz po 14 i 30 dniach według reguł ze str. 30.
 
 ---
 
-## Str. 17 · `17-struktura-kampanii`
+## Str. 22 · `struktura-kampanii`
 
-[ 05 / PIERWSZA KAMPANIA ]
+05 · PIERWSZA KAMPANIA
 
-17
+22
 
-STRUKTURA KAMPANII
+Struktura kampanii
 
 Trzy poziomy. Najwięcej zależy od środkowego – grup reklam.
 
-KAMPANIA
+Kampania
 
 Cel, budżet, daty i kraj. Jedna kampania na jeden produkt lub usługę.
 
-GRUPA REKLAM = SYTUACJA KLIENTA
+Grupa reklam = sytuacja klienta
 
 Stawka i wskazówki kontekstowe. Jedna grupa to jedna sytuacja.
 
-REKLAMA
+Reklama
 
 Tytuł, opis, obraz i strona docelowa. 3–4 warianty w grupie.
 
@@ -796,17 +886,17 @@ ZASADA
 
 Mało wskazówek w grupie, więcej grup. Od razu widzisz, która sytuacja klienta sprzedaje.
 
-Personalizacja tekstu jest domyślnie włączona (str. 7) – włącz ją albo wyłącz świadomie.
+Personalizacja tekstu jest domyślnie włączona (str. 9) – włącz ją albo wyłącz świadomie.
 
 ---
 
-## Str. 18 · `18-formula-ckk`
+## Str. 23 · `formula-ckk`
 
-[ 05 / PIERWSZA KAMPANIA ]
+05 · PIERWSZA KAMPANIA
 
-18
+23
 
-FORMUŁA CKK
+Formuła CKK
 
 OpenAI radzi, by wskazówka mówiła, co oferujesz, komu to pomaga i kiedy się przydaje. My nazywamy to CKK.
 
@@ -840,27 +930,27 @@ AI może naszkicować wskazówki na podstawie strony – przeczytaj i popraw ka�
 
 ĆWICZENIE · 3 MINUTY · TWOJA PIERWSZA WSKAZÓWKA
 
-CO
+Co
 
 produkt z wyróżnikiem
 
-KTO
+Kto
 
 komu to pomaga
 
-KIEDY
+Kiedy
 
 w jakiej sytuacji
 
 ---
 
-## Str. 19 · `19-12-wskazowek`
+## Str. 24 · `12-wskazowek`
 
-[ 05 / PIERWSZA KAMPANIA ]
+05 · PIERWSZA KAMPANIA
 
-19
+24
 
-12 WSKAZÓWEK Z 6 BRANŻ
+12 wskazówek z 6 branż
 
 Gotowe wzory do przerobienia. Każda wskazówka to jedna myśl według CKK.
 
@@ -902,23 +992,23 @@ EVENTY
 
 ---
 
-## Str. 20 · `20-wzor-reklamy`
+## Str. 25 · `wzor-reklamy`
 
-[ 05 / PIERWSZA KAMPANIA ]
+05 · PIERWSZA KAMPANIA
 
-20
+25
 
-WZÓR REKLAMY
+Wzór reklamy
 
-TYTUŁ = EFEKT
+Tytuł = efekt
 
 co klient dostaje
 
-OPIS = DOWÓD
+Opis = dowód
 
 liczba, termin, gwarancja
 
-OBRAZ = PRODUKT
+Obraz = produkt
 
 albo efekt usługi
 
@@ -946,13 +1036,13 @@ Nic, co udaje ChatGPT – ani wygląd, ani głos.
 
 ---
 
-## Str. 21 · `21-stawki-i-start`
+## Str. 26 · `stawki-i-start`
 
-[ 05 / PIERWSZA KAMPANIA ]
+05 · PIERWSZA KAMPANIA
 
-21
+26
 
-STAWKI I START
+Stawki i start
 
 Na start płać za kliknięcia. Na konwersje przejdź, gdy pixel regularnie zbiera zdarzenia.
 
@@ -984,25 +1074,43 @@ DO ZROBIENIA DZIŚ
 
 Rozpisz 2–3 sytuacje klienta i po 3 wskazówki CKK do każdej.
 
-Napisz 3 warianty reklamy na grupę według wzoru ze str. 20.
+Napisz 3 warianty reklamy na grupę według wzoru ze str. 25.
 
 Ustaw przypomnienie: 7 dni bez zmian po starcie.
 
 ---
 
-## Str. 22 · `22-kalkulator`
-
-[ ROZDZIAŁ 06 / 08 ]
-
-22
+## Str. 27 · `rozdzial-06`
 
 06
 
-BUDŻET
+ROZDZIAŁ 06 / 08
 
-I POMIAR
+27
 
-KALKULATOR NA KARTCE
+Budżet
+
+i pomiar.
+
+Każdy ruch się liczy. Policz test, zanim wydasz pierwszą złotówkę, i decyduj według kalendarza, nie nastroju.
+
+W TYM ROZDZIALE
+
+Kalkulator na kartce · Jak czytać raport
+
+Reguły 14 i 30 dni
+
+KSIGN.
+
+---
+
+## Str. 28 · `kalkulator`
+
+06 · BUDŻET I POMIAR
+
+28
+
+Kalkulator na kartce
 
 Zanim wydasz 910 zł, policz, ile zamówień może to dać i ile możesz za nie zapłacić.
 
@@ -1026,15 +1134,23 @@ F < G: test jest na granicy opłacalności. Lepsza konwersja strony przesuwa go 
 
 Przykładowe założenia, nie benchmark. CPC weź z panelu po 7 dniach, konwersję – z GA4 dla podobnego ruchu.
 
+JAK CZYTAĆ WYNIK
+
+F wyraźnie niższe niż G – test ma sens, uruchamiaj.
+
+F blisko G – popraw konwersję strony, zanim zwiększysz budżet.
+
+F wyższe niż G – najpierw strona i oferta, dopiero potem reklama.
+
 ---
 
-## Str. 23 · `23-raport`
+## Str. 29 · `raport`
 
-[ 06 / BUDŻET I POMIAR ]
+06 · BUDŻET I POMIAR
 
-23
+29
 
-JAK CZYTAĆ RAPORT
+Jak czytać raport
 
 Panel pokazuje mniej niż Meta czy Google. Czytaj go razem z GA4.
 
@@ -1042,7 +1158,7 @@ CO WIDZISZ · CO TO ZNACZY
 
 Wyświetlenia, kliknięcia, CTR · Czy sytuacje z Twoich wskazówek się zdarzają i czy reklama przyciąga
 
-CPC, CPM · Ile płacisz – porównaj z kalkulatorem ze str. 22
+CPC, CPM · Ile płacisz – porównaj z kalkulatorem ze str. 28
 
 Konwersje po kliknięciu · Główna liczba konwersji (okno kliknięcia z konfiguracji)
 
@@ -1068,17 +1184,17 @@ Benchmark orientacyjny: eMarketer (USA, 2026). Test: Grow My Ads, 03.08.2026.
 
 JAK TO CZYTAĆ
 
-Nie porównuj CTR jeden do jednego z wyszukiwarką. Oceniaj koszt pozyskania (str. 22) i jakość klientów po 30 dniach (str. 24).
+Nie porównuj CTR jeden do jednego z wyszukiwarką. Oceniaj koszt pozyskania (str. 28) i jakość klientów po 30 dniach (str. 30).
 
 ---
 
-## Str. 24 · `24-reguly-14-30`
+## Str. 30 · `reguly-14-30`
 
-[ 06 / BUDŻET I POMIAR ]
+06 · BUDŻET I POMIAR
 
-24
+30
 
-REGUŁY 14 I 30 DNI
+Reguły 14 i 30 dni
 
 Decyzje według kalendarza, nie nastroju. Progi to nasze punkty startowe – dopasuj je do marży.
 
@@ -1102,7 +1218,7 @@ Dzień 30 · Drożej i bez poprawy · Wstrzymaj i wróć za kwartał
 
 DO ZROBIENIA DZIŚ
 
-Wypełnij kalkulator ze str. 22 dla swojej oferty.
+Wypełnij kalkulator ze str. 28 dla swojej oferty.
 
 Wpisz do kalendarza przeglądy: dzień 7, 14 i 30.
 
@@ -1110,17 +1226,35 @@ Przygotuj w GA4 widok dla utm_source=chatgpt.
 
 ---
 
-## Str. 25 · `25-bledy-1`
-
-[ ROZDZIAŁ 07 / 08 ]
-
-25
+## Str. 31 · `rozdzial-07`
 
 07
 
-9 BŁĘDÓW
+ROZDZIAŁ 07 / 08
 
-CO PRZEPALA BUDŻET
+31
+
+9 błędów.
+
+Co przepala budżet i co zrobić zamiast tego. 8 z 9 naprawisz przed startem.
+
+W TYM ROZDZIALE
+
+Co przepala budżet
+
+…i pięć kolejnych
+
+KSIGN.
+
+---
+
+## Str. 32 · `bledy-1`
+
+07 · 9 BŁĘDÓW
+
+32
+
+Co przepala budżet
 
 1
 
@@ -1152,13 +1286,13 @@ DOBRA WIADOMOŚĆ
 
 ---
 
-## Str. 26 · `26-bledy-2`
+## Str. 33 · `bledy-2`
 
-[ 07 / 9 BŁĘDÓW ]
+07 · 9 BŁĘDÓW
 
-26
+33
 
-…I PIĘĆ KOLEJNYCH
+…i pięć kolejnych
 
 5
 
@@ -1198,17 +1332,37 @@ Przy każdym nieodhaczonym wpisz datę naprawy.
 
 ---
 
-## Str. 27 · `27-badanie`
+## Str. 34 · `rozdzial-08`
 
-[ ROZDZIAŁ 08 / 08 ]
+08
 
-27
+ROZDZIAŁ 08 / 08
 
-BADANIE
+34
 
-⌖ 24.09.2026 · 100 SKLEPÓW · 8 KATEGORII
+Sprawdziliśmy
 
-SPRAWDZILIŚMY 100 SKLEPÓW
+100 sklepów.
+
+Robots.txt, boty OpenAI i pixele w 100 polskich sklepach. Stan na 24.09.2026.
+
+W TYM ROZDZIALE
+
+Wyniki badania
+
+Metodologia
+
+KSIGN.
+
+---
+
+## Str. 35 · `badanie`
+
+08 · BADANIE
+
+35
+
+Sprawdziliśmy 100 sklepów
 
 5 / 76
 
@@ -1242,13 +1396,13 @@ Rynek dopiero się otwiera. Z 76 sklepów, które mogliśmy sprawdzić, efekty r
 
 ---
 
-## Str. 28 · `28-metodologia`
+## Str. 36 · `metodologia`
 
-[ 08 / BADANIE ]
+08 · BADANIE
 
-28
+36
 
-METODOLOGIA
+Metodologia
 
 PRÓBA I TERMIN
 
@@ -1288,57 +1442,57 @@ Dane: lista domen, skrypty i surowe wyniki (CSV) udostępniamy na prośbę: hell
 
 DO ZROBIENIA DZIŚ
 
-Sprawdź swój sklep tymi samymi pięcioma punktami albo zamów Test drzwi (str. 30).
+Sprawdź swój sklep tymi samymi pięcioma punktami albo zamów Test drzwi (str. 38).
 
 ---
 
-## Str. 29 · `29-sciaga`
+## Str. 37 · `sciaga`
 
-[ ŚCIĄGA ]
+ŚCIĄGA
 
-29
+37
 
-ŚCIĄGA NA 1 STRONĘ
+Ściąga na 1 stronę
 
 Wydrukuj i odhaczaj. Numery stron prowadzą do szczegółów.
 
-PRZED STARTEM
+Przed startem
 
-Branża dozwolona (str. 11)
+Branża dozwolona (str. 14)
 
-Klienci korzystają z Free lub Go (str. 8)
+Klienci korzystają z Free lub Go (str. 10)
 
-Min. 910 zł na 14 dni (str. 12)
+Min. 910 zł na 14 dni (str. 15)
 
-Konto w złotówkach, zasady przeczytane (str. 13)
+Konto w złotówkach, zasady przeczytane (str. 17)
 
-robots.txt: OAI-AdsBot i OAI-SearchBot – Allow (str. 14)
+robots.txt: OAI-AdsBot i OAI-SearchBot – Allow (str. 18)
 
 Firewall wpuszcza adresy z openai.com/adsbot.json
 
-Pixel ze zgodą z banera, zdarzenie na stronie podziękowania (str. 15)
+Pixel ze zgodą z banera, zdarzenie na stronie podziękowania (str. 19)
 
 UTM w linkach, klik testowy zrobiony
 
-KAMPANIA
+Kampania
 
-Grupa = sytuacja klienta, wskazówki CKK (str. 17–19)
+Grupa = sytuacja klienta, wskazówki CKK (str. 22–24)
 
-3–4 reklamy: efekt, dowód, produkt (str. 20)
+3–4 reklamy: efekt, dowód, produkt (str. 25)
 
 Tytuł do 50, opis do 100 znaków, obraz kwadratowy
 
-Personalizacja tekstu – świadoma decyzja (str. 7)
+Personalizacja tekstu – świadoma decyzja (str. 9)
 
-Cel: kliknięcia, stawka nie niższa niż rekomendacja (str. 21)
+Cel: kliknięcia, stawka nie niższa niż rekomendacja (str. 26)
 
-PO STARCIE
+Po starcie
 
 Dzień 7: wyświetlenia, kliknięcia, pomiar
 
 Dzień 14: CTR, konwersje, koszt pozyskania
 
-Dzień 30: skaluj, testuj dalej albo wstrzymaj (str. 24)
+Dzień 30: skaluj, testuj dalej albo wstrzymaj (str. 30)
 
 MOJE LICZBY
 
@@ -1360,31 +1514,31 @@ PRZEGLĄD · DZIEŃ 30
 
 ---
 
-## Str. 30 · `30-3-kroki`
+## Str. 38 · `3-kroki`
 
-[ CO DALEJ ]
+CO DALEJ
 
-30
+38
 
-3 KOLEJNE KROKI
+3 kolejne kroki
 
 Zacznij od sprawdzenia drzwi. Resztę zrobisz sam albo z nami.
 
 1
 
-TEST DRZWI · 0 ZŁ
+Test drzwi · 0 zł
 
 Sprawdzimy, czy boty OpenAI wejdą na Twoją stronę, czy pixel i zgody działają i czy podstrona jest gotowa na ruch z ChatGPT.
 
 2
 
-[GENERATOR] · 249 ZŁ
+[Generator] · 249 zł
 
 Wskazówki kontekstowe według CKK i warianty reklam przygotowane dla Twojej oferty.
 
 3
 
-WDROŻENIE KSIGN
+Wdrożenie KSIGN
 
 Konto, pomiar, kampania i pierwsze 30 dni prowadzenia. Wycena po Teście drzwi.
 
@@ -1396,13 +1550,13 @@ Zamów Test drzwi
 
 ---
 
-## Str. 31 · `31-slowniczek-zrodla`
-
-[ SŁOWNICZEK I ŹRÓDŁA ]
-
-31
+## Str. 39 · `slowniczek-zrodla`
 
 SŁOWNICZEK I ŹRÓDŁA
+
+39
+
+Słowniczek i źródła
 
 CPC – koszt kliknięcia. CPM – koszt 1000 wyświetleń.
 
@@ -1436,6 +1590,6 @@ RYNEK I DANE · Gemius/PBI, marzec 2026 · eMarketer, „FAQ on ChatGPT Advertis
 
 PRAKTYKA · Grow My Ads, „Should You Advertise on ChatGPT?” (03.08.2026) · cloro.dev (15.09.2026) · Sprites (21.09.2026) · Search Engine Roundtable
 
-BADANIE KSIGN · 100 sklepów, 24.09.2026 – str. 27–28
+BADANIE KSIGN · 100 sklepów, 24.09.2026 – str. 35–36
 
-Dostęp do źródeł: 24.09.2026. Grafiki: rzeźby z otwartych zbiorów The Metropolitan Museum of Art i Cleveland Museum of Art (domena publiczna, CC0). Fonty: Anton, Inter Tight, JetBrains Mono (SIL OFL 1.1).
+Dostęp do źródeł: 24.09.2026. Grafiki: sceny 3D przygotowane przez KSIGN (three.js). Fonty: Inter Tight, JetBrains Mono (SIL OFL 1.1).

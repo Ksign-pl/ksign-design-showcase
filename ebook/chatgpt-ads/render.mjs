@@ -1,6 +1,6 @@
 // Renderuje strony e-booka (HTML, strony 1080 × 1350 px) do PNG (każda strona osobno) i PDF.
 // Użycie: node ebook/chatgpt-ads/render.mjs [plik.html] [katalog-wyjściowy]
-//   domyślnie: src/ebook.html → export/ebook (31 × PNG + ebook.pdf)
+//   domyślnie: src/ebook.html → export/ebook (39 × PNG + ebook.pdf)
 // Atrybuty <body> zmieniają tryb: data-pdf="nie" (tylko PNG), data-fonty="nie" albo lista krojów,
 // data-tlo="przezroczyste" (PNG z kanałem alfa) – używa ich src/mockup.html.
 // Wymaga Playwright: `npm i` w repo (@playwright/test) albo globalnie `playwright`.
@@ -31,6 +31,8 @@ const browser = await loadChromium().launch();
 try {
   const page = await browser.newPage({ viewport: { width: 1080, height: 1350 } });
   const offline = [];
+  const bledy = [];
+  page.on("pageerror", (e) => bledy.push(e.message));
   // Wszystko jest lokalne (fonty, grafiki) – blokujemy sieć, żeby render był powtarzalny.
   await page.route(/^https?:/, (route) => {
     offline.push(route.request().url());
@@ -66,15 +68,34 @@ try {
   );
   if (missing.length) throw new Error(`Nie załadowano fontów: ${missing.join(", ")}`);
   if (offline.length) console.warn(`Zablokowane zasoby sieciowe: ${offline.join(", ")}`);
+  if (bledy.length) throw new Error(`Błędy skryptów na stronie: ${bledy.join("; ")}`);
+  const puste = await page.evaluate(
+    () => document.querySelectorAll("[data-str]:empty, .pnum:empty").length,
+  );
+  if (puste) throw new Error(`Puste numery stron lub odsyłacze: ${puste}`);
 
   await fs.mkdir(outDir, { recursive: true });
   const pages = await page.$$(".page");
   for (const [i, el] of pages.entries()) {
-    const id = (await el.getAttribute("data-name")) ?? String(i + 1).padStart(2, "0");
-    await el.screenshot({
-      path: path.join(outDir, `${id}.png`),
-      omitBackground: tryb.przezroczyste,
-    });
+    // Plik: numer strony + nazwa (data-name), np. 28-kalkulator.png – kolejność zgodna z PDF.
+    const nazwa = await el.getAttribute("data-name");
+    const nr = String(i + 1).padStart(2, "0");
+    const id = pages.length > 1 && nazwa ? `${nr}-${nazwa}` : (nazwa ?? nr);
+    // Chromium czasem robi zrzut, zanim dorysuje fragment strony (widać wtedy prostokąt tła).
+    // Zapisujemy dopiero dwa identyczne zrzuty z rzędu.
+    await el.scrollIntoViewIfNeeded();
+    let poprzedni = null;
+    let zrzut = null;
+    for (let proba = 0; proba < 6; proba++) {
+      await page.evaluate(
+        () => new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r))),
+      );
+      zrzut = await el.screenshot({ omitBackground: tryb.przezroczyste });
+      if (poprzedni && zrzut.equals(poprzedni)) break;
+      poprzedni = zrzut;
+      if (proba === 5) throw new Error(`Niestabilny zrzut strony ${id}`);
+    }
+    await fs.writeFile(path.join(outDir, `${id}.png`), zrzut);
   }
   if (tryb.pdf) {
     await page.pdf({

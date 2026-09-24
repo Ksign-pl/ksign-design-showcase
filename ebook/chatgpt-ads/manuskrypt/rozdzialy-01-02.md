@@ -2,6 +2,9 @@
 
 > Wersja robocza v0.1 · fakty sprawdzone 24.09.2026 · na okładce: v1.0 · stan na 28.09.2026
 >
+> **Numery „Str. N” w tym pliku to układ roboczy (31 stron).** Skład v2 ma 39 stron (8 plakatów rozdziałów),
+> a numery liczą się automatycznie – aktualne są w `tekst-v1.0.md`.
+>
 > **Tekst finalny 1:1 ze składem:** `tekst-v1.0.md` (generowany z `src/strony/*.html`). W składzie część zdań
 > skrócono, żeby zmieściły się na stronie. Ten plik zostaje jako źródło notatek, uzasadnień i źródeł.
 >
