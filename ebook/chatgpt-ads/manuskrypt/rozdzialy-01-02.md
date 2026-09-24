@@ -2,6 +2,9 @@
 
 > Wersja robocza v0.1 · fakty sprawdzone 24.09.2026 · na okładce: v1.0 · stan na 28.09.2026
 >
+> **Tekst finalny 1:1 ze składem:** `tekst-v1.0.md` (generowany z `src/strony/*.html`). W składzie część zdań
+> skrócono, żeby zmieściły się na stronie. Ten plik zostaje jako źródło notatek, uzasadnień i źródeł.
+>
 > **[SPRAWDZIĆ]** – do potwierdzenia w panelu Ads Manager na koncie KSIGN przed publikacją.
 > **[Generator]** – nazwa produktu do wstawienia po decyzji Karola.
 
@@ -72,7 +75,9 @@ Każdy rozdział kończy się ramką **„Do zrobienia dziś”** – od 1 do 3 
 
 - **13 mln** – tylu Polaków korzysta z narzędzi AI co miesiąc,
 - **9,2 mln** – tylu co tydzień,
-- **+71%** – o tyle urósł miesięczny zasięg rok do roku.
+- **148 min** – tyle średnio w miesiącu spędza z AI jeden użytkownik.
+
+_Wcześniejsza liczba „+71% r/r” nie dała się potwierdzić w komunikacie źródłowym – nie używać jej w materiałach._
 
 _Źródło: Gemius/PBI, marzec 2026. Dane dotyczą narzędzi AI opartych na dużych modelach językowych (LLM)._
 
@@ -178,7 +183,7 @@ W nowych kanałach reklamowych konkurencja w aukcji zwykle rośnie z czasem. Nie
 
 ## Str. 8 · Kto widzi, a kto nie
 
-_Ta strona jest złożona w próbce graficznej (`export/probka/08-kto-widzi.png`). Tekst poniżej = tekst na stronie._
+_Strona w składzie: `export/ebook/08-kto-widzi.png`._
 
 **Marker:** [ 02 / JAK TO DZIAŁA ]
 **Nagłówek:** KTO WIDZI, A KTO NIE
@@ -260,4 +265,4 @@ _Ta strona jest złożona w próbce graficznej (`export/probka/08-kto-widzi.png`
 | „Text customization” domyślnie włączone (tekst pomocy z panelu)     | Sprites, „ChatGPT Ads Manager: Setup Guide” (21.09.2026): https://www.sprites.ai/chatgpt-ads-manager                                              | 24.09.2026   |
 | Zmiana typu budżetu tylko z całej kampanii na dzienny               | OpenAI Help Center, „Daily Budgets”: https://help.openai.com/en/articles/20001413-daily-budgets (strona blokuje pobranie – treść z wyszukiwarki)  | 24.09.2026   |
 | Kto widzi reklamy, tematy wrażliwe, EOG, budżet, cele, feed         | Dokumentacja OpenAI Ads (krok 2, weryfikacja 24.09.2026) **[wstawić dokładne adresy stron z kroku 2]**                                            | 24.09.2026   |
-| 13 mln / 9,2 mln / +71% r/r                                         | Gemius/PBI, marzec 2026 **[wstawić link do komunikatu]**                                                                                          | 24.09.2026   |
+| 13 mln / 9,2 mln / 148 min                                          | Gemius/PBI, marzec 2026 **[wstawić link do komunikatu]**                                                                                          | 24.09.2026   |

@@ -6,3 +6,7 @@ pnpm-lock.yaml
 package-lock.json
 bun.lock
 routeTree.gen.ts
+
+# Generowany przez ebook/chatgpt-ads/zloz.mjs ze sformatowanych plików src/strony/*.html
+ebook/chatgpt-ads/src/ebook.html
+ebook/chatgpt-ads/manuskrypt/tekst-v1.0.md

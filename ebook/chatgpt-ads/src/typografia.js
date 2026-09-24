@@ -7,6 +7,11 @@
     [/\s+([–—])\s/g, `${NBSP}$1 `],
     [/(\d)\s+(zł|mln|mld|tys\.|dni|dzień|min|minut|stron|znaków|lat)/g, `$1${NBSP}$2`],
     [/(\b(?:str|ok|np|nr)\.)\s+/g, `$1${NBSP}`],
+    [/(\d)\s+(€|\$|×)/g, `$1${NBSP}$2`],
+    [/(\d)–(\d)/g, "$1–\u2060$2"],
+    [/\b([eE])-(\p{L})/gu, "$1-\u2060$2"],
+    // Nazwa usługi „Test drzwi” zawsze w jednym wierszu (także „Testu drzwi”, „Teście drzwi”).
+    [/(Test\p{L}*|Teści\p{L}*)\s+(drzwi)/giu, `$1${NBSP}$2`],
   ];
 
   function fix(node) {

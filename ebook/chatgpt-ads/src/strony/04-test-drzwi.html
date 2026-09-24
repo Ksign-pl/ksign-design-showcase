@@ -1,0 +1,202 @@
+<!-- STR. 13 · ROZDZIAŁ 04 · KONTO I FIRMA -->
+<section class="page content" data-name="13-konto-i-firma">
+  <div class="band">
+    <div class="band__top"><span>[ Rozdział 04 / 08 ]</span><span class="pnum">13</span></div>
+    <div class="band__no">04</div>
+    <h2 class="band__title">Test<br />drzwi</h2>
+    <div class="door__leaf door__leaf--l"></div>
+    <div class="door">
+      <img
+        class="band__art-in"
+        src="../assets/posag-04-popiersie.webp"
+        alt="Marmurowe popiersie mężczyzny w otwartych drzwiach"
+      />
+    </div>
+    <div class="door__leaf door__leaf--r"></div>
+  </div>
+
+  <h2 class="h1 h1--small">Konto i firma</h2>
+  <p class="lead">
+    „Test drzwi” to trzy sprawdzenia przed pierwszą złotówką: konto, strona i pomiar. Zaczynasz od
+    konta.
+  </p>
+
+  <ul class="check">
+    <li>
+      <b>Konto reklamowe firmy</b> – zakładasz je w Ads Manager na ads.openai.com. Dane firmy muszą
+      się zgadzać z danymi do faktur.
+    </li>
+    <li>
+      <b>Rozliczenia w złotówkach</b> – minimum budżetu dziennego to 65 zł (dla porównania: 15 € lub
+      25 $).
+    </li>
+    <li>
+      <b>Zapas czasu na weryfikację</b> – konto może wymagać weryfikacji firmy. Nie planuj startu
+      „na jutro rano”.
+    </li>
+    <li>
+      <b>Zasady przeczytane</b> – branża dozwolona (str. 11), a każdą obietnicę z reklamy pokażesz
+      na stronie docelowej.
+    </li>
+  </ul>
+
+  <div class="formula">
+    <div><b>1 · Konto</b>ta strona</div>
+    <div style="background: var(--white)"><b>2 · Strona</b>boty i firewall – str. 14</div>
+    <div style="background: var(--white)"><b>3 · Pomiar</b>pixel, zgody, UTM – str. 15</div>
+  </div>
+
+  <div class="fact" style="margin-top: 26px">
+    <span class="fact__tag">!</span>
+    <div>
+      <h3>Dostęp do konta</h3>
+      <p>Ustal, kto ma dostęp do konta i płatności. Nie przekazuj agencji swojego hasła.</p>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <span class="logo">KSIGN<i>.</i></span>
+    <span class="mono">Źródła: str. 31</span>
+    <span class="mono">v1.0 · stan na 28.09.2026</span>
+  </footer>
+</section>
+
+<!-- STR. 14 · STRONA I BOTY -->
+<section class="page content" data-name="14-strona-i-boty">
+  <header class="runhead">
+    <span class="marker">[ 04 / Test drzwi ]</span><span class="pnum">14</span>
+  </header>
+  <h2 class="h1 h1--mid">Strona i boty</h2>
+  <p class="lead">
+    Zanim reklama się wyświetli, OpenAI wysyła na stronę bota. Jeśli drzwi są zamknięte, reklama
+    może nie przejść weryfikacji.
+  </p>
+
+  <table class="tbl tbl--tight">
+    <thead>
+      <tr>
+        <th>Bot</th>
+        <th>Po co przychodzi</th>
+        <th>Co zrobić</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="accent">
+        <td>OAI-AdsBot</td>
+        <td>
+          Sprawdza strony docelowe reklam: bezpieczeństwo, zgodność z zasadami, treść. Tylko strony
+          zgłoszone w reklamach.
+        </td>
+        <td><b>Wpuść</b></td>
+      </tr>
+      <tr>
+        <td>OAI-SearchBot</td>
+        <td>Pokazuje strony w wyszukiwaniu ChatGPT</td>
+        <td><b>Wpuść</b>, jeśli chcesz być polecany</td>
+      </tr>
+      <tr>
+        <td>GPTBot</td>
+        <td>Zbiera dane do trenowania modeli</td>
+        <td>Twoja decyzja – nie wpływa na reklamy</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="two" style="grid-template-columns: 0.9fr 1.1fr; align-items: start">
+    <div>
+      <h3 class="label">robots.txt · przykład OpenAI</h3>
+      <pre class="code">
+User-agent: OAI-AdsBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /</pre
+      >
+    </div>
+    <div>
+      <p class="body" style="font-size: 21px">
+        OpenAI nie opisuje, czy OAI-AdsBot czyta robots.txt. Wpis nic nie kosztuje, a usuwa
+        wątpliwość.
+      </p>
+      <p class="body" style="font-size: 21px">
+        <b>Firewall i ochrona przed botami</b> (Cloudflare, Akamai i podobne) mogą zatrzymać bota,
+        zanim przeczyta robots.txt. Dodaj do wyjątków adresy z listy
+        <code>openai.com/adsbot.json</code>.
+      </p>
+    </div>
+  </div>
+
+  <div class="stats stats--2" style="margin-top: 24px">
+    <div class="stat stat--ink">
+      <div class="stat__n">24 <small>/ 100</small></div>
+      <div class="stat__t">sklepów z naszego badania zatrzymało automat ochroną antybotową</div>
+    </div>
+    <div class="stat">
+      <div class="stat__n">1 <small>/ 100</small></div>
+      <div class="stat__t">ma w robots.txt wpis dla OAI-AdsBot</div>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <span class="logo">KSIGN<i>.</i></span>
+    <span class="mono">Źródła: str. 31</span>
+    <span class="mono">v1.0 · stan na 28.09.2026</span>
+  </footer>
+</section>
+
+<!-- STR. 15 · POMIAR I ZGODY -->
+<section class="page content" data-name="15-pomiar-i-zgody">
+  <header class="runhead">
+    <span class="marker">[ 04 / Test drzwi ]</span><span class="pnum">15</span>
+  </header>
+  <h2 class="h1 h1--mid">Pomiar i zgody</h2>
+  <p class="lead">
+    Bez pomiaru nie odróżnisz dobrej kampanii od drogiej. Potrzebujesz czterech rzeczy.
+  </p>
+
+  <ol class="steps" style="margin-top: 18px">
+    <li>
+      <b>Pixel OpenAI</b> – skrypt z bzrcdn.openai.com (funkcja <code>oaiq</code>), w kodzie strony
+      albo w GTM.
+    </li>
+    <li>
+      <b>Zgoda</b> – pixel domyślnie zakłada zgodę. Ustaw „nie” przed startem pixela i „tak” po
+      akceptacji w banerze:
+      <pre class="code" style="font-size: 17px; margin-top: 10px">
+oaiq("consent", false); <span class="c">// przed startem pixela</span>
+oaiq("consent", true);  <span class="c">// po akceptacji w banerze</span></pre>
+    </li>
+    <li>
+      <b>Zdarzenie konwersji</b> – tylko na stronie podziękowania: <code>order_created</code> albo
+      <code>lead_created</code>. Kod na każdej podstronie liczy każde wejście jako konwersję.
+    </li>
+    <li>
+      <b>UTM w każdym linku</b> – np. <code>utm_source=chatgpt&amp;utm_medium=cpc</code>. Przed
+      publikacją kliknij link i sprawdź źródło w GA4.
+    </li>
+  </ol>
+  <p class="src" style="margin-top: 12px">
+    Masz Content Security Policy? Dopisz bzrcdn.openai.com (script-src, connect-src) i
+    bzr.openai.com (connect-src, img-src).
+  </p>
+
+  <div class="cta" style="margin-top: 18px">
+    <div class="cta__t"><b>Test drzwi online</b>Sprawdzimy za Ciebie boty, pixel i zgody.</div>
+    <div class="cta__btn">0 zł · ksign.pl</div>
+  </div>
+
+  <div class="todo">
+    <span class="todo__label">Do zrobienia dziś</span>
+    <ol>
+      <li>Dodaj do robots.txt wpis dla OAI-AdsBot i OAI-SearchBot.</li>
+      <li>Sprawdź w firewallu lub CDN, czy boty OpenAI nie są blokowane.</li>
+      <li>Zainstaluj pixel ze zgodą z banera i zdarzenie na stronie podziękowania.</li>
+    </ol>
+  </div>
+
+  <footer class="foot">
+    <span class="logo">KSIGN<i>.</i></span>
+    <span class="mono">Źródła: str. 31</span>
+    <span class="mono">v1.0 · stan na 28.09.2026</span>
+  </footer>
+</section>

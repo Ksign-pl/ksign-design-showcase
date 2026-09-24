@@ -1,0 +1,2119 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <title>Nie ma cię w rozmowie – e-book KSIGN</title>
+    <link rel="stylesheet" href="ebook.css" />
+    <link rel="stylesheet" href="komponenty.css" />
+    <script src="typografia.js"></script>
+  </head>
+  <body>
+    <main class="stack">
+      <!-- STR. 1 · OKŁADKA -->
+<section class="page cover" data-name="01-okladka" aria-label="Okładka">
+  <div class="cover__top mono">
+    <span>[ E-book KSIGN ]</span>
+    <span>31 stron · 15 minut</span>
+  </div>
+  <h1 class="cover__title">Nie ma cię<br />w rozmowie</h1>
+  <div class="cover__rule"></div>
+  <p class="cover__sub">
+    Reklamy w ChatGPT dla polskich firm. Jak działają, czy są dla Ciebie i jak uruchomić pierwszą
+    kampanię w 7 dni.
+  </p>
+  <img
+    class="cover__statue"
+    src="../assets/posag-okladka.webp"
+    alt="Marmurowe popiersie z głową zwróconą w bok"
+  />
+  <div class="cover__foot">
+    <span class="logo">KSIGN<i>.</i></span>
+    <span class="mono">v1.0 · stan na 28.09.2026</span>
+  </div>
+</section>
+
+<!-- STR. 2 · DLA KOGO I JAK CZYTAĆ -->
+<section class="page content roomy" data-name="02-dla-kogo">
+  <header class="runhead"><span class="marker">[ Wstęp ]</span><span class="pnum">02</span></header>
+  <h2 class="h1 h1--mid">Dla kogo i jak czytać</h2>
+
+  <div class="two">
+    <div class="panel panel--orange">
+      <h3>Ten e-book jest dla Ciebie, jeśli</h3>
+      <ul>
+        <li>
+          prowadzisz sklep internetowy, usługi lokalne, hotel, kursy online albo&nbsp;aplikację,
+        </li>
+        <li>samodzielnie ustawiasz reklamy w Google lub Meta albo zlecasz je&nbsp;agencji,</li>
+        <li>chcesz wiedzieć, czy reklamy w ChatGPT mają sens, zanim wydasz pierwszą złotówkę.</li>
+      </ul>
+    </div>
+    <div class="panel panel--ink">
+      <h3>Nie jest dla Ciebie, jeśli</h3>
+      <p>
+        sprzedajesz usługi finansowe, zdrowotne albo prawne. Poza USA te kategorie są dziś
+        zablokowane – więcej w rozdziale 03.
+      </p>
+    </div>
+  </div>
+
+  <h3 class="label label--outline" style="margin-top: 34px">Jak czytać – 15 minut</h3>
+  <ol class="steps">
+    <li>
+      <b>5 minut – rozdziały 01–03.</b> Zrozumiesz, jak działa ten kanał, i ocenisz, czy dotyczy
+      Twojej firmy.
+    </li>
+    <li><b>10 minut – rozdziały 04–07.</b> Przygotujesz stronę, pomiar i pierwszą kampanię.</li>
+    <li><b>Na koniec – ściąga ze str. 29.</b> Wydrukuj ją i trzymaj przy biurku.</li>
+  </ol>
+
+  <p class="body" style="margin-top: 26px">
+    Każdy rozdział kończy się ramką <b>„Do zrobienia dziś”</b> – od 1 do 3 działań, które wykonasz
+    jeszcze tego samego dnia.
+  </p>
+
+  <div class="fact" style="margin-top: 30px">
+    <span class="fact__tag">i</span>
+    <div>
+      <h3>Stan wiedzy: 28.09.2026</h3>
+      <p>
+        Fakty sprawdziliśmy w dokumentacji OpenAI – źródła z datami są na str. 31. Program reklamowy
+        szybko się zmienia, więc przed startem porównaj zasady z panelem.
+      </p>
+    </div>
+  </div>
+  <p class="small" style="margin-top: 22px">
+    KSIGN nie jest powiązany z OpenAI. Ten e-book nie jest materiałem OpenAI ani przez OpenAI
+    zatwierdzonym. ChatGPT i OpenAI są znakami towarowymi OpenAI.
+  </p>
+
+  <footer class="foot">
+    <span class="logo">KSIGN<i>.</i></span>
+    <span class="mono">Źródła: str. 31</span>
+    <span class="mono">v1.0 · stan na 28.09.2026</span>
+  </footer>
+</section>
+
+<!-- STR. 3 · SPIS TREŚCI -->
+<section class="page content" data-name="03-spis-tresci">
+  <header class="runhead">
+    <span class="marker">[ Spis treści ]</span><span class="pnum">03</span>
+  </header>
+  <h2 class="h1 h1--mid">Spis treści</h2>
+  <ol class="toc">
+    <li>
+      <span class="toc__n">01</span
+      ><span class="toc__t"
+        >Klient już rozmawia<small>Dlaczego wybór przenosi się do rozmowy z AI</small></span
+      ><span class="toc__p">4</span>
+    </li>
+    <li>
+      <span class="toc__n">02</span
+      ><span class="toc__t"
+        >Jak to działa<small>Od pytania do kliknięcia i to, za co płacisz</small></span
+      ><span class="toc__p">6</span>
+    </li>
+    <li>
+      <span class="toc__n">03</span
+      ><span class="toc__t"
+        >Czy to dla Ciebie?<small>Test w 60 sekund: branża, klienci, budżet, pomiar</small></span
+      ><span class="toc__p">10</span>
+    </li>
+    <li>
+      <span class="toc__n">04</span
+      ><span class="toc__t"
+        >Test drzwi<small>Konto, strona i pomiar przed pierwszą złotówką</small></span
+      ><span class="toc__p">13</span>
+    </li>
+    <li>
+      <span class="toc__n">05</span
+      ><span class="toc__t"
+        >Pierwsza kampania w 7 dni<small>Plan dzień po dniu, formuła CKK, wzory reklam</small></span
+      ><span class="toc__p">16</span>
+    </li>
+    <li>
+      <span class="toc__n">06</span
+      ><span class="toc__t"
+        >Budżet i pomiar<small>Kalkulator na kartce i reguły 14 i 30 dni</small></span
+      ><span class="toc__p">22</span>
+    </li>
+    <li>
+      <span class="toc__n">07</span
+      ><span class="toc__t">9 błędów<small>Co przepala budżet i co zrobić zamiast tego</small></span
+      ><span class="toc__p">25</span>
+    </li>
+    <li>
+      <span class="toc__n">08</span
+      ><span class="toc__t">Badanie<small>Sprawdziliśmy 100 polskich sklepów</small></span
+      ><span class="toc__p">27</span>
+    </li>
+    <li class="toc--end">
+      <span class="toc__n">+</span><span class="toc__t">Ściąga · 3 kroki · Słowniczek i źródła</span
+      ><span class="toc__p">29</span>
+    </li>
+  </ol>
+  <footer class="foot">
+    <span class="logo">KSIGN<i>.</i></span>
+    <span class="mono">Źródła: str. 31</span>
+    <span class="mono">v1.0 · stan na 28.09.2026</span>
+  </footer>
+</section>
+
+<!-- STR. 4 · ROZDZIAŁ 01 · 13 MLN POLAKÓW PYTA AI -->
+<section class="page content" data-name="04-13-mln">
+  <div class="band">
+    <div class="band__top"><span>[ Rozdział 01 / 08 ]</span><span class="pnum">04</span></div>
+    <div class="band__no">01</div>
+    <h2 class="band__title">Klient już<br />rozmawia</h2>
+    <img
+      class="band__art"
+      style="right: 118px"
+      src="../assets/posag-01-aleksander.webp"
+      alt="Marmurowa głowa Aleksandra Wielkiego z rozchylonymi ustami"
+    />
+    <div class="bubble" style="right: 346px; top: 96px"><i></i><i></i><i></i></div>
+  </div>
+
+  <h2 class="h1 h1--small">13 mln Polaków pyta AI</h2>
+  <div class="stats stats--3 stats--compact">
+    <div class="stat">
+      <div class="stat__n">13 <small>mln</small></div>
+      <div class="stat__t">korzysta z narzędzi AI co&nbsp;miesiąc</div>
+    </div>
+    <div class="stat">
+      <div class="stat__n">9,2 <small>mln</small></div>
+      <div class="stat__t">co tydzień</div>
+    </div>
+    <div class="stat stat--ink">
+      <div class="stat__n">148 <small>min</small></div>
+      <div class="stat__t">tyle średnio w miesiącu spędza z AI jeden użytkownik</div>
+    </div>
+  </div>
+  <p class="src">
+    Źródło: Gemius/PBI, marzec 2026. Narzędzia AI oparte na dużych modelach językowych.
+  </p>
+
+  <p class="body" style="margin-top: 18px">
+    Wyszukiwarka daje listę linków. Rozmowa daje gotową odpowiedź. Klient nie wpisuje „sofa
+    3-osobowa”. Pisze:
+    <b>„Mam salon 16 m², dwoje dzieci i psa. Jaka sofa wytrzyma 5 lat i zmieści się w 3000 zł?”</b>
+  </p>
+  <ol class="steps" style="margin-top: 18px">
+    <li><b>Pytanie zamiast frazy.</b> Klient opisuje sytuację, budżet i ograniczenia.</li>
+    <li><b>Odpowiedź zamiast listy.</b> AI porównuje oferty i zawęża wybór za klienta.</li>
+    <li>
+      <b>Decyzja zapada wcześniej.</b> Porównanie może się odbyć, zanim klient trafi na Twoją
+      stronę.
+    </li>
+  </ol>
+
+  <div class="takeaway" style="margin-top: 26px">
+    <span class="takeaway__label">Wniosek</span>
+    <p>
+      Nie musisz rezygnować z Google ani Meta. Musisz za to wiedzieć, co dzieje się w rozmowie, w
+      której Twój klient wybiera – <b>i kto jest w niej zamiast Ciebie.</b>
+    </p>
+  </div>
+
+  <footer class="foot">
+    <span class="logo">KSIGN<i>.</i></span>
+    <span class="mono">Źródła: str. 31</span>
+    <span class="mono">v1.0 · stan na 28.09.2026</span>
+  </footer>
+</section>
+
+<!-- STR. 5 · 31.08: PŁATNE MIEJSCE W ROZMOWIE -->
+<section class="page content" data-name="05-os-czasu">
+  <header class="runhead">
+    <span class="marker">[ 01 / Klient już rozmawia ]</span><span class="pnum">05</span>
+  </header>
+  <h2 class="h1 h1--mid">31.08: płatne miejsce w rozmowie</h2>
+  <p class="lead">
+    Od 31 sierpnia 2026 r. każda firma w Polsce może sama kupić reklamę w ChatGPT – w panelu Ads
+    Manager, bez pośredników.
+  </p>
+
+  <div class="timeline">
+    <div class="tl">
+      <div class="tl__date">09.02</div>
+      <div class="tl__where">USA</div>
+      <div class="tl__t">OpenAI zaczyna testować reklamy w planach Free i Go.</div>
+    </div>
+    <div class="tl">
+      <div class="tl__date">24.08</div>
+      <div class="tl__where">Europa · 31 krajów</div>
+      <div class="tl__t">
+        Reklamy ruszają także w Polsce. Kupić je można tylko przez zespół OpenAI, agencje i
+        partnerów.
+      </div>
+    </div>
+    <div class="tl tl--now">
+      <div class="tl__date">31.08</div>
+      <div class="tl__where">Polska · samoobsługa</div>
+      <div class="tl__t">Startuje Ads Manager. Konto reklamowe może założyć każda firma.</div>
+    </div>
+  </div>
+
+  <p class="body" style="margin-top: 30px">
+    W nowych kanałach konkurencja w aukcji zwykle rośnie z czasem. Nie wiemy, jak długo potrwa start
+    z mniejszą liczbą reklamodawców. Wiemy za to, że wnioski z pierwszych kampanii zostaną w
+    firmach, które je przeprowadzą.
+  </p>
+
+  <div class="todo">
+    <span class="todo__label">Do zrobienia dziś</span>
+    <ol>
+      <li>
+        Wypisz 3 pytania, które klienci najczęściej zadają Ci przed zakupem – z maili, telefonów i
+        czatu.
+      </li>
+      <li>Zadaj je ChatGPT tak, jak zrobiłby to klient: z budżetem, miastem i ograniczeniami.</li>
+      <li>
+        Zapisz, kogo ChatGPT poleca, czy pada Twoja marka i czy pod odpowiedzią widać czyjąś
+        reklamę.
+      </li>
+    </ol>
+    <p class="small" style="margin-top: 12px; color: #3a2a10">
+      Reklamy zobaczysz na koncie Free lub Go albo bez logowania – nie w czacie tymczasowym.
+    </p>
+  </div>
+
+  <footer class="foot">
+    <span class="logo">KSIGN<i>.</i></span>
+    <span class="mono">Źródła: str. 31</span>
+    <span class="mono">v1.0 · stan na 28.09.2026</span>
+  </footer>
+</section>
+
+<!-- STR. 6 · ROZDZIAŁ 02 · OD PYTANIA DO KLIKNIĘCIA -->
+<section class="page content" data-name="06-od-pytania-do-klikniecia">
+  <div class="band">
+    <div class="band__top"><span>[ Rozdział 02 / 08 ]</span><span class="pnum">06</span></div>
+    <div class="band__no">02</div>
+    <h2 class="band__title">Jak to<br />działa</h2>
+    <img
+      class="band__art"
+      style="right: 96px; height: 370px"
+      src="../assets/posag-02-apollo.webp"
+      alt="Marmurowa głowa Apollina z uśmiechem"
+    />
+    <svg class="nodes" style="right: 420px; top: 88px" viewBox="0 0 260 250" aria-hidden="true">
+      <path
+        d="M30 40 L130 95 L70 190 L200 215 L235 110"
+        fill="none"
+        stroke="#0b0b0b"
+        stroke-width="5"
+      />
+      <circle cx="30" cy="40" r="20" fill="#0b0b0b" />
+      <circle cx="130" cy="95" r="16" fill="#f6f2ea" stroke="#0b0b0b" stroke-width="5" />
+      <circle cx="70" cy="190" r="16" fill="#f6f2ea" stroke="#0b0b0b" stroke-width="5" />
+      <circle cx="200" cy="215" r="16" fill="#f6f2ea" stroke="#0b0b0b" stroke-width="5" />
+      <rect x="215" y="90" width="40" height="40" fill="#0b0b0b" />
+    </svg>
+  </div>
+
+  <h2 class="h1 h1--small h1--ogonek">Od pytania do kliknięcia</h2>
+  <p class="lead">
+    Reklama nie reaguje na słowo kluczowe. Reaguje na sytuację, którą klient opisał w rozmowie.
+  </p>
+
+  <div class="flow flow--compact">
+    <div class="fs">
+      <div class="fs__n">1</div>
+      <div class="fs__b">
+        <h3>Rozmowa</h3>
+        <p>
+          Klient pisze: „Szukam hotelu w Zakopanem na długi weekend, z basenem i miejscem dla psa”.
+        </p>
+      </div>
+    </div>
+    <div class="fs">
+      <div class="fs__n">2</div>
+      <div class="fs__b">
+        <h3>Dopasowanie</h3>
+        <p>
+          System czyta kontekst rozmowy i porównuje go ze stroną, tytułem, opisem, wskazówkami i
+          kierowaniem.
+        </p>
+      </div>
+    </div>
+    <div class="fs">
+      <div class="fs__n">3</div>
+      <div class="fs__b">
+        <h3>Aukcja</h3>
+        <p>
+          Gdy pasuje kilka reklam, decyduje trafność razem ze stawką. Sama stawka nie wystarczy.
+        </p>
+      </div>
+    </div>
+    <div class="fs">
+      <div class="fs__n">4</div>
+      <div class="fs__b">
+        <h3>Karta</h3>
+        <p>
+          Reklama pojawia się pod odpowiedzią – oznaczona jako sponsorowana i oddzielona od niej.
+        </p>
+      </div>
+    </div>
+    <div class="fs">
+      <div class="fs__n">5</div>
+      <div class="fs__b">
+        <h3>Pomiar</h3>
+        <p>
+          Kliknięcie prowadzi na Twoją stronę. UTM i pixel (po zgodzie) pokazują, co klient zrobił
+          dalej.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="takeaway" style="margin-top: 16px; padding-top: 18px; padding-bottom: 20px">
+    <p>
+      <b>Reklama nie zmienia odpowiedzi.</b> OpenAI deklaruje, że odpowiedzi powstają niezależnie od
+      reklam. Reklamodawca nie widzi rozmów – dostaje tylko zbiorcze wyniki.
+    </p>
+  </div>
+
+  <footer class="foot">
+    <span class="logo">KSIGN<i>.</i></span>
+    <span class="mono">Źródła: str. 31</span>
+    <span class="mono">v1.0 · stan na 28.09.2026</span>
+  </footer>
+</section>
+
+<!-- STR. 7 · ANATOMIA REKLAMY -->
+<section class="page content" data-name="07-anatomia-reklamy">
+  <header class="runhead">
+    <span class="marker">[ 02 / Jak to działa ]</span><span class="pnum">07</span>
+  </header>
+  <h2 class="h1 h1--mid">Anatomia reklamy</h2>
+  <p class="lead">
+    Dwa formaty: karta reklamy i karuzela produktów z feedu. Oba pod odpowiedzią, oznaczone jako
+    sponsorowane. Wideo nie ma.
+  </p>
+
+  <div class="anat">
+    <div class="adsk" aria-label="Szkic karty reklamy (schemat, nie interfejs ChatGPT)">
+      <div class="adsk__lbl">Sponsorowane<span class="pin-i">1</span></div>
+      <div class="adsk__brand">
+        <span class="adsk__fav"></span>Twój Sklep<span class="pin-i">2</span>
+      </div>
+      <div class="adsk__img"></div>
+      <div style="margin-top: -32px; text-align: right"><span class="pin-i">3</span></div>
+      <div class="adsk__title">Sofa, która zniesie psa<span class="pin-i">4</span></div>
+      <div class="adsk__desc">
+        Tkanina odporna na pazury. Dostawa w 5 dni.<span class="pin-i">5</span>
+      </div>
+      <div class="adsk__url">twojsklep.pl/sofy-dla-psiarzy<span class="pin-i">6</span></div>
+    </div>
+    <ol class="legend">
+      <li><b>Oznaczenie „sponsorowane”</b> – dodaje je&nbsp;system.</li>
+      <li><b>Nazwa firmy i favicon</b> – ikona Twojej strony.</li>
+      <li><b>Obraz</b> – kwadrat, min. 256 × 256 px. Produkt albo efekt usługi.</li>
+      <li><b>Tytuł – do 50 znaków.</b> Efekt dla klienta, najważniejsze słowa na początku.</li>
+      <li><b>Opis – do 100 znaków.</b> Dowód: liczba, termin albo gwarancja.</li>
+      <li><b>Strona docelowa</b> – konkretna podstrona z UTM, nie strona główna.</li>
+    </ol>
+  </div>
+
+  <div class="two" style="margin-top: 22px">
+    <div class="panel panel--orange">
+      <h3>Karuzela produktów z feedu</h3>
+      <p>
+        Kilka produktów z jednego sklepu w jednej reklamie. Zdjęcie, nazwę, cenę i atrybuty system
+        bierze z feedu.
+      </p>
+      <p>
+        Feed: plik, stały URL albo SFTP. Pozycje z pliku wygasają po 2 tygodniach. Tylko cały kraj.
+      </p>
+    </div>
+    <div class="panel panel--ink">
+      <h3>Uwaga: „Text customization”</h3>
+      <p>
+        Domyślnie włączona. AI tworzy spersonalizowane i przetłumaczone wersje Twojego tytułu i
+        opisu i może je wyświetlać bez Twojej akceptacji.
+      </p>
+      <p>Wyłącz, jeśli każde zdanie musi przejść akceptację.</p>
+    </div>
+  </div>
+
+  <p class="note-line">
+    Nie rób reklamy, która naśladuje wygląd albo głos ChatGPT: bez dymków czatu i bez „Jako asystent
+    AI&nbsp;polecam…”.
+  </p>
+  <p class="src">
+    Karuzela: sprawdź dostępność na swoim koncie. Limity 50/100 znaków – stan na 24.09.2026.
+  </p>
+
+  <footer class="foot">
+    <span class="logo">KSIGN<i>.</i></span>
+    <span class="mono">Źródła: str. 31</span>
+    <span class="mono">v1.0 · stan na 28.09.2026</span>
+  </footer>
+</section>
+
+<!-- STR. 8 · KTO WIDZI, A KTO NIE -->
+<section class="page content" data-name="08-kto-widzi">
+  <header class="runhead">
+    <span class="marker">[ 02 / Jak to działa ]</span><span class="pnum">08</span>
+  </header>
+  <h2 class="h1">Kto widzi, a kto nie</h2>
+  <p class="lead">
+    Nie każdy użytkownik ChatGPT zobaczy Twoją reklamę. Zanim policzysz budżet, sprawdź, czy Twój
+    klient jest w tej grupie.
+  </p>
+
+  <div class="split">
+    <div class="card card--yes">
+      <h3 class="card__title">
+        <svg viewBox="0 0 34 34" aria-hidden="true">
+          <circle cx="17" cy="17" r="17" fill="#0b0b0b" />
+          <path d="M9.5 17.5l5 5L25 12" fill="none" stroke="#e8940c" stroke-width="3.6" />
+        </svg>
+        Widzą reklamy
+      </h3>
+      <ul>
+        <li>Plan Free</li>
+        <li>Plan Go</li>
+        <li>Niezalogowani<small>tylko reklamy odpowiednie dla każdego wieku</small></li>
+      </ul>
+    </div>
+    <div class="card card--no">
+      <h3 class="card__title">
+        <svg viewBox="0 0 34 34" aria-hidden="true">
+          <circle cx="17" cy="17" r="17" fill="#0b0b0b" />
+          <path
+            d="M11.5 11.5l11 11M22.5 11.5l-11 11"
+            fill="none"
+            stroke="#fff"
+            stroke-width="3.6"
+          />
+        </svg>
+        Nie widzą
+      </h3>
+      <ul>
+        <li>Plus, Pro, Business, Enterprise i Edu</li>
+        <li>Konta osób poniżej 18 lat</li>
+        <li>Czat tymczasowy i przeglądarka Atlas</li>
+        <li>Free z wyłączonymi reklamami<small>mają za to niższe limity wiadomości</small></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="topics">
+    <span class="topics__label">Tematy bez reklam:</span>
+    <span class="pill">zdrowie osobiste</span>
+    <span class="pill">zdrowie psychiczne</span>
+    <span class="pill">polityka</span>
+  </div>
+
+  <div class="fact">
+    <span class="fact__tag">PL</span>
+    <div>
+      <h3>W Polsce liczy się tylko bieżąca rozmowa</h3>
+      <p>
+        Jak w całym EOG i Szwajcarii, reklamy nie są personalizowane. System nie korzysta z historii
+        użytkownika.
+      </p>
+    </div>
+  </div>
+
+  <div class="takeaway">
+    <span class="takeaway__label">Co to znaczy dla Ciebie</span>
+    <p>
+      <b>Sprzedajesz firmom?</b> Pracownicy na kontach Business i Enterprise reklamy nie zobaczą.
+      Zobaczy ją właściciel małej firmy na darmowym koncie.
+    </p>
+    <p>
+      <b>Nie „namierzysz” konkretnej osoby.</b> Opisz sytuację, w której Twoja oferta pomaga. Tylko
+      tak trafisz do właściwej rozmowy.
+    </p>
+  </div>
+
+  <footer class="foot">
+    <span class="logo">KSIGN<i>.</i></span>
+    <span class="mono">Źródła: str. 31</span>
+    <span class="mono">v1.0 · stan na 28.09.2026</span>
+  </footer>
+</section>
+
+<!-- STR. 9 · JAK PŁACISZ + 3 MITY -->
+<section class="page content" data-name="09-jak-placisz">
+  <header class="runhead">
+    <span class="marker">[ 02 / Jak to działa ]</span><span class="pnum">09</span>
+  </header>
+  <h2 class="h1 h1--mid">Jak płacisz + 3 mity</h2>
+  <p class="lead">Wybierasz cel i budżet: dzienny albo na całą kampanię.</p>
+
+  <table class="tbl tbl--tight">
+    <thead>
+      <tr>
+        <th>Cel kampanii</th>
+        <th>Płacisz za</th>
+        <th>Kiedy wybrać</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Wyświetlenia (CPM)</td>
+        <td>1000 wyświetleń</td>
+        <td>Liczy się zasięg, nie ruch</td>
+      </tr>
+      <tr class="accent">
+        <td>Kliknięcia (CPC)</td>
+        <td>kliknięcie</td>
+        <td>Na start: zbierasz ruch i dane</td>
+      </tr>
+      <tr>
+        <td>Konwersje</td>
+        <td>kliknięcie lub wyświetlenie</td>
+        <td>Gdy pixel już zbiera zdarzenia</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="budget-row">
+    <div class="stat stat--orange">
+      <div class="stat__n">65 zł</div>
+      <div class="stat__t">minimum dziennie (konto w PLN)</div>
+    </div>
+    <div class="stat">
+      <div class="stat__n">2×</div>
+      <div class="stat__t">max wydatek jednego dnia</div>
+    </div>
+    <div class="stat">
+      <div class="stat__n">7×</div>
+      <div class="stat__t">max wydatek w tygodniu</div>
+    </div>
+  </div>
+  <p class="note-line" style="margin-top: 10px">
+    Typ budżetu wybierz od razu: z całej kampanii przejdziesz na dzienny, z powrotem już nie.
+  </p>
+
+  <div class="myths myths--compact">
+    <div class="myth">
+      <div class="myth__m">„Kto da więcej, ten wygrywa”</div>
+      <div class="myth__f">Decyduje trafność razem ze stawką. Sama stawka nie wystarczy.</div>
+    </div>
+    <div class="myth">
+      <div class="myth__m">„Cel »konwersje« = płacę za sprzedaż”</div>
+      <div class="myth__f">
+        Płacisz za kliknięcie lub wyświetlenie. Konwersja to cel optymalizacji.
+      </div>
+    </div>
+    <div class="myth">
+      <div class="myth__m">„Budżet dzienny to twardy limit”</div>
+      <div class="myth__f">To średnia z 7 dni. Dzień może kosztować 2×, tydzień – max 7×.</div>
+    </div>
+  </div>
+
+  <div class="todo">
+    <span class="todo__label">Do zrobienia dziś</span>
+    <ol>
+      <li>Oceń, czy Twoi klienci korzystają z planu Free lub Go.</li>
+      <li>Zarezerwuj budżet testowy: 65 zł × 14 dni = 910 zł.</li>
+      <li>Wybierz jedną podstronę na pierwszą reklamę.</li>
+    </ol>
+  </div>
+
+  <footer class="foot">
+    <span class="logo">KSIGN<i>.</i></span>
+    <span class="mono">Źródła: str. 31</span>
+    <span class="mono">v1.0 · stan na 28.09.2026</span>
+  </footer>
+</section>
+
+<!-- STR. 10 · ROZDZIAŁ 03 · TEST W 60 SEKUND -->
+<section class="page content" data-name="10-test-60-sekund">
+  <div class="band">
+    <div class="band__top"><span>[ Rozdział 03 / 08 ]</span><span class="pnum">10</span></div>
+    <div class="band__no">03</div>
+    <h2 class="band__title">Czy to dla<br />Ciebie?</h2>
+    <div class="qmark">?</div>
+    <img
+      class="band__art"
+      style="right: 60px; height: 390px"
+      src="../assets/posag-03-epikur.webp"
+      alt="Marmurowa głowa filozofa Epikura"
+    />
+  </div>
+
+  <h2 class="h1 h1--small">Test w 60 sekund</h2>
+  <p class="lead">
+    „Nie” w pierwszych dwóch pytaniach zamyka temat. „Nie” w dwóch ostatnich znaczy tylko „jeszcze
+    nie”.
+  </p>
+
+  <div class="tree">
+    <div class="q">
+      <div class="q__n">1</div>
+      <div class="q__t">Czy Twoja branża jest dozwolona?<small>Lista na str. 11</small></div>
+      <div class="q__no">
+        <b class="stop">NIE → NIE TERAZ</b>Poza USA: bez finansów, zdrowia (też suplementów) i usług
+        prawnych.
+      </div>
+    </div>
+    <div class="q">
+      <div class="q__n">2</div>
+      <div class="q__t">
+        Czy Twoi klienci są na planie Free lub Go?<small
+          >Osoby prywatne i małe firmy – często tak</small
+        >
+      </div>
+      <div class="q__no">
+        <b class="stop">NIE → NIE TERAZ</b>Korporacje na Business i Enterprise reklam nie widzą.
+      </div>
+    </div>
+    <div class="q">
+      <div class="q__n">3</div>
+      <div class="q__t">
+        Czy możesz wydać min. 910 zł na 14-dniowy test?<small>65 zł × 14 dni</small>
+      </div>
+      <div class="q__no"><b>NIE → JESZCZE NIE</b>Zacznij od rozdziału 04 i przygotuj stronę.</div>
+    </div>
+    <div class="q">
+      <div class="q__n">4</div>
+      <div class="q__t">
+        Czy mierzysz konwersje i masz zgody z banera cookies?<small>Pixel, zdarzenie, UTM</small>
+      </div>
+      <div class="q__no"><b>NIE → JESZCZE NIE</b>Rozdział 04 zajmie Ci 1–2 dni.</div>
+    </div>
+    <div class="verdict">
+      <span>4 × TAK</span>Testuj. Rozdział 05 prowadzi przez pierwsze 7 dni.
+    </div>
+  </div>
+
+  <footer class="foot">
+    <span class="logo">KSIGN<i>.</i></span>
+    <span class="mono">Źródła: str. 31</span>
+    <span class="mono">v1.0 · stan na 28.09.2026</span>
+  </footer>
+</section>
+
+<!-- STR. 11 · BRANŻE: TAK, OSTROŻNIE, NIE -->
+<section class="page content roomy" data-name="11-branze">
+  <header class="runhead">
+    <span class="marker">[ 03 / Czy to dla Ciebie? ]</span><span class="pnum">11</span>
+  </header>
+  <h2 class="h1 h1--mid">Tak, ostrożnie, nie</h2>
+  <p class="lead">
+    Zasady reklam OpenAI dzielą branże na trzy grupy. Dla firmy z Polski liczy się to, co obowiązuje
+    poza USA.
+  </p>
+
+  <div class="cols3 cols3--big">
+    <div class="col col--yes">
+      <h3>Tak</h3>
+      <ul>
+        <li>Dom i produkty konsumenckie: meble, wyposażenie, AGD, moda</li>
+        <li>Usługi lokalne</li>
+        <li>Podróże, atrakcje i rozrywka</li>
+        <li>Produkty cyfrowe: aplikacje, SaaS, e-booki</li>
+        <li>Edukacja: kursy, szkoły,&nbsp;szkolenia</li>
+      </ul>
+    </div>
+    <div class="col col--care">
+      <h3>Ostrożnie</h3>
+      <ul>
+        <li>Uroda i wellness – bez obietnic zdrowotnych, których nie udowodnisz</li>
+        <li>Nieruchomości i rekrutacja – marka tak, konkretne mieszkanie lub oferta pracy nie</li>
+        <li>Każda branża – reklama, obraz i strona mówią to samo, bez udawania&nbsp;ChatGPT</li>
+        <li>OpenAI może odrzucić reklamę sprzeczną ze swoim interesem biznesowym</li>
+      </ul>
+    </div>
+    <div class="col col--no">
+      <h3>Nie</h3>
+      <ul>
+        <li>
+          <b>Wszędzie:</b> alkohol, tytoń i e-papierosy, hazard, randki i treści dla dorosłych,
+          broń, podróbki, polityka, narkotyki, oferty pracy i ogłoszenia mieszkań, niepotwierdzone
+          obietnice&nbsp;zdrowotne
+        </li>
+        <li>
+          <b>Poza USA, więc też w Polsce:</b> finanse, zdrowie (w tym suplementy, stomatologia,
+          optyka, medycyna estetyczna), usługi prawne
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="fact" style="margin-top: 28px">
+    <span class="fact__tag">12</span>
+    <div>
+      <h3>Z naszego badania</h3>
+      <p>
+        12 na 100 sklepów – apteki i sklepy z suplementami – nie może dziś reklamować się w ChatGPT
+        w ogóle.
+      </p>
+    </div>
+  </div>
+  <div class="fact" style="margin-top: 22px">
+    <span class="fact__tag">!</span>
+    <div>
+      <h3>To skrót, nie pełna lista</h3>
+      <p>
+        Przed startem porównaj swoją ofertę z zasadami reklam OpenAI:
+        openai.com/policies/ad-policies (stan na 24.09.2026).
+      </p>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <span class="logo">KSIGN<i>.</i></span>
+    <span class="mono">Źródła: str. 31</span>
+    <span class="mono">v1.0 · stan na 28.09.2026</span>
+  </footer>
+</section>
+
+<!-- STR. 12 · GEOGRAFIA I BUDŻET -->
+<section class="page content roomy" data-name="12-geografia-budzet">
+  <header class="runhead">
+    <span class="marker">[ 03 / Czy to dla Ciebie? ]</span><span class="pnum">12</span>
+  </header>
+  <h2 class="h1 h1--mid">Geografia i budżet</h2>
+  <p class="lead">
+    W Polsce kierujesz reklamę na kraj i na treść rozmowy. List klientów i retargetingu tu nie ma.
+  </p>
+
+  <div class="two">
+    <div class="panel">
+      <h3>Geografia</h3>
+      <ul>
+        <li>
+          Kraj – zawsze. Regiony i miasta tylko tam, gdzie OpenAI je udostępnia – sprawdź w panelu.
+        </li>
+        <li>Kampanie z feedu: tylko cały kraj.</li>
+        <li>Listy klientów nie działają w kampaniach na EOG.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h3>Budżet</h3>
+      <ul>
+        <li>Min. 65 zł dziennie.</li>
+        <li>Test 14 dni = 910 zł, miesiąc ok. 1950 zł.</li>
+        <li>Budżet dzienny to średnia z 7 dni.</li>
+      </ul>
+    </div>
+  </div>
+
+  <table class="tbl tbl--tight" style="margin-top: 22px">
+    <thead>
+      <tr>
+        <th>Twoja sytuacja</th>
+        <th>Lepszy kanał na dziś</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Działasz w jednym mieście</td>
+        <td>Google (mapy, lokalizacja), Meta (promień)</td>
+      </tr>
+      <tr>
+        <td>Potrzebujesz retargetingu i list klientów</td>
+        <td>Meta, Google</td>
+      </tr>
+      <tr>
+        <td>Sprzedajesz korporacjom</td>
+        <td>LinkedIn, Google</td>
+      </tr>
+      <tr>
+        <td>Masz mniej niż 910 zł na test</td>
+        <td>Najpierw strona i pomiar (rozdz. 04)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="todo">
+    <span class="todo__label">Do zrobienia dziś</span>
+    <ol>
+      <li>Przejdź test ze str. 10 i zapisz wynik: testuj, jeszcze nie albo nie teraz.</li>
+      <li>
+        Sprawdź swoją branżę na str. 11. Jeśli jest w „ostrożnie”, przeczytaj zasady dla&nbsp;niej.
+      </li>
+      <li>Zarezerwuj 910 zł i 14 dni w kalendarzu albo zaplanuj przygotowanie strony.</li>
+    </ol>
+  </div>
+
+  <footer class="foot">
+    <span class="logo">KSIGN<i>.</i></span>
+    <span class="mono">Źródła: str. 31</span>
+    <span class="mono">v1.0 · stan na 28.09.2026</span>
+  </footer>
+</section>
+
+<!-- STR. 13 · ROZDZIAŁ 04 · KONTO I FIRMA -->
+<section class="page content" data-name="13-konto-i-firma">
+  <div class="band">
+    <div class="band__top"><span>[ Rozdział 04 / 08 ]</span><span class="pnum">13</span></div>
+    <div class="band__no">04</div>
+    <h2 class="band__title">Test<br />drzwi</h2>
+    <div class="door__leaf door__leaf--l"></div>
+    <div class="door">
+      <img
+        class="band__art-in"
+        src="../assets/posag-04-popiersie.webp"
+        alt="Marmurowe popiersie mężczyzny w otwartych drzwiach"
+      />
+    </div>
+    <div class="door__leaf door__leaf--r"></div>
+  </div>
+
+  <h2 class="h1 h1--small">Konto i firma</h2>
+  <p class="lead">
+    „Test drzwi” to trzy sprawdzenia przed pierwszą złotówką: konto, strona i pomiar. Zaczynasz od
+    konta.
+  </p>
+
+  <ul class="check">
+    <li>
+      <b>Konto reklamowe firmy</b> – zakładasz je w Ads Manager na ads.openai.com. Dane firmy muszą
+      się zgadzać z danymi do faktur.
+    </li>
+    <li>
+      <b>Rozliczenia w złotówkach</b> – minimum budżetu dziennego to 65 zł (dla porównania: 15 € lub
+      25 $).
+    </li>
+    <li>
+      <b>Zapas czasu na weryfikację</b> – konto może wymagać weryfikacji firmy. Nie planuj startu
+      „na jutro rano”.
+    </li>
+    <li>
+      <b>Zasady przeczytane</b> – branża dozwolona (str. 11), a każdą obietnicę z reklamy pokażesz
+      na stronie docelowej.
+    </li>
+  </ul>
+
+  <div class="formula">
+    <div><b>1 · Konto</b>ta strona</div>
+    <div style="background: var(--white)"><b>2 · Strona</b>boty i firewall – str. 14</div>
+    <div style="background: var(--white)"><b>3 · Pomiar</b>pixel, zgody, UTM – str. 15</div>
+  </div>
+
+  <div class="fact" style="margin-top: 26px">
+    <span class="fact__tag">!</span>
+    <div>
+      <h3>Dostęp do konta</h3>
+      <p>Ustal, kto ma dostęp do konta i płatności. Nie przekazuj agencji swojego hasła.</p>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <span class="logo">KSIGN<i>.</i></span>
+    <span class="mono">Źródła: str. 31</span>
+    <span class="mono">v1.0 · stan na 28.09.2026</span>
+  </footer>
+</section>
+
+<!-- STR. 14 · STRONA I BOTY -->
+<section class="page content" data-name="14-strona-i-boty">
+  <header class="runhead">
+    <span class="marker">[ 04 / Test drzwi ]</span><span class="pnum">14</span>
+  </header>
+  <h2 class="h1 h1--mid">Strona i boty</h2>
+  <p class="lead">
+    Zanim reklama się wyświetli, OpenAI wysyła na stronę bota. Jeśli drzwi są zamknięte, reklama
+    może nie przejść weryfikacji.
+  </p>
+
+  <table class="tbl tbl--tight">
+    <thead>
+      <tr>
+        <th>Bot</th>
+        <th>Po co przychodzi</th>
+        <th>Co zrobić</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="accent">
+        <td>OAI-AdsBot</td>
+        <td>
+          Sprawdza strony docelowe reklam: bezpieczeństwo, zgodność z zasadami, treść. Tylko strony
+          zgłoszone w reklamach.
+        </td>
+        <td><b>Wpuść</b></td>
+      </tr>
+      <tr>
+        <td>OAI-SearchBot</td>
+        <td>Pokazuje strony w wyszukiwaniu ChatGPT</td>
+        <td><b>Wpuść</b>, jeśli chcesz być polecany</td>
+      </tr>
+      <tr>
+        <td>GPTBot</td>
+        <td>Zbiera dane do trenowania modeli</td>
+        <td>Twoja decyzja – nie wpływa na reklamy</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="two" style="grid-template-columns: 0.9fr 1.1fr; align-items: start">
+    <div>
+      <h3 class="label">robots.txt · przykład OpenAI</h3>
+      <pre class="code">
+User-agent: OAI-AdsBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /</pre
+      >
+    </div>
+    <div>
+      <p class="body" style="font-size: 21px">
+        OpenAI nie opisuje, czy OAI-AdsBot czyta robots.txt. Wpis nic nie kosztuje, a usuwa
+        wątpliwość.
+      </p>
+      <p class="body" style="font-size: 21px">
+        <b>Firewall i ochrona przed botami</b> (Cloudflare, Akamai i podobne) mogą zatrzymać bota,
+        zanim przeczyta robots.txt. Dodaj do wyjątków adresy z listy
+        <code>openai.com/adsbot.json</code>.
+      </p>
+    </div>
+  </div>
+
+  <div class="stats stats--2" style="margin-top: 24px">
+    <div class="stat stat--ink">
+      <div class="stat__n">24 <small>/ 100</small></div>
+      <div class="stat__t">sklepów z naszego badania zatrzymało automat ochroną antybotową</div>
+    </div>
+    <div class="stat">
+      <div class="stat__n">1 <small>/ 100</small></div>
+      <div class="stat__t">ma w robots.txt wpis dla OAI-AdsBot</div>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <span class="logo">KSIGN<i>.</i></span>
+    <span class="mono">Źródła: str. 31</span>
+    <span class="mono">v1.0 · stan na 28.09.2026</span>
+  </footer>
+</section>
+
+<!-- STR. 15 · POMIAR I ZGODY -->
+<section class="page content" data-name="15-pomiar-i-zgody">
+  <header class="runhead">
+    <span class="marker">[ 04 / Test drzwi ]</span><span class="pnum">15</span>
+  </header>
+  <h2 class="h1 h1--mid">Pomiar i zgody</h2>
+  <p class="lead">
+    Bez pomiaru nie odróżnisz dobrej kampanii od drogiej. Potrzebujesz czterech rzeczy.
+  </p>
+
+  <ol class="steps" style="margin-top: 18px">
+    <li>
+      <b>Pixel OpenAI</b> – skrypt z bzrcdn.openai.com (funkcja <code>oaiq</code>), w kodzie strony
+      albo w GTM.
+    </li>
+    <li>
+      <b>Zgoda</b> – pixel domyślnie zakłada zgodę. Ustaw „nie” przed startem pixela i „tak” po
+      akceptacji w banerze:
+      <pre class="code" style="font-size: 17px; margin-top: 10px">
+oaiq("consent", false); <span class="c">// przed startem pixela</span>
+oaiq("consent", true);  <span class="c">// po akceptacji w banerze</span></pre>
+    </li>
+    <li>
+      <b>Zdarzenie konwersji</b> – tylko na stronie podziękowania: <code>order_created</code> albo
+      <code>lead_created</code>. Kod na każdej podstronie liczy każde wejście jako konwersję.
+    </li>
+    <li>
+      <b>UTM w każdym linku</b> – np. <code>utm_source=chatgpt&amp;utm_medium=cpc</code>. Przed
+      publikacją kliknij link i sprawdź źródło w GA4.
+    </li>
+  </ol>
+  <p class="src" style="margin-top: 12px">
+    Masz Content Security Policy? Dopisz bzrcdn.openai.com (script-src, connect-src) i
+    bzr.openai.com (connect-src, img-src).
+  </p>
+
+  <div class="cta" style="margin-top: 18px">
+    <div class="cta__t"><b>Test drzwi online</b>Sprawdzimy za Ciebie boty, pixel i zgody.</div>
+    <div class="cta__btn">0 zł · ksign.pl</div>
+  </div>
+
+  <div class="todo">
+    <span class="todo__label">Do zrobienia dziś</span>
+    <ol>
+      <li>Dodaj do robots.txt wpis dla OAI-AdsBot i OAI-SearchBot.</li>
+      <li>Sprawdź w firewallu lub CDN, czy boty OpenAI nie są blokowane.</li>
+      <li>Zainstaluj pixel ze zgodą z banera i zdarzenie na stronie podziękowania.</li>
+    </ol>
+  </div>
+
+  <footer class="foot">
+    <span class="logo">KSIGN<i>.</i></span>
+    <span class="mono">Źródła: str. 31</span>
+    <span class="mono">v1.0 · stan na 28.09.2026</span>
+  </footer>
+</section>
+
+<!-- STR. 16 · ROZDZIAŁ 05 · 7 DNI DO STARTU -->
+<section class="page content roomy" data-name="16-plan-7-dni">
+  <div class="band">
+    <div class="band__top"><span>[ Rozdział 05 / 08 ]</span><span class="pnum">16</span></div>
+    <div class="band__no">05</div>
+    <h2 class="band__title">Pierwsza kampania w&nbsp;7&nbsp;dni</h2>
+    <div class="keycap-wrap">
+      <div class="keycap-glow"></div>
+      <div class="keycap-base"></div>
+      <div class="keycap"><span>START</span></div>
+    </div>
+  </div>
+
+  <h2 class="h1 h1--small">7 dni do startu</h2>
+  <p class="lead">Tydzień od konta do pierwszego odczytu. Każdy dzień zamyka jedną&nbsp;rzecz.</p>
+
+  <table class="tbl tbl--tight" style="margin-top: 18px">
+    <thead>
+      <tr>
+        <th style="width: 90px">Dzień</th>
+        <th>Co robisz</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="num">1</td>
+        <td><b>Konto:</b> konto reklamowe, rozliczenia w złotówkach, zasady przeczytane</td>
+      </tr>
+      <tr>
+        <td class="num">2</td>
+        <td>
+          <b>Pomiar:</b> pixel ze zgodą, zdarzenie na stronie podziękowania, testowa konwersja
+        </td>
+      </tr>
+      <tr>
+        <td class="num">3</td>
+        <td><b>Strona:</b> podstrona docelowa, boty wpuszczone, link z UTM sprawdzony</td>
+      </tr>
+      <tr>
+        <td class="num">4</td>
+        <td><b>Struktura:</b> 2–3 grupy reklam = 2–3 sytuacje klienta, wskazówki CKK</td>
+      </tr>
+      <tr>
+        <td class="num">5</td>
+        <td><b>Reklamy:</b> 3–4 warianty na grupę według wzoru ze str. 20</td>
+      </tr>
+      <tr>
+        <td class="num">6</td>
+        <td><b>Start:</b> stawki i budżet (str. 21), publikacja, pilnujesz akceptacji</td>
+      </tr>
+      <tr class="accent">
+        <td class="num">7</td>
+        <td><b>Pierwszy odczyt:</b> są wyświetlenia? kliknięcia? pomiar zapisuje zdarzenia?</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="note-line">Od dnia 7: tydzień bez zmian. Decyzje po 14 i 30 dniach (str. 24).</p>
+
+  <footer class="foot">
+    <span class="logo">KSIGN<i>.</i></span>
+    <span class="mono">Źródła: str. 31</span>
+    <span class="mono">v1.0 · stan na 28.09.2026</span>
+  </footer>
+</section>
+
+<!-- STR. 17 · STRUKTURA KAMPANII -->
+<section class="page content roomy" data-name="17-struktura-kampanii">
+  <header class="runhead">
+    <span class="marker">[ 05 / Pierwsza kampania ]</span><span class="pnum">17</span>
+  </header>
+  <h2 class="h1 h1--mid">Struktura kampanii</h2>
+  <p class="lead">Trzy poziomy. Najwięcej zależy od środkowego – grup reklam.</p>
+
+  <div class="levels">
+    <div class="lvl">
+      <div class="lvl__h">Kampania</div>
+      <div class="lvl__b">
+        Cel, budżet, daty i kraj. Jedna kampania na jeden produkt lub usługę.
+      </div>
+    </div>
+    <div class="lvl lvl--key">
+      <div class="lvl__h">Grupa reklam = sytuacja klienta</div>
+      <div class="lvl__b">Stawka i wskazówki kontekstowe. Jedna grupa to jedna sytuacja.</div>
+    </div>
+    <div class="lvl">
+      <div class="lvl__h">Reklama</div>
+      <div class="lvl__b">Tytuł, opis, obraz i strona docelowa. 3–4 warianty w grupie.</div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top: 26px">
+    <h3>Przykład: sklep meblowy, kampania „Sofy”</h3>
+    <ul>
+      <li><b>Grupa 1:</b> mały salon z psem</li>
+      <li><b>Grupa 2:</b> pierwsze mieszkanie, budżet do 3000 zł</li>
+      <li><b>Grupa 3:</b> sofa do spania dla gości</li>
+    </ul>
+    <p style="margin-top: 10px">Każda grupa: 3 wskazówki CKK, 3–4 reklamy, własna podstrona.</p>
+  </div>
+
+  <div class="takeaway" style="margin-top: 22px">
+    <span class="takeaway__label">Zasada</span>
+    <p>
+      <b>Mało wskazówek w grupie, więcej grup.</b> Od razu widzisz, która sytuacja klienta
+      sprzedaje.
+    </p>
+    <p>
+      Personalizacja tekstu jest domyślnie włączona (str. 7) – włącz ją albo wyłącz&nbsp;świadomie.
+    </p>
+  </div>
+
+  <footer class="foot">
+    <span class="logo">KSIGN<i>.</i></span>
+    <span class="mono">Źródła: str. 31</span>
+    <span class="mono">v1.0 · stan na 28.09.2026</span>
+  </footer>
+</section>
+
+<!-- STR. 18 · FORMUŁA CKK -->
+<section class="page content roomy" data-name="18-formula-ckk">
+  <header class="runhead">
+    <span class="marker">[ 05 / Pierwsza kampania ]</span><span class="pnum">18</span>
+  </header>
+  <h2 class="h1 h1--mid">Formuła CKK</h2>
+  <p class="lead">
+    OpenAI radzi, by wskazówka mówiła, co oferujesz, komu to pomaga i kiedy się przydaje. My
+    nazywamy to CKK.
+  </p>
+
+  <div class="ckk">
+    <div><b>Co</b><span>Produkt albo usługa z wyróżnikiem</span></div>
+    <div><b>Kto</b><span>Komu to pomaga</span></div>
+    <div><b>Kiedy</b><span>W jakiej sytuacji się przydaje</span></div>
+  </div>
+
+  <div class="ex ex--bad">
+    <span class="ex__t">Źle – lista haseł</span>
+    sofa, kanapa, narożnik, tania sofa, sofa rozkładana, meble do salonu
+  </div>
+  <div class="ex ex--good">
+    <span class="ex__t">Dobrze – jedna myśl w zdaniu</span>
+    <span class="tag tag--co">Sofa z tkaniną odporną na pazury</span> dla
+    <span class="tag tag--kto">właścicieli psów i kotów</span>, którzy
+    <span class="tag tag--kiedy">urządzają salon i boją się zniszczeń</span>.
+  </div>
+
+  <ul class="check check--compact" style="margin-top: 24px">
+    <li>Jedna wskazówka = jedna myśl, naturalnym zdaniem.</li>
+    <li>Wskazówki to nie słowa kluczowe i nie gwarantują wyświetleń.</li>
+    <li>Sytuacje bierz z pytań klientów z rozdziału 01.</li>
+    <li>AI może naszkicować wskazówki na podstawie strony – przeczytaj i popraw każdą.</li>
+  </ul>
+
+  <div class="fill">
+    <span class="fill__label">Ćwiczenie · 3 minuty · Twoja pierwsza wskazówka</span>
+    <div class="fill__row">
+      <b>Co<small>produkt z wyróżnikiem</small></b
+      ><span></span>
+    </div>
+    <div class="fill__row">
+      <b>Kto<small>komu to pomaga</small></b
+      ><span></span>
+    </div>
+    <div class="fill__row">
+      <b>Kiedy<small>w jakiej sytuacji</small></b
+      ><span></span>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <span class="logo">KSIGN<i>.</i></span>
+    <span class="mono">Źródła: str. 31</span>
+    <span class="mono">v1.0 · stan na 28.09.2026</span>
+  </footer>
+</section>
+
+<!-- STR. 19 · 12 WSKAZÓWEK Z 6 BRANŻ -->
+<section class="page content roomy" data-name="19-12-wskazowek">
+  <header class="runhead">
+    <span class="marker">[ 05 / Pierwsza kampania ]</span><span class="pnum">19</span>
+  </header>
+  <h2 class="h1 h1--mid">12 wskazówek z 6 branż</h2>
+  <p class="lead">Gotowe wzory do przerobienia. Każda wskazówka to jedna myśl według CKK.</p>
+
+  <div class="hints">
+    <div class="hint">
+      <h3>Moda</h3>
+      <p>
+        <b>1</b>Wodoodporna kurtka miejska dla osób, które dojeżdżają rowerem do pracy, gdy jesień
+        zaczyna się od deszczu.
+      </p>
+      <p>
+        <b>2</b>Sukienka na wesele w rozmiarach 36–52 dla kobiet, które szukają kreacji na
+        ostatnią&nbsp;chwilę.
+      </p>
+    </div>
+    <div class="hint">
+      <h3>Dom</h3>
+      <p><b>3</b>Sofa z tkaniną odporną na pazury dla właścicieli psów, którzy urządzają salon.</p>
+      <p>
+        <b>4</b>Meble do kawalerki dla osób, które urządzają pierwsze mieszkanie z budżetem do 5000
+        zł.
+      </p>
+    </div>
+    <div class="hint">
+      <h3>Hotel</h3>
+      <p>
+        <b>5</b>Hotel w Zakopanem z basenem i pokojami dla psów dla par, które planują długi weekend
+        w górach.
+      </p>
+      <p><b>6</b>Pakiet SPA na dwie noce dla osób, które szukają prezentu na rocznicę.</p>
+    </div>
+    <div class="hint">
+      <h3>Kurs online</h3>
+      <p>
+        <b>7</b>Kurs Excela od podstaw dla pracowników biurowych, którzy chcą szybciej
+        robić&nbsp;raporty.
+      </p>
+      <p>
+        <b>8</b>Matematyka do matury online dla uczniów, którzy kilka miesięcy przed egzaminem mają
+        zaległości.
+      </p>
+    </div>
+    <div class="hint">
+      <h3>Aplikacja</h3>
+      <p>
+        <b>9</b>Aplikacja do nauki angielskiego w 10 minut&nbsp;dziennie dla zapracowanych osób
+        przed wyjazdem za granicę.
+      </p>
+      <p>
+        <b>10</b>Aplikacja do nauki gry na gitarze dla dorosłych, którzy zawsze chcieli zacząć, ale
+        nie mają czasu na lekcje.
+      </p>
+    </div>
+    <div class="hint">
+      <h3>Eventy</h3>
+      <p>
+        <b>11</b>Bilety na koncerty w Krakowie dla osób, które szukają pomysłu na piątkowy wieczór.
+      </p>
+      <p>
+        <b>12</b>Escape room w Poznaniu dla firm, które szukają integracji dla zespołu 10–20 osób.
+      </p>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <span class="logo">KSIGN<i>.</i></span>
+    <span class="mono">Źródła: str. 31</span>
+    <span class="mono">v1.0 · stan na 28.09.2026</span>
+  </footer>
+</section>
+
+<!-- STR. 20 · WZÓR REKLAMY -->
+<section class="page content roomy" data-name="20-wzor-reklamy">
+  <header class="runhead">
+    <span class="marker">[ 05 / Pierwsza kampania ]</span><span class="pnum">20</span>
+  </header>
+  <h2 class="h1 h1--mid">Wzór reklamy</h2>
+
+  <div class="formula" style="margin-top: 22px">
+    <div><b>Tytuł = efekt</b>co klient dostaje</div>
+    <div><b>Opis = dowód</b>liczba, termin, gwarancja</div>
+    <div><b>Obraz = produkt</b>albo efekt usługi</div>
+  </div>
+
+  <table class="tbl tbl--tight">
+    <thead>
+      <tr>
+        <th style="width: 130px">Branża</th>
+        <th>Tytuł · do 50 znaków</th>
+        <th>Opis · do 100 znaków</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Meble</td>
+        <td><b>Sofa, która zniesie psa</b></td>
+        <td>Tkanina odporna na pazury. 30 kolorów, dostawa w 5 dni.</td>
+      </tr>
+      <tr>
+        <td>Moda</td>
+        <td><b>Kurtka, w której dojedziesz&nbsp;suchy</b></td>
+        <td>Membrana 10 000 mm i odblaski. Zwrot do 30 dni.</td>
+      </tr>
+      <tr>
+        <td>Hotel</td>
+        <td><b>Weekend w Tatrach z psem</b></td>
+        <td>Basen, sauna i pokoje przyjazne psom. 5 minut od Krupówek.</td>
+      </tr>
+      <tr>
+        <td>Kurs</td>
+        <td><b>Excel od zera w 14 dni</b></td>
+        <td>42 krótkie lekcje, certyfikat i dostęp bez limitu&nbsp;czasu.</td>
+      </tr>
+      <tr>
+        <td>Aplikacja</td>
+        <td><b>Angielski w 10 minut&nbsp;dziennie</b></td>
+        <td>Lekcje na podróże i do pracy. Pierwsze 7 dni za&nbsp;darmo.</td>
+      </tr>
+      <tr>
+        <td>Eventy</td>
+        <td><b>Integracja, na którą wszyscy&nbsp;przyjdą</b></td>
+        <td>Escape room dla 10–20 osób w centrum Poznania. Rezerwacja online.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="src">Przykłady to ilustracja – wpisz swoje liczby i miej je na stronie docelowej.</p>
+
+  <ul class="check check--compact" style="margin-top: 22px">
+    <li>Obietnica z reklamy musi być na stronie docelowej.</li>
+    <li>Profesjonalny język, bez krzykliwych haseł.</li>
+    <li>Nic, co udaje ChatGPT – ani wygląd, ani głos.</li>
+  </ul>
+
+  <footer class="foot">
+    <span class="logo">KSIGN<i>.</i></span>
+    <span class="mono">Źródła: str. 31</span>
+    <span class="mono">v1.0 · stan na 28.09.2026</span>
+  </footer>
+</section>
+
+<!-- STR. 21 · STAWKI I START -->
+<section class="page content roomy" data-name="21-stawki-i-start">
+  <header class="runhead">
+    <span class="marker">[ 05 / Pierwsza kampania ]</span><span class="pnum">21</span>
+  </header>
+  <h2 class="h1 h1--mid">Stawki i start</h2>
+  <p class="lead">
+    Na start płać za kliknięcia. Na konwersje przejdź, gdy pixel regularnie zbiera zdarzenia.
+  </p>
+
+  <ul class="check check--compact" style="margin-top: 18px">
+    <li><b>Cel na start: kliknięcia (CPC).</b> Uczysz się, które sytuacje klienta klikają.</li>
+    <li>
+      <b>Stawka:</b> na kontach w dolarach OpenAI sugeruje start od 3–5 $, niższa wywołuje
+      ostrzeżenie o braku emisji. W złotówkach sprawdź rekomendację w panelu.
+    </li>
+    <li><b>Budżet dzienny</b> co najmniej równy najwyższej stawce w grupach.</li>
+    <li>
+      <b>Konwersje:</b> po min. 14 dniach i pierwszych zdarzeniach – jeśli cel jest dostępny dla
+      kampanii w EOG na Twoim koncie.
+    </li>
+    <li><b>7 dni bez zmian.</b> Wyjątek: reklama nie wyświetla się wcale.</li>
+  </ul>
+
+  <div class="why">
+    <h3 class="why__h">Dlaczego reklama się nie wyświetla?</h3>
+    <ol>
+      <li>Czeka na akceptację albo została odrzucona.</li>
+      <li>Stawka niższa niż rekomendacja panelu.</li>
+      <li>Wskazówki za wąskie – nikt tak nie rozmawia.</li>
+      <li>Branża z listy „nie” albo temat&nbsp;wrażliwy.</li>
+      <li>OAI-AdsBot nie może wejść na stronę.</li>
+      <li>Budżet wyczerpany albo niższy niż stawka.</li>
+    </ol>
+  </div>
+
+  <div class="todo">
+    <span class="todo__label">Do zrobienia dziś</span>
+    <ol>
+      <li>Rozpisz 2–3 sytuacje klienta i po 3 wskazówki CKK do każdej.</li>
+      <li>Napisz 3 warianty reklamy na grupę według wzoru ze str. 20.</li>
+      <li>Ustaw przypomnienie: 7 dni bez zmian po starcie.</li>
+    </ol>
+  </div>
+
+  <footer class="foot">
+    <span class="logo">KSIGN<i>.</i></span>
+    <span class="mono">Źródła: str. 31</span>
+    <span class="mono">v1.0 · stan na 28.09.2026</span>
+  </footer>
+</section>
+
+<!-- STR. 22 · ROZDZIAŁ 06 · KALKULATOR NA KARTCE -->
+<section class="page content" data-name="22-kalkulator">
+  <div class="band">
+    <div class="band__top"><span>[ Rozdział 06 / 08 ]</span><span class="pnum">22</span></div>
+    <div class="band__no">06</div>
+    <h2 class="band__title">Budżet<br />i pomiar</h2>
+    <img
+      class="band__art"
+      style="right: 150px; height: 350px"
+      src="../assets/posag-06-starzec.webp"
+      alt="Marmurowe popiersie starszego mężczyzny"
+    />
+    <div class="ruler"></div>
+  </div>
+
+  <h2 class="h1 h1--small">Kalkulator na kartce</h2>
+  <p class="lead">
+    Zanim wydasz 910 zł, policz, ile zamówień może to dać i ile możesz za nie zapłacić.
+  </p>
+
+  <table class="tbl tbl--tight" style="margin-top: 16px">
+    <thead>
+      <tr>
+        <th style="width: 60px"></th>
+        <th>Wzór</th>
+        <th style="width: 170px">Twoje liczby</th>
+        <th style="width: 220px">Przykład</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="num">A</td>
+        <td>Budżet testu</td>
+        <td class="muted">_______ zł</td>
+        <td>910 zł</td>
+      </tr>
+      <tr>
+        <td class="num">B</td>
+        <td>Koszt kliknięcia (CPC)</td>
+        <td class="muted">_______ zł</td>
+        <td>2,50 zł</td>
+      </tr>
+      <tr>
+        <td class="num">C</td>
+        <td>Kliknięcia = A ÷ B</td>
+        <td class="muted">_______</td>
+        <td>364</td>
+      </tr>
+      <tr>
+        <td class="num">D</td>
+        <td>Konwersja strony</td>
+        <td class="muted">_______ %</td>
+        <td>1,5%</td>
+      </tr>
+      <tr>
+        <td class="num">E</td>
+        <td>Zamówienia = C × D</td>
+        <td class="muted">_______</td>
+        <td>5,5</td>
+      </tr>
+      <tr class="accent">
+        <td class="num">F</td>
+        <td>Koszt pozyskania = A ÷ E</td>
+        <td class="muted">_______ zł</td>
+        <td><b>ok. 167 zł</b></td>
+      </tr>
+      <tr class="accent">
+        <td class="num">G</td>
+        <td>Zysk brutto z zamówienia</td>
+        <td class="muted">_______ zł</td>
+        <td><b>600 zł × 30% = 180 zł</b></td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="note-line">
+    F &lt; G: test jest na granicy opłacalności. Lepsza konwersja strony przesuwa go na plus.
+  </p>
+  <p class="src">
+    Przykładowe założenia, nie benchmark. CPC weź z panelu po 7 dniach, konwersję – z GA4 dla
+    podobnego&nbsp;ruchu.
+  </p>
+
+  <footer class="foot">
+    <span class="logo">KSIGN<i>.</i></span>
+    <span class="mono">Źródła: str. 31</span>
+    <span class="mono">v1.0 · stan na 28.09.2026</span>
+  </footer>
+</section>
+
+<!-- STR. 23 · JAK CZYTAĆ RAPORT -->
+<section class="page content roomy" data-name="23-raport">
+  <header class="runhead">
+    <span class="marker">[ 06 / Budżet i pomiar ]</span><span class="pnum">23</span>
+  </header>
+  <h2 class="h1 h1--mid">Jak czytać raport</h2>
+  <p class="lead">Panel pokazuje mniej niż Meta czy Google. Czytaj go razem z GA4.</p>
+
+  <table class="tbl tbl--tight">
+    <thead>
+      <tr>
+        <th style="width: 320px">Co widzisz</th>
+        <th>Co to znaczy</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Wyświetlenia, kliknięcia,&nbsp;CTR</td>
+        <td>Czy sytuacje z Twoich wskazówek się zdarzają i czy reklama przyciąga</td>
+      </tr>
+      <tr>
+        <td>CPC, CPM</td>
+        <td>Ile płacisz – porównaj z kalkulatorem ze str. 22</td>
+      </tr>
+      <tr class="accent">
+        <td>Konwersje po kliknięciu</td>
+        <td>Główna liczba konwersji (okno kliknięcia z konfiguracji)</td>
+      </tr>
+      <tr>
+        <td>Konwersje po wyświetleniu</td>
+        <td>Osobno, okno 1 dnia, poza główną liczbą. To sygnał, nie&nbsp;wynik</td>
+      </tr>
+      <tr>
+        <td>Brak danych demograficznych</td>
+        <td>Dane są zbiorcze, a w EOG reklamy nie są personalizowane</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="body" style="margin-top: 18px; font-size: 22px">
+    <b>GA4:</b> filtruj ruch po <code>utm_source=chatgpt</code>. Duża różnica między kliknięciami w
+    panelu a sesjami w GA4 to problem z linkiem, przekierowaniem albo zgodami.
+  </p>
+
+  <div class="stats stats--3" style="margin-top: 18px">
+    <div class="stat stat--orange">
+      <div class="stat__n">0,9%</div>
+      <div class="stat__t">CTR reklam w chatbotach</div>
+    </div>
+    <div class="stat">
+      <div class="stat__n">6,4%</div>
+      <div class="stat__t">CTR reklam w wyszukiwarce Google</div>
+    </div>
+    <div class="stat stat--ink">
+      <div class="stat__n">1,0%</div>
+      <div class="stat__t">CTR w publicznym teście Grow My Ads</div>
+    </div>
+  </div>
+  <p class="src">Benchmark orientacyjny: eMarketer (USA, 2026). Test: Grow My Ads, 03.08.2026.</p>
+
+  <div class="takeaway" style="margin-top: 18px">
+    <span class="takeaway__label">Jak to czytać</span>
+    <p>
+      Nie porównuj CTR jeden do jednego z wyszukiwarką. Oceniaj <b>koszt pozyskania</b> (str. 22) i
+      jakość klientów po 30 dniach (str. 24).
+    </p>
+  </div>
+
+  <footer class="foot">
+    <span class="logo">KSIGN<i>.</i></span>
+    <span class="mono">Źródła: str. 31</span>
+    <span class="mono">v1.0 · stan na 28.09.2026</span>
+  </footer>
+</section>
+
+<!-- STR. 24 · REGUŁY 14 I 30 DNI -->
+<section class="page content roomy" data-name="24-reguly-14-30">
+  <header class="runhead">
+    <span class="marker">[ 06 / Budżet i pomiar ]</span><span class="pnum">24</span>
+  </header>
+  <h2 class="h1 h1--mid">Reguły 14 i 30 dni</h2>
+  <p class="lead">
+    Decyzje według kalendarza, nie nastroju. Progi to nasze punkty startowe – dopasuj je do marży.
+  </p>
+
+  <table class="tbl tbl--tight tbl--dense">
+    <thead>
+      <tr>
+        <th style="width: 110px">Kiedy</th>
+        <th>Jeśli…</th>
+        <th>…to</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Dzień 7</td>
+        <td>0 wyświetleń</td>
+        <td>Sprawdź akceptację, stawkę, wskazówki i dostęp OAI-AdsBot</td>
+      </tr>
+      <tr>
+        <td>Dzień 7</td>
+        <td>Wyświetlenia są, kliknięć brak</td>
+        <td>Nowe warianty tytułu i obrazu</td>
+      </tr>
+      <tr class="accent">
+        <td>Dzień 14</td>
+        <td>CTR poniżej 0,5%</td>
+        <td>Przepisz wskazówki i reklamy</td>
+      </tr>
+      <tr class="accent">
+        <td>Dzień 14</td>
+        <td>Kliknięcia są, konwersji zero</td>
+        <td>Problem jest na stronie: podstrona, oferta,&nbsp;pomiar</td>
+      </tr>
+      <tr class="accent">
+        <td>Dzień 14</td>
+        <td>Koszt pozyskania ≤ zysk z zamówienia</td>
+        <td>Zostaw i dodaj jedną nową grupę</td>
+      </tr>
+      <tr>
+        <td>Dzień 30</td>
+        <td>Taniej niż w Google i Meta</td>
+        <td>Zwiększ budżet o 20–30%</td>
+      </tr>
+      <tr>
+        <td>Dzień 30</td>
+        <td>Drożej, ale lepsi klienci</td>
+        <td>Testuj kolejne 30 dni</td>
+      </tr>
+      <tr>
+        <td>Dzień 30</td>
+        <td>Drożej i bez poprawy</td>
+        <td>Wstrzymaj i wróć za kwartał</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="todo">
+    <span class="todo__label">Do zrobienia dziś</span>
+    <ol>
+      <li>Wypełnij kalkulator ze str. 22 dla swojej oferty.</li>
+      <li>Wpisz do kalendarza przeglądy: dzień 7, 14 i 30.</li>
+      <li>Przygotuj w GA4 widok dla <code>utm_source=chatgpt</code>.</li>
+    </ol>
+  </div>
+
+  <footer class="foot">
+    <span class="logo">KSIGN<i>.</i></span>
+    <span class="mono">Źródła: str. 31</span>
+    <span class="mono">v1.0 · stan na 28.09.2026</span>
+  </footer>
+</section>
+
+<!-- STR. 25 · ROZDZIAŁ 07 · 9 BŁĘDÓW (1–4) -->
+<section class="page content roomy" data-name="25-bledy-1">
+  <div class="band">
+    <div class="band__top"><span>[ Rozdział 07 / 08 ]</span><span class="pnum">25</span></div>
+    <div class="band__no">07</div>
+    <h2 class="band__title">9 błędów</h2>
+    <img
+      class="band__art"
+      style="right: 90px; height: 390px"
+      src="../assets/posag-07-karakalla.webp"
+      alt="Marmurowa głowa cesarza Karakalli"
+    />
+    <svg
+      class="cracks"
+      style="right: 70px; bottom: 0; width: 260px; height: 390px"
+      viewBox="0 0 260 390"
+      aria-hidden="true"
+    >
+      <path
+        d="M150 0 L138 46 L156 78 L128 118 L146 150 L118 196 L134 228 L104 272"
+        fill="none"
+        stroke="#0b0b0b"
+        stroke-width="3.5"
+        stroke-linejoin="bevel"
+      />
+      <path d="M128 118 L96 132 L78 170" fill="none" stroke="#0b0b0b" stroke-width="2.5" />
+      <path
+        d="M146 150 L184 166 L200 206 L232 222"
+        fill="none"
+        stroke="#0b0b0b"
+        stroke-width="2.5"
+      />
+      <path d="M118 196 L86 214" fill="none" stroke="#0b0b0b" stroke-width="2" />
+      <path d="M134 228 L170 262 L166 300" fill="none" stroke="#0b0b0b" stroke-width="2" />
+    </svg>
+  </div>
+
+  <h2 class="h1 h1--small">Co przepala budżet</h2>
+
+  <div class="errs">
+    <div class="err">
+      <div class="err__n">1</div>
+      <div class="err__bad">Reklama prowadzi na stronę główną</div>
+      <div class="err__good">Konkretna podstrona z ofertą z reklamy</div>
+    </div>
+    <div class="err">
+      <div class="err__n">2</div>
+      <div class="err__bad">Wskazówki jak słowa kluczowe: „sofa, kanapa, tania”</div>
+      <div class="err__good">Jedno zdanie CKK na wskazówkę</div>
+    </div>
+    <div class="err">
+      <div class="err__n">3</div>
+      <div class="err__bad">Kod konwersji na każdej podstronie</div>
+      <div class="err__good">Zdarzenie tylko na stronie podziękowania</div>
+    </div>
+    <div class="err">
+      <div class="err__n">4</div>
+      <div class="err__bad">Pixel startuje bez zgody</div>
+      <div class="err__good">
+        <code>oaiq("consent", false)</code> przed startem, <code>true</code> po akceptacji
+      </div>
+    </div>
+  </div>
+
+  <div class="takeaway" style="margin-top: 22px">
+    <span class="takeaway__label">Dobra wiadomość</span>
+    <p><b>8 z 9 błędów naprawisz przed startem.</b> Błąd 7 to kwestia dyscypliny.</p>
+  </div>
+
+  <footer class="foot">
+    <span class="logo">KSIGN<i>.</i></span>
+    <span class="mono">Źródła: str. 31</span>
+    <span class="mono">v1.0 · stan na 28.09.2026</span>
+  </footer>
+</section>
+
+<!-- STR. 26 · 9 BŁĘDÓW (5–9) -->
+<section class="page content roomy" data-name="26-bledy-2">
+  <header class="runhead">
+    <span class="marker">[ 07 / 9 błędów ]</span><span class="pnum">26</span>
+  </header>
+  <h2 class="h1 h1--mid h1--ogonek">…i pięć kolejnych</h2>
+
+  <div class="errs">
+    <div class="err">
+      <div class="err__n">5</div>
+      <div class="err__bad">Brak UTM albo link niesprawdzony</div>
+      <div class="err__good">UTM w każdym linku i klik testowy przed publikacją</div>
+    </div>
+    <div class="err">
+      <div class="err__n">6</div>
+      <div class="err__bad">Domyślna personalizacja tekstu, bez decyzji</div>
+      <div class="err__good">Wyłącz, jeśli każde zdanie wymaga akceptacji</div>
+    </div>
+    <div class="err">
+      <div class="err__n">7</div>
+      <div class="err__bad">Zmiany co drugi dzień</div>
+      <div class="err__good">7 dni bez zmian, decyzje po 14 i 30 dniach</div>
+    </div>
+    <div class="err">
+      <div class="err__n">8</div>
+      <div class="err__bad">Stawka „na przebicie”, np. 25 $</div>
+      <div class="err__good">
+        Start od rekomendacji panelu. W jedynym publicznym przykładzie wysoka stawka dała CPC 13 $ i
+        zero&nbsp;konwersji
+      </div>
+    </div>
+    <div class="err">
+      <div class="err__n">9</div>
+      <div class="err__bad">Zamknięte drzwi: robots.txt albo firewall blokuje boty OpenAI</div>
+      <div class="err__good">
+        Wpis dla OAI-AdsBot i wyjątek dla adresów z <code>openai.com/adsbot.json</code>
+      </div>
+    </div>
+  </div>
+
+  <div class="todo">
+    <span class="todo__label">Do zrobienia dziś</span>
+    <ol>
+      <li>Przejdź listę i odhacz błędy, których u Ciebie nie ma.</li>
+      <li>Przy każdym nieodhaczonym wpisz datę naprawy.</li>
+    </ol>
+  </div>
+
+  <footer class="foot">
+    <span class="logo">KSIGN<i>.</i></span>
+    <span class="mono">Źródła: str. 31</span>
+    <span class="mono">v1.0 · stan na 28.09.2026</span>
+  </footer>
+</section>
+
+<!-- STR. 27 · ROZDZIAŁ 08 · SPRAWDZILIŚMY 100 POLSKICH SKLEPÓW -->
+<section class="page content" data-name="27-badanie">
+  <div class="band">
+    <div class="band__top"><span>[ Rozdział 08 / 08 ]</span><span class="pnum">27</span></div>
+    <div class="torn-shadow" style="top: 100px; height: 176px"></div>
+    <div
+      class="torn"
+      style="top: 104px; height: 168px"
+      role="img"
+      aria-label="Oczy marmurowego posągu w szczelinie rozdartego papieru"
+    ></div>
+    <h2 class="band__title">Badanie</h2>
+    <div class="band__cap" style="left: auto; right: var(--pad-x)">
+      ⌖ 24.09.2026 · 100 sklepów · 8 kategorii
+    </div>
+  </div>
+
+  <h2 class="h1 h1--small" style="font-size: 80px">Sprawdziliśmy 100 sklepów</h2>
+
+  <div class="stats stats--3 stats--compact" style="margin-top: 20px">
+    <div class="stat stat--orange">
+      <div class="stat__n">5 <small>/ 76</small></div>
+      <div class="stat__t">sklepów ma już pixel OpenAI</div>
+    </div>
+    <div class="stat">
+      <div class="stat__n">35+ <small>/ 76</small></div>
+      <div class="stat__t">ma pixel Meta – 7 razy więcej</div>
+    </div>
+    <div class="stat stat--ink">
+      <div class="stat__n">1 <small>/ 100</small></div>
+      <div class="stat__t">ma w robots.txt wpis dla OAI-AdsBot</div>
+    </div>
+    <div class="stat stat--ink">
+      <div class="stat__n">24 <small>/ 100</small></div>
+      <div class="stat__t">zatrzymało nasz automat ochroną antybotową</div>
+    </div>
+    <div class="stat">
+      <div class="stat__n">12 <small>/ 100</small></div>
+      <div class="stat__t">w kategorii zakazanej poza USA: apteki, suplementy</div>
+    </div>
+    <div class="stat">
+      <div class="stat__n">5 <small>/ 100</small></div>
+      <div class="stat__t">blokuje GPTBot, a 1 – OAI-SearchBot</div>
+    </div>
+  </div>
+  <p class="note-line">
+    Pixel OpenAI mają: jysk.pl, komputronik.pl, morele.net, skalnik.pl, cosibella.pl.
+  </p>
+
+  <div class="takeaway" style="margin-top: 18px">
+    <span class="takeaway__label">Wniosek</span>
+    <p>
+      Rynek dopiero się otwiera. Z 76 sklepów, które mogliśmy sprawdzić, efekty reklam w ChatGPT
+      mierzy 5. <b>Kto zacznie teraz, wystartuje z przewagą&nbsp;danych.</b>
+    </p>
+  </div>
+
+  <footer class="foot">
+    <span class="logo">KSIGN<i>.</i></span>
+    <span class="mono">Metodologia: str. 28</span>
+    <span class="mono">v1.0 · stan na 28.09.2026</span>
+  </footer>
+</section>
+
+<!-- STR. 28 · METODOLOGIA -->
+<section class="page content roomy" data-name="28-metodologia">
+  <header class="runhead">
+    <span class="marker">[ 08 / Badanie ]</span><span class="pnum">28</span>
+  </header>
+  <h2 class="h1 h1--mid">Metodologia</h2>
+
+  <div class="two" style="align-items: start">
+    <div class="panel">
+      <h3>Próba i termin</h3>
+      <p><b>24.09.2026</b>, 12:21–12:30 UTC.</p>
+      <p>
+        100 sklepów internetowych działających w Polsce, 8 kategorii (11–15 w każdej): 47 liderów
+        rozpoznawalnych w kategorii i 53 mniejsze sklepy.
+      </p>
+      <p>
+        Dobór ręczny z listy 120 kandydatów. 10 domen odpadło (brak odpowiedzi albo przerwa
+        techniczna), 10 nie weszło, żeby zachować proporcje kategorii.
+      </p>
+    </div>
+    <div class="panel">
+      <h3>Co sprawdziliśmy</h3>
+      <ul>
+        <li>czy strona główna odpowiada zwykłej przeglądarce,</li>
+        <li>robots.txt dla OAI-AdsBot, OAI-SearchBot i GPTBot (RFC 9309, strona&nbsp;główna),</li>
+        <li>
+          pixel OpenAI: bzrcdn.openai.com lub <code>oaiq</code> w kodzie strony, w kontenerach GTM i
+          w ruchu sieciowym,
+        </li>
+        <li>pixel Meta – dla porównania,</li>
+        <li>kategorię sklepu według zasad reklam&nbsp;OpenAI.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="two" style="align-items: start; margin-top: 16px">
+    <div class="panel panel--ink">
+      <h3>Jak</h3>
+      <p>
+        Skaner HTTP, a dla stron, które go odrzuciły – drugie przejście w przeglądarce Chromium. Nie
+        podszywaliśmy się pod boty OpenAI.
+      </p>
+    </div>
+    <div class="panel">
+      <h3>Ograniczenia</h3>
+      <ul>
+        <li>24 sklepy zatrzymały automat – bez sprawdzenia pixeli,</li>
+        <li>pixele to dolna granica: bez klikania zgód i pomiaru po stronie serwera,</li>
+        <li>próba celowa, nie losowa – opisuje te 100 sklepów, nie cały rynek,</li>
+        <li>stan na jeden dzień.</li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="body" style="margin-top: 20px; font-size: 21px">
+    <b>Dane:</b> lista domen, skrypty i surowe wyniki (CSV) udostępniamy na prośbę: hello@ksign.pl.
+  </p>
+
+  <div class="todo">
+    <span class="todo__label">Do zrobienia dziś</span>
+    <p>Sprawdź swój sklep tymi samymi pięcioma punktami albo zamów Test drzwi (str. 30).</p>
+  </div>
+
+  <footer class="foot">
+    <span class="logo">KSIGN<i>.</i></span>
+    <span class="mono">Źródła: str. 31</span>
+    <span class="mono">v1.0 · stan na 28.09.2026</span>
+  </footer>
+</section>
+
+<!-- STR. 29 · ŚCIĄGA NA 1 STRONĘ (do druku) -->
+<section class="page content white roomy" data-name="29-sciaga">
+  <header class="runhead">
+    <span class="marker">[ Ściąga ]</span><span class="pnum">29</span>
+  </header>
+  <h2 class="h1 h1--mid h1--ogonek">Ściąga na 1 stronę</h2>
+  <p class="lead" style="font-size: 25px">
+    Wydrukuj i odhaczaj. Numery stron prowadzą do szczegółów.
+  </p>
+
+  <div class="sheet">
+    <section>
+      <h3>Przed startem</h3>
+      <ul class="check check--compact">
+        <li>Branża dozwolona (str. 11)</li>
+        <li>Klienci korzystają z Free lub Go (str. 8)</li>
+        <li>Min. 910 zł na 14 dni (str. 12)</li>
+        <li>Konto w złotówkach, zasady przeczytane (str. 13)</li>
+        <li>robots.txt: OAI-AdsBot i OAI-SearchBot – Allow (str. 14)</li>
+        <li>Firewall wpuszcza adresy z openai.com/adsbot.json</li>
+        <li>Pixel ze zgodą z banera, zdarzenie na stronie podziękowania (str. 15)</li>
+        <li>UTM w linkach, klik testowy zrobiony</li>
+      </ul>
+    </section>
+    <div>
+      <section>
+        <h3>Kampania</h3>
+        <ul class="check check--compact">
+          <li>Grupa = sytuacja klienta, wskazówki CKK (str. 17–19)</li>
+          <li>3–4 reklamy: efekt, dowód, produkt (str. 20)</li>
+          <li>Tytuł do 50, opis do 100 znaków, obraz kwadratowy</li>
+          <li>Personalizacja tekstu – świadoma decyzja (str. 7)</li>
+          <li>Cel: kliknięcia, stawka nie niższa niż rekomendacja (str. 21)</li>
+        </ul>
+      </section>
+      <section style="margin-top: 22px">
+        <h3>Po starcie</h3>
+        <ul class="check check--compact">
+          <li>Dzień 7: wyświetlenia, kliknięcia, pomiar</li>
+          <li>Dzień 14: CTR, konwersje, koszt pozyskania</li>
+          <li>Dzień 30: skaluj, testuj dalej albo wstrzymaj (str. 24)</li>
+        </ul>
+      </section>
+    </div>
+  </div>
+
+  <div class="fill fill--grid fill--tight">
+    <span class="fill__label">Moje liczby</span>
+    <div class="fill__f"><small>Budżet testu</small><span>zł</span></div>
+    <div class="fill__f"><small>Zysk z zamówienia (G)</small><span>zł</span></div>
+    <div class="fill__f"><small>Start kampanii</small><span></span></div>
+    <div class="fill__f"><small>Przegląd · dzień 7</small><span></span></div>
+    <div class="fill__f"><small>Przegląd · dzień 14</small><span></span></div>
+    <div class="fill__f"><small>Przegląd · dzień 30</small><span></span></div>
+  </div>
+
+  <footer class="foot">
+    <span class="logo">KSIGN<i>.</i></span>
+    <span class="mono">ksign.pl</span>
+    <span class="mono">v1.0 · stan na 28.09.2026</span>
+  </footer>
+</section>
+
+<!-- STR. 30 · 3 KOLEJNE KROKI -->
+<section class="page orange-page roomy" data-name="30-3-kroki">
+  <header class="runhead">
+    <span class="marker" style="background: var(--ink); color: var(--orange)">[ Co dalej ]</span
+    ><span class="pnum">30</span>
+  </header>
+  <h2 class="h1 h1--mid">3 kolejne kroki</h2>
+  <p class="lead">Zacznij od sprawdzenia drzwi. Resztę zrobisz sam albo z nami.</p>
+
+  <div class="next">
+    <div class="nx">
+      <div class="nx__n">1</div>
+      <div class="nx__b">
+        <h3>Test drzwi <span>· 0 zł</span></h3>
+        <p>
+          Sprawdzimy, czy boty OpenAI wejdą na Twoją stronę, czy pixel i zgody działają i czy
+          podstrona jest gotowa na ruch z ChatGPT.
+        </p>
+      </div>
+    </div>
+    <div class="nx">
+      <div class="nx__n">2</div>
+      <div class="nx__b">
+        <h3>[Generator] <span>· 249 zł</span></h3>
+        <p>Wskazówki kontekstowe według CKK i warianty reklam przygotowane dla Twojej oferty.</p>
+      </div>
+    </div>
+    <div class="nx">
+      <div class="nx__n">3</div>
+      <div class="nx__b">
+        <h3>Wdrożenie KSIGN</h3>
+        <p>Konto, pomiar, kampania i pierwsze 30 dni prowadzenia. Wycena po Teście drzwi.</p>
+      </div>
+    </div>
+  </div>
+
+  <img
+    class="end-statue"
+    src="../assets/posag-02-apollo.webp"
+    alt="Uśmiechnięta marmurowa głowa Apollina"
+  />
+  <div
+    class="cta"
+    style="
+      margin-top: 26px;
+      margin-right: 330px;
+      background: var(--paper);
+      color: var(--ink);
+      flex-direction: column;
+      align-items: flex-start;
+    "
+  >
+    <div class="cta__t"><b style="color: var(--ink)">ksign.pl</b>hello@ksign.pl · 606 576 517</div>
+    <div class="cta__btn" style="background: var(--ink); color: var(--orange)">
+      Zamów Test drzwi
+    </div>
+  </div>
+
+  <footer class="foot">
+    <span class="logo">KSIGN<i>.</i></span>
+    <span class="mono">Źródła: str. 31</span>
+    <span class="mono">v1.0 · stan na 28.09.2026</span>
+  </footer>
+</section>
+
+<!-- STR. 31 · SŁOWNICZEK I ŹRÓDŁA -->
+<section class="page content roomy" data-name="31-slowniczek-zrodla">
+  <header class="runhead">
+    <span class="marker">[ Słowniczek i źródła ]</span><span class="pnum">31</span>
+  </header>
+  <h2 class="h1 h1--mid">Słowniczek i źródła</h2>
+
+  <div class="gloss">
+    <div><b>CPC</b> – koszt kliknięcia. <b>CPM</b> – koszt 1000 wyświetleń.</div>
+    <div><b>CTR</b> – odsetek wyświetleń zakończonych kliknięciem.</div>
+    <div><b>oCPC</b> – płatność za kliknięcie z optymalizacją pod konwersje.</div>
+    <div><b>Konwersja</b> – działanie, na którym Ci zależy: zamówienie, zapis, rezerwacja.</div>
+    <div><b>Pixel (oaiq)</b> – skrypt OpenAI, który zapisuje konwersje na Twojej stronie.</div>
+    <div><b>UTM</b> – dopisek do linku, dzięki któremu GA4 wie, skąd przyszedł ruch.</div>
+    <div><b>Feed produktowy</b> – plik z produktami: nazwa, cena, zdjęcie, link.</div>
+    <div>
+      <b>Wskazówki kontekstowe</b> – opis sytuacji, w której oferta pomaga. Nie słowa kluczowe.
+    </div>
+    <div>
+      <b>OAI-AdsBot · OAI-SearchBot · GPTBot</b> – boty OpenAI: reklamy, wyszukiwanie,
+      trening&nbsp;modeli.
+    </div>
+    <div><b>EOG</b> – Europejski Obszar Gospodarczy: UE, Islandia, Liechtenstein, Norwegia.</div>
+  </div>
+
+  <div class="srcs">
+    <p>
+      <b>OpenAI</b> · „Testing ads in ChatGPT” (09.02.2026) · „Our approach to advertising and
+      expanding access to ChatGPT” · „ChatGPT Ads expands across Europe” – openai.com/index
+    </p>
+    <p>
+      <b>OpenAI Help Center</b> · „Daily Budgets” · „Advertiser Guidance for Allowing OpenAI Web
+      Crawlers” · „Ads in ChatGPT: The Basics” – help.openai.com
+    </p>
+    <p>
+      <b>OpenAI Developers</b> · „Overview of OpenAI Crawlers” – developers.openai.com/api/docs/bots
+      · „Measurement Pixel” – developers.openai.com/ads/measurement-pixel
+    </p>
+    <p><b>Zasady reklam OpenAI</b> – openai.com/policies/ad-policies</p>
+    <p>
+      <b>Rynek i dane</b> · Gemius/PBI, marzec 2026 · eMarketer, „FAQ on ChatGPT Advertising” (2026)
+      · Digiday (19.08.2026) · Index Lab (21.08.2026) · Mediovsky (05.09.2026)
+    </p>
+    <p>
+      <b>Praktyka</b> · Grow My Ads, „Should You Advertise on ChatGPT?” (03.08.2026) · cloro.dev
+      (15.09.2026) · Sprites (21.09.2026) · Search Engine Roundtable
+    </p>
+    <p><b>Badanie KSIGN</b> · 100 sklepów, 24.09.2026 – str. 27–28</p>
+    <p style="margin-top: 12px; color: var(--muted)">
+      Dostęp do źródeł: 24.09.2026. Grafiki: rzeźby z otwartych zbiorów The Metropolitan Museum of
+      Art i Cleveland Museum of Art (domena publiczna, CC0). Fonty: Anton, Inter Tight, JetBrains
+      Mono (SIL OFL 1.1).
+    </p>
+  </div>
+
+  <footer class="foot">
+    <span class="logo">KSIGN<i>.</i></span>
+    <span class="mono">ksign.pl</span>
+    <span class="mono">v1.0 · stan na 28.09.2026</span>
+  </footer>
+</section>
+
+    </main>
+  </body>
+</html>

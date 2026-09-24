@@ -1,0 +1,101 @@
+domena,kategoria,grupa,metoda,dostep_automatu,OAI-AdsBot,OAI-SearchBot,GPTBot,pixel_openai,pixel_meta,kontenery_gtm,kategoria_openai,data_skanu
+apteka-melissa.pl,Apteki i suplementy,lider,przeglądarka,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,nie,GTM-PLVDK9WV,zakazana poza USA (zdrowie),2026-09-24 12:21 UTC
+aptekaolmed.pl,Apteki i suplementy,lider,przeglądarka,ochrona antybotowa,dozwolony (brak pliku),dozwolony (brak pliku),dozwolony (brak pliku),nie sprawdzono,nie sprawdzono,,zakazana poza USA (zdrowie),2026-09-24 12:21 UTC
+cefarm24.pl,Apteki i suplementy,lider,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,nie,GTM-K8FPJ4R,zakazana poza USA (zdrowie),2026-09-24 12:21 UTC
+doz.pl,Apteki i suplementy,lider,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,tak,GTM-NNMW6D,zakazana poza USA (zdrowie),2026-09-24 12:21 UTC
+gemini.pl,Apteki i suplementy,lider,HTTP,otwarta,dozwolony (brak reguł),dozwolony (brak reguł),dozwolony (brak reguł),nie,nie,GTM-PRNC57P,zakazana poza USA (zdrowie),2026-09-24 12:21 UTC
+zikoapteka.pl,Apteki i suplementy,lider,HTTP,otwarta,dozwolony (*),dozwolony (*),zablokowany (nazwany),nie,tak,GTM-N4DKD9J7,zakazana poza USA (zdrowie),2026-09-24 12:21 UTC
+allnutrition.pl,Apteki i suplementy,mniejszy,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,nie,GTM-NNDL89K8,zakazana poza USA (zdrowie),2026-09-24 12:21 UTC
+i-apteka.pl,Apteki i suplementy,mniejszy,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,tak,GTM-KF43RVK,zakazana poza USA (zdrowie),2026-09-24 12:21 UTC
+kfd.pl,Apteki i suplementy,mniejszy,przeglądarka,ochrona antybotowa,dozwolony (brak pliku),dozwolony (brak pliku),dozwolony (brak pliku),nie sprawdzono,nie sprawdzono,,zakazana poza USA (zdrowie),2026-09-24 12:21 UTC
+olimpsport.com,Apteki i suplementy,mniejszy,HTTP,otwarta,dozwolony (brak reguł),dozwolony (brak reguł),dozwolony (brak reguł),nie,nie,GTM-NRZ2V3DC,zakazana poza USA (zdrowie),2026-09-24 12:21 UTC
+sfd.pl,Apteki i suplementy,mniejszy,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,nie,GTM-TK4L9TX,zakazana poza USA (zdrowie),2026-09-24 12:21 UTC
+wapteka.pl,Apteki i suplementy,mniejszy,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,nie,GTM-NVMC25R2,zakazana poza USA (zdrowie),2026-09-24 12:21 UTC
+agatameble.pl,"Dom, meble i ogród",lider,przeglądarka,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,nie,GTM-MR8SSQ7K,dozwolona,2026-09-24 12:21 UTC
+blackredwhite.com,"Dom, meble i ogród",lider,HTTP,otwarta,dozwolony (brak reguł),dozwolony (brak reguł),dozwolony (brak reguł),nie,nie,GTM-TZFJ37,dozwolona,2026-09-24 12:21 UTC
+castorama.pl,"Dom, meble i ogród",lider,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,nie,,dozwolona,2026-09-24 12:21 UTC
+jysk.pl,"Dom, meble i ogród",lider,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),tak (GTM),tak,GTM-KM45937F,dozwolona,2026-09-24 12:21 UTC
+leroymerlin.pl,"Dom, meble i ogród",lider,przeglądarka,ochrona antybotowa,dozwolony (*),dozwolony (nazwany),dozwolony (*),nie sprawdzono,nie sprawdzono,,dozwolona,2026-09-24 12:21 UTC
+vox.pl,"Dom, meble i ogród",lider,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,tak,GTM-NJK6BFC,dozwolona,2026-09-24 12:21 UTC
+dekoria.pl,"Dom, meble i ogród",mniejszy,przeglądarka,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,tak,GTM-MGBTF9,dozwolona,2026-09-24 12:21 UTC
+duka.com,"Dom, meble i ogród",mniejszy,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,tak,GTM-N6XZND7,dozwolona,2026-09-24 12:21 UTC
+home-you.com,"Dom, meble i ogród",mniejszy,przeglądarka,ochrona antybotowa,dozwolony (brak pliku),dozwolony (brak pliku),dozwolony (brak pliku),nie sprawdzono,nie sprawdzono,,dozwolona,2026-09-24 12:21 UTC
+homla.com.pl,"Dom, meble i ogród",mniejszy,przeglądarka,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,nie,GTM-P94R3GX,dozwolona,2026-09-24 12:21 UTC
+komfort.pl,"Dom, meble i ogród",mniejszy,HTTP,otwarta,dozwolony (*),dozwolony (nazwany),dozwolony (nazwany),nie,nie,GTM-TBLB7P5,dozwolona,2026-09-24 12:21 UTC
+meblobranie.pl,"Dom, meble i ogród",mniejszy,HTTP,otwarta,dozwolony (*),dozwolony (*),zablokowany (nazwany),nie,nie,GTM-K5P6TFJ,dozwolona,2026-09-24 12:21 UTC
+5-10-15.pl,Dziecko i zabawki,lider,HTTP,otwarta,dozwolony (brak pliku),dozwolony (brak pliku),dozwolony (brak pliku),nie,nie,,dozwolona,2026-09-24 12:21 UTC
+coccodrillo.eu,Dziecko i zabawki,lider,przeglądarka,ochrona antybotowa,dozwolony (brak pliku),dozwolony (brak pliku),dozwolony (brak pliku),nie sprawdzono,nie sprawdzono,,dozwolona,2026-09-24 12:21 UTC
+endo.pl,Dziecko i zabawki,lider,przeglądarka,otwarta,dozwolony (brak pliku),dozwolony (brak pliku),dozwolony (brak pliku),nie,tak,GTM-K46HXKH3,dozwolona,2026-09-24 12:21 UTC
+mamissima.pl,Dziecko i zabawki,lider,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,nie,GTM-WZ7PPRLG,dozwolona,2026-09-24 12:21 UTC
+smyk.com,Dziecko i zabawki,lider,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,tak,GTM-TS28JFK,dozwolona,2026-09-24 12:21 UTC
+4kidspoint.pl,Dziecko i zabawki,mniejszy,przeglądarka,otwarta,dozwolony (brak pliku),dozwolony (brak pliku),dozwolony (brak pliku),nie,tak,GTM-MSF5ZV5N,dozwolona,2026-09-24 12:21 UTC
+bobowozki.com.pl,Dziecko i zabawki,mniejszy,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,nie,GTM-5FPW62H,dozwolona,2026-09-24 12:21 UTC
+coolpack.pl,Dziecko i zabawki,mniejszy,HTTP,otwarta,dozwolony (*),dozwolony (*),zablokowany (nazwany),nie,tak,GTM-WS62VKVZ,dozwolona,2026-09-24 12:21 UTC
+mamaville.pl,Dziecko i zabawki,mniejszy,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,tak,GTM-M5ZK242 GTM-M8T753JG,dozwolona,2026-09-24 12:21 UTC
+noski-noski.pl,Dziecko i zabawki,mniejszy,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,nie,,dozwolona,2026-09-24 12:21 UTC
+tublu.pl,Dziecko i zabawki,mniejszy,przeglądarka,ochrona antybotowa,dozwolony (*),zablokowany (nazwany),zablokowany (nazwany),nie sprawdzono,nie sprawdzono,,dozwolona,2026-09-24 12:21 UTC
+zabawki.pl,Dziecko i zabawki,mniejszy,HTTP,otwarta,nieznany,nieznany,nieznany,nie,nie,,dozwolona,2026-09-24 12:21 UTC
+euro.com.pl,Elektronika i AGD,lider,przeglądarka,otwarta,dozwolony (brak pliku),dozwolony (brak pliku),dozwolony (brak pliku),nie,tak,GTM-PSPBPPJ,dozwolona,2026-09-24 12:21 UTC
+komputronik.pl,Elektronika i AGD,lider,przeglądarka,otwarta,dozwolony (brak pliku),dozwolony (brak pliku),dozwolony (brak pliku),tak (GTM),tak,GTM-6574X,dozwolona,2026-09-24 12:21 UTC
+mediaexpert.pl,Elektronika i AGD,lider,przeglądarka,ochrona antybotowa,dozwolony (nazwany),dozwolony (nazwany),dozwolony (nazwany),nie sprawdzono,nie sprawdzono,,dozwolona,2026-09-24 12:21 UTC
+mediamarkt.pl,Elektronika i AGD,lider,HTTP,otwarta,dozwolony (*),dozwolony (nazwany),dozwolony (nazwany),nie,nie,,dozwolona,2026-09-24 12:21 UTC
+morele.net,Elektronika i AGD,lider,HTTP,otwarta,dozwolony (*),dozwolony (nazwany),dozwolony (nazwany),tak (GTM),nie,GTM-NCXT92B,dozwolona,2026-09-24 12:21 UTC
+neonet.pl,Elektronika i AGD,lider,przeglądarka,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,tak,GTM-W6B3FRD,dozwolona,2026-09-24 12:21 UTC
+x-kom.pl,Elektronika i AGD,lider,przeglądarka,ochrona antybotowa,dozwolony (brak pliku),dozwolony (brak pliku),dozwolony (brak pliku),nie sprawdzono,nie sprawdzono,,dozwolona,2026-09-24 12:21 UTC
+avans.pl,Elektronika i AGD,mniejszy,przeglądarka,ochrona antybotowa,dozwolony (*),dozwolony (*),dozwolony (*),nie sprawdzono,nie sprawdzono,,dozwolona,2026-09-24 12:21 UTC
+cortland.com.pl,Elektronika i AGD,mniejszy,przeglądarka,otwarta,nieznany,nieznany,nieznany,nie,tak,GTM-KH3C27,dozwolona,2026-09-24 12:21 UTC
+electro.pl,Elektronika i AGD,mniejszy,przeglądarka,ochrona antybotowa,dozwolony (*),dozwolony (*),dozwolony (*),nie sprawdzono,nie sprawdzono,,dozwolona,2026-09-24 12:21 UTC
+icorner.pl,Elektronika i AGD,mniejszy,HTTP,otwarta,nieznany,nieznany,nieznany,nie,nie,GTM-W87SHSQ,dozwolona,2026-09-24 12:21 UTC
+idream.pl,Elektronika i AGD,mniejszy,przeglądarka,ochrona antybotowa,dozwolony (brak pliku),dozwolony (brak pliku),dozwolony (brak pliku),nie sprawdzono,nie sprawdzono,,dozwolona,2026-09-24 12:21 UTC
+oleole.pl,Elektronika i AGD,mniejszy,przeglądarka,otwarta,dozwolony (brak pliku),dozwolony (brak pliku),dozwolony (brak pliku),nie,tak,GTM-NP6WCSL5,dozwolona,2026-09-24 12:21 UTC
+proline.pl,Elektronika i AGD,mniejszy,HTTP,otwarta,dozwolony (*),dozwolony (nazwany),dozwolony (nazwany),nie,nie,GTM-NTF7862T,dozwolona,2026-09-24 12:21 UTC
+zadowolenie.pl,Elektronika i AGD,mniejszy,przeglądarka,ochrona antybotowa,dozwolony (brak pliku),dozwolony (brak pliku),dozwolony (brak pliku),nie sprawdzono,nie sprawdzono,,dozwolona,2026-09-24 12:21 UTC
+audioteka.com,"Książki, media i hobby",lider,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,nie,,dozwolona,2026-09-24 12:21 UTC
+bonito.pl,"Książki, media i hobby",lider,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,tak,,dozwolona,2026-09-24 12:21 UTC
+empik.com,"Książki, media i hobby",lider,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,nie,GTM-PS28TV,dozwolona,2026-09-24 12:21 UTC
+gandalf.com.pl,"Książki, media i hobby",lider,przeglądarka,ochrona antybotowa,dozwolony (brak pliku),dozwolony (brak pliku),dozwolony (brak pliku),nie sprawdzono,nie sprawdzono,,dozwolona,2026-09-24 12:21 UTC
+swiatksiazki.pl,"Książki, media i hobby",lider,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,tak,GTM-K82DXVZ,dozwolona,2026-09-24 12:21 UTC
+taniaksiazka.pl,"Książki, media i hobby",lider,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (nazwany),nie,tak,GTM-KCGHLK,dozwolona,2026-09-24 12:21 UTC
+matras.pl,"Książki, media i hobby",mniejszy,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,tak,GTM-K7FX3Z,dozwolona,2026-09-24 12:21 UTC
+nexto.pl,"Książki, media i hobby",mniejszy,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,tak,GTM-WC7GDLG,dozwolona,2026-09-24 12:21 UTC
+planszomania.pl,"Książki, media i hobby",mniejszy,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,tak,,dozwolona,2026-09-24 12:21 UTC
+rebel.pl,"Książki, media i hobby",mniejszy,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,tak,GTM-56BJZ7Z,dozwolona,2026-09-24 12:21 UTC
+woblink.com,"Książki, media i hobby",mniejszy,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,nie,GTM-MTBPCS,dozwolona,2026-09-24 12:21 UTC
+znak.com.pl,"Książki, media i hobby",mniejszy,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,tak,GTM-K7FX3Z,dozwolona,2026-09-24 12:21 UTC
+ccc.eu,Moda i obuwie,lider,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,nie,,dozwolona,2026-09-24 12:21 UTC
+eobuwie.pl,Moda i obuwie,lider,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,tak,GTM-MZRVB99,dozwolona,2026-09-24 12:21 UTC
+modivo.pl,Moda i obuwie,lider,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,tak,GTM-KDMF53R,dozwolona,2026-09-24 12:21 UTC
+mohito.com,Moda i obuwie,lider,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,nie,,dozwolona,2026-09-24 12:21 UTC
+reserved.com,Moda i obuwie,lider,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,nie,,dozwolona,2026-09-24 12:21 UTC
+sinsay.com,Moda i obuwie,lider,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,nie,,dozwolona,2026-09-24 12:21 UTC
+bizuu.com,Moda i obuwie,mniejszy,przeglądarka,otwarta,dozwolony (brak pliku),dozwolony (brak pliku),dozwolony (brak pliku),nie,nie,GTM-NJ7VZJH,dozwolona,2026-09-24 12:21 UTC
+born2be.pl,Moda i obuwie,mniejszy,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,nie,GTM-PHRXNL9,dozwolona,2026-09-24 12:21 UTC
+diverse.pl,Moda i obuwie,mniejszy,HTTP,otwarta,dozwolony (brak reguł),dozwolony (brak reguł),dozwolony (brak reguł),nie,nie,GTM-WLL756BQ,dozwolona,2026-09-24 12:21 UTC
+lavard.com,Moda i obuwie,mniejszy,HTTP,otwarta,dozwolony (brak reguł),dozwolony (brak reguł),dozwolony (brak reguł),nie,nie,GTM-PDPD66B,dozwolona,2026-09-24 12:21 UTC
+mokobelle.com,Moda i obuwie,mniejszy,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,tak,GTM-LDWN,dozwolona,2026-09-24 12:21 UTC
+renee.pl,Moda i obuwie,mniejszy,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,nie,GTM-K57KN24,dozwolona,2026-09-24 12:21 UTC
+vistula.pl,Moda i obuwie,mniejszy,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,nie,GTM-NQFCTBQ,dozwolona,2026-09-24 12:21 UTC
+wolczanka.pl,Moda i obuwie,mniejszy,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,nie,GTM-58PWKFW,dozwolona,2026-09-24 12:21 UTC
+8a.pl,Sport i outdoor,lider,przeglądarka,ochrona antybotowa,dozwolony (brak pliku),dozwolony (brak pliku),dozwolony (brak pliku),nie sprawdzono,nie sprawdzono,,dozwolona,2026-09-24 12:21 UTC
+decathlon.pl,Sport i outdoor,lider,przeglądarka,ochrona antybotowa,dozwolony (brak pliku),dozwolony (brak pliku),dozwolony (brak pliku),nie sprawdzono,nie sprawdzono,,dozwolona,2026-09-24 12:21 UTC
+intersport.pl,Sport i outdoor,lider,przeglądarka,ochrona antybotowa,dozwolony (*),dozwolony (*),dozwolony (*),nie sprawdzono,nie sprawdzono,,dozwolona,2026-09-24 12:21 UTC
+sizeer.com,Sport i outdoor,lider,przeglądarka,ochrona antybotowa,dozwolony (brak pliku),dozwolony (brak pliku),dozwolony (brak pliku),nie sprawdzono,nie sprawdzono,,dozwolona,2026-09-24 12:21 UTC
+sportano.pl,Sport i outdoor,lider,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,tak,GTM-TR6HRB3J,dozwolona,2026-09-24 12:21 UTC
+centrumrowerowe.pl,Sport i outdoor,mniejszy,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,nie,GTM-KNDV2X,dozwolona,2026-09-24 12:21 UTC
+e-horyzont.pl,Sport i outdoor,mniejszy,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,tak,GTM-PRLLC4H,dozwolona,2026-09-24 12:21 UTC
+kross.eu,Sport i outdoor,mniejszy,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,tak,GTM-MZPCD3PL,dozwolona,2026-09-24 12:21 UTC
+skalnik.pl,Sport i outdoor,mniejszy,przeglądarka,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),tak (HTML),tak,GTM-P9V84SV,dozwolona,2026-09-24 12:21 UTC
+sklepbiegacza.pl,Sport i outdoor,mniejszy,przeglądarka,ochrona antybotowa,dozwolony (brak pliku),dozwolony (brak pliku),dozwolony (brak pliku),nie sprawdzono,nie sprawdzono,,dozwolona,2026-09-24 12:21 UTC
+worldbox.pl,Sport i outdoor,mniejszy,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,nie,,dozwolona,2026-09-24 12:21 UTC
+douglas.pl,Uroda i drogerie,lider,przeglądarka,ochrona antybotowa,dozwolony (*),dozwolony (*),dozwolony (*),nie sprawdzono,nie sprawdzono,,dozwolona,2026-09-24 12:21 UTC
+hebe.pl,Uroda i drogerie,lider,przeglądarka,ochrona antybotowa,dozwolony (*),dozwolony (*),dozwolony (*),nie sprawdzono,nie sprawdzono,,dozwolona,2026-09-24 12:21 UTC
+notino.pl,Uroda i drogerie,lider,przeglądarka,ochrona antybotowa,dozwolony (*),dozwolony (*),dozwolony (*),nie sprawdzono,nie sprawdzono,,dozwolona,2026-09-24 12:21 UTC
+rossmann.pl,Uroda i drogerie,lider,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,tak,GTM-T42P289W,dozwolona,2026-09-24 12:21 UTC
+sephora.pl,Uroda i drogerie,lider,przeglądarka,ochrona antybotowa,dozwolony (brak pliku),dozwolony (brak pliku),dozwolony (brak pliku),nie sprawdzono,nie sprawdzono,,dozwolona,2026-09-24 12:21 UTC
+superpharm.pl,Uroda i drogerie,lider,przeglądarka,otwarta,dozwolony (brak pliku),dozwolony (brak pliku),dozwolony (brak pliku),nie,nie,GTM-K9NZ9RV,dozwolona,2026-09-24 12:21 UTC
+cocolita.pl,Uroda i drogerie,mniejszy,przeglądarka,ochrona antybotowa,dozwolony (brak pliku),dozwolony (brak pliku),dozwolony (brak pliku),nie sprawdzono,nie sprawdzono,,dozwolona,2026-09-24 12:21 UTC
+cosibella.pl,Uroda i drogerie,mniejszy,HTTP,otwarta,dozwolony (*),dozwolony (nazwany),dozwolony (nazwany),tak (GTM),tak,GTM-PB8P64W,dozwolona,2026-09-24 12:21 UTC
+e-glamour.pl,Uroda i drogerie,mniejszy,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,nie,,dozwolona,2026-09-24 12:21 UTC
+ezebra.pl,Uroda i drogerie,mniejszy,HTTP,otwarta,dozwolony (*),dozwolony (*),zablokowany (nazwany),nie,tak,GTM-T38C9T,dozwolona,2026-09-24 12:21 UTC
+iperfumy.pl,Uroda i drogerie,mniejszy,przeglądarka,ochrona antybotowa,dozwolony (*),dozwolony (*),dozwolony (*),nie sprawdzono,nie sprawdzono,,dozwolona,2026-09-24 12:21 UTC
+ziaja.com,Uroda i drogerie,mniejszy,HTTP,otwarta,dozwolony (*),dozwolony (*),dozwolony (*),nie,nie,,dozwolona,2026-09-24 12:21 UTC

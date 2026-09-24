@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <title>Mockup okładki – e-book KSIGN „Nie ma cię w rozmowie”</title>
+    <!-- Wachlarz trzech stron na przezroczystym tle (landing, reklamy, posty).
+         Najpierw wyrenderuj e-book do export/ebook, potem:
+         node ebook/chatgpt-ads/render.mjs ebook/chatgpt-ads/src/mockup.html ebook/chatgpt-ads/export/ebook -->
+    <style>
+      html,
+      body {
+        margin: 0;
+        background: transparent;
+      }
+
+      .page {
+        position: relative;
+        width: 1080px;
+        height: 1080px;
+        overflow: hidden;
+      }
+
+      .sheet {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 600px;
+        height: 750px;
+        margin: -375px 0 0 -300px;
+        box-shadow:
+          0 2px 4px rgba(40, 24, 0, 0.18),
+          0 30px 60px -18px rgba(40, 24, 0, 0.45);
+      }
+
+      .sheet img {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      .sheet--3 {
+        transform: translate(150px, 26px) rotate(9deg);
+      }
+
+      .sheet--2 {
+        transform: translate(78px, 10px) rotate(4deg);
+      }
+
+      .sheet--1 {
+        transform: translate(-40px, 0) rotate(-3deg);
+        box-shadow:
+          0 2px 4px rgba(40, 24, 0, 0.2),
+          0 44px 80px -20px rgba(40, 24, 0, 0.55);
+      }
+    </style>
+  </head>
+  <body data-pdf="nie" data-fonty="nie" data-tlo="przezroczyste">
+    <section class="page" data-name="mockup-okladka" aria-label="Mockup okładki e-booka">
+      <div class="sheet sheet--3"><img src="../export/ebook/27-badanie.png" alt="" /></div>
+      <div class="sheet sheet--2"><img src="../export/ebook/13-konto-i-firma.png" alt="" /></div>
+      <div class="sheet sheet--1">
+        <img src="../export/ebook/01-okladka.png" alt="Okładka e-booka „Nie ma cię w rozmowie”" />
+      </div>
+    </section>
+  </body>
+</html>
