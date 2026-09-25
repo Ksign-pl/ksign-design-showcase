@@ -13,3 +13,7 @@ ebook/chatgpt-ads/manuskrypt/tekst-v1.0.md
 
 # Generowany przez ebook/plan-serii/zloz.mjs z src/tematy.json
 ebook/plan-serii/src/raport.html
+
+# Generowany przez ebook/rabat-zjada-zysk/zloz.mjs i tekst.mjs ze sformatowanych plików src/strony/*.html
+ebook/rabat-zjada-zysk/src/ebook.html
+ebook/rabat-zjada-zysk/manuskrypt/tekst-v1.0.md

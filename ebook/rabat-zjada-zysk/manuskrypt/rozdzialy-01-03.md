@@ -1,6 +1,6 @@
 # RABAT ZJADA ZYSK – manuskrypt, strony 1–19
 
-> Wersja robocza v0.1 · fakty sprawdzone 25.09.2026 · na okładce: v1.0 · stan na [data premiery]
+> Wersja robocza v0.1 · fakty sprawdzone 25.09.2026 · stopka na okładce i stronach: ksign.pl
 >
 > **Numery „Str. N” to układ roboczy (40 stron, z plakatami rozdziałów jak w e-booku #01).** W składzie numery
 > i odsyłacze liczą się automatycznie.
@@ -21,9 +21,9 @@
 - **Tytuł:** RABAT ZJADA ZYSK.
 - **Podtytuł:** Black Friday w sklepie, na marketplace i w salonie bez utraty marży. Kalkulator rabatu, Omnibus
   w każdym kanale i plan na 6 tygodni.
-- **Stopka:** ksign.pl · v1.0 · stan na [data premiery]
-- **Grafika (scena 3D):** papierowa metka z przekreśloną ceną, z której ktoś odgryzł róg. Odgryziony kawałek leży obok.
-  Metka w kolorze akcentu serii **[DO DECYZJI: kolor serii]**.
+- **Stopka:** ksign.pl
+- **Grafika (scena 3D):** marmurowa metka „−20%”, z której ktoś odgryzł róg. Od ugryzienia biegną świecące turkusowe
+  pęknięcia (kintsugi), okruchy leżą obok. Kolor serii: turkus (decyzja 25.09.2026).
 
 ---
 
@@ -51,7 +51,7 @@ działają inaczej (art. 4 ust. 4 ustawy o informowaniu o cenach) i ten e-book t
 
 Każdy rozdział kończy się ramką **„Do zrobienia dziś”** – od 1 do 3 działań na ten sam dzień.
 
-**Stan wiedzy:** [data premiery]. Przepisy sprawdziliśmy w tekście ustawy i w wyjaśnieniach Prezesa UOKiK – źródła
+**Stan wiedzy:** 25.09.2026 (data sprawdzenia faktów – przy premierze sprawdzić ponownie i zaktualizować). Przepisy sprawdziliśmy w tekście ustawy i w wyjaśnieniach Prezesa UOKiK – źródła
 z datami są na str. 40.
 
 **Nota prawna:** Ten e-book nie jest poradą prawną. Jeśli masz wątpliwości co do konkretnej promocji, skonsultuj ją
@@ -259,6 +259,8 @@ Friday dał Ci +80%? Przy tej marży to za mało nawet na rabat 15%, który wyma
 
 **Lead:** Policz jeden produkt w 3 minuty. Potem 10 produktów, które chcesz dać na Black Friday.
 
+<!-- tabela:kartka -->
+
 |     | Wzór                                            | Twoje liczby | Przykład |
 | --- | ----------------------------------------------- | ------------ | -------- |
 | A   | Cena netto = cena brutto ÷ 1,23                 | ……… zł       | 1000 zł  |
@@ -271,6 +273,8 @@ Friday dał Ci +80%? Przy tej marży to za mało nawet na rabat 15%, który wyma
 | H   | Planowany rabat                                 | ……… %        | 20%      |
 | I   | Potrzebny wzrost sprzedaży = H ÷ (G − H)        | ……… %        | +200%    |
 | J   | Realny wzrost: zeszły rok, ruch, stany magazynu | ……… %        | +80%     |
+
+<!-- /tabela:kartka -->
 
 **Jak czytać wynik:**
 

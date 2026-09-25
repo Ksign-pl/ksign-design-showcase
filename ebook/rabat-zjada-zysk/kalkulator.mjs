@@ -2,6 +2,7 @@
 // Użycie:
 //   node ebook/rabat-zjada-zysk/kalkulator.mjs                  – wypisuje tabele w Markdown
 //   node ebook/rabat-zjada-zysk/kalkulator.mjs --wstaw plik.md  – podmienia bloki <!-- tabela:nazwa --> w pliku
+//   (plik .md → tabela Markdown, plik .html → <table class="tbl"> do składu w src/strony/)
 // Po --wstaw uruchom prettier na pliku, żeby wyrównał kolumny.
 import fs from "node:fs";
 
@@ -32,13 +33,43 @@ const proc = (x, miejsca = 0) =>
 // Zaokrąglenie w dół z poprawką na błąd zmiennoprzecinkowy (0,3 × 0,5 ÷ 1,5 = 0,0999…).
 const wDol = (x, krok = 0.01) => Math.floor(x / krok + 1e-9) * krok;
 
-function tabela(naglowek, wiersze) {
+// Tabela jako dane: nagłówek, wiersze i opcje składu HTML (klasa tabeli, wyróżnione komórki).
+// Komórka „**tekst**” to pogrubienie; wiersz z pogrubioną pierwszą komórką jest wyróżniony w składzie.
+function tabela(naglowek, wiersze, sklad = {}) {
+  return { naglowek, wiersze, sklad };
+}
+
+function doMarkdown({ naglowek, wiersze }) {
   const kolumny = naglowek.map((_, i) =>
     Math.max(...[naglowek, ...wiersze].map((w) => w[i].length)),
   );
   const linia = (w) => `| ${w.map((k, i) => k.padEnd(kolumny[i])).join(" | ")} |`;
   const kreska = `| ${kolumny.map((s) => "-".repeat(s)).join(" | ")} |`;
   return [linia(naglowek), kreska, ...wiersze.map(linia)].join("\n");
+}
+
+// sklad.klasa – dodatkowe klasy tabeli; sklad.komorka(tekst, wiersz, kolumna) – klasa komórki.
+function doHtml({ naglowek, wiersze, sklad }) {
+  const tresc = (k) =>
+    k
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/\*\*(.+?)\*\*/g, "<b>$1</b>")
+      .replace(/^……… ?(.*)$/, '<span class="wpis"></span>$1');
+  const klasaKomorki = (k, w, i) => {
+    const klasy = [sklad.komorka?.(k, w, i), /^………/.test(k) ? "pole" : null].filter(Boolean);
+    return klasy.length ? ` class="${klasy.join(" ")}"` : "";
+  };
+  const th = naglowek.map((k) => `<th>${tresc(k)}</th>`).join("");
+  const tr = wiersze
+    .map((w, wi) => {
+      const akcent = /^\*\*/.test(w[0]) ? ' class="accent"' : "";
+      const td = w.map((k, i) => `<td${klasaKomorki(k, wi, i)}>${tresc(k)}</td>`).join("");
+      return `<tr${akcent}>${td}</tr>`;
+    })
+    .join("\n");
+  const klasa = ["tbl", sklad.klasa].filter(Boolean).join(" ");
+  return `<table class="${klasa}">\n<thead><tr>${th}</tr></thead>\n<tbody>\n${tr}\n</tbody>\n</table>`;
 }
 
 // ---------- tabele ----------
@@ -82,6 +113,7 @@ function przykladFotel() {
       ],
       ["Zamówień, żeby zarobić tyle samo", "1", String(Math.round(a.poReklamie / b.poReklamie))],
     ],
+    { klasa: "tbl--liczby tbl--fotel" },
   );
 }
 
@@ -99,6 +131,16 @@ function tabelaProgu() {
         return `+${proc(p)}`;
       }),
     ]),
+    {
+      klasa: "tbl--siatka",
+      // komórka z przykładu w tekście: marża 30%, rabat 20% → +200%
+      komorka: (k, w, i) =>
+        k === "strata" || k === "zero"
+          ? "zle"
+          : MARZE[w] === 0.3 && RABATY[i - 1] === 0.2
+            ? "hit"
+            : null,
+    },
   );
 }
 
@@ -111,6 +153,12 @@ function tabelaMaksymalnegoRabatu() {
       proc(m),
       ...WZROSTY.map((w) => `${proc(wDol(maksymalnyRabat(m, w)))}`),
     ]),
+    {
+      klasa: "tbl--siatka",
+      // przykład w tekście: marża 30%, wzrost +50% → najwyżej 10%
+      komorka: (k, w, i) =>
+        [0.2, 0.3, 0.4, 0.5, 0.6][w] === 0.3 && WZROSTY[i - 1] === 0.5 ? "hit" : null,
+    },
   );
 }
 
@@ -139,6 +187,7 @@ function tabelaOsiCzasu() {
         `−${proc(bf, 1)}, nie −${proc(bfOdRegularnej)}`,
       ],
     ],
+    { klasa: "tbl--os", komorka: (k, w, i) => (w === 2 && i === 3 ? "hit" : null) },
   );
 }
 
@@ -184,6 +233,7 @@ function tabelaPrezentu() {
         `+${proc(zysk / zPrezentem - 1)}`,
       ],
     ],
+    { klasa: "tbl--liczby tbl--prezent", komorka: (k, w, i) => (i === 3 && w >= 2 ? "hit" : null) },
   );
 }
 
@@ -207,6 +257,7 @@ function tabelaTrzyWCenieDwoch() {
       wariant("**3 szt. w cenie 2**", 3, 2),
       wariant("3 szt. w cenie regularnej", 3, 3),
     ],
+    { klasa: "tbl--liczby" },
   );
 }
 
@@ -232,10 +283,44 @@ function tabelaRoas() {
       ["**Próg ROAS** = cena brutto ÷ zysk", ...scen.map((s) => `**${roas(s.prog)}**`)],
       [`Zysk po reklamie przy ROAS ${ROAS_PRZYKLAD}`, ...scen.map((s) => znak(s.przyRoas))],
     ],
+    { klasa: "tbl--liczby", komorka: (k) => (/^−\d/.test(k) && k.endsWith("zł") ? "zle" : null) },
+  );
+}
+
+// Kalkulator na kartce (rozdział 02): wiersze A–J, kolumna „Przykład” z założeń fotela.
+// J – przykładowy realny wzrost (zeszłoroczny Black Friday), założenie do tekstu na str. 11.
+const REALNY_WZROST = 0.8;
+
+function kalkulatorNaKartce() {
+  const A = fotel.brutto / (1 + VAT);
+  const B = fotel.towar;
+  const C = fotel.dostawa + fotel.obsluga;
+  const D = 0;
+  const E = fotel.reklama;
+  const F = A - B - C - D - E;
+  const G = F / A;
+  const Hr = fotel.rabat;
+  const I = progSprzedazy(G, Hr);
+  return tabela(
+    ["", "Wzór", "Twoje liczby", "Przykład"],
+    [
+      ["A", "Cena netto = cena brutto ÷ 1,23", "……… zł", zl(A)],
+      ["B", "Koszt towaru (netto)", "……… zł", zl(B)],
+      ["C", "Dostawa, płatność, opakowanie, obsługa", "……… zł", zl(C)],
+      ["D", "Prowizja marketplace od ceny regularnej", "……… zł", zl(D)],
+      ["E", "Reklama na 1 zamówienie", "……… zł", zl(E)],
+      ["F", "Zysk z zamówienia = A − B − C − D − E", "……… zł", zl(F)],
+      ["G", "Marża = F ÷ A", "……… %", proc(G)],
+      ["H", "Planowany rabat", "……… %", proc(Hr)],
+      ["I", "Potrzebny wzrost sprzedaży = H ÷ (G − H)", "……… %", `+${proc(I)}`],
+      ["J", "Realny wzrost: zeszły rok, ruch, stany magazynu", "……… %", `+${proc(REALNY_WZROST)}`],
+    ],
+    { klasa: "tbl--kartka", komorka: (k, w, i) => (i === 0 ? "lit" : null) },
   );
 }
 
 const BLOKI = {
+  kartka: kalkulatorNaKartce,
   fotel: przykladFotel,
   prog: tabelaProgu,
   "maks-rabat": tabelaMaksymalnegoRabatu,
@@ -251,18 +336,19 @@ const i = process.argv.indexOf("--wstaw");
 if (i > 0) {
   const plik = process.argv[i + 1];
   let tekst = fs.readFileSync(plik, "utf8");
+  const format = plik.endsWith(".html") ? doHtml : doMarkdown;
   const wstawione = [];
   for (const [nazwa, generuj] of Object.entries(BLOKI)) {
     const wzor = new RegExp(`(<!-- tabela:${nazwa} -->)[\\s\\S]*?(<!-- /tabela:${nazwa} -->)`);
     if (!wzor.test(tekst)) continue;
-    tekst = tekst.replace(wzor, (_, a, b) => `${a}\n\n${generuj()}\n\n${b}`);
+    tekst = tekst.replace(wzor, (_, a, b) => `${a}\n\n${format(generuj())}\n\n${b}`);
     wstawione.push(nazwa);
   }
   fs.writeFileSync(plik, tekst);
   console.log(`Wstawiono do ${plik}: ${wstawione.join(", ") || "nic (brak znaczników)"}`);
 } else {
   for (const [nazwa, generuj] of Object.entries(BLOKI))
-    console.log(`\n## ${nazwa}\n\n${generuj()}`);
+    console.log(`\n## ${nazwa}\n\n${doMarkdown(generuj())}`);
   const k = 0.1;
   console.log(
     `\nRabat 20% przy prowizji ${proc(k)} kosztuje ${proc(0.2 * (1 - k))} ceny ` +
