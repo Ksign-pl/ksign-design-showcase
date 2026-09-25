@@ -142,11 +142,107 @@ function tabelaOsiCzasu() {
   );
 }
 
+// Drugi przykład (rozdział 05): poduszka dekoracyjna – prezent do fotela i produkt w promocji „3 w cenie 2”.
+const poduszka = {
+  brutto: 123,
+  towar: 35,
+  obsluga: 5, // pakowanie i obsługa jednej sztuki
+  wysylka: 15, // koszt wysyłki jednego zamówienia po stronie sklepu
+};
+
+// Kwota w złotych z groszami tylko wtedy, gdy nie jest pełna (98,40 zł, ale 246 zł).
+const zlGr = (x) =>
+  Math.abs(x - Math.round(x)) < 0.005 ? zl(x) : `${x.toFixed(2).replace(".", ",")} zł`;
+
+function tabelaPrezentu() {
+  const netto = fotel.brutto / (1 + VAT);
+  const zysk = netto - (fotel.towar + fotel.dostawa + fotel.obsluga);
+  const kosztRabatu = netto * fotel.rabat;
+  const kosztPrezentu = poduszka.towar + poduszka.obsluga; // jedzie w tej samej paczce
+  const zRabatem = zysk - kosztRabatu;
+  const zPrezentem = zysk - kosztPrezentu;
+  return tabela(
+    [
+      "Na 1 zamówienie fotela",
+      "Cena regularna",
+      `Rabat −${proc(fotel.rabat)}`,
+      "Prezent: poduszka",
+    ],
+    [
+      [
+        "Co dostaje klient",
+        "–",
+        `${zl(fotel.brutto * fotel.rabat)} taniej`,
+        `poduszkę wartą ${zl(poduszka.brutto)}`,
+      ],
+      ["Koszt dla sklepu (netto)", "–", zl(kosztRabatu), zl(kosztPrezentu)],
+      ["**Zysk ze sztuki**", `**${zl(zysk)}**`, `**${zl(zRabatem)}**`, `**${zl(zPrezentem)}**`],
+      [
+        "Potrzebny wzrost sprzedaży",
+        "–",
+        `+${proc(zysk / zRabatem - 1)}`,
+        `+${proc(zysk / zPrezentem - 1)}`,
+      ],
+    ],
+  );
+}
+
+function tabelaTrzyWCenieDwoch() {
+  const netto = poduszka.brutto / (1 + VAT);
+  const wariant = (nazwa, sztuk, placone, rabat = 0) => {
+    const przychod = netto * placone * (1 - rabat);
+    const koszty = sztuk * (poduszka.towar + poduszka.obsluga) + poduszka.wysylka;
+    return [
+      nazwa,
+      zlGr(poduszka.brutto * placone * (1 - rabat)),
+      zl(przychod),
+      zl(przychod - koszty),
+    ];
+  };
+  return tabela(
+    ["Zamówienie", "Klient płaci", "Przychód netto", "Zysk z zamówienia"],
+    [
+      wariant("1 szt. w cenie regularnej", 1, 1),
+      wariant(`1 szt. z rabatem −${proc(fotel.rabat)}`, 1, 1, fotel.rabat),
+      wariant("**3 szt. w cenie 2**", 3, 2),
+      wariant("3 szt. w cenie regularnej", 3, 3),
+    ],
+  );
+}
+
+// Próg ROAS: wartość konwersji w panelu reklamowym = cena brutto zamówienia.
+const ROAS_PRZYKLAD = 4;
+
+function tabelaRoas() {
+  const netto = fotel.brutto / (1 + VAT);
+  const koszty = fotel.towar + fotel.dostawa + fotel.obsluga;
+  const scen = [0, fotel.rabat].map((r) => {
+    const brutto = fotel.brutto * (1 - r);
+    const zysk = netto * (1 - r) - koszty;
+    return { brutto, zysk, prog: brutto / zysk, przyRoas: zysk - brutto / ROAS_PRZYKLAD };
+  });
+  const znak = (x) => (x >= 0 ? `+${zl(x)}` : `−${zl(-x)}`);
+  const roas = (x) => x.toFixed(2).replace(".", ",");
+  return tabela(
+    ["Na 1 zamówienie fotela", "Cena regularna", `Black Friday −${proc(fotel.rabat)}`],
+    [
+      ["Cena brutto = wartość konwersji", ...scen.map((s) => zl(s.brutto))],
+      ["Zysk ze sztuki przed reklamą", ...scen.map((s) => zl(s.zysk))],
+      ["Maksymalny koszt reklamy na zamówienie", ...scen.map((s) => zl(s.zysk))],
+      ["**Próg ROAS** = cena brutto ÷ zysk", ...scen.map((s) => `**${roas(s.prog)}**`)],
+      [`Zysk po reklamie przy ROAS ${ROAS_PRZYKLAD}`, ...scen.map((s) => znak(s.przyRoas))],
+    ],
+  );
+}
+
 const BLOKI = {
   fotel: przykladFotel,
   prog: tabelaProgu,
   "maks-rabat": tabelaMaksymalnegoRabatu,
   "os-czasu": tabelaOsiCzasu,
+  prezent: tabelaPrezentu,
+  "trzy-w-cenie-dwoch": tabelaTrzyWCenieDwoch,
+  roas: tabelaRoas,
 };
 
 // ---------- uruchomienie ----------

@@ -21,7 +21,7 @@
 - **Tytuł:** RABAT ZJADA ZYSK.
 - **Podtytuł:** Black Friday w sklepie, na marketplace i w salonie bez utraty marży. Kalkulator rabatu, Omnibus
   w każdym kanale i plan na 6 tygodni.
-- **Stopka:** KSIGN. · v1.0 · stan na [data premiery]
+- **Stopka:** ksign.pl · v1.0 · stan na [data premiery]
 - **Grafika (scena 3D):** papierowa metka z przekreśloną ceną, z której ktoś odgryzł róg. Odgryziony kawałek leży obok.
   Metka w kolorze akcentu serii **[DO DECYZJI: kolor serii]**.
 
@@ -46,7 +46,7 @@ działają inaczej (art. 4 ust. 4 ustawy o informowaniu o cenach) i ten e-book t
 1. **5 minut – rozdziały 01–02.** Policzysz, ile naprawdę kosztuje Cię rabat na każdym produkcie.
 2. **10 minut – rozdziały 03–05.** Pokażesz obniżki zgodnie z prawem w każdym kanale i wybierzesz promocje, które nie
    zjadają marży.
-3. **5 minut – rozdziały 06–08.** Plan na 6 tygodni, 9 błędów i wyniki naszego badania cen.
+3. **5 minut – rozdziały 06–08.** Plan na 6 tygodni, 9 błędów i test Twojego sklepu w 10 punktach.
 4. **Na koniec – ściąga ze str. 38.** Wydrukuj ją dla zespołu.
 
 Każdy rozdział kończy się ramką **„Do zrobienia dziś”** – od 1 do 3 działań na ten sam dzień.
@@ -67,10 +67,10 @@ z prawnikiem.
 | 02  | Kalkulator rabatu                     | Ile musisz sprzedać więcej i jaki rabat udźwigniesz         | 8    |
 | 03  | Omnibus w każdym kanale               | Najniższa cena z 30 dni: sklep, marketplace, salon, reklamy | 13   |
 | 04  | Jedna oferta, wiele kanałów           | Arkusz promocji, ceny, stany i obsługa w każdym kanale      | 20   |
-| 05  | Zamiast rabatu                        | 7 zachęt, które kosztują mniej niż obniżka                  | 24   |
+| 05  | Zamiast rabatu                        | Dostawa, prezent, zestaw i bon zamiast obniżki              | 24   |
 | 06  | Plan na 6 tygodni                     | Od cen w październiku do zwrotów w grudniu                  | 28   |
 | 07  | 9 błędów Black Friday                 | Co zjada zysk i co zrobić zamiast tego                      | 32   |
-| 08  | Badanie                               | Ceny ok. 1000 produktów ze 100 polskich sklepów             | 35   |
+| 08  | Badanie                               | Test 10 punktów i nasze badanie cen w 100 sklepach          | 35   |
 | –   | Ściąga · 3 kolejne kroki · Słowniczek | Wersja do wydruku, oferta KSIGN, pojęcia i źródła z datami  | 38   |
 
 ---
