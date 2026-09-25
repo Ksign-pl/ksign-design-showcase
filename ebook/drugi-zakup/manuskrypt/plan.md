@@ -125,8 +125,6 @@ Miniatura YouTube: „38/100” na tle marmurowego bumeranga.
 
 - **PKE:** czy po Dz.U. 2026 poz. 815 była nowelizacja art. 398–400, 446 i 448 (API Sejmu, lista aktów zmieniających).
 - **Ustawa o prawach konsumenta:** czy jest nowszy tekst jednolity niż Dz.U. 2026 poz. 1244.
-- **Motyw 49 dyrektywy 2019/2161:** brzmienie w EUR-Lex (25.09.2026 strona blokowała pobieranie; treść potwierdzona
-  w omówieniach, str. 11).
 - **Omnisend:** czy wyszedł nowszy raport (w e-booku: raport 2026, dane za 2025 r.).
 - **SMSAPI:** cennik (0,11–0,17 zł netto za SMS) i regulamin (długości wiadomości).
 - **Gemius:** czy wyszedł raport „E-commerce w Polsce 2026”. Jeśli tak – podmienić dane ze str. 5, 14, 15, 16 i 25.

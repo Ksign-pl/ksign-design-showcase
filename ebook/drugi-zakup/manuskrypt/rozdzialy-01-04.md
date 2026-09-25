@@ -645,7 +645,7 @@ Długości wiadomości: regulamin SMSAPI z 10.11.2024._
 | Potwierdzenie zamówienia na trwałym nośniku, najpóźniej przy dostawie                             | Ustawa z 30.05.2014 r. o prawach konsumenta, t.j. Dz.U. 2026 poz. 1244, art. 21 ust. 1: https://api.sejm.gov.pl/eli/acts/DU/2026/1244/text.pdf                                           | 25.09.2026   |
 | Zgoda: definicja, dowód, wycofanie, dobrowolność, zaznaczone pola                                 | Rozporządzenie (UE) 2016/679 (RODO), Dz. Urz. UE L 119 z 4.05.2016, art. 4 pkt 11, art. 7 ust. 1, 3 i 4, art. 13, motyw 32                                                               | 25.09.2026   |
 | Weryfikacja opinii; czarna lista: niesprawdzone i fałszywe opinie, fałszywe „tylko dziś”          | Ustawa z 23.08.2007 r. o przeciwdziałaniu nieuczciwym praktykom rynkowym, t.j. Dz.U. 2023 poz. 845, art. 6 ust. 4 pkt 7, art. 7 pkt 7, 25 i 26                                           | 25.09.2026   |
-| Zniekształcanie opinii: tylko pozytywne, usuwanie negatywnych                                     | Dyrektywa (UE) 2019/2161 (Omnibus), motyw 49 **[SPRAWDZIĆ brzmienie w EUR-Lex]**                                                                                                         | 25.09.2026   |
+| Zniekształcanie opinii: tylko pozytywne, usuwanie negatywnych                                     | Dyrektywa (UE) 2019/2161 (Omnibus), motyw 49: https://eur-lex.europa.eu/legal-content/PL/TXT/HTML/?uri=CELEX:32019L2161                                                                  | 25.09.2026   |
 | Kara UOKiK do 10% obrotu                                                                          | Ustawa o ochronie konkurencji i konsumentów, t.j. Dz.U. 2025 poz. 1714, art. 106 ust. 1 pkt 4: https://api.sejm.gov.pl/eli/acts/DU/2025/1714/text.pdf                                    | 25.09.2026   |
 | Automaty: 2% wysyłek i 30% przychodu, 2,87 vs 0,18 USD, 76% zamówień, 6,46%, SMS 0,74 vs 0,15 USD | Omnisend, „2026 Ecommerce Marketing Report” (dane z 2025 r.: 150 000 marek, 27 mld e-maili, 321 mln SMS-ów): https://www.omnisend.com/resources/reports/2026-ecommerce-marketing-report/ | 25.09.2026   |
 | Wybór sklepu: pozytywne wcześniejsze doświadczenia 32%                                            | Gemius, „E-commerce w Polsce 2025”, s. 166, „Czynniki wpływające na wybór danego serwisu”                                                                                                | 25.09.2026   |
@@ -662,8 +662,8 @@ Długości wiadomości: regulamin SMSAPI z 10.11.2024._
   informacji handlowej, nie wprost z przepisu.
 - **Brak wyjątku dla obecnych klientów:** dyrektywa 2002/58/WE (art. 13 ust. 2) pozwala na taki wyjątek, ale art. 398
   PKE go nie przewiduje. W tekście mówimy tylko o polskim prawie.
-- **RODO i motyw 49:** EUR-Lex blokował pobieranie 25.09.2026. Brzmienie motywu 32 RODO potwierdzone w serwisie
-  odo24.pl, motywu 49 dyrektywy 2019/2161 – w omówieniach (prawo.pl). Przed publikacją sprawdzić w EUR-Lex.
+- **RODO i motyw 49:** brzmienie motywu 32 i art. 7 RODO oraz motywu 49 dyrektywy 2019/2161 sprawdzone w EUR-Lex
+  25.09.2026 (https://eur-lex.europa.eu/legal-content/PL/TXT/HTML/?uri=CELEX:32016R0679).
 - **Omnisend:** dane globalne, w USD, z jednej platformy. W tekście zawsze z zastrzeżeniem ze str. 13. Nie przeliczać
   na złotówki.
 - **Wskaźniki powrotów:** „średnie dla e-commerce” z blogów odrzuciliśmy – bez opisanej metody i bez danych dla

@@ -116,5 +116,5 @@ Miniatura YouTube: „2% → 9%” na tle marmurowego koszyka z przyciskiem „p
 - **VAT od prowizji:** strony dla Polski piszą, że stawka „zawiera podatki”, a FAQ dla innych krajów UE opisuje
   odwrotne obciążenie. **[SPRAWDZIĆ z księgową]** na pierwszej fakturze.
 - **Gemius:** czy wyszedł raport „E-commerce w Polsce 2026” z danymi po starcie TikTok Shop – podmienić str. 6.
-- **Akty UE:** brzmienie art. 19 GPSR (2023/988) i art. 30 DSA (2022/2065) w EUR-Lex (25.09.2026 strona blokowała
-  pobieranie).
+- **Akty UE:** art. 19 GPSR (2023/988) i art. 30 DSA (2022/2065) sprawdzone w EUR-Lex 25.09.2026 – przed
+  premierą sprawdzić tylko, czy nie było zmian.
