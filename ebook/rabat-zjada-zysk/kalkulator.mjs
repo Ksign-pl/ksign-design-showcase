@@ -1,0 +1,175 @@
+// Liczy wszystkie liczby do tabel i przykładów w e-booku „Rabat zjada zysk.”, żeby nie wpisywać ich ręcznie.
+// Użycie:
+//   node ebook/rabat-zjada-zysk/kalkulator.mjs                  – wypisuje tabele w Markdown
+//   node ebook/rabat-zjada-zysk/kalkulator.mjs --wstaw plik.md  – podmienia bloki <!-- tabela:nazwa --> w pliku
+// Po --wstaw uruchom prettier na pliku, żeby wyrównał kolumny.
+import fs from "node:fs";
+
+// ---------- wzory ----------
+
+// Ile więcej sztuk trzeba sprzedać, żeby rabat nie obniżył zysku (ułamek: 1 = +100%).
+// marza – zysk ze sztuki po kosztach zmiennych jako ułamek ceny netto; rabat – ułamek ceny.
+// Zwraca null, gdy rabat zjada całą marżę (każda sztuka bez zysku albo ze stratą).
+export function progSprzedazy(marza, rabat) {
+  return rabat < marza ? rabat / (marza - rabat) : null;
+}
+
+// Największy rabat, przy którym spodziewany wzrost sprzedaży (ułamek) utrzyma zysk.
+export function maksymalnyRabat(marza, wzrost) {
+  return (marza * wzrost) / (1 + wzrost);
+}
+
+// Rabat liczony od najniższej ceny z 30 dni przed obniżką (art. 4 ust. 2 ustawy o informowaniu o cenach).
+export function obnizkaOdNajnizszej(najnizsza30, cenaPromocyjna) {
+  return 1 - cenaPromocyjna / najnizsza30;
+}
+
+// ---------- formatowanie po polsku ----------
+
+const zl = (x) => `${Math.round(x).toLocaleString("pl-PL").replace(/ /g, " ")} zł`;
+const proc = (x, miejsca = 0) =>
+  `${(x * 100).toFixed(miejsca).replace(".", ",").replace(/,0+$/, "")}%`;
+// Zaokrąglenie w dół z poprawką na błąd zmiennoprzecinkowy (0,3 × 0,5 ÷ 1,5 = 0,0999…).
+const wDol = (x, krok = 0.01) => Math.floor(x / krok + 1e-9) * krok;
+
+function tabela(naglowek, wiersze) {
+  const kolumny = naglowek.map((_, i) =>
+    Math.max(...[naglowek, ...wiersze].map((w) => w[i].length)),
+  );
+  const linia = (w) => `| ${w.map((k, i) => k.padEnd(kolumny[i])).join(" | ")} |`;
+  const kreska = `| ${kolumny.map((s) => "-".repeat(s)).join(" | ")} |`;
+  return [linia(naglowek), kreska, ...wiersze.map(linia)].join("\n");
+}
+
+// ---------- tabele ----------
+
+const VAT = 0.23;
+
+// Przykład prowadzący przez rozdziały 01–02: fotel sprzedawany we własnym sklepie.
+const fotel = {
+  brutto: 1230,
+  towar: 480,
+  dostawa: 70,
+  obsluga: 50, // płatność, opakowanie, obsługa zamówienia – w uproszczeniu stała kwota
+  reklama: 100, // koszt reklamy na 1 zamówienie
+  rabat: 0.2,
+};
+
+function przykladFotel() {
+  const netto = fotel.brutto / (1 + VAT);
+  const koszty = fotel.towar + fotel.dostawa + fotel.obsluga;
+  const scen = [0, fotel.rabat].map((r) => {
+    const n = netto * (1 - r);
+    const zysk = n - koszty;
+    return { brutto: fotel.brutto * (1 - r), netto: n, zysk, poReklamie: zysk - fotel.reklama };
+  });
+  const [a, b] = scen;
+  const spadek = (x, y) => ` (−${proc(1 - y / x)})`;
+  return tabela(
+    ["Na 1 zamówienie", "Cena regularna", `Black Friday −${proc(fotel.rabat)}`],
+    [
+      ["Cena brutto", zl(a.brutto), zl(b.brutto)],
+      ["Cena netto (bez 23% VAT)", zl(a.netto), zl(b.netto)],
+      ["Towar", `−${zl(fotel.towar)}`, `−${zl(fotel.towar)}`],
+      ["Dostawa do klienta", `−${zl(fotel.dostawa)}`, `−${zl(fotel.dostawa)}`],
+      ["Płatność, opakowanie, obsługa", `−${zl(fotel.obsluga)}`, `−${zl(fotel.obsluga)}`],
+      ["**Zysk ze sztuki**", `**${zl(a.zysk)}**`, `**${zl(b.zysk)}**${spadek(a.zysk, b.zysk)}`],
+      ["Reklama na 1 zamówienie", `−${zl(fotel.reklama)}`, `−${zl(fotel.reklama)}`],
+      [
+        "**Zysk po reklamie**",
+        `**${zl(a.poReklamie)}**`,
+        `**${zl(b.poReklamie)}**${spadek(a.poReklamie, b.poReklamie)}`,
+      ],
+      ["Zamówień, żeby zarobić tyle samo", "1", String(Math.round(a.poReklamie / b.poReklamie))],
+    ],
+  );
+}
+
+const MARZE = [0.2, 0.25, 0.3, 0.35, 0.4, 0.5, 0.6];
+const RABATY = [0.05, 0.1, 0.15, 0.2, 0.25, 0.3];
+
+function tabelaProgu() {
+  return tabela(
+    ["Marża", ...RABATY.map((r) => `−${proc(r)}`)],
+    MARZE.map((m) => [
+      proc(m),
+      ...RABATY.map((r) => {
+        const p = progSprzedazy(m, r);
+        if (p === null) return Math.abs(r - m) < 1e-9 ? "zero" : "strata";
+        return `+${proc(p)}`;
+      }),
+    ]),
+  );
+}
+
+const WZROSTY = [0.1, 0.25, 0.5, 1];
+
+function tabelaMaksymalnegoRabatu() {
+  return tabela(
+    ["Marża", ...WZROSTY.map((w) => `wzrost +${proc(w)}`)],
+    [0.2, 0.3, 0.4, 0.5, 0.6].map((m) => [
+      proc(m),
+      ...WZROSTY.map((w) => `${proc(wDol(maksymalnyRabat(m, w)))}`),
+    ]),
+  );
+}
+
+// Oś czasu: tydzień promocji przed Black Friday, a potem większy rabat w piątek.
+// Daty 2026: Black Friday 27.11 (piątek po czwartym czwartku listopada), Cyber Monday 30.11.
+const os = { regularna: 200, blackWeek: 160, blackFriday: 140 };
+
+function tabelaOsiCzasu() {
+  const bw = obnizkaOdNajnizszej(os.regularna, os.blackWeek);
+  const bf = obnizkaOdNajnizszej(os.blackWeek, os.blackFriday);
+  const bfOdRegularnej = obnizkaOdNajnizszej(os.regularna, os.blackFriday);
+  return tabela(
+    ["Termin", "Cena", "Najniższa cena z 30 dni przed obniżką", "Obniżka, którą pokazujesz"],
+    [
+      ["do 19.11", zl(os.regularna), "–", "–"],
+      [
+        "20–26.11 (Black Week)",
+        zl(os.blackWeek),
+        `${zl(os.regularna)} (21.10–19.11)`,
+        `−${proc(bw)}`,
+      ],
+      [
+        "od 27.11 (Black Friday)",
+        zl(os.blackFriday),
+        `${zl(os.blackWeek)} (28.10–26.11)`,
+        `−${proc(bf, 1)}, nie −${proc(bfOdRegularnej)}`,
+      ],
+    ],
+  );
+}
+
+const BLOKI = {
+  fotel: przykladFotel,
+  prog: tabelaProgu,
+  "maks-rabat": tabelaMaksymalnegoRabatu,
+  "os-czasu": tabelaOsiCzasu,
+};
+
+// ---------- uruchomienie ----------
+
+const i = process.argv.indexOf("--wstaw");
+if (i > 0) {
+  const plik = process.argv[i + 1];
+  let tekst = fs.readFileSync(plik, "utf8");
+  const wstawione = [];
+  for (const [nazwa, generuj] of Object.entries(BLOKI)) {
+    const wzor = new RegExp(`(<!-- tabela:${nazwa} -->)[\\s\\S]*?(<!-- /tabela:${nazwa} -->)`);
+    if (!wzor.test(tekst)) continue;
+    tekst = tekst.replace(wzor, (_, a, b) => `${a}\n\n${generuj()}\n\n${b}`);
+    wstawione.push(nazwa);
+  }
+  fs.writeFileSync(plik, tekst);
+  console.log(`Wstawiono do ${plik}: ${wstawione.join(", ") || "nic (brak znaczników)"}`);
+} else {
+  for (const [nazwa, generuj] of Object.entries(BLOKI))
+    console.log(`\n## ${nazwa}\n\n${generuj()}`);
+  const k = 0.1;
+  console.log(
+    `\nRabat 20% przy prowizji ${proc(k)} kosztuje ${proc(0.2 * (1 - k))} ceny ` +
+      `(wzrost sprzedaży przy marży 40%: +${proc((0.2 * (1 - k)) / (0.4 - 0.2 * (1 - k)))}).`,
+  );
+}
