@@ -1,0 +1,266 @@
+<!-- PLAKAT · ROZDZIAŁ 06 -->
+<section class="page poster" data-name="rozdzial-06" aria-label="Rozdział 06: Budżet i pomiar">
+  <img
+    class="bg"
+    src="../assets/3d/rozdzial-06.jpg"
+    alt="Pomarańczowy hetman stoi pośród przewróconych pionków na szachownicy"
+  />
+  <div class="poster__ghost" aria-hidden="true">06</div>
+  <div class="poster__top"><span>Rozdział 06 / 08</span><span class="pnum"></span></div>
+  <h2 class="poster__title">
+    Budżet<br />
+    i <mark>pomiar.</mark>
+  </h2>
+  <p class="poster__aside">
+    Każdy ruch się liczy. Policz test, zanim wydasz pierwszą złotówkę, i decyduj według kalendarza,
+    nie nastroju.
+  </p>
+  <div class="poster__dark">
+    <div>
+      <small>W tym rozdziale</small>
+      <p>Kalkulator na kartce · Jak czytać raport<br />Reguły 14 i 30 dni</p>
+    </div>
+    <span class="logo">KSIGN<i>.</i></span>
+  </div>
+</section>
+
+<!-- ROZDZIAŁ 06 · KALKULATOR NA KARTCE -->
+<section class="page content roomy" data-name="kalkulator">
+  <header class="runhead">
+    <span class="marker">06 · Budżet i pomiar</span><span class="pnum"></span>
+  </header>
+
+  <h2 class="h1 h1--small">Kalkulator na kartce</h2>
+  <p class="lead">
+    Zanim wydasz 910 zł, policz, ile zamówień może to dać i ile możesz za nie&nbsp;zapłacić.
+  </p>
+
+  <table class="tbl tbl--tight" style="margin-top: 16px">
+    <thead>
+      <tr>
+        <th style="width: 60px"></th>
+        <th>Wzór</th>
+        <th style="width: 170px">Twoje liczby</th>
+        <th style="width: 220px">Przykład</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="num">A</td>
+        <td>Budżet testu</td>
+        <td class="muted">_______ zł</td>
+        <td>910 zł</td>
+      </tr>
+      <tr>
+        <td class="num">B</td>
+        <td>Koszt kliknięcia (CPC)</td>
+        <td class="muted">_______ zł</td>
+        <td>2,50 zł</td>
+      </tr>
+      <tr>
+        <td class="num">C</td>
+        <td>Kliknięcia = A ÷ B</td>
+        <td class="muted">_______</td>
+        <td>364</td>
+      </tr>
+      <tr>
+        <td class="num">D</td>
+        <td>Konwersja strony</td>
+        <td class="muted">_______ %</td>
+        <td>1,5%</td>
+      </tr>
+      <tr>
+        <td class="num">E</td>
+        <td>Zamówienia = C × D</td>
+        <td class="muted">_______</td>
+        <td>5,5</td>
+      </tr>
+      <tr class="accent">
+        <td class="num">F</td>
+        <td>Koszt pozyskania = A ÷ E</td>
+        <td class="muted">_______ zł</td>
+        <td><b>ok. 167 zł</b></td>
+      </tr>
+      <tr class="accent">
+        <td class="num">G</td>
+        <td>Zysk brutto z zamówienia</td>
+        <td class="muted">_______ zł</td>
+        <td><b>600 zł × 30% = 180 zł</b></td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="note-line">
+    F &lt; G: test jest na granicy opłacalności. Lepsza konwersja strony przesuwa go na plus.
+  </p>
+  <p class="src">
+    Przykładowe założenia, nie benchmark. CPC weź z panelu po 7 dniach, konwersję – z GA4 dla
+    podobnego&nbsp;ruchu.
+  </p>
+
+  <div class="takeaway">
+    <span class="takeaway__label">Jak czytać wynik</span>
+    <p><b>F wyraźnie niższe niż G</b> – test ma sens, uruchamiaj.</p>
+    <p><b>F blisko G</b> – popraw konwersję strony, zanim zwiększysz budżet.</p>
+    <p><b>F wyższe niż G</b> – najpierw strona i oferta, dopiero potem reklama.</p>
+  </div>
+
+  <footer class="foot">
+    <span class="logo">KSIGN<i>.</i></span>
+    <span class="mono">Źródła: str. <span data-str="slowniczek-zrodla"></span></span>
+    <span class="mono">v1.0 · stan na 28.09.2026</span>
+  </footer>
+</section>
+
+<!-- JAK CZYTAĆ RAPORT -->
+<section class="page content roomy" data-name="raport">
+  <header class="runhead">
+    <span class="marker">06 · Budżet i pomiar</span><span class="pnum"></span>
+  </header>
+  <h2 class="h1 h1--mid">Jak czytać raport</h2>
+  <p class="lead">Panel pokazuje mniej niż Meta czy Google. Czytaj go razem z GA4.</p>
+
+  <table class="tbl tbl--tight">
+    <thead>
+      <tr>
+        <th style="width: 320px">Co widzisz</th>
+        <th>Co to znaczy</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Wyświetlenia, kliknięcia,&nbsp;CTR</td>
+        <td>Czy sytuacje z Twoich wskazówek się zdarzają i czy reklama przyciąga</td>
+      </tr>
+      <tr>
+        <td>CPC, CPM</td>
+        <td>Ile płacisz – porównaj z kalkulatorem ze str. <span data-str="kalkulator"></span></td>
+      </tr>
+      <tr class="accent">
+        <td>Konwersje po kliknięciu</td>
+        <td>Główna liczba konwersji (okno kliknięcia z konfiguracji)</td>
+      </tr>
+      <tr>
+        <td>Konwersje po wyświetleniu</td>
+        <td>Osobno, okno 1 dnia, poza główną liczbą. To sygnał, nie&nbsp;wynik</td>
+      </tr>
+      <tr>
+        <td>Brak danych demograficznych</td>
+        <td>Dane są zbiorcze, a w EOG reklamy nie są personalizowane</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="body" style="margin-top: 18px; font-size: 22px">
+    <b>GA4:</b> filtruj ruch po <code>utm_source=chatgpt</code>. Duża różnica między kliknięciami w
+    panelu a sesjami w GA4 to problem z linkiem, przekierowaniem albo zgodami.
+  </p>
+
+  <div class="stats stats--3" style="margin-top: 18px">
+    <div class="stat stat--orange">
+      <div class="stat__n">0,9%</div>
+      <div class="stat__t">CTR reklam w chatbotach</div>
+    </div>
+    <div class="stat">
+      <div class="stat__n">6,4%</div>
+      <div class="stat__t">CTR reklam w wyszukiwarce Google</div>
+    </div>
+    <div class="stat stat--ink">
+      <div class="stat__n">1,0%</div>
+      <div class="stat__t">CTR w publicznym teście Grow My Ads</div>
+    </div>
+  </div>
+  <p class="src">Benchmark orientacyjny: eMarketer (USA, 2026). Test: Grow My Ads, 03.08.2026.</p>
+
+  <div class="takeaway" style="margin-top: 18px">
+    <span class="takeaway__label">Jak to czytać</span>
+    <p>
+      Nie porównuj CTR jeden do jednego z wyszukiwarką. Oceniaj <b>koszt pozyskania</b> (str.
+      <span data-str="kalkulator"></span>) i jakość klientów po 30 dniach (str.
+      <span data-str="reguly-14-30"></span>).
+    </p>
+  </div>
+
+  <footer class="foot">
+    <span class="logo">KSIGN<i>.</i></span>
+    <span class="mono">Źródła: str. <span data-str="slowniczek-zrodla"></span></span>
+    <span class="mono">v1.0 · stan na 28.09.2026</span>
+  </footer>
+</section>
+
+<!-- REGUŁY 14 I 30 DNI -->
+<section class="page content roomy" data-name="reguly-14-30">
+  <header class="runhead">
+    <span class="marker">06 · Budżet i pomiar</span><span class="pnum"></span>
+  </header>
+  <h2 class="h1 h1--mid">Reguły 14 i 30 dni</h2>
+  <p class="lead">
+    Decyzje według kalendarza, nie nastroju. Progi to nasze punkty startowe – dopasuj je do marży.
+  </p>
+
+  <table class="tbl tbl--tight tbl--dense">
+    <thead>
+      <tr>
+        <th style="width: 110px">Kiedy</th>
+        <th>Jeśli…</th>
+        <th>…to</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Dzień 7</td>
+        <td>0 wyświetleń</td>
+        <td>Sprawdź akceptację, stawkę, wskazówki i dostęp OAI-AdsBot</td>
+      </tr>
+      <tr>
+        <td>Dzień 7</td>
+        <td>Wyświetlenia są, kliknięć brak</td>
+        <td>Nowe warianty tytułu i obrazu</td>
+      </tr>
+      <tr class="accent">
+        <td>Dzień 14</td>
+        <td>CTR poniżej 0,5%</td>
+        <td>Przepisz wskazówki i reklamy</td>
+      </tr>
+      <tr class="accent">
+        <td>Dzień 14</td>
+        <td>Kliknięcia są, konwersji zero</td>
+        <td>Problem jest na stronie: podstrona, oferta,&nbsp;pomiar</td>
+      </tr>
+      <tr class="accent">
+        <td>Dzień 14</td>
+        <td>Koszt pozyskania ≤ zysk z zamówienia</td>
+        <td>Zostaw i dodaj jedną nową grupę</td>
+      </tr>
+      <tr>
+        <td>Dzień 30</td>
+        <td>Taniej niż w Google i Meta</td>
+        <td>Zwiększ budżet o 20–30%</td>
+      </tr>
+      <tr>
+        <td>Dzień 30</td>
+        <td>Drożej, ale lepsi klienci</td>
+        <td>Testuj kolejne 30 dni</td>
+      </tr>
+      <tr>
+        <td>Dzień 30</td>
+        <td>Drożej i bez poprawy</td>
+        <td>Wstrzymaj i wróć za kwartał</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="todo">
+    <span class="todo__label">Do zrobienia dziś</span>
+    <ol>
+      <li>Wypełnij kalkulator ze str. <span data-str="kalkulator"></span> dla swojej oferty.</li>
+      <li>Wpisz do kalendarza przeglądy: dzień 7, 14 i 30.</li>
+      <li>Przygotuj w GA4 widok dla <code>utm_source=chatgpt</code>.</li>
+    </ol>
+  </div>
+
+  <footer class="foot">
+    <span class="logo">KSIGN<i>.</i></span>
+    <span class="mono">Źródła: str. <span data-str="slowniczek-zrodla"></span></span>
+    <span class="mono">v1.0 · stan na 28.09.2026</span>
+  </footer>
+</section>

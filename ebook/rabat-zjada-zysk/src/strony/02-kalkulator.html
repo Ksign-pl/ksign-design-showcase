@@ -1,0 +1,411 @@
+<!-- PLAKAT · ROZDZIAŁ 02 -->
+<section class="page poster" data-name="rozdzial-02" aria-label="Rozdział 02: Kalkulator rabatu">
+  <img
+    class="bg"
+    src="../assets/3d/rozdzial-02.jpg"
+    alt="Biała klawiatura, na środku duży klawisz ze szkła w kolorze turkusu ze świecącym znakiem procentu"
+  />
+  <div class="poster__ghost" aria-hidden="true">02</div>
+  <div class="poster__top"><span>Rozdział 02 / 08</span><span class="pnum"></span></div>
+  <h2 class="poster__title">
+    Kalkulator<br />
+    <mark>rabatu.</mark>
+  </h2>
+  <p class="poster__aside">Zanim ogłosisz −20%, policz, ile musisz sprzedać więcej.</p>
+  <div class="poster__dark">
+    <div>
+      <small>W tym rozdziale</small>
+      <p>
+        Ile musisz sprzedać więcej · Tabela progu<br />Kalkulator na kartce · Jaki rabat udźwigniesz
+      </p>
+    </div>
+    <span class="logo">KSIGN<i>.</i></span>
+  </div>
+</section>
+
+<!-- ILE MUSISZ SPRZEDAĆ WIĘCEJ -->
+<section class="page content roomy wieksze" data-name="ile-wiecej">
+  <header class="runhead">
+    <span class="marker">02 · Kalkulator rabatu</span><span class="pnum"></span>
+  </header>
+  <h2 class="h1 h1--small">Ile musisz sprzedać więcej</h2>
+  <p class="lead">Jeden wzór. Wystarczą dwie liczby w procentach: marża i rabat.</p>
+
+  <div class="wzor">
+    <span class="label">Wzór</span>
+    <p>wzrost sprzedaży = rabat <span>÷</span> (marża <span>−</span> rabat)</p>
+  </div>
+
+  <p class="body" style="margin-top: 20px; font-size: 22px">
+    <b>Marża</b> to zysk ze sztuki podzielony przez cenę netto. Zysk liczysz po kosztach zmiennych:
+    towar, dostawa, płatność, opakowanie, prowizje. Jeśli sprzedajesz z reklam, odejmij też koszt
+    reklamy na zamówienie – wynik będzie bliższy prawdy.
+  </p>
+
+  <div class="two" style="margin-top: 20px">
+    <div class="panel">
+      <h3>Przykład 1 · bez kosztu reklamy</h3>
+      <p>Marża 40%, rabat 20%.</p>
+      <p>
+        20 ÷ (40 − 20) = 1, czyli <b>+100%</b>. Musisz sprzedać dwa razy więcej sztuk, żeby zarobić
+        tyle samo.
+      </p>
+    </div>
+    <div class="panel panel--akcent">
+      <h3>Przykład 2 · z reklamą</h3>
+      <p>Zysk po reklamie: 300 zł z 1000 zł ceny netto, czyli marża 30%.</p>
+      <p>
+        20 ÷ (30 − 20) = 2, czyli <b>+200%</b>. Trzy razy więcej zamówień – te same 3 fotele co na
+        str. <span data-str="zysk-z-zamowienia"></span>.
+      </p>
+    </div>
+  </div>
+
+  <h3 class="label label--outline" style="margin-top: 26px">Uwaga – 2 błędy w liczeniu marży</h3>
+  <ol class="steps steps--gesto" style="margin-top: 16px">
+    <li>
+      <b>Marża od ceny brutto.</b> VAT nie jest Twoim przychodem. Fotel kupiony za 480 zł netto i
+      sprzedany za 1230 zł brutto: od ceny brutto wychodzi 61%, ale marża na samym towarze to 52% –
+      liczona od 1000 zł netto. Po dostawie i obsłudze zostaje 40%.
+    </li>
+    <li>
+      <b>Narzut zamiast marży.</b> Narzut liczysz od kosztu, marżę od ceny. Towar kupiony za 500 zł
+      i sprzedany za 1000 zł netto to narzut 100%, ale marża 50%.
+    </li>
+  </ol>
+  <p class="src">
+    Jeśli część kosztów to procent ceny (prowizja marketplace, opłata za płatność), rabat kosztuje
+    Cię nieco mniej: rabat × (1 − ten procent). Przy prowizji 10% rabat 20% kosztuje 18% ceny.
+  </p>
+
+  <footer class="foot">
+    <span class="logo">KSIGN<i>.</i></span>
+    <span class="mono">Źródła: str. <span data-str="slowniczek-zrodla"></span></span>
+    <span class="mono">ksign.pl</span>
+  </footer>
+</section>
+
+<!-- TABELA PROGU -->
+<section class="page content roomy przestrzen" data-name="tabela-progu">
+  <header class="runhead">
+    <span class="marker">02 · Kalkulator rabatu</span><span class="pnum"></span>
+  </header>
+  <h2 class="h1 h1--small">Tabela progu</h2>
+  <p class="lead">
+    Znajdź swoją marżę (wiersz) i planowany rabat (kolumna). Liczba w komórce to wzrost sprzedaży,
+    którego potrzebujesz, żeby zysk się nie zmienił.
+  </p>
+
+  <!-- tabela:prog -->
+
+  <table class="tbl tbl--siatka">
+    <thead>
+      <tr>
+        <th>Marża</th>
+        <th>−5%</th>
+        <th>−10%</th>
+        <th>−15%</th>
+        <th>−20%</th>
+        <th>−25%</th>
+        <th>−30%</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>20%</td>
+        <td>+33%</td>
+        <td>+100%</td>
+        <td>+300%</td>
+        <td class="zle">zero</td>
+        <td class="zle">strata</td>
+        <td class="zle">strata</td>
+      </tr>
+      <tr>
+        <td>25%</td>
+        <td>+25%</td>
+        <td>+67%</td>
+        <td>+150%</td>
+        <td>+400%</td>
+        <td class="zle">zero</td>
+        <td class="zle">strata</td>
+      </tr>
+      <tr>
+        <td>30%</td>
+        <td>+20%</td>
+        <td>+50%</td>
+        <td>+100%</td>
+        <td class="hit">+200%</td>
+        <td>+500%</td>
+        <td class="zle">zero</td>
+      </tr>
+      <tr>
+        <td>35%</td>
+        <td>+17%</td>
+        <td>+40%</td>
+        <td>+75%</td>
+        <td>+133%</td>
+        <td>+250%</td>
+        <td>+600%</td>
+      </tr>
+      <tr>
+        <td>40%</td>
+        <td>+14%</td>
+        <td>+33%</td>
+        <td>+60%</td>
+        <td>+100%</td>
+        <td>+167%</td>
+        <td>+300%</td>
+      </tr>
+      <tr>
+        <td>50%</td>
+        <td>+11%</td>
+        <td>+25%</td>
+        <td>+43%</td>
+        <td>+67%</td>
+        <td>+100%</td>
+        <td>+150%</td>
+      </tr>
+      <tr>
+        <td>60%</td>
+        <td>+9%</td>
+        <td>+20%</td>
+        <td>+33%</td>
+        <td>+50%</td>
+        <td>+71%</td>
+        <td>+100%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- /tabela:prog -->
+
+  <p class="body" style="margin-top: 20px; font-size: 21px">
+    <b>+100%</b> – dwa razy więcej sztuk. <b>zero</b> – rabat równy marży: sprzedajesz bez zysku.
+    <b>strata</b> – każda sprzedana sztuka przynosi stratę.
+  </p>
+
+  <div class="takeaway kotwica">
+    <span class="takeaway__label">Jak czytać</span>
+    <p>
+      Przy marży 30% i rabacie 20% potrzebujesz <b>+200%</b>, czyli trzy razy więcej zamówień.
+      Zeszłoroczny Black Friday dał Ci +80%? Przy tej marży to za mało nawet na rabat 15%, który
+      wymaga +100%.
+    </p>
+  </div>
+
+  <footer class="foot">
+    <span class="logo">KSIGN<i>.</i></span>
+    <span class="mono">Źródła: str. <span data-str="slowniczek-zrodla"></span></span>
+    <span class="mono">ksign.pl</span>
+  </footer>
+</section>
+
+<!-- KALKULATOR NA KARTCE (do druku) -->
+<section class="page content white roomy" data-name="kalkulator">
+  <header class="runhead">
+    <span class="marker">02 · Kalkulator rabatu</span><span class="pnum"></span>
+  </header>
+  <h2 class="h1 h1--small">Kalkulator na kartce</h2>
+  <p class="lead">
+    Policz jeden produkt w 3 minuty. Potem 10 produktów, które chcesz dać na Black Friday.
+  </p>
+
+  <!-- tabela:kartka -->
+
+  <table class="tbl tbl--kartka">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Wzór</th>
+        <th>Twoje liczby</th>
+        <th>Przykład</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="lit">A</td>
+        <td>Cena netto = cena brutto ÷ 1,23</td>
+        <td class="pole"><span class="wpis"></span>zł</td>
+        <td>1000 zł</td>
+      </tr>
+      <tr>
+        <td class="lit">B</td>
+        <td>Koszt towaru (netto)</td>
+        <td class="pole"><span class="wpis"></span>zł</td>
+        <td>480 zł</td>
+      </tr>
+      <tr>
+        <td class="lit">C</td>
+        <td>Dostawa, płatność, opakowanie, obsługa</td>
+        <td class="pole"><span class="wpis"></span>zł</td>
+        <td>120 zł</td>
+      </tr>
+      <tr>
+        <td class="lit">D</td>
+        <td>Prowizja marketplace od ceny regularnej</td>
+        <td class="pole"><span class="wpis"></span>zł</td>
+        <td>0 zł</td>
+      </tr>
+      <tr>
+        <td class="lit">E</td>
+        <td>Reklama na 1 zamówienie</td>
+        <td class="pole"><span class="wpis"></span>zł</td>
+        <td>100 zł</td>
+      </tr>
+      <tr>
+        <td class="lit">F</td>
+        <td>Zysk z zamówienia = A − B − C − D − E</td>
+        <td class="pole"><span class="wpis"></span>zł</td>
+        <td>300 zł</td>
+      </tr>
+      <tr>
+        <td class="lit">G</td>
+        <td>Marża = F ÷ A</td>
+        <td class="pole"><span class="wpis"></span>%</td>
+        <td>30%</td>
+      </tr>
+      <tr>
+        <td class="lit">H</td>
+        <td>Planowany rabat</td>
+        <td class="pole"><span class="wpis"></span>%</td>
+        <td>20%</td>
+      </tr>
+      <tr>
+        <td class="lit">I</td>
+        <td>Potrzebny wzrost sprzedaży = H ÷ (G − H)</td>
+        <td class="pole"><span class="wpis"></span>%</td>
+        <td>+200%</td>
+      </tr>
+      <tr>
+        <td class="lit">J</td>
+        <td>Realny wzrost: zeszły rok, ruch, stany magazynu</td>
+        <td class="pole"><span class="wpis"></span>%</td>
+        <td>+80%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- /tabela:kartka -->
+
+  <h3 class="label label--outline" style="margin-top: 26px">Jak czytać wynik</h3>
+  <div class="trzy">
+    <div><b>J większe niż I</b>Rabat ma sens.</div>
+    <div>
+      <b>J mniejsze niż I</b>Zmniejsz rabat (str. <span data-str="jaki-rabat"></span>) albo wybierz
+      inną zachętę (rozdział 05). W przykładzie możesz dać najwyżej 13%.
+    </div>
+    <div><b>G mniejsze niż H</b>Nie dawaj tego rabatu. Każda sztuka to strata.</div>
+  </div>
+  <p class="src">
+    Dla stawek VAT 8% i 5% dziel cenę brutto przez 1,08 lub 1,05. Koszt reklamy na zamówienie:
+    wydatki na reklamę podzielone przez liczbę zamówień z reklam w zeszłym listopadzie.
+  </p>
+
+  <footer class="foot">
+    <span class="logo">KSIGN<i>.</i></span>
+    <span class="mono">Źródła: str. <span data-str="slowniczek-zrodla"></span></span>
+    <span class="mono">ksign.pl</span>
+  </footer>
+</section>
+
+<!-- JAKI RABAT UDŹWIGNIESZ -->
+<section class="page content roomy" data-name="jaki-rabat">
+  <header class="runhead">
+    <span class="marker">02 · Kalkulator rabatu</span><span class="pnum"></span>
+  </header>
+  <h2 class="h1 h1--small">Jaki rabat udźwigniesz</h2>
+  <p class="lead" style="font-size: 24px">
+    Odwróć pytanie: zacznij od wzrostu, który realnie osiągniesz.
+  </p>
+
+  <div class="wzor wzor--male">
+    <span class="label">Wzór</span>
+    <p>maksymalny rabat = marża <span>×</span> wzrost <span>÷</span> (1 <span>+</span> wzrost)</p>
+  </div>
+
+  <!-- tabela:maks-rabat -->
+
+  <table class="tbl tbl--siatka">
+    <thead>
+      <tr>
+        <th>Marża</th>
+        <th>wzrost +10%</th>
+        <th>wzrost +25%</th>
+        <th>wzrost +50%</th>
+        <th>wzrost +100%</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>20%</td>
+        <td>1%</td>
+        <td>4%</td>
+        <td>6%</td>
+        <td>10%</td>
+      </tr>
+      <tr>
+        <td>30%</td>
+        <td>2%</td>
+        <td>6%</td>
+        <td class="hit">10%</td>
+        <td>15%</td>
+      </tr>
+      <tr>
+        <td>40%</td>
+        <td>3%</td>
+        <td>8%</td>
+        <td>13%</td>
+        <td>20%</td>
+      </tr>
+      <tr>
+        <td>50%</td>
+        <td>4%</td>
+        <td>10%</td>
+        <td>16%</td>
+        <td>25%</td>
+      </tr>
+      <tr>
+        <td>60%</td>
+        <td>5%</td>
+        <td>12%</td>
+        <td>20%</td>
+        <td>30%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- /tabela:maks-rabat -->
+  <p class="src">
+    W komórce: największy rabat, przy którym zarobisz tyle samo co bez niego (zaokrąglony w dół).
+    Przykład: marża 30% i wzrost +50% – najwyżej 10%.
+  </p>
+  <p class="body" style="margin-top: 12px; font-size: 20px">
+    <b>Uwaga:</b> zeszłoroczny wzrost był efektem konkretnego rabatu. Mniejszy rabat może dać
+    mniejszy wzrost – sprawdź to na części produktów, zanim zmienisz całą ofertę.
+  </p>
+
+  <h3 class="label label--outline" style="margin-top: 18px">Kiedy rabat opłaca się mimo tabeli</h3>
+  <div class="trzy trzy--male">
+    <div><b>Wyprzedajesz zapas,</b> który i tak straci wartość.</div>
+    <div><b>Produkt z rabatem podnosi koszyk</b> o produkty w pełnej cenie.</div>
+    <div><b>Wrócisz do klienta bez rabatu:</b> masz zgodę na newsletter.</div>
+  </div>
+
+  <div class="todo">
+    <span class="todo__label">Do zrobienia dziś</span>
+    <ol>
+      <li>
+        Wypełnij kalkulator ze str. <span data-str="kalkulator"></span> dla 10 produktów na Black
+        Friday.
+      </li>
+      <li>Skreśl produkty, w których marża (G) jest mniejsza niż planowany rabat (H).</li>
+      <li>Dla pozostałych ustaw rabat z tabeli powyżej zamiast „−20% na wszystko”.</li>
+    </ol>
+  </div>
+
+  <footer class="foot">
+    <span class="logo">KSIGN<i>.</i></span>
+    <span class="mono">Źródła: str. <span data-str="slowniczek-zrodla"></span></span>
+    <span class="mono">ksign.pl</span>
+  </footer>
+</section>

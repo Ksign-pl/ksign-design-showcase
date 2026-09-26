@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <!-- Uruchamia scenę z pliku <nazwa>.js: scena.html?s=08-lupa -->
+    <style>
+      html,
+      body {
+        margin: 0;
+        background: #fff;
+      }
+      canvas {
+        display: block;
+      }
+    </style>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "./node_modules/three/build/three.module.js",
+          "three/addons/": "./node_modules/three/examples/jsm/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <script type="module">
+      const nazwa = new URLSearchParams(location.search).get("s");
+      await import(`./${nazwa}.js`);
+    </script>
+  </body>
+</html>
